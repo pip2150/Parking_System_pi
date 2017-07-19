@@ -5,13 +5,13 @@
 
 class OCR {
 public:
-	static const int OCR::numCharacters = 23;
+	static const int numCharacters = 23;
 	int recNum;
 private:
 	cv::Ptr<cv::ml::ANN_MLP> ann;
 	cv::Mat classes;
 	cv::Mat trainingData;
-	static const char OCR::strCharacters[numCharacters];
+	static const char strCharacters[numCharacters];
 
 public:
 	void train(int nlayers);

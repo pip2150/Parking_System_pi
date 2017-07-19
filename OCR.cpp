@@ -1,4 +1,3 @@
-#include "stdafx.h"
 
 #include "OCR.hpp"
 #include "utils.hpp"
@@ -149,7 +148,7 @@ void OCR::collectTrainImages() {
 	char text[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'B', 'C', 'D', 'E', 'F', 'G', 'N', 'S', 'T', 'V', 'W', 'X', 'Y' };
 
 	for (int i = 0; i < imagecnt; i++) {
-		string path = "trainnumber2/" + to_string(i) + ".png";
+		string path = "trainnumber2/" + Utils::to_string(i) + ".png";
 		cout << path << endl;
 		Mat img;
 
@@ -173,7 +172,7 @@ void OCR::collectTrainImages2() {
 	for (int i = 0; i < recNum; i++) {
 		int j=0;
 		while (1) {
-			string path = "trainnumber2/" + string(1,strCharacters[i]) + "/" + to_string(j) + ".jpg";
+			string path = "trainnumber2/" + string(1,strCharacters[i]) + "/" + Utils::to_string(j) + ".jpg";
 			Mat img;
 			cout << path << endl;
 			if (Utils::readImage(path, img, 1)) {

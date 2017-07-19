@@ -36,4 +36,10 @@ public:
 		}
 		return 0;
 	}
+    template <typename T>
+    static string to_string(T input){
+        ostringstream ss;
+        ss<< input ;
+        return ss.str();
+    }
 };

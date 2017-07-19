@@ -1,4 +1,3 @@
-#include "stdafx.h"
 
 #include "Svm.hpp"
 #include "utils.hpp"
@@ -27,7 +26,7 @@ void Svm::collectTrainImages() {
 	int imagecnt = 110;
 
 	for (int i = 0; i < imagecnt; i++) {
-		string path = "trainimage/" + to_string(i) + ".png";
+		string path = "trainimage/" + Utils::to_string(i) + ".png";
 		Mat img;
 
 		if (Utils::readImage(path, img, 1)) {
