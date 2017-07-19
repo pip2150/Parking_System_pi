@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/cygdrive/c/Users/dhrco/Desktop/Psr/Network/Http.h
+/home/pi/project/Parking_System_pi/Network/Http.hpp
 string
 -
 vector
@@ -16,11 +16,11 @@ cstring
 iostream
 -
 
-/cygdrive/c/Users/dhrco/Desktop/Psr/Network/Socket.cpp
-Socket.h
-/cygdrive/c/Users/dhrco/Desktop/Psr/Network/Socket.h
+/home/pi/project/Parking_System_pi/Network/Socket.cpp
+Socket.hpp
+/home/pi/project/Parking_System_pi/Network/Socket.hpp
 
-/cygdrive/c/Users/dhrco/Desktop/Psr/Network/Socket.h
+/home/pi/project/Parking_System_pi/Network/Socket.hpp
 iostream
 -
 cstdlib
@@ -42,61 +42,61 @@ sys/socket.h
 arpa/inet.h
 -
 
-/cygdrive/c/Users/dhrco/Desktop/Psr/Network/http.cpp
-Http.h
-/cygdrive/c/Users/dhrco/Desktop/Psr/Network/Http.h
+/home/pi/project/Parking_System_pi/Network/http.cpp
+Http.hpp
+/home/pi/project/Parking_System_pi/Network/Http.hpp
 
-/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/OCR.cpp
+/home/pi/project/Parking_System_pi/Opencv/OCR.cpp
 OCR.hpp
-/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/OCR.hpp
-utils.hpp
-/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/utils.hpp
+/home/pi/project/Parking_System_pi/Opencv/OCR.hpp
+Utils.hpp
+/home/pi/project/Parking_System_pi/Opencv/Utils.hpp
 
-/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/OCR.hpp
+/home/pi/project/Parking_System_pi/Opencv/OCR.hpp
 opencv2/ml/ml.hpp
 -
 opencv2/core/core.hpp
 -
 
-/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/Plate.cpp
+/home/pi/project/Parking_System_pi/Opencv/Plate.cpp
 Plate.hpp
-/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/Plate.hpp
-utils.hpp
-/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/utils.hpp
+/home/pi/project/Parking_System_pi/Opencv/Plate.hpp
 
-/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/Plate.hpp
+/home/pi/project/Parking_System_pi/Opencv/Plate.hpp
 opencv2/opencv.hpp
 -
 opencv2/core/core.hpp
 -
 
-/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/Svm.cpp
+/home/pi/project/Parking_System_pi/Opencv/Svm.cpp
 Svm.hpp
-/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/Svm.hpp
-utils.hpp
-/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/utils.hpp
+/home/pi/project/Parking_System_pi/Opencv/Svm.hpp
+Utils.hpp
+/home/pi/project/Parking_System_pi/Opencv/Utils.hpp
 
-/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/Svm.hpp
+/home/pi/project/Parking_System_pi/Opencv/Svm.hpp
 opencv2/core/core.hpp
 -
 opencv2/ml/ml.hpp
 -
 
-/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/Utils.cpp
-utils.hpp
-/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/utils.hpp
+/home/pi/project/Parking_System_pi/Opencv/Utils.cpp
+Utils.hpp
+/home/pi/project/Parking_System_pi/Opencv/Utils.hpp
 
-/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/utils.hpp
+/home/pi/project/Parking_System_pi/Opencv/Utils.hpp
 opencv2/opencv.hpp
-/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/opencv2/opencv.hpp
+/home/pi/project/Parking_System_pi/Opencv/opencv2/opencv.hpp
 
-/cygdrive/c/Users/dhrco/Desktop/Psr/main.cpp
+/home/pi/project/Parking_System_pi/main.cpp
 Opencv/OCR.hpp
-/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/OCR.hpp
+/home/pi/project/Parking_System_pi/Opencv/OCR.hpp
 Opencv/Plate.hpp
-/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/Plate.hpp
+/home/pi/project/Parking_System_pi/Opencv/Plate.hpp
 Opencv/Svm.hpp
-/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/Svm.hpp
-Opencv/utils.hpp
-/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/utils.hpp
+/home/pi/project/Parking_System_pi/Opencv/Svm.hpp
+Opencv/Utils.hpp
+/home/pi/project/Parking_System_pi/Opencv/Utils.hpp
+thread
+-
 

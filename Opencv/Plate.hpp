@@ -24,7 +24,7 @@ public:
 		Number(cv::Mat &src);
 		cv::Mat img;
 		cv::Mat canonical;
-		void Number::canonicalize(int sampleSize);
+		void canonicalize(int sampleSize);
 	};
 	std::vector<Number> numbers;
 	void findNumbers();

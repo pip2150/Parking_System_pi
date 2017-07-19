@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake.exe
+CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = /usr/bin/cmake.exe -E remove -f
+RM = /usr/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /cygdrive/c/Users/dhrco/Desktop/Psr
+CMAKE_SOURCE_DIR = /home/pi/project/Parking_System_pi
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /cygdrive/c/Users/dhrco/Desktop/Psr
+CMAKE_BINARY_DIR = /home/pi/project/Parking_System_pi
 
 # Include any dependencies generated for this target.
 include CMakeFiles/main.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/main.dir/flags.make
 
 CMakeFiles/main.dir/main.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/main.cpp.o: main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/c/Users/dhrco/Desktop/Psr/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/main.dir/main.cpp.o"
-	/usr/bin/c++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/main.cpp.o -c /cygdrive/c/Users/dhrco/Desktop/Psr/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/project/Parking_System_pi/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/main.dir/main.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/main.cpp.o -c /home/pi/project/Parking_System_pi/main.cpp
 
 CMakeFiles/main.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/main.cpp.i"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/c/Users/dhrco/Desktop/Psr/main.cpp > CMakeFiles/main.dir/main.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/project/Parking_System_pi/main.cpp > CMakeFiles/main.dir/main.cpp.i
 
 CMakeFiles/main.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/main.cpp.s"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/c/Users/dhrco/Desktop/Psr/main.cpp -o CMakeFiles/main.dir/main.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/project/Parking_System_pi/main.cpp -o CMakeFiles/main.dir/main.cpp.s
 
 CMakeFiles/main.dir/main.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/main.dir/main.cpp.o.provides.build: CMakeFiles/main.dir/main.cpp.o
 
 CMakeFiles/main.dir/Opencv/Plate.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/Opencv/Plate.cpp.o: Opencv/Plate.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/c/Users/dhrco/Desktop/Psr/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/Opencv/Plate.cpp.o"
-	/usr/bin/c++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/Opencv/Plate.cpp.o -c /cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/Plate.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/project/Parking_System_pi/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/Opencv/Plate.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/Opencv/Plate.cpp.o -c /home/pi/project/Parking_System_pi/Opencv/Plate.cpp
 
 CMakeFiles/main.dir/Opencv/Plate.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/Opencv/Plate.cpp.i"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/Plate.cpp > CMakeFiles/main.dir/Opencv/Plate.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/project/Parking_System_pi/Opencv/Plate.cpp > CMakeFiles/main.dir/Opencv/Plate.cpp.i
 
 CMakeFiles/main.dir/Opencv/Plate.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/Opencv/Plate.cpp.s"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/Plate.cpp -o CMakeFiles/main.dir/Opencv/Plate.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/project/Parking_System_pi/Opencv/Plate.cpp -o CMakeFiles/main.dir/Opencv/Plate.cpp.s
 
 CMakeFiles/main.dir/Opencv/Plate.cpp.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/main.dir/Opencv/Plate.cpp.o.provides.build: CMakeFiles/main.dir/Openc
 
 CMakeFiles/main.dir/Opencv/Svm.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/Opencv/Svm.cpp.o: Opencv/Svm.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/c/Users/dhrco/Desktop/Psr/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.dir/Opencv/Svm.cpp.o"
-	/usr/bin/c++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/Opencv/Svm.cpp.o -c /cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/Svm.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/project/Parking_System_pi/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.dir/Opencv/Svm.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/Opencv/Svm.cpp.o -c /home/pi/project/Parking_System_pi/Opencv/Svm.cpp
 
 CMakeFiles/main.dir/Opencv/Svm.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/Opencv/Svm.cpp.i"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/Svm.cpp > CMakeFiles/main.dir/Opencv/Svm.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/project/Parking_System_pi/Opencv/Svm.cpp > CMakeFiles/main.dir/Opencv/Svm.cpp.i
 
 CMakeFiles/main.dir/Opencv/Svm.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/Opencv/Svm.cpp.s"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/Svm.cpp -o CMakeFiles/main.dir/Opencv/Svm.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/project/Parking_System_pi/Opencv/Svm.cpp -o CMakeFiles/main.dir/Opencv/Svm.cpp.s
 
 CMakeFiles/main.dir/Opencv/Svm.cpp.o.requires:
 
@@ -131,16 +131,16 @@ CMakeFiles/main.dir/Opencv/Svm.cpp.o.provides.build: CMakeFiles/main.dir/Opencv/
 
 CMakeFiles/main.dir/Opencv/OCR.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/Opencv/OCR.cpp.o: Opencv/OCR.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/c/Users/dhrco/Desktop/Psr/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.dir/Opencv/OCR.cpp.o"
-	/usr/bin/c++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/Opencv/OCR.cpp.o -c /cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/OCR.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/project/Parking_System_pi/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.dir/Opencv/OCR.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/Opencv/OCR.cpp.o -c /home/pi/project/Parking_System_pi/Opencv/OCR.cpp
 
 CMakeFiles/main.dir/Opencv/OCR.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/Opencv/OCR.cpp.i"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/OCR.cpp > CMakeFiles/main.dir/Opencv/OCR.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/project/Parking_System_pi/Opencv/OCR.cpp > CMakeFiles/main.dir/Opencv/OCR.cpp.i
 
 CMakeFiles/main.dir/Opencv/OCR.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/Opencv/OCR.cpp.s"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/OCR.cpp -o CMakeFiles/main.dir/Opencv/OCR.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/project/Parking_System_pi/Opencv/OCR.cpp -o CMakeFiles/main.dir/Opencv/OCR.cpp.s
 
 CMakeFiles/main.dir/Opencv/OCR.cpp.o.requires:
 
@@ -155,16 +155,16 @@ CMakeFiles/main.dir/Opencv/OCR.cpp.o.provides.build: CMakeFiles/main.dir/Opencv/
 
 CMakeFiles/main.dir/Opencv/Utils.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/Opencv/Utils.cpp.o: Opencv/Utils.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/c/Users/dhrco/Desktop/Psr/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main.dir/Opencv/Utils.cpp.o"
-	/usr/bin/c++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/Opencv/Utils.cpp.o -c /cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/Utils.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/project/Parking_System_pi/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main.dir/Opencv/Utils.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/Opencv/Utils.cpp.o -c /home/pi/project/Parking_System_pi/Opencv/Utils.cpp
 
 CMakeFiles/main.dir/Opencv/Utils.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/Opencv/Utils.cpp.i"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/Utils.cpp > CMakeFiles/main.dir/Opencv/Utils.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/project/Parking_System_pi/Opencv/Utils.cpp > CMakeFiles/main.dir/Opencv/Utils.cpp.i
 
 CMakeFiles/main.dir/Opencv/Utils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/Opencv/Utils.cpp.s"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/Utils.cpp -o CMakeFiles/main.dir/Opencv/Utils.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/project/Parking_System_pi/Opencv/Utils.cpp -o CMakeFiles/main.dir/Opencv/Utils.cpp.s
 
 CMakeFiles/main.dir/Opencv/Utils.cpp.o.requires:
 
@@ -179,16 +179,16 @@ CMakeFiles/main.dir/Opencv/Utils.cpp.o.provides.build: CMakeFiles/main.dir/Openc
 
 CMakeFiles/main.dir/Network/http.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/Network/http.cpp.o: Network/http.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/c/Users/dhrco/Desktop/Psr/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/Network/http.cpp.o"
-	/usr/bin/c++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/Network/http.cpp.o -c /cygdrive/c/Users/dhrco/Desktop/Psr/Network/http.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/project/Parking_System_pi/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/Network/http.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/Network/http.cpp.o -c /home/pi/project/Parking_System_pi/Network/http.cpp
 
 CMakeFiles/main.dir/Network/http.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/Network/http.cpp.i"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/c/Users/dhrco/Desktop/Psr/Network/http.cpp > CMakeFiles/main.dir/Network/http.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/project/Parking_System_pi/Network/http.cpp > CMakeFiles/main.dir/Network/http.cpp.i
 
 CMakeFiles/main.dir/Network/http.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/Network/http.cpp.s"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/c/Users/dhrco/Desktop/Psr/Network/http.cpp -o CMakeFiles/main.dir/Network/http.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/project/Parking_System_pi/Network/http.cpp -o CMakeFiles/main.dir/Network/http.cpp.s
 
 CMakeFiles/main.dir/Network/http.cpp.o.requires:
 
@@ -203,16 +203,16 @@ CMakeFiles/main.dir/Network/http.cpp.o.provides.build: CMakeFiles/main.dir/Netwo
 
 CMakeFiles/main.dir/Network/Socket.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/Network/Socket.cpp.o: Network/Socket.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/c/Users/dhrco/Desktop/Psr/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main.dir/Network/Socket.cpp.o"
-	/usr/bin/c++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/Network/Socket.cpp.o -c /cygdrive/c/Users/dhrco/Desktop/Psr/Network/Socket.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/project/Parking_System_pi/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main.dir/Network/Socket.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/Network/Socket.cpp.o -c /home/pi/project/Parking_System_pi/Network/Socket.cpp
 
 CMakeFiles/main.dir/Network/Socket.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/Network/Socket.cpp.i"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/c/Users/dhrco/Desktop/Psr/Network/Socket.cpp > CMakeFiles/main.dir/Network/Socket.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/project/Parking_System_pi/Network/Socket.cpp > CMakeFiles/main.dir/Network/Socket.cpp.i
 
 CMakeFiles/main.dir/Network/Socket.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/Network/Socket.cpp.s"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/c/Users/dhrco/Desktop/Psr/Network/Socket.cpp -o CMakeFiles/main.dir/Network/Socket.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/project/Parking_System_pi/Network/Socket.cpp -o CMakeFiles/main.dir/Network/Socket.cpp.s
 
 CMakeFiles/main.dir/Network/Socket.cpp.o.requires:
 
@@ -238,20 +238,20 @@ main_OBJECTS = \
 # External object files for target main
 main_EXTERNAL_OBJECTS =
 
-main.exe: CMakeFiles/main.dir/main.cpp.o
-main.exe: CMakeFiles/main.dir/Opencv/Plate.cpp.o
-main.exe: CMakeFiles/main.dir/Opencv/Svm.cpp.o
-main.exe: CMakeFiles/main.dir/Opencv/OCR.cpp.o
-main.exe: CMakeFiles/main.dir/Opencv/Utils.cpp.o
-main.exe: CMakeFiles/main.dir/Network/http.cpp.o
-main.exe: CMakeFiles/main.dir/Network/Socket.cpp.o
-main.exe: CMakeFiles/main.dir/build.make
-main.exe: CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/cygdrive/c/Users/dhrco/Desktop/Psr/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable main.exe"
+main: CMakeFiles/main.dir/main.cpp.o
+main: CMakeFiles/main.dir/Opencv/Plate.cpp.o
+main: CMakeFiles/main.dir/Opencv/Svm.cpp.o
+main: CMakeFiles/main.dir/Opencv/OCR.cpp.o
+main: CMakeFiles/main.dir/Opencv/Utils.cpp.o
+main: CMakeFiles/main.dir/Network/http.cpp.o
+main: CMakeFiles/main.dir/Network/Socket.cpp.o
+main: CMakeFiles/main.dir/build.make
+main: CMakeFiles/main.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/project/Parking_System_pi/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-CMakeFiles/main.dir/build: main.exe
+CMakeFiles/main.dir/build: main
 
 .PHONY : CMakeFiles/main.dir/build
 
@@ -270,6 +270,6 @@ CMakeFiles/main.dir/clean:
 .PHONY : CMakeFiles/main.dir/clean
 
 CMakeFiles/main.dir/depend:
-	cd /cygdrive/c/Users/dhrco/Desktop/Psr && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /cygdrive/c/Users/dhrco/Desktop/Psr /cygdrive/c/Users/dhrco/Desktop/Psr /cygdrive/c/Users/dhrco/Desktop/Psr /cygdrive/c/Users/dhrco/Desktop/Psr /cygdrive/c/Users/dhrco/Desktop/Psr/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/pi/project/Parking_System_pi && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/project/Parking_System_pi /home/pi/project/Parking_System_pi /home/pi/project/Parking_System_pi /home/pi/project/Parking_System_pi /home/pi/project/Parking_System_pi/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/main.dir/depend
 

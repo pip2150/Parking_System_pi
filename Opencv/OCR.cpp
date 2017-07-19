@@ -1,5 +1,5 @@
 #include "OCR.hpp"
-#include "utils.hpp"
+#include "Utils.hpp"
 
 using namespace cv::ml;
 using namespace cv;

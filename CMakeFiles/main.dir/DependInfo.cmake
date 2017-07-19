@@ -4,13 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/cygdrive/c/Users/dhrco/Desktop/Psr/Network/Socket.cpp" "/cygdrive/c/Users/dhrco/Desktop/Psr/CMakeFiles/main.dir/Network/Socket.cpp.o"
-  "/cygdrive/c/Users/dhrco/Desktop/Psr/Network/http.cpp" "/cygdrive/c/Users/dhrco/Desktop/Psr/CMakeFiles/main.dir/Network/http.cpp.o"
-  "/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/OCR.cpp" "/cygdrive/c/Users/dhrco/Desktop/Psr/CMakeFiles/main.dir/Opencv/OCR.cpp.o"
-  "/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/Plate.cpp" "/cygdrive/c/Users/dhrco/Desktop/Psr/CMakeFiles/main.dir/Opencv/Plate.cpp.o"
-  "/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/Svm.cpp" "/cygdrive/c/Users/dhrco/Desktop/Psr/CMakeFiles/main.dir/Opencv/Svm.cpp.o"
-  "/cygdrive/c/Users/dhrco/Desktop/Psr/Opencv/Utils.cpp" "/cygdrive/c/Users/dhrco/Desktop/Psr/CMakeFiles/main.dir/Opencv/Utils.cpp.o"
-  "/cygdrive/c/Users/dhrco/Desktop/Psr/main.cpp" "/cygdrive/c/Users/dhrco/Desktop/Psr/CMakeFiles/main.dir/main.cpp.o"
+  "/home/pi/project/Parking_System_pi/Network/Socket.cpp" "/home/pi/project/Parking_System_pi/CMakeFiles/main.dir/Network/Socket.cpp.o"
+  "/home/pi/project/Parking_System_pi/Network/http.cpp" "/home/pi/project/Parking_System_pi/CMakeFiles/main.dir/Network/http.cpp.o"
+  "/home/pi/project/Parking_System_pi/Opencv/OCR.cpp" "/home/pi/project/Parking_System_pi/CMakeFiles/main.dir/Opencv/OCR.cpp.o"
+  "/home/pi/project/Parking_System_pi/Opencv/Plate.cpp" "/home/pi/project/Parking_System_pi/CMakeFiles/main.dir/Opencv/Plate.cpp.o"
+  "/home/pi/project/Parking_System_pi/Opencv/Svm.cpp" "/home/pi/project/Parking_System_pi/CMakeFiles/main.dir/Opencv/Svm.cpp.o"
+  "/home/pi/project/Parking_System_pi/Opencv/Utils.cpp" "/home/pi/project/Parking_System_pi/CMakeFiles/main.dir/Opencv/Utils.cpp.o"
+  "/home/pi/project/Parking_System_pi/main.cpp" "/home/pi/project/Parking_System_pi/CMakeFiles/main.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

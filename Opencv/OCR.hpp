@@ -17,12 +17,12 @@ private:
 	cv::Ptr<cv::ml::ANN_MLP> ann;
 	cv::Mat classes;
 	cv::Mat trainingData;
-	std::string OCR::strCharacters = "0123456789BCDEFGNSTVWXY";
+	std::string strCharacters = "0123456789BCDEFGNSTVWXY";
 
 public:
 	OCR();
 	OCR(int format);
-	int OCR::numCharacters;	
+	int numCharacters;	
 	cv::Mat getHistogram(cv::Mat &img, int t);
 	cv::Mat features(cv::Mat &numbers, int sizeData);
 	void train(int nlayers);

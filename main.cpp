@@ -1,7 +1,7 @@
 #include "Opencv/OCR.hpp"
 #include "Opencv/Plate.hpp"
 #include "Opencv/Svm.hpp"
-#include "Opencv/utils.hpp"
+#include "Opencv/Utils.hpp"
 #include <thread>
 
 using namespace cv;

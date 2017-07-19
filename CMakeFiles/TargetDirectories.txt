@@ -1,3 +1,3 @@
-/cygdrive/c/Users/dhrco/Desktop/Psr/CMakeFiles/rebuild_cache.dir
-/cygdrive/c/Users/dhrco/Desktop/Psr/CMakeFiles/edit_cache.dir
-/cygdrive/c/Users/dhrco/Desktop/Psr/CMakeFiles/main.dir
+/home/pi/project/Parking_System_pi/CMakeFiles/edit_cache.dir
+/home/pi/project/Parking_System_pi/CMakeFiles/rebuild_cache.dir
+/home/pi/project/Parking_System_pi/CMakeFiles/main.dir
