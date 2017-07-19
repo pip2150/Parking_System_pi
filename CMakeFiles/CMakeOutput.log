@@ -538,3 +538,31 @@ make[1]: Leaving directory '/home/pi/project/Parking_System_pi/CMakeFiles/CMakeT
     Feature record: CXX_FEATURE:0cxx_variable_templates
     Feature record: CXX_FEATURE:0cxx_variadic_macros
     Feature record: CXX_FEATURE:0cxx_variadic_templates
+Determining if the include file pthread.h exists passed with the following output:
+Change Dir: /home/pi/project/Parking_System_pi/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_68820/fast"
+/usr/bin/make -f CMakeFiles/cmTC_68820.dir/build.make CMakeFiles/cmTC_68820.dir/build
+make[1]: Entering directory '/home/pi/project/Parking_System_pi/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_68820.dir/CheckIncludeFile.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_68820.dir/CheckIncludeFile.c.o   -c /home/pi/project/Parking_System_pi/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_68820
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_68820.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_68820.dir/CheckIncludeFile.c.o  -o cmTC_68820 -rdynamic 
+make[1]: Leaving directory '/home/pi/project/Parking_System_pi/CMakeFiles/CMakeTmp'
+
+
+Determining if the function pthread_create exists in the pthread passed with the following output:
+Change Dir: /home/pi/project/Parking_System_pi/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_764bc/fast"
+/usr/bin/make -f CMakeFiles/cmTC_764bc.dir/build.make CMakeFiles/cmTC_764bc.dir/build
+make[1]: Entering directory '/home/pi/project/Parking_System_pi/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_764bc.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_764bc.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.6/Modules/CheckFunctionExists.c
+Linking C executable cmTC_764bc
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_764bc.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_764bc.dir/CheckFunctionExists.c.o  -o cmTC_764bc -rdynamic -lpthread 
+make[1]: Leaving directory '/home/pi/project/Parking_System_pi/CMakeFiles/CMakeTmp'
+
+

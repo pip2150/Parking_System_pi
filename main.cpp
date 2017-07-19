@@ -11,7 +11,7 @@ using namespace std;
 #define FILESYSTEM 1
 #define TRUE 1
 #define FALSE 0
-#define SEGMENTSIZE 4
+#define SEGMENTSIZE 1
 #define FROM CAMERA
 #if FROM == FILESYSTEM
 #define TRAIN FALSE
@@ -23,9 +23,6 @@ void send2server(string jsondata) {
 
 int main(int argc, char* argv[]) {
 
-	OCR ocrChar(CHARACTER);
-	OCR ocrNum(NUMBER);
-	Svm svm;
 	Mat image;
 	thread *t = NULL;
 
@@ -34,20 +31,31 @@ int main(int argc, char* argv[]) {
 	int totalTry = 0;
 	double sum = 0;
 	Mat templ;
-	VideoCapture camera;
+    VideoCapture camera;
 
-	/*if (utils::readImage("divArea2.png", templ)) {
-		cerr << "File No Exist." << endl;
-		exit(1);
-	}*/
+    /*if (utils::readImage("divArea2.png", templ)) {
+      cerr << "File No Exist." << endl;
+      exit(1);
+      }*/
 
-	camera.open(0);
-	while (!camera.isOpened()) {
-		cerr << "Can Not Access The Camera." << endl;
-	}
+    /*do{
+    camera.open(0);
+    }
+    while (!camera.isOpened()); 
+    */
 
-	while (1) {
-		camera >> image;
+    camera.open(0);
+    if(!camera.isOpened())
+    {
+        cerr << "Can Not Access The Camera." << endl;
+        exit(1);
+    }
+
+    OCR ocrChar(CHARACTER);
+	OCR ocrNum(NUMBER);
+	Svm svm;
+    while (1) {
+        camera >> image;
 
 #elif FROM == FILESYSTEM
 
@@ -59,6 +67,7 @@ int main(int argc, char* argv[]) {
 	}
 
 #endif
+	
 
 	Rect area[SEGMENTSIZE];
 	vector<Mat> sample;
@@ -146,14 +155,15 @@ int main(int argc, char* argv[]) {
 			moveWindow(winName, WINDOW_X + 20 * winNo, 0 + k * 60);
 
 		}
-		/*string path = "\"C:\\Users\\dhrco\\OneDrive - pukyong.ac.kr\\Workspace\\CDTWorkspace\\Parking System\\Debug\\Parking System.exe\" ";
+		//string path = "\"C:\\Users\\dhrco\\OneDrive - pukyong.ac.kr\\Workspace\\CDTWorkspace\\Parking System\\Debug\\Parking System.exe\" ";
+		string path = "Network/http_test ";
 		path += str;
 		cout << path << endl;
-		system(path.c_str());*/
+		system(path.c_str());
 
-		//cout << str << endl;
-		t->joinable();
-		t = new thread(&send2server, str);
+		cout << str << endl;
+	//	t->joinable();
+	//	t = new thread(&send2server, str);
 
 #if FROM == CAMERA
 
@@ -172,8 +182,7 @@ int main(int argc, char* argv[]) {
 		moveWindow("warp" + to_string(i), WINDOW_X, WINDOW_Y);
 		k++;
 	}
-
-	t->joinable();
+	//t->joinable();
 
 	for (int j = 0; j < SEGMENTSIZE; j++) {
 		Mat divArea = image(area[j]);
@@ -218,5 +227,5 @@ int main(int argc, char* argv[]) {
 #endif
 #endif
 
-	t->joinable();
+//	t->joinable();
 }

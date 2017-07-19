@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int main(){
+int main(int argc, char* argv[]){
 	HttpMessage hm;
 	string sendbuff ="";
 	string recvbuff ="";
@@ -12,9 +12,13 @@ int main(){
 	ClientSocket csock = ClientSocket();
 
 	hm.setRequest("POST", "/car");
+    string plate = "88허1234";
+    if(argc>1){
+        plate = argv[1];
+    }
 	string jsondata =
 			"{"
-			"\"id\":\"88허1234\""
+			"\"id\":\""+plate+"\""
 			"}";
 	hm.setContent(jsondata);
 	hm.setHeader(host);
