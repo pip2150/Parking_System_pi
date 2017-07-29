@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
 		//cin >> img_num;
 		//img_num = 16;
 
-		fn = fn +"InputImage"+ Utils::to_string(img_num) + ".jpg";
+		fn = fn +"InputImage"+ utils::to_string(img_num) + ".jpg";
 	}
 	cout << fn << endl;
 
@@ -44,7 +44,7 @@ int main(int argc, char* argv[]) {
 	  cerr << "File No Exist." << endl;
 	  }*/
 	Mat templ;
-	Utils::readImage("temple/templ.jpg", templ);
+	utils::readImage("temple/templ.jpg", templ);
 	VideoCapture camera;
 	camera.open(0);
 	while (1) {
