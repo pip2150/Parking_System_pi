@@ -1,8 +1,8 @@
 
-#include "OCR.hpp"
-#include "Plate.hpp"
-#include "Svm.hpp"
-#include "utils.hpp"
+#include "Opencv/OCR.hpp"
+#include "Opencv/Plate.hpp"
+#include "Opencv/Svm.hpp"
+#include "Opencv/utils.hpp"
 
 using namespace std;
 
@@ -12,14 +12,14 @@ int main(int argc, char* argv[]) {
     OCR ocr;
     ocr.recNum = 23;
     ocr.collectTrainImages2();
-    ocr.writeTraindata("OCR.xml");
-    ocr.readTraindata("OCR.xml");
+    ocr.writeTraindata("Opencv/OCR.xml");
+    ocr.readTraindata("Opencv/OCR.xml");
     ocr.train(SAMPLESIZE);
 
     Svm svm;
     //svm.collectTrainImages();
-    //svm.writeTraindata("SVMDATA.xml");
-    svm.readTraindata("SVMDATA.xml");
+    //svm.writeTraindata("Opencv/SVMDATA.xml");
+    svm.readTraindata("Opencv/SVMDATA.xml");
     svm.train();
 
     string fn = "";
@@ -31,15 +31,10 @@ int main(int argc, char* argv[]) {
     else {
         img_num = rand() % 15 + 1;
 
-        /*int a[] = {13,14 };
-          img_num = a[rand() % sizeof(a) / sizeof(int)];*/
         //cin >> img_num;
         //img_num = 16;
-
-        /*img_num = rand() % 37 + 1;
-          fn = "C:/Users/dhrco/Desktop/ÀÚµ¿Â÷/plates/";*/
-
-        fn = fn + Utils::to_string(img_num) + ".jpg";
+		
+		fn = fn +"InputImage"+ Utils::to_string(img_num) + ".jpg";
     }
 
 
@@ -180,11 +175,11 @@ int main(int argc, char* argv[]) {
        int j = -1;
        do {
        j++;
-       index = "trainnumber2/" + string(1, answer.at(i)) + "/" + to_string(j) + ".jpg";
+       index = "trainnumber/" + string(1, answer.at(i)) + "/" + to_string(j) + ".jpg";
     //cout << index << endl;
     } while (!Utils::readImage(index, Mat()));
     if (j < 30) {
-    string outfn = "trainnumber2/" + string(1, answer.at(i)) + "/" + to_string(j) + ".jpg";
+    string outfn = "trainnumber/" + string(1, answer.at(i)) + "/" + to_string(j) + ".jpg";
     cout << outfn << endl;
     Utils::writeImage(outfn, sample[i]);
     }
