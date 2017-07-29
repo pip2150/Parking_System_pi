@@ -1,14 +1,10 @@
 #include "opencv2/opencv.hpp"
 
-using namespace cv;
-using namespace std;
-
-class Utils {
-public:
-	static void drawRotatedRect(Mat &img, RotatedRect mr, Scalar color = Scalar(100, 100, 200), int thickness = 2);
-	static bool isOverlap(Rect A, Rect B);
-	static int readImage(string fn, Mat& image, int mode = 1);
-	static int writeImage(string fn, Mat image, int mode = 1);
+namespace utils{
+	void drawRotatedRect(cv::Mat &img, cv::RotatedRect &mr, cv::Scalar color = cv::Scalar(100, 100, 200), int thickness = 2);
+	bool isOverlap(cv::Rect &A, cv::Rect &B);
+	int readImage(std::string fn, cv::Mat& image, int mode = 1);
+	int writeImage(std::string fn, cv::Mat& image, int mode = 1);
     template <typename T>
-    static string to_string(T input);
+    static std::string to_string(T input);
 };

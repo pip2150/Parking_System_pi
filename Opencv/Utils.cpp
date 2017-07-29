@@ -1,6 +1,9 @@
-#includ <Utils.hpp>
+#include "utils.hpp"
 
-static void Utils::drawRotatedRect(Mat &img, RotatedRect mr, Scalar color = Scalar(100, 100, 200), int thickness = 2) {
+using namespace cv;
+using namespace std;
+
+void utils::drawRotatedRect(Mat &img, RotatedRect &mr, Scalar color, int thickness) {
 	Point2f pts[4];
 
 	mr.points(pts);
@@ -9,11 +12,11 @@ static void Utils::drawRotatedRect(Mat &img, RotatedRect mr, Scalar color = Scal
 		line(img, pts[i], pts[(i + 1) % 4], color, thickness);
 	}
 }
-static bool Utils::isOverlap(Rect A, Rect B) {
+bool utils::isOverlap(Rect &A, Rect &B) {
 	return (A & B).area() > 0;
 }
 
-static int Utils::readImage(string fn, Mat& image, int mode = 1) {
+int utils::readImage(string fn, Mat& image, int mode) {
 	image = imread(fn, mode);
 
 	if (image.empty()) {
@@ -23,16 +26,17 @@ static int Utils::readImage(string fn, Mat& image, int mode = 1) {
 	return 0;
 }
 
-static int Utils::writeImage(string fn, Mat image, int mode = 1) {
+int utils::writeImage(string fn, Mat &image, int mode) {
 	if (!imwrite(fn, image)) {
 		cerr << "Fail To Write." << endl;
 		return 1;
 	}
 	return 0;
 }
+
 template <typename T>
-static string Utils::to_string(T input){
+string utils::to_string(T input) {
 	ostringstream ss;
-	ss<< input ;
+	ss << input;
 	return ss.str();
 }

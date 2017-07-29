@@ -1,27 +1,35 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/core/core.hpp>
 
+#define VERTICAL 0
+#define HORIZONTAL 1
+
 class Plate {
 private:
-	cv::Mat img;
-	cv::RotatedRect roPosition;
+	enum direction { UP, DOWN, LEFT, RIGHT };
 
 public:
-	static std::vector<cv::RotatedRect> find(cv::Mat gray);
-	static cv::RotatedRect detect(cv::Mat input, cv::RotatedRect rect);
-	static Plate extract(cv::Mat input, cv::RotatedRect minRect);
-	static bool verifySizes(cv::RotatedRect mr);
-	static cv::Mat features(cv::Mat numbers, int sizeData);
-	static cv::Mat projectedHistogram(cv::Mat img, int t);
+	Plate(cv::Mat& img);
 
-	void findNumbers(cv::Mat src, std::vector <cv::Mat> &numbers);
-	void warpingRotatedRect(cv::Mat srcMat, cv::Mat &dscMat);
-	Plate(cv::Mat img, cv::RotatedRect roPosition);
+	class Number {
+	public:
+		Number();
+		Number(cv::Mat &src);
+		cv::Mat img;
+		cv::Mat canonical;
+		void Number::canonicalize(int sampleSize);
+	};
 
-	cv::Mat getImg();
-	cv::Point upPoint(std::vector<cv::Point> contour);
-	cv::Point downPoint(std::vector<cv::Point> contour);
-	cv::Point leftPoint(std::vector<cv::Point> contour);
-	cv::Point rightPoint(std::vector<cv::Point> contour);
+	cv::Mat img;
+	std::vector<Number> numbers;
 
+	static void find(cv::Mat &gray, std::vector<cv::RotatedRect> &rects);
+	static cv::RotatedRect detect(cv::Mat &input, cv::RotatedRect &rect);
+	static void extract(cv::Mat &input, std::vector<Plate> &PossiblePlates);
+	static bool verifySizes(cv::RotatedRect &mr);
+
+	void findNumbers();
+	cv::Mat Plate::canonicalize();
+	void Plate::endPoint(std::vector<cv::Point> &contour, cv::Point mPoint[4]);
+	void warpingRotatedRect(cv::Mat &srcMat, cv::Mat &dscMat, cv::RotatedRect roPosition);
 };

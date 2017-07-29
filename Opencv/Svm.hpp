@@ -9,7 +9,7 @@ private:
 public:
 	void train();
 	void collectTrainImages();
-	float predict(cv::Mat img);
+	float predict(cv::Mat &img);
 	void readTraindata(std::string fn);
 	void writeTraindata(std::string fn);
 };

@@ -1,19 +1,39 @@
-
 #include "Plate.hpp"
 
 using namespace cv;
 using namespace std;
 
-Plate::Plate(Mat img, RotatedRect roPosition) {
+Plate::Number::Number() {}
+
+Plate::Number::Number(Mat &src) {
+	this->img = src;
+}
+
+void Plate::Number::canonicalize(int sampleSize) {
+
+	double ratio = (img.rows > img.cols) ?
+		((double)sampleSize / (double)img.size().height) :
+		((double)sampleSize / (double)img.size().width);
+
+	Mat resized;
+
+	resize(img, resized, Size2f(ratio*img.size().width, ratio*img.size().height));
+
+	int width = resized.size().width;
+	int height = resized.size().height;
+	double x = (double)(sampleSize - width) / 2;
+	double y = (double)(sampleSize - height) / 2;
+
+	canonical = Mat(Size(sampleSize, sampleSize), resized.type(), Scalar(255));
+	resized.copyTo(canonical(Rect2f(x, y, width, height)));
+
+}
+
+Plate::Plate(Mat &img) {
 	this->img = img;
-	this->roPosition = roPosition;
 }
 
-Mat Plate::getImg() {
-	return img;
-}
-
-vector<cv::RotatedRect> Plate::find(Mat gray) {
+void Plate::find(Mat &gray, vector<RotatedRect> &rects) {
 	Mat sobel, th_img, morph;
 
 	Sobel(gray, sobel, CV_8U, 1, 0, 3);
@@ -27,8 +47,6 @@ vector<cv::RotatedRect> Plate::find(Mat gray) {
 
 	findContours(morph.clone(), contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
 
-	vector<RotatedRect> rects;
-
 	for (int i = 0; i < (int)contours.size(); i++) {
 		RotatedRect mr = minAreaRect(contours[i]);
 
@@ -38,10 +56,9 @@ vector<cv::RotatedRect> Plate::find(Mat gray) {
 			contours[i].clear();
 	}
 
-	return rects;
 }
 
-RotatedRect Plate::detect(Mat input, RotatedRect rect) {
+RotatedRect Plate::detect(Mat &input, RotatedRect &rect) {
 	Size size = rect.size;
 
 	int minSize = (size.width < size.height) ? size.width : size.height;
@@ -76,30 +93,46 @@ RotatedRect Plate::detect(Mat input, RotatedRect rect) {
 	return minAreaRect(pointsInterest);
 }
 
-Plate Plate::extract(Mat input, RotatedRect minRect) {
-	Mat img_rotated, img_crop, resize_img, gray;
-	Size m_size = minRect.size;
-	float aspect = (float)m_size.width / m_size.height;
-	float angle = minRect.angle;
+void Plate::extract(Mat &input, vector<Plate> &PossiblePlates) {
+	vector<RotatedRect> rects;
+	Plate::find(input, rects);
 
-	if (aspect < 1) {
-		angle += 90;
-		swap(m_size.width, m_size.height);
+	for (int i = 0; i < (int)rects.size(); i++) {
+		RotatedRect minRect = Plate::detect(input, rects[i]);
+		
+		if (Plate::verifySizes(minRect)) {
+			Mat img_rotated, img_crop;
+			Size m_size = minRect.size;
+			float aspect = (float)m_size.width / m_size.height;
+			float angle = minRect.angle;
+
+			if (aspect < 1) {
+				angle += 90;
+				swap(m_size.width, m_size.height);
+			}
+
+			Mat rotmat = getRotationMatrix2D(minRect.center, angle, 1);
+
+			warpAffine(input, img_rotated, rotmat, input.size(), CV_INTER_CUBIC);
+			getRectSubPix(img_rotated, m_size, minRect.center, img_crop);
+
+			PossiblePlates.push_back(Plate(img_crop));
+		}
+		
 	}
-
-	Mat rotmat = getRotationMatrix2D(minRect.center, angle, 1);
-
-	warpAffine(input, img_rotated, rotmat, input.size(), CV_INTER_CUBIC);
-	getRectSubPix(img_rotated, m_size, minRect.center, img_crop);
-	resize(img_crop, resize_img, Size(144, 33), 0, 0, INTER_CUBIC);
-	equalizeHist(resize_img, resize_img);
-
-	Plate plate(resize_img, minRect);
-
-	return plate;
 }
 
-bool Plate::verifySizes(RotatedRect mr) {
+Mat Plate::canonicalize() {
+	Mat resize_img;
+	resize(img, resize_img, Size(144, 33), 0, 0, INTER_CUBIC);
+	equalizeHist(resize_img, resize_img);
+	resize_img = resize_img.reshape(1, 1);
+	resize_img.convertTo(resize_img, CV_32FC1);
+
+	return resize_img;
+}
+
+bool Plate::verifySizes(RotatedRect &mr) {
 	float min = 800;
 	float max = 70000;
 	float rmin = 2.0;
@@ -118,15 +151,9 @@ bool Plate::verifySizes(RotatedRect mr) {
 	return rect.contains(pt);
 }
 
-void Plate::findNumbers(Mat src, vector <Mat> &numbers) {
-	Mat warpedImage;
-
-	warpingRotatedRect(src, warpedImage);
-	Mat gray;
-	cvtColor(warpedImage, gray, COLOR_BGRA2GRAY);
-
+void Plate::findNumbers() {
 	Mat thresholded;
-	adaptiveThreshold(gray, thresholded, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY_INV, 255, 0);
+	adaptiveThreshold(img, thresholded, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY_INV, 255, 0);
 
 	Mat canny;
 	Canny(thresholded, canny, 50, 100, 3);
@@ -135,10 +162,7 @@ void Plate::findNumbers(Mat src, vector <Mat> &numbers) {
 	findContours(thresholded, contours, RETR_EXTERNAL, CHAIN_APPROX_NONE);
 
 	imshow("thresholded", thresholded);
-	moveWindow("thresholded", 1200, 500+thresholded.size().height+50);
-
-#define VERSION 2
-#if VERSION == 2
+	moveWindow("thresholded", 1200, 500 + thresholded.size().height + 50);
 
 	typedef pair<pair<int, int>, pair<int, int> > Domain;
 
@@ -151,33 +175,36 @@ void Plate::findNumbers(Mat src, vector <Mat> &numbers) {
 	double minLow = height;
 
 	/* ----- 숫자 위치의 범위 측정 ----- */
-	Mat contoursfound(flatSize, CV_8UC4,  Scalar(255, 255, 255));
+	Mat contoursfound(flatSize, CV_8UC4, Scalar(255, 255, 255));
 	srand((int)time(0));		// 숫자 색 seed 값
 
 	vector<Rect> num;
 	for (int i = 0; i < contours.size(); i++) {
 		vector<Point> contour = contours[i];
 
-		int uy = upPoint(contour).y;
-		int dy = downPoint(contour).y;
-		int lx = leftPoint(contour).x;
-		int rx = rightPoint(contour).x;
+		Point mPoint[4];
+		endPoint(contour, mPoint);
+
+		int uy = mPoint[UP].y;
+		int dy = mPoint[DOWN].y;
+		int lx = mPoint[LEFT].x;
+		int rx = mPoint[RIGHT].x;
 
 		int contourWidth = lx - rx;
 		int contourHeight = uy - dy;
 		//double heightRatio = (double)contourWidth/ (double )contourHeight;
-		double ratio = ((double)contourWidth/ (double)contourHeight) * ((double)width/ (double)height);
-		
-		if ((ratio > 0.5) && (ratio < 5)){
-		/*if (heightRatio < 0.9) {*/
-			//cout << "ratio ;" << ratio << endl;
-			/*if ((widthRatio > 0.015) && (widthRatio < 0.15)) {*/
+		double ratio = ((double)contourWidth / (double)contourHeight) * ((double)width / (double)height);
+
+		if ((ratio > 0.5) && (ratio < 5)) {
+			/*if (heightRatio < 0.9) {*/
+				//cout << "ratio ;" << ratio << endl;
+				/*if ((widthRatio > 0.015) && (widthRatio < 0.15)) {*/
 
 			vector<vector<Point> > tmp;	tmp.push_back(contour);
 			drawContours(contoursfound, tmp, -1, Scalar(rand() % 255, 0, rand() % 255), 1);	// 숫자 출력 시 랜덤 색상으로 출력
 			line(contoursfound, Point(0, height / 2), Point(width, height / 2), Scalar(255, 0, 255));
 			imshow("contoursfound", contoursfound);
-			moveWindow("contoursfound", 1200, 500+ (contoursfound.size().height+50)*2);
+			moveWindow("contoursfound", 1200, 500 + (contoursfound.size().height + 50) * 2);
 
 
 			if ((uy > height / 2) && (dy < height / 2)) {
@@ -224,7 +251,7 @@ void Plate::findNumbers(Mat src, vector <Mat> &numbers) {
 		/*rectangle(warpedImage, overlapRemoved[i], Scalar(255, 0, 0));*/
 		numbers.push_back(Mat(~thresholded, overlapRemoved[i]));
 	}
-	
+
 	/*imshow("warpedImage", warpedImage);
 	moveWindow("warpedImage", 800, 800);*/
 
@@ -234,139 +261,9 @@ void Plate::findNumbers(Mat src, vector <Mat> &numbers) {
 		numbers.push_back(Mat(warpedImage, rectNumber));
 	}*/
 
-#elif VERSION == 1
-	typedef pair<int, int> Domain;
-
-	priority_queue<Domain> pq;
-	Size flatSize = thresholded.size();
-	double width = flatSize.width;
-	double height = flatSize.height;
-	double margin = height * 0.01;
-	double maxHigh = 0;
-	double minLow = height;
-
-	/* ----- 숫자 위치의 범위 측정 ----- */
-	Mat contoursfound(flatSize, CV_8UC4, Scalar(255, 255, 255));
-	//srand((int)time(0));		// 숫자 색 seed 값
-	for (int j = 0; j < contours.size(); j++) {
-		vector<Point> contour = contours[j];
-
-		if (downPoint(contour).y > margin) {
-			if (upPoint(contour).y < height - margin) {
-
-				double contourWidth = leftPoint(contour).x - rightPoint(contour).x;
-				double uy = upPoint(contour).y;
-				double dy = downPoint(contour).y;
-
-				double contourHeight = upPoint(contour).y - downPoint(contour).y;
-				double ratio = contourWidth / contourHeight;
-				cout << "ratio : " << ratio << endl;
-				/*if ((ratio > 0.4) && (ratio < 0.65)) {*/
-
-				vector<vector<Point >> tmp;	tmp.push_back(contour);
-				drawContours(contoursfound, tmp, -1, Scalar(rand() % 255, rand() % 255, rand() % 255), 1);	// 숫자 출력 시 랜덤 색상으로 출력
-				imshow("contoursfound", contoursfound);
-				moveWindow("contoursfound", 800, 800);
-
-				if ((contourWidth < width / 6) && (contourWidth > width / 60)) {
-					if ((uy > height / 2) && (dy < height / 2)) {
-						maxHigh = (maxHigh > uy) ? maxHigh : uy;
-						minLow = (minLow < dy) ? minLow : dy;
-						pq.push(make_pair(leftPoint(contour).x, rightPoint(contour).x));
-					}
-				}
-				/*}*/
-			}
-		}
-	}
-
-	/* --- 범위 heap 정렬 --- */
-	vector<Domain> range;
-	while (!pq.empty()) {
-		range.push_back(pq.top());
-		pq.pop();
-	}
-
-	for (int j = 0; j < range.size(); j++) {
-		int count = (int)range.size();
-		bool isOuterRange = false;
-
-		for (int k = j; k > 0; k--) {
-			/* ---- 포함 관계 검사 --- */
-			if (range[j].first >= range[k - 1].second) {
-				isOuterRange = true;
-				count = min(k - 1, count);
-			}
-		}
-
-		if (isOuterRange) {
-			range[j].first = range[count].first;
-			range[j].second = min(range[j].second, range[count].second);
-			range.erase(range.begin() + j - 1, range.begin() + count + 1);
-			j = count;
-		}
-	}
-
-	for (int j = 0; j < range.size(); j++) {
-		Rect rectNumber = Rect(Point2d(range[j].first, maxHigh), Point2d(range[j].second, minLow));
-		numbers.push_back(Mat(warpedImage, rectNumber));
-	}
-#endif
 }
 
-Mat Plate::projectedHistogram(Mat img, int t) {
-	int sz = (t) ? img.rows : img.cols;
-	Mat mhist = Mat::zeros(1, sz, CV_32F);
-
-	for (int j = 0; j < sz; j++) {
-		Mat data = (t) ? img.row(j) : img.col(j);
-
-		mhist.at<float>(j) = (float)countNonZero(data);
-	}
-
-	double min, max;
-	minMaxLoc(mhist, &min, &max);
-
-	if (max > 0)
-		mhist.convertTo(mhist, -1, 1.0f / max, 0);
-
-	return mhist;
-}
-
-#define VERTICAL 0
-#define HORIZONTAL 1
-
-Mat Plate::features(Mat numbers, int sizeData) {
-
-	Mat vhist = projectedHistogram(numbers, VERTICAL);
-	Mat hhist = projectedHistogram(numbers, HORIZONTAL);
-	Mat lowData;
-
-	resize(numbers, lowData, Size(sizeData, sizeData));
-
-	int numCols = vhist.cols + hhist.cols + lowData.cols * lowData.cols;
-	Mat out = Mat::zeros(1, numCols, CV_32F);
-
-	int k = 0;
-	for (int i = 0; i < vhist.cols; i++) {
-		out.at<float>(k) = vhist.at<float>(i);
-		k++;
-	}
-	for (int i = 0; i < hhist.cols; i++) {
-		out.at<float>(k) = hhist.at<float>(i);
-		k++;
-	}
-	for (int x = 0; x < lowData.cols; x++) {
-		for (int y = 0; y < lowData.rows; y++) {
-			out.at<float>(k) = (float)lowData.at<unsigned char>(x, y);
-			k++;
-		}
-	}
-
-	return out;
-}
-
-void Plate::warpingRotatedRect(Mat srcMat, Mat &dscMat) {
+void Plate::warpingRotatedRect(Mat &srcMat, Mat &dscMat, RotatedRect roPosition) {
 	Point2f src[4];
 
 	roPosition.points(src);
@@ -400,58 +297,30 @@ void Plate::warpingRotatedRect(Mat srcMat, Mat &dscMat) {
 	warpPerspective(srcMat, dscMat, M, markerSize);
 }
 
+void Plate::endPoint(vector<Point> &contour, Point mPoint[4]) {
+	int coordinate[4];
 
-Point Plate::upPoint(vector<Point> contour) {
-	int max = 0;
-	int index_max;
-
-	for (int i = 0; i < contour.size(); i++) {
-		if (max < contour[i].y) {
-			max = contour[i].y;
-			index_max = i;
-		}
-	}
-	return contour[index_max];
-}
-
-Point Plate::downPoint(vector<Point> contour) {
-	int min = numeric_limits<int>::max();
-	int index_min;
+	coordinate[UP] = 0;
+	coordinate[DOWN] = numeric_limits<int>::max();
+	coordinate[LEFT] = 0;
+	coordinate[RIGHT] = numeric_limits<int>::max();
 
 	for (int i = 0; i < contour.size(); i++) {
-		if (min > contour[i].y) {
-			min = contour[i].y;
-			index_min = i;
+		if (coordinate[UP] < contour[i].y) {
+			coordinate[UP] = contour[i].y;
+			mPoint[UP] = contour[i];
+		}
+		if (coordinate[DOWN] > contour[i].y) {
+			coordinate[DOWN] = contour[i].y;
+			mPoint[DOWN] = contour[i];
+		}
+		if (coordinate[LEFT] < contour[i].x) {
+			coordinate[LEFT] = contour[i].x;
+			mPoint[LEFT] = contour[i];
+		}
+		if (coordinate[RIGHT] > contour[i].x) {
+			coordinate[RIGHT] = contour[i].x;
+			mPoint[RIGHT] = contour[i];
 		}
 	}
-
-	return contour[index_min];
-}
-
-Point Plate::leftPoint(vector<Point> contour) {
-	int max = 0;
-	int index_max;
-
-	for (int i = 0; i < contour.size(); i++) {
-		if (max < contour[i].x) {
-			max = contour[i].x;
-			index_max = i;
-		}
-	}
-
-	return contour[index_max];
-}
-
-Point Plate::rightPoint(vector<Point> contour) {
-	int min = numeric_limits<int>::max();
-	int index_min;
-
-	for (int i = 0; i < contour.size(); i++) {
-		if (min > contour[i].x) {
-			min = contour[i].x;
-			index_min = i;
-		}
-	}
-
-	return contour[index_min];
 }

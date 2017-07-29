@@ -1,10 +1,10 @@
-
 #include "Svm.hpp"
 #include "utils.hpp"
 
 using namespace cv::ml;
 using namespace cv;
 using namespace std;
+using namespace utils;
 
 void Svm::train() {
 	svm = SVM::create();
@@ -26,10 +26,10 @@ void Svm::collectTrainImages() {
 	int imagecnt = 110;
 
 	for (int i = 0; i < imagecnt; i++) {
-		string path = "trainimage/" + Utils::to_string(i) + ".png";
+		string path = "trainimage/" + to_string(i) + ".png";
 		Mat img;
 
-		if (Utils::readImage(path, img, 1)) {
+		if (readImage(path, img, 1)) {
 			cerr << "File No Exist." << endl;
 			exit(1);
 		}
@@ -47,7 +47,7 @@ void Svm::collectTrainImages() {
 	trainingData.convertTo(trainingData, CV_32FC1);
 }
 
-float Svm::predict(Mat img) {
+float Svm::predict(Mat &img) {
 	return svm->predict(img);
 }
 
