@@ -6,14 +6,13 @@
 
 class Plate {
 private:
-	enum direction { UP, DOWN, LEFT, RIGHT };
+	enum { UP, DOWN, LEFT, RIGHT };
 
 public:
 	Plate(cv::Mat& img);
 
 	class Number {
 	public:
-		Number();
 		Number(cv::Mat &src);
 		cv::Mat img;
 		cv::Mat canonical;

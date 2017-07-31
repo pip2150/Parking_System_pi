@@ -34,9 +34,9 @@ int utils::writeImage(string fn, Mat &image, int mode) {
 	return 0;
 }
 
-template <typename T>
-string utils::to_string(T input) {
-	ostringstream ss;
-	ss << input;
-	return ss.str();
-}
+//template <typename T>
+//string utils::to_string(T input) {
+//	ostringstream ss;
+//	ss << input;
+//	return ss.str();
+//}

@@ -1,11 +1,18 @@
 #include "OCR.hpp"
 #include "utils.hpp"
-#include "Plate.hpp"
 
 using namespace cv::ml;
 using namespace cv;
 using namespace std;
 using namespace utils;
+
+OCR::OCR() {
+	recNum = 23;
+	/*collectTrainImages();
+	writeTraindata("Opencv/OCR.xml");*/
+	readTraindata("Opencv/OCR.xml");
+	train(SAMPLESIZE);
+}
 
 //const char OCR::strCharacters[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z' };
 const char OCR::strCharacters[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'B', 'C', 'D', 'E', 'F', 'G', 'N', 'S', 'T', 'V', 'W', 'X', 'Y' };

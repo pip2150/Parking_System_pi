@@ -7,6 +7,7 @@ private:
 	cv::Mat classes;
 	cv::Mat trainingData;
 public:
+	Svm();
 	void train();
 	void collectTrainImages();
 	float predict(cv::Mat &img);

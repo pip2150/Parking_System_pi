@@ -6,6 +6,12 @@ using namespace cv;
 using namespace std;
 using namespace utils;
 
+Svm::Svm() {
+	//collectTrainImages();
+	//writeTraindata("Opencv/SVMDATA.xml");
+	readTraindata("Opencv/SVMDATA.xml");
+	train();
+}
 void Svm::train() {
 	svm = SVM::create();
 
