@@ -96,42 +96,6 @@ void Plate::extract(Mat &input, vector<Plate> &PossiblePlates) {
 	vector<RotatedRect> rects;
 	Plate::find(input, rects);
 
-	
-	for (int i = 0; i < (int)rects.size(); i++) {
-		
-		/*Mat a;
-		input.copyTo(a);
-		utils::drawRotatedRect(a, rects[i]);
-
-		imshow("asdf" + to_string(i), a);*/
-		/*if (Plate::verifySizes(rects[i])) {*/
-			Mat img_rotated, img_crop;
-			Size m_size = rects[i].size;
-			float aspect = (float)m_size.width / m_size.height;
-			float angle = rects[i].angle;
-
-			if (aspect < 1) {
-				angle += 90;
-				swap(m_size.width, m_size.height);
-			}
-
-			Mat rotmat = getRotationMatrix2D(rects[i].center, angle, 1);
-
-			warpAffine(input, img_rotated, rotmat, input.size(), CV_INTER_CUBIC);
-			getRectSubPix(img_rotated, m_size, rects[i].center, img_crop);
-			imshow("asdfasdf"+to_string(i), img_crop);
-			PossiblePlates.push_back(Plate(img_crop));
-		/*}*/
-		
-	}
-	
-}
-
-
-void Plate::extract(Mat &input, vector<Plate> &PossiblePlates) {
-	vector<RotatedRect> rects;
-	Plate::find(input, rects);
-
 	for (int i = 0; i < (int)rects.size(); i++) {
 		RotatedRect minRect = Plate::detect(input, rects[i]);
 
@@ -155,6 +119,35 @@ void Plate::extract(Mat &input, vector<Plate> &PossiblePlates) {
 		}
 
 	}
+}
+
+Mat Plate::canonicalize() {
+	Mat resize_img;
+	resize(img, resize_img, Size(144, 33), 0, 0, INTER_CUBIC);
+	equalizeHist(resize_img, resize_img);
+	resize_img = resize_img.reshape(1, 1);
+	resize_img.convertTo(resize_img, CV_32FC1);
+
+	return resize_img;
+}
+
+bool Plate::verifySizes(RotatedRect &mr) {
+	float min = 800;
+	float max = 70000;
+	float rmin = 2.0;
+	float rmax = 5.5;
+
+	Rect_<float> rect(min, rmin, max, rmax);
+
+	float asp_max = mr.size.width;
+	float asp_min = mr.size.height;
+
+	if (asp_min > asp_max)
+		swap(asp_max, asp_min);
+
+	Point2f pt((float)mr.size.area(), asp_max / asp_min);
+
+	return rect.contains(pt);
 }
 
 void Plate::findNumbers() {

@@ -5,6 +5,6 @@ namespace utils{
 	bool isOverlap(cv::Rect &A, cv::Rect &B);
 	int readImage(std::string fn, cv::Mat& image, int mode = 1);
 	int writeImage(std::string fn, cv::Mat& image, int mode = 1);
-    /*template <typename T>*/
-    //static std::string to_string(T input);
+    template <typename T>
+    static std::string to_string(T input);
 };

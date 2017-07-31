@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
 			area[j] = Rect(image.cols * j / 4, 0, image.cols / 4, image.rows);
 			Mat divArea;
 			Mat result;
-			double maxVal;
+			double maxVal= 0;
 			Point maxLoc;
 
 			divArea = image(area[j]);
@@ -51,7 +51,6 @@ int main(int argc, char* argv[]) {
 
 			}
 			else {
-
 				Mat gray;
 				cvtColor(image, gray, CV_BGR2GRAY);
 				blur(gray, gray, Size(3, 3));
@@ -97,8 +96,8 @@ int main(int argc, char* argv[]) {
 				}
 			}
 			Point location = Point(1, 1);
-			/*imshow("divArea" + to_string(j), divArea);
-			moveWindow("divArea" + to_string(j), location.x + divArea.size().width*j, location.y);*/
+			imshow("divArea" + to_string(j), divArea);
+			moveWindow("divArea" + to_string(j), location.x + divArea.size().width*j, location.y);
 		}
 
 		int key = waitKey(0);
