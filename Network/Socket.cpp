@@ -1,4 +1,4 @@
-#include "Socket.h"
+#include "Socket.hpp"
 
 Socket::Socket() {
 	if((sock  = socket( PF_INET, SOCK_STREAM, 0)) == -1){

@@ -3,8 +3,9 @@
 #include <netdb.h>
 #include <stdio.h>
 #include <sstream>
-#include "Socket.h"
-#include "Http.h"
+
+#include "Http.hpp"
+#include "Socket.hpp"
 
 #define SERVER 1
 #define CLIENT 0
@@ -47,7 +48,7 @@ int main(){
 
 		hm.getMetaData("Date", hm.getCurrentTime());
 		hm.getMetaData("Last-Modified", hm.getCurrentTime());
-		string jsondata = "{\"car\":{\"numbering\":\"88Çã1234\",\"started_at\":1501217913},\"place\":{\"zonename\":\"A\",\"zone_index\":1,\"floor\":2}}\r\n";
+		string jsondata = "{\"car\":{\"numbering\":\"88ï¿½ï¿½1234\",\"started_at\":1501217913},\"place\":{\"zonename\":\"A\",\"zone_index\":1,\"floor\":2}}\r\n";
 		hm.setContent(jsondata);
 
 		//sendbuff = hm.getHeader(csock);
@@ -68,7 +69,7 @@ int main(){
 	hm.setRequest("POST", "/car");
 	string jsondata =
 			"{"
-				"\"id\":\"88Çã1234\""
+				"\"id\":\"88ï¿½ï¿½1234\""
 			"}";
 	hm.setContent(jsondata);
 	hm.setHeader(host);

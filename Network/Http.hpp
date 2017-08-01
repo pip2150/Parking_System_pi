@@ -5,6 +5,9 @@
  *      Author: dhrco
  */
 
+#ifndef HTTP_HPP_
+#define HTTP_HPP_
+
 #include <string>
 #include <vector>
 #include <cstring>
@@ -40,3 +43,5 @@ public :
 	std::string getCurrentTime();
 	std::string getMetaData(std::string name, std::string value);
 };
+
+#endif

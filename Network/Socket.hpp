@@ -5,6 +5,8 @@
  *      Author: dhrco
  */
 
+#ifndef SOCKET_HPP_
+#define SOCKET_HPP_
 
 #include <iostream>
 #include <cstdlib>
@@ -50,3 +52,5 @@ public:
 	bool listen();
 	bool accept(Socket&);
 };
+
+#endif

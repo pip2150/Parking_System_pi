@@ -123,6 +123,195 @@ main/fast:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
+Network/Socket.o: Network/Socket.cpp.o
+
+.PHONY : Network/Socket.o
+
+# target to build an object file
+Network/Socket.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Network/Socket.cpp.o
+.PHONY : Network/Socket.cpp.o
+
+Network/Socket.i: Network/Socket.cpp.i
+
+.PHONY : Network/Socket.i
+
+# target to preprocess a source file
+Network/Socket.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Network/Socket.cpp.i
+.PHONY : Network/Socket.cpp.i
+
+Network/Socket.s: Network/Socket.cpp.s
+
+.PHONY : Network/Socket.s
+
+# target to generate assembly for a file
+Network/Socket.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Network/Socket.cpp.s
+.PHONY : Network/Socket.cpp.s
+
+Network/http.o: Network/http.cpp.o
+
+.PHONY : Network/http.o
+
+# target to build an object file
+Network/http.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Network/http.cpp.o
+.PHONY : Network/http.cpp.o
+
+Network/http.i: Network/http.cpp.i
+
+.PHONY : Network/http.i
+
+# target to preprocess a source file
+Network/http.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Network/http.cpp.i
+.PHONY : Network/http.cpp.i
+
+Network/http.s: Network/http.cpp.s
+
+.PHONY : Network/http.s
+
+# target to generate assembly for a file
+Network/http.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Network/http.cpp.s
+.PHONY : Network/http.cpp.s
+
+Opencv/OCR.o: Opencv/OCR.cpp.o
+
+.PHONY : Opencv/OCR.o
+
+# target to build an object file
+Opencv/OCR.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Opencv/OCR.cpp.o
+.PHONY : Opencv/OCR.cpp.o
+
+Opencv/OCR.i: Opencv/OCR.cpp.i
+
+.PHONY : Opencv/OCR.i
+
+# target to preprocess a source file
+Opencv/OCR.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Opencv/OCR.cpp.i
+.PHONY : Opencv/OCR.cpp.i
+
+Opencv/OCR.s: Opencv/OCR.cpp.s
+
+.PHONY : Opencv/OCR.s
+
+# target to generate assembly for a file
+Opencv/OCR.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Opencv/OCR.cpp.s
+.PHONY : Opencv/OCR.cpp.s
+
+Opencv/Plate.o: Opencv/Plate.cpp.o
+
+.PHONY : Opencv/Plate.o
+
+# target to build an object file
+Opencv/Plate.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Opencv/Plate.cpp.o
+.PHONY : Opencv/Plate.cpp.o
+
+Opencv/Plate.i: Opencv/Plate.cpp.i
+
+.PHONY : Opencv/Plate.i
+
+# target to preprocess a source file
+Opencv/Plate.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Opencv/Plate.cpp.i
+.PHONY : Opencv/Plate.cpp.i
+
+Opencv/Plate.s: Opencv/Plate.cpp.s
+
+.PHONY : Opencv/Plate.s
+
+# target to generate assembly for a file
+Opencv/Plate.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Opencv/Plate.cpp.s
+.PHONY : Opencv/Plate.cpp.s
+
+Opencv/Svm.o: Opencv/Svm.cpp.o
+
+.PHONY : Opencv/Svm.o
+
+# target to build an object file
+Opencv/Svm.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Opencv/Svm.cpp.o
+.PHONY : Opencv/Svm.cpp.o
+
+Opencv/Svm.i: Opencv/Svm.cpp.i
+
+.PHONY : Opencv/Svm.i
+
+# target to preprocess a source file
+Opencv/Svm.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Opencv/Svm.cpp.i
+.PHONY : Opencv/Svm.cpp.i
+
+Opencv/Svm.s: Opencv/Svm.cpp.s
+
+.PHONY : Opencv/Svm.s
+
+# target to generate assembly for a file
+Opencv/Svm.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Opencv/Svm.cpp.s
+.PHONY : Opencv/Svm.cpp.s
+
+Opencv/Utils.o: Opencv/Utils.cpp.o
+
+.PHONY : Opencv/Utils.o
+
+# target to build an object file
+Opencv/Utils.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Opencv/Utils.cpp.o
+.PHONY : Opencv/Utils.cpp.o
+
+Opencv/Utils.i: Opencv/Utils.cpp.i
+
+.PHONY : Opencv/Utils.i
+
+# target to preprocess a source file
+Opencv/Utils.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Opencv/Utils.cpp.i
+.PHONY : Opencv/Utils.cpp.i
+
+Opencv/Utils.s: Opencv/Utils.cpp.s
+
+.PHONY : Opencv/Utils.s
+
+# target to generate assembly for a file
+Opencv/Utils.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Opencv/Utils.cpp.s
+.PHONY : Opencv/Utils.cpp.s
+
+main.o: main.cpp.o
+
+.PHONY : main.o
+
+# target to build an object file
+main.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.o
+.PHONY : main.cpp.o
+
+main.i: main.cpp.i
+
+.PHONY : main.i
+
+# target to preprocess a source file
+main.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.i
+.PHONY : main.cpp.i
+
+main.s: main.cpp.s
+
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.s
+.PHONY : main.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -132,6 +321,27 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... main"
+	@echo "... Network/Socket.o"
+	@echo "... Network/Socket.i"
+	@echo "... Network/Socket.s"
+	@echo "... Network/http.o"
+	@echo "... Network/http.i"
+	@echo "... Network/http.s"
+	@echo "... Opencv/OCR.o"
+	@echo "... Opencv/OCR.i"
+	@echo "... Opencv/OCR.s"
+	@echo "... Opencv/Plate.o"
+	@echo "... Opencv/Plate.i"
+	@echo "... Opencv/Plate.s"
+	@echo "... Opencv/Svm.o"
+	@echo "... Opencv/Svm.i"
+	@echo "... Opencv/Svm.s"
+	@echo "... Opencv/Utils.o"
+	@echo "... Opencv/Utils.i"
+	@echo "... Opencv/Utils.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 

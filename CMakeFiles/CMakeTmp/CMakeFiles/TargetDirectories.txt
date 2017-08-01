@@ -1,3 +1,0 @@
-/cygdrive/c/Users/dhrco/Desktop/Psr/CMakeFiles/CMakeTmp/CMakeFiles/edit_cache.dir
-/cygdrive/c/Users/dhrco/Desktop/Psr/CMakeFiles/CMakeTmp/CMakeFiles/rebuild_cache.dir
-/cygdrive/c/Users/dhrco/Desktop/Psr/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_c0c53.dir
