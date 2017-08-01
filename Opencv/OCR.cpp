@@ -14,7 +14,6 @@ OCR::OCR() {
 	train(SAMPLESIZE);
 }
 
-//const char OCR::strCharacters[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z' };
 const char OCR::strCharacters[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'B', 'C', 'D', 'E', 'F', 'G', 'N', 'S', 'T', 'V', 'W', 'X', 'Y' };
 
 void OCR::readTraindata(string fn) {
@@ -26,14 +25,17 @@ void OCR::readTraindata(string fn) {
 	}
 
 	fs["TrainingData"] >> trainingData;
-
 	fs["classes"] >> classes;
-
 	fs.release();
 }
 
 void OCR::writeTraindata(string fn) {
 	FileStorage fs(fn, FileStorage::WRITE);
+
+	if (!fs.isOpened()) {
+		cout << "File Write Fail." << endl;
+		exit(1);
+	}
 
 	fs << "TrainingData" << trainingData;
 	fs << "classes" << classes;
@@ -112,7 +114,8 @@ float OCR::predict(Mat &img, Mat &out) {
 	return ann->predict(img, out);
 }
 
-Mat OCR::projectedHistogram(Mat &img, int t) {
+/*		히스토그램 추출		*/
+Mat OCR::getHistogram(Mat &img, int t) {
 	int sz = (t) ? img.rows : img.cols;
 	Mat mhist = Mat::zeros(1, sz, CV_32F);
 
@@ -131,10 +134,11 @@ Mat OCR::projectedHistogram(Mat &img, int t) {
 	return mhist;
 }
 
+/*		특징 추출		*/
 Mat OCR::features(Mat &numbers, int sizeData) {
 
-	Mat vhist = projectedHistogram(numbers, VERTICAL);
-	Mat hhist = projectedHistogram(numbers, HORIZONTAL);
+	Mat vhist = getHistogram(numbers, VERTICAL);
+	Mat hhist = getHistogram(numbers, HORIZONTAL);
 	Mat lowData;
 
 	resize(numbers, lowData, Size(sizeData, sizeData));

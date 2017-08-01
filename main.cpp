@@ -5,103 +5,167 @@
 
 using namespace cv;
 using namespace std;
-using namespace utils;
+
+#define CAMERA 0
+#define FILESYSTEM 1
+#define TRUE 1
+#define FALSE 0
+
+#define SEGMENTSIZE 1
+
+#define FROM CAMERA
+
+#if FROM == FILESYSTEM
+#define TRAIN FALSE
+#endif
 
 int main(int argc, char* argv[]) {
 
 	OCR ocr;
 	Svm svm;
 	Mat image;
+
+#if FROM == CAMERA
 	Mat templ;
 	VideoCapture camera;
 
-	if (readImage("divArea2.png", templ)) {
+	/*if (utils::readImage("divArea2.png", templ)) {
 		cerr << "File No Exist." << endl;
 		exit(1);
-	}
+	}*/
 
 	camera.open(0);
 
 	while (1) {
-		/*int img_num;
-		cin >> img_num;
-		readImage("InputImage/" + to_string(img_num) + ".jpg", image);*/
 		camera >> image;
-		Rect area[4];
 
-		for (int j = 0; j < 1; j++) {
-			area[j] = Rect(image.cols * j / 4, 0, image.cols / 4, image.rows);
-			Mat divArea;
-			Mat result;
-			double maxVal= 0;
-			Point maxLoc;
+#elif FROM == FILESYSTEM
 
-			divArea = image(area[j]);
-			//matchTemplate(divArea, templ, result, TM_CCOEFF_NORMED);
-			//minMaxLoc(result, NULL, &maxVal, NULL, &maxLoc);
+	int img_num;
+	cout << "img_num : " << endl;
+	cin >> img_num;
+	utils::readImage("InputImage/" + to_string(img_num) + ".jpg", image);
 
-			//rectangle(divArea, maxLoc,
-			//Point(maxLoc.x + templ.cols, maxLoc.y+templ.rows), Scalar(255, 0, 255), 2);
-			if (maxVal >= 0.9) {
+#endif
 
-				// DataBase로 비어있는 구역이라고 보내야됨
-				// DataBase로부터 값을 불러와서 보내려는값과 동일한 경우 보내지 않음
-				//cout << j << " 구역 차량 없음" << endl;
-				cout << j << "No Vehicle In Section" << endl;
+	Rect area[SEGMENTSIZE];
+	vector<Mat> sample;
 
-			}
-			else {
-				Mat gray;
-				cvtColor(image, gray, CV_BGR2GRAY);
-				blur(gray, gray, Size(3, 3));
+	for (int j = 0; j < SEGMENTSIZE; j++) {
+		area[j] = Rect(image.cols * j / SEGMENTSIZE, 0, image.cols / SEGMENTSIZE, image.rows);
+		Mat divArea;
+		Mat result;
+		double maxVal = 0;
+		Point maxLoc;
 
-				vector<Plate> PossiblePlates;
-				Plate::extract(gray, PossiblePlates);
+		divArea = image(area[j]);
+		//matchTemplate(divArea, templ, result, TM_CCOEFF_NORMED);
+		//minMaxLoc(result, NULL, &maxVal, NULL, &maxLoc);
+		//rectangle(divArea, maxLoc, Point(maxLoc.x + templ.cols, maxLoc.y + templ.rows), Scalar(255, 0, 255), 2);
 
-				int k = 0;
-				vector<Mat> sample;
-
-				for (int i = 0; i < (int)PossiblePlates.size(); i++) {
-
-					Mat img = PossiblePlates[i].canonicalize();
-					int response = (int)svm.predict(img);
-
-					if (response == 1) {
-
-						Plate foundPlate = PossiblePlates[i];
-						foundPlate.findNumbers();
-
-						for (int j = foundPlate.numbers.size() - 1; j >= 0; j--) {
-
-							foundPlate.numbers[j].canonicalize(SAMPLESIZE);
-							Mat feature = ocr.features(foundPlate.numbers[j].canonical, SAMPLESIZE);
-
-							Mat output(1, ocr.recNum, CV_32FC1);
-							ocr.predict(feature, output);
-							cout << ocr.classify(output) << " ";
-
-							unsigned winNo = foundPlate.numbers.size() - j - 1;
-							string winName = to_string(winNo) + to_string(i);
-							imshow(winName, foundPlate.numbers[j].canonical);
-							moveWindow(winName, 1200 + 20 * winNo, 0 + k * 60);
-
-						}
-						cout << endl;
-
-						/*imshow("image" + to_string(i), image);
-						imshow("warp" + to_string(i), foundPlate.img);
-						moveWindow("warp" + to_string(i), 1200, 500);*/
-						k++;
-					}
-				}
-			}
-			Point location = Point(1, 1);
-			imshow("divArea" + to_string(j), divArea);
-			moveWindow("divArea" + to_string(j), location.x + divArea.size().width*j, location.y);
+		if (maxVal >= 0.9) {
+			// DataBase로 비어있는 구역이라고 보내야됨
+			// DataBase로부터 값을 불러와서 보내려는값과 동일한 경우 보내지 않음
+			//cout << j << " 구역 차량 없음" << endl;
+			cout << j << "No Vehicle In Section" << endl;
+			continue;
 		}
 
-		int key = waitKey(0);
-		if (key == 0)
-			break;
+		vector<Plate> PossiblePlates;
+		vector<RotatedRect> PossibleRoRects;
+		Plate::find(image, PossiblePlates, PossibleRoRects);
+
+		int k = 0;
+		for (int i = 0; i < (int)PossiblePlates.size(); i++) {
+			PossiblePlates[i].canonicalize();
+			int response = (int)svm.predict(PossiblePlates[i].canonical);
+			if (response != 1)
+				continue;
+
+			Point2f edge[4];
+			PossibleRoRects[i].points(edge);
+
+			for (int j = 0; j < 4; j++)
+				circle(image, edge[j], 4, Scalar(0,0,255), 4);
+
+			Plate *foundPlate = &PossiblePlates[i];
+			foundPlate->findNumbers();
+			string str = "";
+
+			if (foundPlate->numbers.size() != 7)
+				continue;
+
+			for (int j = (int)foundPlate->numbers.size() - 1; j >= 0; j--) {
+				Plate::Number* number = &foundPlate->numbers[j];
+				number->canonicalize(SAMPLESIZE);
+
+#if FROM == FILESYSTEM
+#if TRAIN == TRUE
+				sample.push_back(foundPlate->numbers[j].canonical);
+#endif
+#endif
+				Mat feature = ocr.features(number->canonical, SAMPLESIZE);
+
+				Mat output(1, ocr.recNum, CV_32FC1);
+				ocr.predict(feature, output);
+				str += ocr.classify(output);
+				
+				int winNo = (int)foundPlate->numbers.size() - j - 1;
+				string winName = to_string(winNo) + to_string(i);
+				imshow(winName, number->canonical);
+				moveWindow(winName, 1200 + 20 * winNo, 0 + k * 60);
+
+			}
+			/*string path = "\"C:\\Users\\dhrco\\OneDrive - pukyong.ac.kr\\Workspace\\CDTWorkspace\\Parking System\\Debug\\Parking System.exe\" ";
+			path += str;
+			cout << path << endl;
+			system(path.c_str());*/
+			cout << str << endl;
+			imshow("warp" + to_string(i), foundPlate->img);
+			moveWindow("warp" + to_string(i), 1200, 500);
+			k++;
+		}
+
+		Point location = Point(300, 500);
+		imshow("divArea" + to_string(j), divArea);
+		moveWindow("divArea" + to_string(j), location.x + divArea.size().width*j, location.y);
+
 	}
+
+#if FROM == CAMERA
+	int key = waitKey(10);
+	if (key == 0)
+		break;
+	}
+
+#elif FROM == FILESYSTEM
+	int key = waitKey(0);
+
+#if TRAIN == TRUE
+
+	string answer;
+	cin >> answer;
+
+	if (sample.size() == answer.size())
+		for (int i = 0; i < answer.size(); i++) {
+			string path;
+			Mat img;
+			int j = 0;
+
+			do {
+				path = "TrainNumber/" + string(1, answer[i]) + "/" + to_string(j) + ".jpg";
+				cout << path << endl;
+				j++;
+			} while (!utils::readImage(path, img, 1));
+
+			//cout << path << endl;
+			if (utils::writeImage(path, sample[i])) {
+				cerr << "Fail To Write." << endl;
+				//exit(1);
+			}
+
+		}
+#endif
+#endif
+
 }

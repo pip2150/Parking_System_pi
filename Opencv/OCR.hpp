@@ -1,3 +1,6 @@
+#ifndef OCR_HPP_
+#define OCR_HPP_
+
 #include <opencv2/ml/ml.hpp>
 #include <opencv2/core/core.hpp>
 
@@ -17,7 +20,7 @@ private:
 
 public:
 	OCR();
-	cv::Mat projectedHistogram(cv::Mat &img, int t);
+	cv::Mat getHistogram(cv::Mat &img, int t);
 	cv::Mat features(cv::Mat &numbers, int sizeData);
 	void train(int nlayers);
 	void collectTrainImages();
@@ -27,3 +30,5 @@ public:
 	void writeTraindata(std::string fn);
 	char classify(cv::Mat &output);
 };
+
+#endif
