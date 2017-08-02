@@ -4,6 +4,9 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/core/core.hpp>
 
+#define WINDOW_X 800
+#define WINDOW_Y 300
+
 class Plate {
 private:
 	enum { UP, DOWN, LEFT, RIGHT };

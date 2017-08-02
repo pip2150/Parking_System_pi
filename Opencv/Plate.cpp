@@ -34,6 +34,9 @@ Plate::Plate(Mat &img) {
 
 /*		번호판 영역 추출		*/
 void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<RotatedRect> &PossibleRoRects) {
+
+	srand((int)time(NULL));
+
 	Mat gray;
 	cvtColor(image, gray, CV_BGR2GRAY);
 	blur(gray, gray, Size(3, 3));
@@ -63,8 +66,6 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<RotatedRect> 
 		Size size = rect->size;
 		int minSize = (size.width < size.height) ? size.width : size.height;
 		minSize = (int)cvRound(minSize*0.3);
-
-		srand((int)time(NULL));
 
 		Scalar IoDiff(40, 40, 40);
 		Scalar upDiff(40, 40, 40);
@@ -142,6 +143,14 @@ bool Plate::verifySizes(RotatedRect &mr) {
 
 /*		번호판에서 숫자영역 추출		*/
 void Plate::findNumbers() {
+
+	Size flatSize = img.size();
+	int width = flatSize.width;
+	int height = flatSize.height;
+
+	double maxHigh = 0;
+	double minLow = height;
+
 	Mat thresholded;
 	adaptiveThreshold(img, thresholded, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY_INV, 255, 0);
 
@@ -152,23 +161,13 @@ void Plate::findNumbers() {
 	findContours(thresholded, contours, RETR_EXTERNAL, CHAIN_APPROX_NONE);
 
 	imshow("thresholded", thresholded);
-	moveWindow("thresholded", 1200, 500 + thresholded.size().height + 50);
-
-	typedef pair<pair<int, int>, pair<int, int> > Domain;
-
-	priority_queue<Domain> pq;
-	Size flatSize = thresholded.size();
-	int width = flatSize.width;
-	int height = flatSize.height;
-
-	double maxHigh = 0;
-	double minLow = height;
+	moveWindow("thresholded", WINDOW_X, WINDOW_Y + flatSize.height + 50);
 
 	/* ----- 숫자 영역 비율 및 위치 검사 ----- */
 	Mat contoursfound(flatSize, CV_8UC4, Scalar(255, 255, 255));
 	srand((int)time(0));		// 숫자 색 seed 값
 
-	vector<Rect> num;
+	vector<Rect> rectNum;
 	for (int i = 0; i < contours.size(); i++) {
 		vector<Point> *contour = &contours[i];
 
@@ -190,14 +189,14 @@ void Plate::findNumbers() {
 			drawContours(contoursfound, tmp, -1, Scalar(rand() % 255, 0, rand() % 255), 1);	// 숫자 출력 시 랜덤 색상으로 출력
 			line(contoursfound, Point(0, height / 2), Point(width, height / 2), Scalar(255, 0, 255));
 			imshow("contoursfound", contoursfound);
-			moveWindow("contoursfound", 1200, 500 + (contoursfound.size().height + 50) * 2);
+			moveWindow("contoursfound", WINDOW_X, WINDOW_Y + (flatSize.height + 50) * 2);
 
 			if ((uy > height / 2) && (dy < height / 2)) {
 				if (rx >= 1)
 					rx--;
 				if (dy >= 1)
 					dy--;
-				num.push_back(Rect(Point(lx, uy), Point(rx, dy)));
+				rectNum.push_back(Rect(Point(lx, uy), Point(rx, dy)));
 			}
 		}
 	}
@@ -206,13 +205,13 @@ void Plate::findNumbers() {
 	typedef pair<int, int> Index;
 	priority_queue<Index> index;
 
-	for (int i = 0; i < num.size(); i++) {
-		index.push(make_pair(num[i].x, i));
+	for (int i = 0; i < rectNum.size(); i++) {
+		index.push(make_pair(rectNum[i].x, i));
 	}
 
 	vector<Rect> alignedNum;
 	while (!index.empty()) {
-		alignedNum.push_back(num[index.top().second]);
+		alignedNum.push_back(rectNum[index.top().second]);
 		index.pop();
 	}
 
@@ -229,9 +228,13 @@ void Plate::findNumbers() {
 	}
 
 	for (int i = 0; i < overlapRemoved.size(); i++) {
-		double ratio = (double)num[i].width / (double)num[i].height;
+		double ratio = (double)overlapRemoved[i].width / (double)overlapRemoved[i].height;
 		/*rectangle(warpedImage, overlapRemoved[i], Scalar(255, 0, 0));*/
-		numbers.push_back(Mat(~thresholded, overlapRemoved[i]));
+		Mat matNum = Mat(img, overlapRemoved[i]);
+		Mat thresholdedNum;
+		adaptiveThreshold(matNum, thresholdedNum, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY, 255, 0);
+		numbers.push_back(thresholdedNum);
+		//numbers.push_back(Mat(~thresholded, overlapRemoved[i]));
 	}
 
 	/*vector<Rect> overlapRemoved;

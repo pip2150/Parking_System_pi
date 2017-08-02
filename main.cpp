@@ -2,6 +2,7 @@
 #include "Opencv/Plate.hpp"
 #include "Opencv/Svm.hpp"
 #include "Opencv/utils.hpp"
+#include <thread>
 
 using namespace cv;
 using namespace std;
@@ -19,11 +20,16 @@ using namespace std;
 #define TRAIN FALSE
 #endif
 
+void send2server(string jsondata) {
+	cout << "senddata : " + jsondata << endl;
+}
+
 int main(int argc, char* argv[]) {
 
 	OCR ocr;
 	Svm svm;
 	Mat image;
+	thread *t;
 
 #if FROM == CAMERA
 	Mat templ;
@@ -35,6 +41,9 @@ int main(int argc, char* argv[]) {
 	}*/
 
 	camera.open(0);
+	while(!camera.isOpened()){
+		cerr << "Can Not Access The Camera." << endl;	
+	}
 
 	while (1) {
 		camera >> image;
@@ -44,7 +53,9 @@ int main(int argc, char* argv[]) {
 	int img_num;
 	cout << "img_num : " << endl;
 	cin >> img_num;
-	utils::readImage("InputImage/" + to_string(img_num) + ".jpg", image);
+	if (utils::readImage("InputImage/" + to_string(img_num) + ".jpg", image)) {
+		cerr << "File No Exist." << endl;
+	}
 
 #endif
 
@@ -56,7 +67,7 @@ int main(int argc, char* argv[]) {
 		Mat divArea;
 		Mat result;
 		double maxVal = 0;
-		Point maxLoc;
+		Point maxLoc;		
 
 		divArea = image(area[j]);
 		//matchTemplate(divArea, templ, result, TM_CCOEFF_NORMED);
@@ -79,6 +90,7 @@ int main(int argc, char* argv[]) {
 		for (int i = 0; i < (int)PossiblePlates.size(); i++) {
 			PossiblePlates[i].canonicalize();
 			int response = (int)svm.predict(PossiblePlates[i].canonical);
+
 			if (response != 1)
 				continue;
 
@@ -86,13 +98,13 @@ int main(int argc, char* argv[]) {
 			PossibleRoRects[i].points(edge);
 
 			for (int j = 0; j < 4; j++)
-				circle(image, edge[j], 4, Scalar(0,0,255), 4);
+				circle(image, edge[j], 4, Scalar(0, 0, 255), 4);
 
 			Plate *foundPlate = &PossiblePlates[i];
 			foundPlate->findNumbers();
 			string str = "";
 
-			if (foundPlate->numbers.size() != 7)
+			if (foundPlate->numbers.size() < 6)
 				continue;
 
 			for (int j = (int)foundPlate->numbers.size() - 1; j >= 0; j--) {
@@ -109,26 +121,28 @@ int main(int argc, char* argv[]) {
 				Mat output(1, ocr.recNum, CV_32FC1);
 				ocr.predict(feature, output);
 				str += ocr.classify(output);
-				
+
 				int winNo = (int)foundPlate->numbers.size() - j - 1;
-				string winName = to_string(winNo) + to_string(i);
+				string winName = to_string(winNo);
 				imshow(winName, number->canonical);
-				moveWindow(winName, 1200 + 20 * winNo, 0 + k * 60);
+				moveWindow(winName, WINDOW_X + 20 * winNo, 0 + k * 60);
 
 			}
 			/*string path = "\"C:\\Users\\dhrco\\OneDrive - pukyong.ac.kr\\Workspace\\CDTWorkspace\\Parking System\\Debug\\Parking System.exe\" ";
 			path += str;
 			cout << path << endl;
 			system(path.c_str());*/
-			cout << str << endl;
+
+			//cout << str << endl;
+			t->joinable();
+			t = new thread(&send2server, str);
 			imshow("warp" + to_string(i), foundPlate->img);
-			moveWindow("warp" + to_string(i), 1200, 500);
+			moveWindow("warp" + to_string(i), WINDOW_X, WINDOW_Y);
 			k++;
 		}
-
-		Point location = Point(300, 500);
+		t->joinable();
 		imshow("divArea" + to_string(j), divArea);
-		moveWindow("divArea" + to_string(j), location.x + divArea.size().width*j, location.y);
+		moveWindow("divArea" + to_string(j), 0 + divArea.size().width*j, WINDOW_Y);
 
 	}
 
@@ -167,5 +181,5 @@ int main(int argc, char* argv[]) {
 		}
 #endif
 #endif
-
+	t->join();
 }
