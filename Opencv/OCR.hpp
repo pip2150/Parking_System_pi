@@ -7,19 +7,22 @@
 #define SAMPLESIZE 20
 #define VERTICAL 0
 #define HORIZONTAL 1
+#define CHARACTER 13
+#define NUMBER 10
+#define NLAYERS 30
 
 class OCR {
-public:
-	static const int OCR::numCharacters = 23;
-	int recNum;
 private:
+	
 	cv::Ptr<cv::ml::ANN_MLP> ann;
 	cv::Mat classes;
 	cv::Mat trainingData;
-	static const char OCR::strCharacters[numCharacters];
+	std::string OCR::strCharacters = "0123456789BCDEFGNSTVWXY";
 
 public:
 	OCR();
+	OCR(int format);
+	int OCR::numCharacters;	
 	cv::Mat getHistogram(cv::Mat &img, int t);
 	cv::Mat features(cv::Mat &numbers, int sizeData);
 	void train(int nlayers);
@@ -27,6 +30,7 @@ public:
 	float predict(cv::Mat &img);
 	float predict(cv::Mat &img, cv::Mat &out);
 	void readTraindata(std::string fn);
+	void readTraindata(std::string fn, int format);
 	void writeTraindata(std::string fn);
 	char classify(cv::Mat &output);
 };

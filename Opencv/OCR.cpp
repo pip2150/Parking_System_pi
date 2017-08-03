@@ -7,14 +7,29 @@ using namespace std;
 using namespace utils;
 
 OCR::OCR() {
-	recNum = 23;
+	this->numCharacters = NUMBER + CHARACTER;
+
 	/*collectTrainImages();
 	writeTraindata("Opencv/OCR.xml");*/
 	readTraindata("Opencv/OCR.xml");
-	train(SAMPLESIZE);
+	train(NLAYERS);
+
 }
 
-const char OCR::strCharacters[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'B', 'C', 'D', 'E', 'F', 'G', 'N', 'S', 'T', 'V', 'W', 'X', 'Y' };
+OCR::OCR(int format) {
+	if ((format != CHARACTER) && (format != NUMBER)) {
+		cerr << "Long Format Was Inputed!" << endl;
+		exit(1);
+	}
+
+	this->numCharacters = format;
+
+	/*collectTrainImages();
+	writeTraindata("Opencv/OCR.xml");*/
+	readTraindata("Opencv/OCR.xml", format);
+	train(NLAYERS);
+
+}
 
 void OCR::readTraindata(string fn) {
 	FileStorage fs(fn, cv::FileStorage::READ);
@@ -29,6 +44,32 @@ void OCR::readTraindata(string fn) {
 	fs.release();
 }
 
+void OCR::readTraindata(string fn, int format) {
+	readTraindata(fn);
+
+	Mat _trainingData;
+	Mat _classes;
+
+	for (int i = 0; i < classes.rows; i++) {
+		if (format == CHARACTER) {
+			if (classes.at<int>(i, 1) >= NUMBER) {
+				_classes.push_back(classes.at<int>(i, 1) - NUMBER);
+				_trainingData.push_back(trainingData.row(i));
+			}
+		}
+		else if (format == NUMBER) {
+			if (classes.at<int>(i, 1) < NUMBER) {
+				_classes.push_back(classes.at<int>(i, 1));
+				_trainingData.push_back(trainingData.row(i));
+			}
+		}
+	}
+	
+	_trainingData.copyTo(trainingData);
+	_classes.copyTo(classes);
+
+}
+
 void OCR::writeTraindata(string fn) {
 	FileStorage fs(fn, FileStorage::WRITE);
 
@@ -40,6 +81,7 @@ void OCR::writeTraindata(string fn) {
 	fs << "TrainingData" << trainingData;
 	fs << "classes" << classes;
 	fs.release();
+
 }
 
 void OCR::train(int nlayers) {
@@ -48,7 +90,7 @@ void OCR::train(int nlayers) {
 
 	layerSizes.at<int>(0) = trainingData.cols;
 	layerSizes.at<int>(1) = nlayers;
-	layerSizes.at<int>(2) = recNum;
+	layerSizes.at<int>(2) = numCharacters;
 
 	/*cout << "layout : " << layerSizes << endl;*/
 	ann = ANN_MLP::create();
@@ -59,7 +101,7 @@ void OCR::train(int nlayers) {
 	ann->setTrainMethod(ml::ANN_MLP::BACKPROP, 0.0001);
 
 	Mat trainClasses;
-	trainClasses.create(trainingData.rows, recNum, CV_32FC1);
+	trainClasses.create(trainingData.rows, numCharacters, CV_32FC1);
 
 	for (int i = 0; i < trainClasses.rows; i++)
 	{
@@ -76,7 +118,7 @@ void OCR::train(int nlayers) {
 }
 
 void OCR::collectTrainImages() {
-	for (int i = 0; i < recNum; i++) {
+	for (int i = 0; i < numCharacters; i++) {
 		int j = 0;
 		while (1) {
 			string path = "trainnumber/" + string(1, strCharacters[i]) + "/" + to_string(j) + ".jpg";
@@ -103,7 +145,10 @@ char OCR::classify(Mat &output) {
 
 	minMaxLoc(output, 0, &maxVal, 0, &maxLoc);
 
-	return strCharacters[maxLoc.x];
+	if (numCharacters == NUMBER)
+		return strCharacters[maxLoc.x];
+	if (numCharacters == CHARACTER)
+		return strCharacters[maxLoc.x + 10];
 }
 
 float OCR::predict(Mat &img) {
