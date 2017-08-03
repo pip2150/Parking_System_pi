@@ -100,6 +100,12 @@ int main(int argc, char* argv[]) {
 
 			for (int j = 0; j < 4; j++)
 				circle(image, edge[j], 4, Scalar(0, 0, 255), 4);
+			
+			
+			if ((area[j] & PossibleRoRects[i].boundingRect()).area()) {
+				cout << "It's " << j + 1 << "th Section." << endl;
+			}
+			
 
 			Plate *foundPlate = &PossiblePlates[i];
 			foundPlate->findNumbers();
