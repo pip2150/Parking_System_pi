@@ -218,35 +218,19 @@ void Plate::findNumbers() {
 	/* ----- 겹침 검사 ----- */
 	vector<Rect> overlapRemoved;
 	for (int i = 0; i < alignedNum.size(); i++) {
-		if (i && !isOverlap(alignedNum[i - 1], alignedNum[i - 1])) {
+		if (i && !isOverlap(alignedNum[i - 1], alignedNum[i - 1]))
 			overlapRemoved.push_back(alignedNum[i - 1] | alignedNum[i]);
-			//cout << "overlaped!!" << endl;
-		}
-		else {
+		else
 			overlapRemoved.push_back(alignedNum[i]);
-		}
 	}
 
 	for (int i = 0; i < overlapRemoved.size(); i++) {
 		double ratio = (double)overlapRemoved[i].width / (double)overlapRemoved[i].height;
-		/*rectangle(warpedImage, overlapRemoved[i], Scalar(255, 0, 0));*/
 		Mat matNum = Mat(img, overlapRemoved[i]);
 		Mat thresholdedNum;
 		adaptiveThreshold(matNum, thresholdedNum, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY, 255, 0);
 		numbers.push_back(thresholdedNum);
-		//numbers.push_back(Mat(~thresholded, overlapRemoved[i]));
 	}
-
-	/*vector<Rect> overlapRemoved;
-	for (int i = 0; i < num.size(); i++) {
-		overlapRemoved.push_back(num[i]);
-	}
-
-	/*for (int i = 0; i < range.size(); i++) {
-	Rect rectNumber = Rect(Point2d(range[i].first, maxHigh), Point2d(range[i].second, minLow));
-	numbers.push_back(Mat(warpedImage, rectNumber));
-	}*/
-
 }
 
 /*		Contour 4방향 끝점 추출		*/
