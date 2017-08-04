@@ -49,7 +49,7 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<RotatedRect> 
 	morphologyEx(th_img, morph, MORPH_CLOSE, kernel);
 	
 	vector < vector< Point> > contours;
-	findContours(morph.clone(), contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
+	findContours(morph, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
 	
 	vector<RotatedRect> rects;
 	for (int i = 0; i < (int)contours.size(); i++) {

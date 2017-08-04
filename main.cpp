@@ -3,6 +3,7 @@
 #include "Opencv/Svm.hpp"
 #include "Opencv/Utils.hpp"
 #include <thread>
+#include <ctime>
 
 using namespace cv;
 using namespace std;
@@ -54,6 +55,8 @@ int main(int argc, char* argv[]) {
     OCR ocrChar(CHARACTER);
 	OCR ocrNum(NUMBER);
 	Svm svm;
+	clock_t start;
+	
     while (1) {
         camera >> image;
 
@@ -95,11 +98,17 @@ int main(int argc, char* argv[]) {
 	vector<Plate> PossiblePlates;
 	vector<RotatedRect> PossibleRoRects;
 	Plate::find(image, PossiblePlates, PossibleRoRects);
+	clock_t totalcost  = clock();
 
 	int k = 0;
 	for (int i = 0; i < (int)PossiblePlates.size(); i++) {
+		clock_t predict_start = clock();
 		PossiblePlates[i].canonicalize();
+		
+
 		int response = (int)svm.predict(PossiblePlates[i].canonical);
+
+		cout << "predict time" << (double) (predict_start - clock())/1000 << endl;
 
 		if (response != 1)
 			continue;
@@ -116,7 +125,9 @@ int main(int argc, char* argv[]) {
 			}
 		}
 		Plate *foundPlate = &PossiblePlates[i];
+		clock_t findNumbers_start = clock();
 		foundPlate->findNumbers();
+		cout << "findNumbers time" <<  (double)(findNumbers_start- clock())/1000 << endl;
 		string str = "";
 
 #if FROM == FILESYSTEM
@@ -146,7 +157,9 @@ int main(int argc, char* argv[]) {
 			Mat feature = ocr->features(number->canonical, SAMPLESIZE);
 
 			Mat output(1, ocr->numCharacters, CV_32FC1);
+			clock_t ocr_predict_start = clock();
 			ocr->predict(feature, output);
+			cout << "ocr Predict time" << (double) (ocr_predict_start- clock())/1000 << endl;
 			str += ocr->classify(output);
 
 			int winNo = (int)foundPlate->numbers.size() - j - 1;
@@ -182,6 +195,7 @@ int main(int argc, char* argv[]) {
 		moveWindow("warp" + to_string(i), WINDOW_X, WINDOW_Y);
 		k++;
 	}
+	cout << " cost time in one cycle" << (double) (totalcost- clock())/1000 << endl;
 	//t->joinable();
 
 	for (int j = 0; j < SEGMENTSIZE; j++) {
@@ -192,8 +206,8 @@ int main(int argc, char* argv[]) {
 
 #if FROM == CAMERA
 
-	int key = waitKey(10);
-	if (key == 0)
+	int key = waitKey(1);
+	if (key == 27)
 		break;
 	}
 
