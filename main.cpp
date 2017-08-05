@@ -51,15 +51,6 @@ int main(int argc, char* argv[]) {
 		cerr << "Can Not Access The Camera." << endl;
 		exit(1);
 	}
-
-	OCR ocrChar(CHARACTER);
-	OCR ocrNum(NUMBER);
-	Svm svm;
-	clock_t start;
-
-	while (1) {
-		camera >> image;
-
 #elif FROM == FILESYSTEM
 
 	int img_num;
@@ -70,6 +61,17 @@ int main(int argc, char* argv[]) {
 	}
 
 #endif
+
+	OCR ocrChar(CHARACTER);
+	OCR ocrNum(NUMBER);
+	Svm svm;
+	clock_t start;
+
+#if FROM == CAMERA
+	while (1) {
+		camera >> image;
+#endif
+
 	clock_t totalcost = clock();
 	Rect area[SEGMENTSIZE];
 	vector<Mat> sample;
