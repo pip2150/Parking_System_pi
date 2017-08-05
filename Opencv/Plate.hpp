@@ -14,9 +14,11 @@ private:
 	bool isOverlap(cv::Rect &A, cv::Rect &B);
 
 public:
-	Plate(cv::Mat& img);
+	Plate();
+	Plate(cv::Mat& binarizatied);
 
 	cv::Mat img;
+	cv::Mat binarizatied;
 	cv::Mat canonical;
 
 	class Number {
@@ -29,7 +31,7 @@ public:
 	std::vector<Number> numbers;
 	void findNumbers();
 
-	static void find(cv::Mat &input, std::vector<Plate> &PossiblePlates, std::vector<cv::RotatedRect> &PossibleRoRects);
+	static void find(cv::Mat &input, std::vector<Plate> &PossiblePlates, std::vector<cv::Point> &PlatePositions);
 	static bool verifySizes(cv::RotatedRect &mr);	
 	void canonicalize();
 
