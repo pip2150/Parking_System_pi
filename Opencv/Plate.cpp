@@ -47,31 +47,61 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 	cvtColor(image, gray, CV_BGR2GRAY);
 	blur(gray, gray, Size(3, 3));
 
-	Mat sobel, th_img, morph;
+	/*Mat sobel, th_img, morph;
 	Sobel(gray, sobel, CV_8U, 1, 0, 3);
 
 	threshold(sobel, th_img, 0, 255, THRESH_OTSU + THRESH_BINARY);
 
 	Mat kernel(3, 17, CV_8UC1, Scalar(1));
-	morphologyEx(th_img, morph, MORPH_CLOSE, kernel);
+	morphologyEx(th_img, morph, MORPH_CLOSE, kernel);*/
 
+	Mat morph;
+	adaptiveThreshold(gray, morph, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY_INV, 127, 0);
+	imshow("morph", morph);
+	/*vector < vector< Point> > contours;
+	findContours(morph, contours, RETR_EXTERNAL, CHAIN_APPROX_NONE);*/
 	vector < vector< Point> > contours;
-	findContours(morph, contours, RETR_EXTERNAL, CHAIN_APPROX_NONE);
+	findContours(morph, contours, RETR_LIST, CHAIN_APPROX_NONE);
 
+	Mat contoursfound(morph.size(), CV_8UC4, Scalar(255, 255, 255));
+	cv::drawContours(contoursfound, contours, -1, Scalar(255,0,0), 1);	// 숫자 출력 시 랜덤 색상으로 출력
+
+	imshow("contour", contoursfound);
+	
 	int contoursSize = contours.size();
+	//cout << "contours : " << contoursSize << endl;
+
+	int k = 0;
 	for (int i = 0; i < contoursSize; i++) {
+		/*vector<Point> approxCurve;
+		double eps = contours[i].size() * 0.05;
+		approxPolyDP(contours[i], approxCurve, eps, true);
+
+		if (approxCurve.size() < 20)
+			continue;*/
+
 		RotatedRect mr = minAreaRect(contours[i]);
-		
+		//cout << contours[i].size() << endl;
+		/*if (contours[i].size() < 100)
+			continue;*/
+
 		if (!verifySizes(mr))
 			continue;
-
+		
+		k++;
 		/*		번호판 영역 감지		*/
 		RotatedRect* rect = &mr;
 		//rectangle(image, rect->boundingRect(), Scalar(0, 255, 0), 1);
-		Size size = rect->size;
 
-		int minSize = (size.width < size.height) ? size.width : size.height;
-		minSize = (int)cvRound(minSize*0.3);
+		Point2f d[4];
+		rect->points(d);
+
+		vector<Point> c;
+		for (int j = 0; j < 4; j++)
+			c.push_back(d[j]);
+		polylines(image, c, true, Scalar(0, 255, 0));
+
+		Size size = rect->size;
 
 		Scalar IoDiff(40, 40, 40);
 		Scalar upDiff(40, 40, 40);
@@ -79,23 +109,31 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 		int flags = connectivity + 0xff00 + FLOODFILL_FIXED_RANGE + FLOODFILL_MASK_ONLY;
 
 		Rect ccomp;
-
-		int new_x = max((int)rect->center.x - 265, 0);
-		int new_y = max((int)rect->center.y - 265, 0);
-		int new_width = min(gray.size().width - new_x, 530);
-		int new_height = min(gray.size().height - new_y, 530);
+		
+		int root = round(sqrt(70000));
+		int new_x = max((int)rect->center.x - root, 0);
+		int new_y = max((int)rect->center.y - root, 0);
+		int new_width = min(gray.size().width - new_x, root*2);
+		int new_height = min(gray.size().height - new_y, root*2);
 
 		Mat ff = gray(Rect(new_x, new_y, new_width, new_height));
 
-		Mat mask(ff.size() + Size(2, 2), CV_8UC1, Scalar(0));
+		/*int minus = (size.width < size.height) ? 1 : -1;
+		int minSize = (minus == 1) ? minSize = size.width : minSize = size.height;*/
+
+		int minSize = (size.width < size.height) ? size.width : size.height;
+
+		minSize = (int)cvRound(minSize*0.3);
+		
+		Mat mask(gray.size() + Size(2, 2), CV_8UC1, Scalar(0));
 		for (int j = 0; j < 10; j++) {
 			int radius = rand() % minSize - (minSize / 2);
-			Point seed = (Point)rect->center - Point(new_x, new_y) + Point(radius, radius);
+			Point seed = (Point)rect->center /*- Point(new_x, new_y)*/ + Point(radius, radius);
 			//(Point)rect->center + Point(radius, radius);
-			if (Rect(0, 0, ff.cols, ff.rows).contains(seed))
-				int area = floodFill(ff, mask, seed, Scalar(250, 0, 0), &ccomp, IoDiff, IoDiff, flags);
+			if (Rect(0, 0, gray.cols, gray.rows).contains(seed))
+				int area = floodFill(gray, mask, seed, Scalar(250, 0, 0), &ccomp, IoDiff, IoDiff, flags);
 		}
-
+		
 		vector<Point> pointsInterest;
 		Mat_<uchar>::iterator itMask = mask.begin<uchar>();
 		Mat_<uchar>::iterator end = mask.end<uchar>();
@@ -106,30 +144,56 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 		}
 
 		RotatedRect minRect = minAreaRect(pointsInterest);
-		//rectangle(image, minRect.boundingRect(), Scalar(255, 0, 1));
 
+		Point2f a[4];
+		minRect.points(a);
+		
+		vector<Point> b;
+		for (int j = 0; j < 4; j++)
+			b.push_back(a[j]);
+		polylines(image, b, true, Scalar(0, 0, 255));
+
+		/*
+		fillConvexPoly(image, b, 4, );*/
+
+		//rectangle(image, minRect.boundingRect(), Scalar(0, 0, 255), 1);
 		if (verifySizes(minRect)) {
-			
 			PlatePositions.push_back(Point(new_x,new_y));
+			
+			Point2f src[4];
+			minRect.points(src);
 
-			Mat img_rotated, img_crop;
+			Point v1 = src[1] - src[0];
+			Point v2 = src[3] - src[0];
 
-			Size m_size = minRect.size;
-			float aspect = (float)m_size.width / m_size.height;
-			float angle = minRect.angle;
+			//cout << "o : " << v1.dot(v2) << endl;
+			
+			double w = size.width;
+			double h = size.height;
 
-			if (aspect < 1) {
-				angle += 90;
-				swap(m_size.width, m_size.height);
+			if (w < h) {
+				
+				swap(w, h);
+			}else {
+				swap(src[0], src[3]);
+				swap(src[1], src[3]);
+				swap(src[2], src[3]);
 			}
 
-			Mat rotmat = getRotationMatrix2D(minRect.center, angle, 1);
-			warpAffine(ff, img_rotated, rotmat, ff.size(), CV_INTER_CUBIC);
-			getRectSubPix(img_rotated, m_size, minRect.center, img_crop);
+			cout << "angle : " << (minRect.angle) << endl;
+			cout << "w/h : " << w / h << endl;
 
-			PossiblePlates.push_back(Plate(img_crop));
+			Size_<int> markerSize = Size(w, h);
+			Point2f m_markerCorners2d[] = { Point2f(w - 1,h - 1), Point2f(0,h - 1), Point2f(0,0), Point2f(w - 1, 0) };
+			Mat M = getPerspectiveTransform(src, m_markerCorners2d);
+			Mat warped;
+			warpPerspective(gray, warped, M, markerSize);
+			
+			PossiblePlates.push_back(Plate(warped));
+			/*imshow("asdf"+to_string(i), warped);*/
 		}
 	}
+	//cout << "total : " << k << endl;
 
 }
 
@@ -172,9 +236,6 @@ void Plate::findNumbers() {
 
 	Mat thresholded;
 	adaptiveThreshold(img, thresholded, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY_INV, 255, 0);
-
-	Mat canny;
-	Canny(thresholded, canny, 50, 100, 3);
 
 	vector<vector<Point> > contours;
 	findContours(thresholded, contours, RETR_EXTERNAL, CHAIN_APPROX_NONE);

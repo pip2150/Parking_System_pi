@@ -100,10 +100,8 @@ int main(int argc, char* argv[]) {
 	vector<Point> PlatePositions;
 	Plate::find(image, PossiblePlates, PlatePositions);
 	
-
 	int k = 0;
 	int PossiblePlatesSize = PossiblePlates.size();
-	cout << PossiblePlatesSize << endl;
 	for (int i = 0; i < PossiblePlatesSize; i++) {
 		PossiblePlates[i].canonicalize();
 		int response = (int)svm.predict(PossiblePlates[i].canonical);
