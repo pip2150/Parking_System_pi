@@ -9,6 +9,7 @@ private:
 	cv::Ptr<cv::ml::SVM> svm;
 	cv::Mat classes;
 	cv::Mat trainingData;
+
 public:
 	Svm();
 	void train();

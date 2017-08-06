@@ -12,6 +12,7 @@ private:
 	enum { UP, DOWN, LEFT, RIGHT };
 	void endPoint(std::vector<cv::Point> &contour, cv::Point mPoint[4]);
 	bool isOverlap(cv::Rect &A, cv::Rect &B);
+	void drawRotatedRect(cv::Mat& img, cv::RotatedRect roRec, const cv::Scalar& color, int thickness = 1, int lineType = cv::LINE_8, int shift = 0);
 
 public:
 	Plate();
