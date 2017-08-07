@@ -83,7 +83,7 @@ void HttpMessage::setHeader(string host){
 			getMetaData("Date",getCurrentTime()) +
 			getMetaData("Content-Type","application/json; charset=UTF-8") +
 			getMetaData("Content-Encoding","UTF-8") +
-			getMetaData("Server","PSystem (Unix) (Raspberry/Linux)") +
+			getMetaData("Server","PSystem (Unix) (Raspbian/Linux)") +
 			getMetaData("Accept-Ranges","bytes") +
 			getMetaData("Content-Length",to_string(content.length()));
 }

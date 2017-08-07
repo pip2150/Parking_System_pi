@@ -20,9 +20,10 @@ using namespace std;
 #define TRAIN FALSE
 #endif
 #define POSITION FALSE
-#define COSTTIME TRUE
+#define COSTTIME FALSE
 #define PLATESTR FALSE
 #define WINDOWON TRUE
+#define ANALISIS TRUE
 /* ------------------------- */
 
 void send2server(string jsondata) {
@@ -70,7 +71,7 @@ int main(int argc, char* argv[]) {
 
 #if FROM == CAMERA
 
-	while (waitKey(1) != 27) {
+	while (waitKey(100) != 27) {
 		camera >> image;
 
 #endif
@@ -106,7 +107,7 @@ int main(int argc, char* argv[]) {
 		if (COSTTIME) {
 			cout << fixed;
 			cout.precision(5);
-			cout << " Cost Time In a Cycle : " << (double)(clock() - cycleCost) / CLOCKS_PER_SEC << "s" << endl;
+			cout << "\tCost Time In a Cycle : " << (double)(clock() - cycleCost) / CLOCKS_PER_SEC << "s" << endl;
 		}
 
 		int k = 0;
@@ -122,7 +123,7 @@ int main(int argc, char* argv[]) {
 			if (POSITION)
 				for (int j = 0; j < SEGMENTSIZE; j++)
 					if (area[j].contains(Point(PlatePositions[i].x, PlatePositions[i].y)))
-						cout << "It's " << j + 1 << "th Section." << endl;
+						cout << "\t\tIt's " << j + 1 << "th Section." << endl;
 
 			Plate *foundPlate = &PossiblePlates[i];
 			clock_t findNumbers_start = clock();
@@ -131,7 +132,7 @@ int main(int argc, char* argv[]) {
 			if (COSTTIME) {
 				cout << fixed;
 				cout.precision(5);
-				cout << " Cost Time In the FindNumbers : " << (double)(clock() - findNumbers_start) / CLOCKS_PER_SEC << "s" << endl;
+				cout << "\t\tCost Time In the FindNumbers : " << (double)(clock() - findNumbers_start) / CLOCKS_PER_SEC << "s" << endl;
 			}
 
 #if FROM == FILESYSTEM
@@ -154,11 +155,14 @@ int main(int argc, char* argv[]) {
 #endif
 
 				OCR *ocr;
-				/* 마지막에서 0,1,2번째를 문자로 설정*/
+				/* 마지막에서 4번째를 문자로 설정 - 한글 */
+				/* if (j == 4) */
+				/* 마지막에서 0,1,2번째를 문자로 설정 - 영문 */
 				if ((j == 0) || (j == 1) || (j == 2))
 					ocr = &ocrChar;
 				else
 					ocr = &ocrNum;
+				
 
 				Mat feature = ocr->features(number->canonical, SAMPLESIZE);
 				Mat output(1, ocr->numCharacters, CV_32FC1);
@@ -182,23 +186,26 @@ int main(int argc, char* argv[]) {
 			system(path.c_str());*/
 
 			if (PLATESTR) {
-				cout << str << endl;
+				cout << "\t\t" << str << endl;
 			}
 
 			//	t->joinable();
 			//	t = new thread(&send2server, str);
 
 #if FROM == CAMERA
-
-			string asdf = "0226FBV";
+#if ANALISIS == TRUE
+			string answer = "0226FBV";
+			int correct = 0;
 			for (int j = 0; j < 7; j++)
-				if (str[j] == asdf[j])
-					totalCorrect++;
+				if (str[j] == answer[j])
+					correct++;
 
 			totalTry++;
-			double average = totalCorrect / (totalTry * 7.0);
-			/*cout << "correct answer rate : " << average << endl;*/
-
+			totalCorrect += correct;
+			double average = correct / 7.0;
+			double totalAverage = totalCorrect / (totalTry * 7.0);
+			cout << "\t\tCorrect Answer Rate : " << average * 100 << "\%" << "\tTotal Correct Answer Rate : " << totalAverage * 100 << "\%" << endl;;
+#endif
 #endif
 			if (WINDOWON) {
 				imshow("warp" + to_string(i), foundPlate->img);
