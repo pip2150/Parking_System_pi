@@ -53,6 +53,7 @@ int main(int argc, char* argv[]) {
 		cerr << "Can Not Access The Camera." << endl;
 		exit(1);
 	}
+    camera.set(CV_CAP_PROP_FOURCC, CV_FOURCC('Y','U','Y','V'));
 
 #elif FROM == FILESYSTEM
 

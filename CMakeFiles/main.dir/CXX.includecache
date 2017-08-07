@@ -61,6 +61,8 @@ opencv2/core/core.hpp
 /home/pi/project/Parking_System_pi/Opencv/Plate.cpp
 Plate.hpp
 /home/pi/project/Parking_System_pi/Opencv/Plate.hpp
+omp.h
+-
 
 /home/pi/project/Parking_System_pi/Opencv/Plate.hpp
 opencv2/opencv.hpp
