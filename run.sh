@@ -1,8 +1,8 @@
 ./main
 i=$?
-echo $i
 while [ $i -eq '1' ]; do
 ./main
-sleep 1
+i=$?
+sleep 2
 done
-echo $i
+echo $?
