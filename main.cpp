@@ -23,7 +23,7 @@ using namespace std;
 #define COSTTIME FALSE
 #define PLATESTR FALSE
 #define WINDOWON TRUE
-#define ANALISIS TRUE
+#define ANALYSIS TRUE
 /* ------------------------- */
 
 void send2server(string jsondata) {
@@ -193,7 +193,7 @@ int main(int argc, char* argv[]) {
 			//	t = new thread(&send2server, str);
 
 #if FROM == CAMERA
-#if ANALISIS == TRUE
+#if ANALYSIS == TRUE
 			string answer = "0226FBV";
 			int correct = 0;
 			for (int j = 0; j < 7; j++)
