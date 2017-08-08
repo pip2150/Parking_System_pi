@@ -21,6 +21,7 @@ public:
 	cv::Mat img;
 	cv::Mat binarizatied;
 	cv::Mat canonical;
+	static int debug;
 
 	class Number {
 	public:

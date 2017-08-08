@@ -1,34 +1,15 @@
 #include "Plate.hpp"
-#include <omp.h>
+
 using namespace cv;
 using namespace std;
-
-
 
 inline Plate::Number::Number(Mat &src) {
 	this->img = src;
 }
 
 /*		숫자 영역 정규화		*/
-void Plate::Number::canonicalize(int sampleSize) {
-	Size imgSize = img.size();
-
-	double ratio = (img.rows > img.cols) ?
-		((double)sampleSize / (double)imgSize.height) :
-		((double)sampleSize / (double)imgSize.width);
-
-	Mat resized;
-
-	resize(img, resized, Size2d(ratio*imgSize.width, ratio*imgSize.height));
-
-	Size resizedSize = resized.size();
-	int width = resizedSize.width;
-	int height = resizedSize.height;
-	double x = (double)(sampleSize - width) / 2;
-	double y = (double)(sampleSize - height) / 2;
-
-	canonical = Mat(Size(sampleSize, sampleSize), CV_8UC1, Scalar(255));
-	resized.copyTo(canonical(Rect2d(x, y, width, height)));
+void Plate::Number::canonicalize(int sampleSize) {	
+	resize(img, canonical, Size2d(sampleSize, sampleSize));
 }
 
 inline Plate::Plate() {
@@ -51,7 +32,7 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 	
 	Mat thImg;
 	threshold(sobel, thImg, 0, 255, THRESH_OTSU + THRESH_BINARY);
-
+	
 	Mat morph;
 	Mat kernel(3, 17, CV_8UC1, Scalar(1));
 	morphologyEx(thImg, morph, MORPH_CLOSE, kernel);
@@ -83,7 +64,7 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 		for (int j = 0; j < 10; j++) {
 			int radius = rand() % (int)minSize - (minSize / 2);
 			Point seed = (Point)rect->center + Point(radius, radius);
-			if (Rect(0, 0, gray.size().width, gray.size().height).contains(rect->center))
+			if (Rect(0, 0, gray.size().width, gray.size().height).contains(seed))
 				int area = floodFill(gray, mask, seed, Scalar(250, 0, 0), &ccomp, loDiff, upDiff, flags);
 		}
 
@@ -148,24 +129,19 @@ inline bool Plate::verifySizes(RotatedRect &mr) {
 
 /*		번호판에서 숫자영역 추출		*/
 void Plate::findNumbers() {
-	Size flatSize = img.size();
-	int width = flatSize.width;
-	int height = flatSize.height;
-
-	double maxHigh = 0;
-	double minLow = height;
 
 	Mat thresholded;
 	adaptiveThreshold(img, thresholded, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY_INV, 255, 0);
 
-	Mat canny;
-	Canny(thresholded, canny, 50, 100, 3);
-
 	vector<vector<Point> > contours;
 	findContours(thresholded, contours, RETR_EXTERNAL, CHAIN_APPROX_NONE);
 
-	/*imshow("thresholded", thresholded);
-	moveWindow("thresholded", WINDOW_X, WINDOW_Y + flatSize.height + 50);*/
+	Size flatSize = thresholded.size();
+
+	if (debug) {
+		imshow("thresholded", thresholded);
+		moveWindow("thresholded", WINDOW_X, WINDOW_Y + flatSize.height + 50);
+	}
 
 	/* ----- 숫자 영역 비율 및 위치 검사 ----- */
 	Mat contoursfound(flatSize, CV_8UC4, Scalar(255, 255, 255));
@@ -179,32 +155,27 @@ void Plate::findNumbers() {
 
 		Point mPoint[4];
 		endPoint(*contour, mPoint);
-		/*
-		 = minAreaRect(contour);
-		*/
 
-		int uy = mPoint[UP].y;
-		int dy = mPoint[DOWN].y;
-		int lx = mPoint[LEFT].x;
-		int rx = mPoint[RIGHT].x;
+		int uy = min(mPoint[UP].y + 1, flatSize.height);
+		int dy = max(mPoint[DOWN].y - 1, 0);
+		int lx = min(mPoint[LEFT].x + 1, flatSize.width);
+		int rx = max(mPoint[RIGHT].x - 1, 0);
 
 		int contourWidth = lx - rx;
 		int contourHeight = uy - dy;
-		double ratio = ((double)contourWidth / (double)contourHeight) * ((double)width / (double)height);
+		double ratio = ((double)contourWidth / (double)contourHeight) * ((double)flatSize.width / (double)flatSize.height);
 
 		if ((ratio > 0.5) && (ratio < 5)) {
 
-			vector<vector<Point> > tmp;	tmp.push_back(*contour);
-			drawContours(contoursfound, tmp, -1, Scalar(rand() % 255, 0, rand() % 255), 1);	// 숫자 출력 시 랜덤 색상으로 출력
-			line(contoursfound, Point(0, height / 2), Point(width, height / 2), Scalar(255, 0, 255));
-			/*imshow("contoursfound", contoursfound);
-			moveWindow("contoursfound", WINDOW_X, WINDOW_Y + (flatSize.height + 50) * 2);*/
+			if (debug) {
+				vector<vector<Point> > tmp;	tmp.push_back(*contour);
+				drawContours(contoursfound, tmp, -1, Scalar(rand() % 255, 0, rand() % 255), 1);	// 숫자 출력 시 랜덤 색상으로 출력
+				line(contoursfound, Point2d(0, flatSize.height / 2.0), Point2d(flatSize.width, flatSize.height / 2.0), Scalar(255, 0, 255));
+				imshow("contoursfound", contoursfound);
+				moveWindow("contoursfound", WINDOW_X, WINDOW_Y + (flatSize.height + 50) * 2);
+			}
 
-			if ((uy > height / 2) && (dy < height / 2)) {
-				if (rx >= 1)
-					rx--;
-				if (dy >= 1)
-					dy--;
+			if ((uy > flatSize.height / 2.0) && (dy < flatSize.height / 2.0)) {
 				rectNum.push_back(Rect(Point(lx, uy), Point(rx, dy)));
 			}
 		}
@@ -238,10 +209,10 @@ void Plate::findNumbers() {
 	int overlapRemovedSize = (int)overlapRemoved.size();
 	for (int i = 0; i < overlapRemovedSize; i++) {
 		double ratio = (double)overlapRemoved[i].width / (double)overlapRemoved[i].height;
-		Mat matNum = img(overlapRemoved[i]);
-		Mat thresholdedNum;
-		adaptiveThreshold(matNum, thresholdedNum, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY, 255, 0);
-		numbers.push_back(thresholdedNum);
+		Mat matNum = ~thresholded(overlapRemoved[i]);
+		/*Mat thresholdedNum;
+		adaptiveThreshold(matNum, thresholdedNum, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY, 255, 0);*/
+		numbers.push_back(matNum);
 	}
 }
 

@@ -16,12 +16,10 @@ using namespace std;
 /* ----- Debug Setting ----- */
 #define SEGMENTSIZE 1
 #define FROM CAMERA
-#if FROM == FILESYSTEM
 #define TRAIN FALSE
-#endif
 #define POSITION FALSE
 #define COSTTIME FALSE
-#define PLATESTR FALSE
+#define PLATESTR TRUE
 #define WINDOWON TRUE
 #define ANALYSIS TRUE
 /* ------------------------- */
@@ -31,7 +29,10 @@ void send2server(string jsondata) {
 }
 
 int main(int argc, char* argv[]) {
-
+	string answer = "0226FBV";
+	int fileIndex[NUMBER + CHARACTER];
+	memset(fileIndex, 0, sizeof(fileIndex));
+	Plate::debug = WINDOWON;
 	Mat image;
 	thread *t = NULL;
 
@@ -53,7 +54,7 @@ int main(int argc, char* argv[]) {
 		cerr << "Can Not Access The Camera." << endl;
 		exit(1);
 	}
-	camera.set(CV_CAP_PROP_FOURCC, CV_FOURCC('Y','U','Y','V'));
+	camera.set(CV_CAP_PROP_FOURCC, CV_FOURCC('Y', 'U', 'Y', 'V'));
 
 #elif FROM == FILESYSTEM
 
@@ -65,23 +66,22 @@ int main(int argc, char* argv[]) {
 	}
 
 #endif
-
 	OCR ocrChar(CHARACTER);
 	OCR ocrNum(NUMBER);
 	Svm svm;
 
 #if FROM == CAMERA
 
-	while (waitKey(100) != 27) {
+	while (waitKey(1) != 27) {
 		camera >> image;
 
 #endif
 
 		clock_t cycleCost = clock();
 		Rect area[SEGMENTSIZE];
-		vector<Mat> sample;
 
 		for (int i = 0; i < SEGMENTSIZE; i++) {
+
 			area[i] = Rect(image.cols * i / SEGMENTSIZE, 0, image.cols / SEGMENTSIZE, image.rows);
 			//		Matimage divArea;
 			Mat result;
@@ -112,7 +112,9 @@ int main(int argc, char* argv[]) {
 		}
 
 		int k = 0;
-
+#if TRAIN == TRUE
+		vector<Mat> sample;
+#endif
 		int PossiblePlatesSize = (int)PossiblePlates.size();
 		for (int i = 0; i < PossiblePlatesSize; i++) {
 			PossiblePlates[i].canonicalize();
@@ -149,10 +151,8 @@ int main(int argc, char* argv[]) {
 				Plate::Number* number = &foundPlate->numbers[j];
 				number->canonicalize(SAMPLESIZE);
 
-#if FROM == FILESYSTEM
 #if TRAIN == TRUE
 				sample.push_back(foundPlate->numbers[j].canonical);
-#endif
 #endif
 
 				OCR *ocr;
@@ -163,13 +163,11 @@ int main(int argc, char* argv[]) {
 					ocr = &ocrChar;
 				else
 					ocr = &ocrNum;
-				
 
 				Mat feature = ocr->features(number->canonical, SAMPLESIZE);
 				Mat output(1, ocr->numCharacters, CV_32FC1);
 
 				ocr->predict(feature, output);
-
 				str += ocr->classify(output);
 
 				if (WINDOWON) {
@@ -180,7 +178,7 @@ int main(int argc, char* argv[]) {
 				}
 
 			}
-			//string path = "\"C:\\Users\\dhrco\\OneDrive - pukyong.ac.kr\\Workspace\\CDTWorkspace\\Parking System\\Debug\\Parking System.exe\" ";
+
 			/*string path = "Network/http_test ";
 			path += str;
 			cout << path << endl;
@@ -195,7 +193,7 @@ int main(int argc, char* argv[]) {
 
 #if FROM == CAMERA
 #if ANALYSIS == TRUE
-			string answer = "0226FBV";
+
 			int correct = 0;
 			for (int j = 0; j < 7; j++)
 				if (str[j] == answer[j])
@@ -205,12 +203,14 @@ int main(int argc, char* argv[]) {
 			totalCorrect += correct;
 			double average = correct / 7.0;
 			double totalAverage = totalCorrect / (totalTry * 7.0);
-			cout << "\t\tCorrect Answer Rate : " << average * 100 << "\%" << "\tTotal Correct Answer Rate : " << totalAverage * 100 << "\%" << endl;;
+			cout << "\t\tCorrect Answer Rate : " << average * 100 << "\%";
+			cout << "\tTotal Correct Answer Rate : " << totalAverage * 100 << "\%" << endl;
+
 #endif
 #endif
 			if (WINDOWON) {
-				imshow("warp" + to_string(i), foundPlate->img);
-				moveWindow("warp" + to_string(i), WINDOW_X, WINDOW_Y);
+				imshow("warp" /*+ to_string(i)*/, foundPlate->img);
+				moveWindow("warp" /*+ to_string(i)*/, WINDOW_X, WINDOW_Y);
 			}
 
 			k++;
@@ -224,37 +224,35 @@ int main(int argc, char* argv[]) {
 				imshow("divArea" + to_string(i), divArea);
 				moveWindow("divArea" + to_string(i), 0 + divArea.size().width*i, WINDOW_Y);
 			}
-	}
-
-#if FROM == FILESYSTEM
-	int key = waitKey(0);
 
 #if TRAIN == TRUE
 
-	string answer;
-	cin >> answer;
+		if (sample.size() == answer.size())
+			for (int i = 0; i < answer.size(); i++) {
+				if (i != 4)
+					continue;
+				string path;
+				Mat img;
+				do {
+					path = "TrainNumber/" + string(1, answer[i]) + "/" + to_string(fileIndex[i]) + ".jpg";
+					cout << path << endl;
+					fileIndex[i]++;
+				} while (!utils::readImage(path, img, 1));
 
-	if (sample.size() == answer.size())
-		for (int i = 0; i < answer.size(); i++) {
-			string path;
-			Mat img;
-			int j = 0;
-
-			do {
-				path = "TrainNumber/" + string(1, answer[i]) + "/" + to_string(j) + ".jpg";
-				cout << path << endl;
-				j++;
-			} while (!utils::readImage(path, img, 1));
-
-			//cout << path << endl;
-			if (utils::writeImage(path, sample[i])) {
-				cerr << "Fail To Write." << endl;
-				//exit(1);
+				//cout << path << endl;
+				if (utils::writeImage(path, sample[i])) {
+					cerr << "Fail To Write." << endl;
+					exit(1);
+				}
 			}
-
-		}
-#endif
 #endif
 
-	//	t->joinable();
+#if FROM == CAMERA
+	}
+#elif FROM == FILESYSTEM
+		int key = waitKey(0);
+
+#endif
+
+		//	t->joinable();
 }

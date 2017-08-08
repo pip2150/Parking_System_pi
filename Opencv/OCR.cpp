@@ -6,36 +6,33 @@ using namespace cv;
 using namespace std;
 using namespace utils;
 
-OCR::OCR() {
-	this->numCharacters = NUMBER + CHARACTER;
-
-	/*collectTrainImages();
-	writeTraindata("Opencv/OCR.xml");*/
-	readTraindata("Opencv/OCR.xml");
-	train(NLAYERS);
-
-}
-
-OCR::OCR(int format) {
-	if ((format != CHARACTER) && (format != NUMBER)) {
-		cerr << "Long Format Was Inputed!" << endl;
-		exit(1);
-	}
+OCR::OCR(int format = NUMBER + CHARACTER) {
 
 	this->numCharacters = format;
 
-	/*collectTrainImages();
-	writeTraindata("Opencv/OCR.xml");*/
-	readTraindata("Opencv/OCR.xml", format);
-	train(NLAYERS);
+	switch (format) {
+	case NUMBER: 
+	case CHARACTER:	
+		readTraindata("Opencv/OCR.xml", format);
+		train(NLAYERS);
+		break;
 
+	case NUMBER + CHARACTER: 
+		collectTrainImages();
+		writeTraindata("Opencv/OCR.xml");
+		/*readTraindata("Opencv/OCR.xml");*/
+		break;
+	default:
+		cerr << "Long Format Was Inputed!" << endl;
+		exit(1);
+	}
 }
 
 void OCR::readTraindata(string fn) {
 	FileStorage fs(fn, cv::FileStorage::READ);
 
 	if (!fs.isOpened()) {
-		cout << "File Open Fail." << endl;
+		cerr << "File Open Fail." << endl;
 		exit(1);
 	}
 
@@ -46,20 +43,20 @@ void OCR::readTraindata(string fn) {
 
 void OCR::readTraindata(string fn, int format) {
 	readTraindata(fn);
-
+	
 	Mat _trainingData;
 	Mat _classes;
 
 	for (int i = 0; i < classes.rows; i++) {
 		if (format == CHARACTER) {
-			if (classes.at<int>(i, 1) >= NUMBER) {
-				_classes.push_back(classes.at<int>(i, 1) - NUMBER);
+			if (classes.at<int>(i, 0) >= NUMBER) {
+				_classes.push_back(classes.at<int>(i, 0) - NUMBER);
 				_trainingData.push_back(trainingData.row(i));
 			}
 		}
 		else if (format == NUMBER) {
-			if (classes.at<int>(i, 1) < NUMBER) {
-				_classes.push_back(classes.at<int>(i, 1));
+			if (classes.at<int>(i, 0) < NUMBER) {
+				_classes.push_back(classes.at<int>(i, 0));
 				_trainingData.push_back(trainingData.row(i));
 			}
 		}
@@ -74,7 +71,7 @@ void OCR::writeTraindata(string fn) {
 	FileStorage fs(fn, FileStorage::WRITE);
 
 	if (!fs.isOpened()) {
-		cout << "File Write Fail." << endl;
+		cerr << "File Write Fail." << endl;
 		exit(1);
 	}
 
@@ -121,7 +118,7 @@ void OCR::collectTrainImages() {
 	for (int i = 0; i < numCharacters; i++) {
 		int j = 0;
 		while (1) {
-			string path = "trainnumber/" + string(1, strCharacters[i]) + "/" + to_string(j) + ".jpg";
+			string path = "TrainNumber/" + string(1, strCharacters[i]) + "/" + to_string(j) + ".jpg";
 			Mat img;
 			cout << path << endl;
 			if (readImage(path, img, 1)) {

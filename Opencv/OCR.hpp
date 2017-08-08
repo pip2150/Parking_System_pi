@@ -20,19 +20,20 @@ private:
 	std::string strCharacters = "0123456789BCDEFGNSTVWXY";
 
 public:
-	OCR();
 	OCR(int format);
 	int numCharacters;	
 	cv::Mat getHistogram(cv::Mat &img, int t);
 	cv::Mat features(cv::Mat &numbers, int sizeData);
 	void train(int nlayers);
-	void collectTrainImages();
 	float predict(cv::Mat &img);
 	float predict(cv::Mat &img, cv::Mat &out);
+	char classify(cv::Mat &output);
+
 	void readTraindata(std::string fn);
 	void readTraindata(std::string fn, int format);
 	void writeTraindata(std::string fn);
-	char classify(cv::Mat &output);
+	void collectTrainImages();
+	
 };
 
 #endif
