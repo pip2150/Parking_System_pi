@@ -11,9 +11,9 @@
 
 namespace psapi{
 
-void carEnter(ClientSocket& sock, std::string host,std::string plateNum);
-void carExit(ClientSocket& sock, std::string host, std::string plateNum);
-void carParking(ClientSocket& sock, std::string host, int floor, std::string zoneName, int zoneIndex, std::string plateNum);
+void enter(ClientSocket& sock, std::string host,std::string plateNum);
+void exit(ClientSocket& sock, std::string host, std::string plateNum);
+void parking(ClientSocket& sock, std::string host, int floor, std::string zoneName, int zoneIndex, std::string plateNum);
 
 };
 

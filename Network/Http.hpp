@@ -36,6 +36,7 @@ private :
 	std::string header;
 	std::string content;
 public :
+	HttpMessage();
 	void setRequest(std::string method, std::string path);
 	void setHeader(std::string host);
 	void setContent(std::string content);

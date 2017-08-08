@@ -10,37 +10,33 @@
 
 using namespace std;
 
-void psapi::carEnter(ClientSocket& sock, string host,string plateNum){
+void psapi::enter(ClientSocket& sock, string host,string plateNum){
 	if(!sock.isValid())
 		return;
 
 	string buff = "";
-	string jsondata = "{\"id\":\""+plateNum+"\"}";
 
 	HttpMessage hm;
 	hm.setRequest("POST", "/cars/" + plateNum + "/enter");
-	hm.setContent(jsondata);
 	hm.setHeader(host);
 	buff = hm.getMessage();
 	sock.send(buff);
 }
 
-void psapi::carExit(ClientSocket& sock, string host, string plateNum){
+void psapi::exit(ClientSocket& sock, string host, string plateNum){
 	if(!sock.isValid())
 		return;
 
 	string buff = "";
-	string jsondata = "{\"id\":\""+plateNum+"\"}";
 
 	HttpMessage hm;
 	hm.setRequest("POST", "/cars/" + plateNum + "/exit");
-	hm.setContent(jsondata);
 	hm.setHeader(host);
 	buff = hm.getMessage();
 	sock.send(buff);
 }
 
-void psapi::carParking(ClientSocket& sock, string host, int floor, string zoneName, int zoneIndex, string plateNum){
+void psapi::parking(ClientSocket& sock, string host, int floor, string zoneName, int zoneIndex, string plateNum){
 	if(!sock.isValid())
 		return;
 

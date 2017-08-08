@@ -71,6 +71,11 @@ void HttpParser::parser2(string msg, char key, vector<string> &tokens){
 HttpParser::~HttpParser(){
 
 }
+HttpMessage::HttpMessage(){
+	request = "";
+	header = "";
+	content = "";
+}
 
 void HttpMessage::setRequest(string method, string path){
 	request =  method+ " " +path+ " HTTP/1.1" + "\r\n";
