@@ -144,6 +144,6 @@ bool ClientSocket::connect(std::string host,  int port) {
 	if(status == 0)
 		return true;
 
-	std::cerr << "accept : "<<strerror(errno) << std::endl;
+	std::cerr << "connect : "<<strerror(errno) << std::endl;
 	return false;
 }

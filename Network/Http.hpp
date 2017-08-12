@@ -8,41 +8,68 @@
 #ifndef HTTP_HPP_
 #define HTTP_HPP_
 
-#include <string>
-#include <vector>
-#include <cstring>
 #include <iostream>
 
-class HttpParser {
-private:
-	std::vector<std::string> line;
-	std::string header;
-	std::string centent;
-	std::string msg;
-	enum method{GET, HEAD, POST,PUT, DELETE,TRACE, CONNECT, OPTIONS};
-public:
-	HttpParser();
-	void setMsg(std::string msg);
-	void parserLine(std::vector<std::vector<std::string> > &parsed);
-	void parser(std::string msg, std::string key, std::vector<std::string> &tokens);
-	void parser2(std::string msg, char key, std::vector<std::string> &tokens);
+using namespace std;
 
-	~HttpParser();
+typedef struct HeaderLine {
+	string field;
+	string value;
+} HeaderLine;
+
+typedef struct StatusCode{
+	string version;
+	string status;
+	string message;
+}StatusCode;
+
+typedef struct RequestLine{
+	string method;
+	string url;
+	string version;
+}RequestLine;
+
+class HttpMessage {
+protected:
+	string firstLine[3];
+private :
+	HeaderLine headerLine[100];
+	string messageBody;
+	bool error;
+	int headerSize;
+
+	bool parserLine(string input, string key, string output[], int size);
+
+public:
+	HttpMessage(string msg);
+	HttpMessage(string firstLine[], HeaderLine headerLine[], int headerSize, string content);
+
+	HeaderLine* getHeader();
+	string getMessageBody();
+	int getHeaderSize();
+	string getString();
 };
 
-class HttpMessage{
-private :
-	std::string request;
-	std::string header;
-	std::string content;
+class HttpResponseMessge : public HttpMessage{
+private:
+	StatusCode statusCode;
+
+public:
+	HttpResponseMessge(string msg);
+	HttpResponseMessge(StatusCode statusCode, HeaderLine headerLine[], int headerSize, string content);
+
+	StatusCode getStatusCode();
+};
+
+class HttpRequestMessge : public HttpMessage{
+private:
+	RequestLine requestLine;
+
 public :
-	HttpMessage();
-	void setRequest(std::string method, std::string path);
-	void setHeader(std::string host);
-	void setContent(std::string content);
-	std::string getMessage();
-	std::string getCurrentTime();
-	std::string getMetaData(std::string name, std::string value);
+	HttpRequestMessge(string msg);
+	HttpRequestMessge(RequestLine requestLine, HeaderLine headerLine[], int headerSize, string content);
+
+	RequestLine getRequestLine();
 };
 
 #endif

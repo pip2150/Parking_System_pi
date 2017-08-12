@@ -1,60 +1,43 @@
-#include "Http.hpp"
-#include "Socket.hpp"
 #include "psAPI.hpp"
 
 using namespace std;
 
-int main(int argc, char* argv[]){
+int main(int argc, char* argv[]) {
 	string mod;
 	int statusCode;
 
-	if(argc > 1){
+	switch (argc) {
+	case 3:
 		mod = string(argv[1]);
-		if(argc == 3){
-			if(mod == "enter")
-				statusCode =1 ;
-			else if(mod == "exit")
-				statusCode =2 ;
-		}
-		else if(argc == 6){
-			if(mod == "parking")
-				statusCode =3 ;
-			else
-				goto error;
-		}
-		else
-			goto error;
-	}
-	else{
-		error:
+		if (mod == "enter")		statusCode = 1;
+		else if (mod == "exit")	statusCode = 2;
+		else goto error;
+		break;
+	case 6:
+		mod = string(argv[1]);
+		if (mod == "parking")	statusCode = 3;
+		else goto error;
+		break;
+	default:
+	error:
 		cerr << "잘못된 입력입니다." << endl;
 		exit(1);
+		break;
 	}
 
-	string sendbuff ="";
-	string recvbuff ="";
-	string host= "13.124.74.249";
+	ps::API api;
 
-	ClientSocket csock = ClientSocket();
-	csock.connect(host, 3000);
-
-	switch(statusCode){
+	switch (statusCode) {
 	case 1:
-		psapi::enter(csock, host, string(argv[2])); break;
+		api.enter(string(argv[2])); break;
 	case 2:
-		psapi::exit(csock, host, string(argv[2])); break;
+		api.exit(string(argv[2])); break;
 	case 3:
-		psapi::parking(csock, host, atoi(argv[2]),
-				string(argv[3]), atoi(argv[4]), string(argv[5])); break;
-	default :
+		api.parking(atoi(argv[2]),string(argv[3]), atoi(argv[4]), string(argv[5]));
+	break;
+	default:
 		exit(1);
 	}
 
-	csock.recv(recvbuff);
-	cout << "Recv : "<< endl <<recvbuff <<endl;
-
-	return 0;
+	api.resopnse();
 }
-
-
-
