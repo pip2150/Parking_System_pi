@@ -15,13 +15,15 @@ using namespace std;
 
 /* ----- Debug Setting ----- */
 #define SEGMENTSIZE 1
+#define MAXMATCH 10
 #define FROM CAMERA
 #define TRAIN FALSE
 #define POSITION FALSE
 #define COSTTIME FALSE
-#define PLATESTR TRUE
+#define PLATESTR FALSE
 #define WINDOWON TRUE
-#define ANALYSIS TRUE
+#define ANALYSIS FALSE
+#define FINALDCS TRUE
 /* ------------------------- */
 
 void send2server(string jsondata) {
@@ -32,7 +34,7 @@ int main(int argc, char* argv[]) {
 	string answer = "0226FBV";
 	int fileIndex[NUMBER + CHARACTER];
 	memset(fileIndex, 0, sizeof(fileIndex));
-	Plate::debug = WINDOWON;
+
 	Mat image;
 	thread *t = NULL;
 
@@ -71,6 +73,9 @@ int main(int argc, char* argv[]) {
 	Svm svm;
 
 #if FROM == CAMERA
+
+	int cnt = -1;
+	string keyStrings;
 
 	while (waitKey(1) != 27) {
 		camera >> image;
@@ -117,6 +122,7 @@ int main(int argc, char* argv[]) {
 #endif
 		int PossiblePlatesSize = (int)PossiblePlates.size();
 		for (int i = 0; i < PossiblePlatesSize; i++) {
+			PossiblePlates[i].setDebug(WINDOWON);
 			PossiblePlates[i].canonicalize();
 			int response = (int)svm.predict(PossiblePlates[i].canonical);
 
@@ -125,7 +131,7 @@ int main(int argc, char* argv[]) {
 
 			if (POSITION)
 				for (int j = 0; j < SEGMENTSIZE; j++)
-					if (area[j].contains(Point(PlatePositions[i].x, PlatePositions[i].y)))
+					if (area[j].contains(PlatePositions[i]))
 						cout << "\t\tIt's " << j + 1 << "th Section." << endl;
 
 			Plate *foundPlate = &PossiblePlates[i];
@@ -139,12 +145,14 @@ int main(int argc, char* argv[]) {
 			}
 
 #if FROM == FILESYSTEM
-			if (foundPlate->numbers.size() < 6)
+			if (foundPlate->numbers.size() < 7)
 				continue;
 #elif FROM == CAMERA
 			if (foundPlate->numbers.size() != 7)
 				continue;
 #endif
+
+			cnt++;
 
 			string str = "";
 			for (int j = (int)foundPlate->numbers.size() - 1; j >= 0; j--) {
@@ -179,41 +187,56 @@ int main(int argc, char* argv[]) {
 
 			}
 
-			/*string path = "Network/http_test ";
-			path += str;
-			cout << path << endl;
-			system(path.c_str());*/
+			
 
 			if (PLATESTR) {
 				cout << "\t\t" << str << endl;
 			}
 
-			//	t->joinable();
-			//	t = new thread(&send2server, str);
+			if (cnt == 0)
+				keyStrings = str;
+			else if (cnt < MAXMATCH)
+				if (keyStrings != str)
+					cnt = -1;
+				else {
+					if (FINALDCS) {
+						cout << "\t\tThe answer is " << str << "  " << rand() % 256 << endl;
+						
+						string path = "\"Network\\http_test.exe enter "+str + "\"";
+						//path += str;
+						/*cout << path << endl;*/
+						system(path.c_str());
+						
+					}
+					cnt = -1;
+				}
+
+				//	t->joinable();
+				//	t = new thread(&send2server, str);
 
 #if FROM == CAMERA
 #if ANALYSIS == TRUE
 
-			int correct = 0;
-			for (int j = 0; j < 7; j++)
-				if (str[j] == answer[j])
-					correct++;
+				int correct = 0;
+				for (int j = 0; j < 7; j++)
+					if (str[j] == answer[j])
+						correct++;
 
-			totalTry++;
-			totalCorrect += correct;
-			double average = correct / 7.0;
-			double totalAverage = totalCorrect / (totalTry * 7.0);
-			cout << "\t\tCorrect Answer Rate : " << average * 100 << "\%";
-			cout << "\tTotal Correct Answer Rate : " << totalAverage * 100 << "\%" << endl;
+				totalTry++;
+				totalCorrect += correct;
+				double average = correct / 7.0;
+				double totalAverage = totalCorrect / (totalTry * 7.0);
+				cout << "\t\tCorrect Answer Rate : " << average * 100 << "\%";
+				cout << "\tTotal Correct Answer Rate : " << totalAverage * 100 << "\%" << endl;
 
 #endif
 #endif
-			if (WINDOWON) {
-				imshow("warp" /*+ to_string(i)*/, foundPlate->img);
-				moveWindow("warp" /*+ to_string(i)*/, WINDOW_X, WINDOW_Y);
-			}
+				if (WINDOWON) {
+					imshow("warp" /*+ to_string(i)*/, foundPlate->img);
+					moveWindow("warp" /*+ to_string(i)*/, WINDOW_X, WINDOW_Y);
+				}
 
-			k++;
+				k++;
 		}
 
 		//t->joinable();

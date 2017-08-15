@@ -3,6 +3,10 @@
 using namespace cv;
 using namespace std;
 
+void Plate::setDebug(bool debug) {
+	this->debug = debug;
+}
+
 inline Plate::Number::Number(Mat &src) {
 	this->img = src;
 }
@@ -44,10 +48,10 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 	for (int i = 0; i < contoursSize; i++) {
 		RotatedRect mr = minAreaRect(contours[i]);
 
+		/*		크기 검사		*/
 		if (!verifySizes(mr))
 			continue;
 
-		/*		번호판 영역 감지		*/
 		RotatedRect* rect = &mr;
 		Size size = rect->size;
 
@@ -61,6 +65,7 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 		Rect ccomp;
 		Mat mask(gray.size() + Size(2, 2), CV_8UC1, Scalar(0));
 
+		/*		번호판에 floodfill 연산		*/
 		for (int j = 0; j < 10; j++) {
 			int radius = rand() % (int)minSize - (minSize / 2);
 			Point seed = (Point)rect->center + Point(radius, radius);
@@ -86,12 +91,15 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 				swap(m_size.width, m_size.height);
 			}
 
+			/*		RotateRect 회전		*/
 			Mat imgRotated;
 			Mat rotmat = getRotationMatrix2D(minRect.center, angle, 1);
 			warpAffine(gray, imgRotated, rotmat, gray.size(), CV_INTER_CUBIC);
 
+
 			Mat imgCrop;
 			getRectSubPix(imgRotated, m_size, minRect.center, imgCrop);
+			imshow("imgcrop", imgCrop);
 
 			PossiblePlates.push_back(Plate(imgCrop));
 			PlatePositions.push_back(rect->center);
@@ -143,12 +151,13 @@ void Plate::findNumbers() {
 		moveWindow("thresholded", WINDOW_X, WINDOW_Y + flatSize.height + 50);
 	}
 
-	/* ----- 숫자 영역 비율 및 위치 검사 ----- */
+	
 	Mat contoursfound(flatSize, CV_8UC4, Scalar(255, 255, 255));
 	srand((int)time(0));		// 숫자 색 seed 값
 
 	vector<Rect> rectNum;
 
+	/* ----- 숫자 영역 비율 및 위치 검사 ----- */
 	int contoursSize = (int)contours.size();
 	for (int i = 0; i < contoursSize; i++) {
 		vector<Point> *contour = &contours[i];
@@ -246,11 +255,12 @@ inline void Plate::endPoint(vector<Point> &contour, Point mPoint[4]) {
 	}
 }
 
-/*		겹치는 부분 검사	*/
+/*		겹침 검사	*/
 inline bool Plate::isOverlap(Rect &A, Rect &B) {
 	return (A & B).area() > 0;
 }
 
+/*		RotatedRect 그리기		*/
 void Plate::drawRotatedRect(Mat& img, RotatedRect roRec, const Scalar& color, int thickness, int lineType , int shift) {
 	Point2f src[4];
 	roRec.points(src);
