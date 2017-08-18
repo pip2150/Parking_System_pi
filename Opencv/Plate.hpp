@@ -12,7 +12,6 @@ private:
 	enum { UP, DOWN, LEFT, RIGHT };
 	void endPoint(std::vector<cv::Point> &contour, cv::Point mPoint[4]);
 	bool isOverlap(cv::Rect &A, cv::Rect &B);
-	void drawRotatedRect(cv::Mat& img, cv::RotatedRect roRec, const cv::Scalar& color, int thickness = 1, int lineType = cv::LINE_8, int shift = 0);
 	bool debug;
 
 public:
@@ -35,6 +34,7 @@ public:
 	void findNumbers();
 
 	static void find(cv::Mat &input, std::vector<Plate> &PossiblePlates, std::vector<cv::Point> &PlatePositions);
+	static void drawRotatedRect(cv::Mat& img, cv::RotatedRect roRec, const cv::Scalar& color, int thickness = 1, int lineType = cv::LINE_8, int shift = 0);
 	static bool verifySizes(cv::RotatedRect &mr);	
 	void canonicalize();
 
