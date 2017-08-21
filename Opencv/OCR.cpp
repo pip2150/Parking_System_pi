@@ -141,11 +141,11 @@ char OCR::classify(Mat &output) {
 	double maxVal;
 
 	minMaxLoc(output, 0, &maxVal, 0, &maxLoc);
-
-	if (numCharacters == NUMBER)
-		return strCharacters[maxLoc.x];
+	
 	if (numCharacters == CHARACTER)
 		return strCharacters[maxLoc.x + 10];
+	else
+		return strCharacters[maxLoc.x];
 }
 
 float OCR::predict(Mat &img) {
