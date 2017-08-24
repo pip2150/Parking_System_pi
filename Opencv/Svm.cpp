@@ -7,8 +7,8 @@ using namespace std;
 using namespace utils;
 
 Svm::Svm() {
-	//collectTrainImages();
-	//writeTraindata("Opencv/SVMDATA.xml");
+	collectTrainImages();
+	writeTraindata("Opencv/SVMDATA.xml");
 	readTraindata("Opencv/SVMDATA.xml");
 	train();
 }
@@ -35,11 +35,11 @@ void Svm::collectTrainImages() {
 		string path = "trainimage/" + to_string(i) + ".png";
 		Mat img;
 
-		if (readImage(path, img, 1)) {
+		if (readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE)) {
 			cerr << "File No Exist." << endl;
 			exit(1);
 		}
-
+        equalizeHist(img,img);
 		Mat tmp = img.reshape(1, 1);
 
 		trainingData.push_back(tmp);

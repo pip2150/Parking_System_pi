@@ -3,6 +3,9 @@
 using namespace cv;
 using namespace std;
 
+#define CAMERAWIDTH 1240
+#define CAMERAHEIGHT 960
+
 int startOpencv(int mode) {
 
 	/*if (utils::readImage("divArea2.png", templ)) {
@@ -18,7 +21,9 @@ int startOpencv(int mode) {
 		cerr << "Can Not Access The Camera." << endl;
 		exit(1);
 	}
-	camera.set(CV_CAP_PROP_FOURCC, CV_FOURCC('Y', 'U', 'Y', 'V'));
+	camera.set(CV_CAP_PROP_FOURCC, CV_FOURCC('m', 'j', 'p', 'g'));
+	camera.set(CV_CAP_PROP_FRAME_WIDTH, CAMERAWIDTH);
+	camera.set(CV_CAP_PROP_FRAME_HEIGHT, CAMERAHEIGHT);
 
 #endif
 
@@ -31,6 +36,7 @@ int startOpencv(int mode) {
 	Svm svm;
 	Analyzer analyzer(answer);
 	Trainer trainer(answer);
+    SVMTrainer svmtrainer;
 	Dicider dicider;
 
 	while (waitKey(1) != 27) {
@@ -99,9 +105,13 @@ int startOpencv(int mode) {
 			int response = (int)svm.predict(PossiblePlates[i].canonical);
 
 			if (mode & WINDOWON) {
-				imshow("plate", PossiblePlates[i].img);
+				imshow("plate", PossiblePlates[i].canonical);
 				moveWindow("plate", WINDOW_X, SAMPLESIZE * 5);
 			}
+
+            Mat svmdata;
+            resize(PossiblePlates[i].img, svmdata, Size(144, 33), 0, 0, INTER_CUBIC);
+            //svmtrainer.train(svmdata);
 
 			if (response != 1)
 				continue;

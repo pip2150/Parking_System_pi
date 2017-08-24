@@ -83,6 +83,31 @@ public:
 	}
 };
 
+class SVMTrainer {
+private:
+	int fileIndex;
+public:
+    SVMTrainer() {
+        fileIndex = 0;
+    }
+
+    void train(cv::Mat &sample) {
+        std::string path;
+        cv::Mat img;
+        do {
+            path = "trainimage/" +std::to_string(fileIndex) + ".png";
+            std::cout << path << std::endl;
+            fileIndex++;
+        } while (!utils::readImage(path, img, 1));
+
+        //std::cout << path << std::endl;
+        if (utils::writeImage(path, sample)) {
+            std::cerr << "Fail To Write." << std::endl;
+            exit(1);
+        }
+    }
+};
+
 class Trainer {
 private:
 	int fileIndex[NUMBER + CHARACTER];
