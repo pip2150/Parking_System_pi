@@ -1,3 +1,0 @@
-/home/pi/project/Parking_System_pi/CMakeFiles/edit_cache.dir
-/home/pi/project/Parking_System_pi/CMakeFiles/rebuild_cache.dir
-/home/pi/project/Parking_System_pi/CMakeFiles/main.dir
