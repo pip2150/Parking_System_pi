@@ -4,25 +4,14 @@ using namespace cv;
 using namespace std;
 
 int startOpencv(int mode) {
-	string answer = "0226FBV";
-	int fileIndex[NUMBER + CHARACTER];
-	memset(fileIndex, 0, sizeof(fileIndex));
-
-	Mat image;
-	thread *t = NULL;
-
-#if FROM == CAMERA
-
-	int totalCorrect = 0;
-	int totalTry = 0;
-	double sum = 0;
-	Mat templ;
-	VideoCapture camera;
 
 	/*if (utils::readImage("divArea2.png", templ)) {
-	  cerr << "File No Exist." << endl;
-	  exit(1);
-	  }*/
+	cerr << "File No Exist." << endl;
+	exit(1);
+	}*/
+
+#if FROM == CAMERA
+	VideoCapture camera;
 
 	camera.open(0);
 	if (!camera.isOpened()) {
@@ -31,27 +20,37 @@ int startOpencv(int mode) {
 	}
 	camera.set(CV_CAP_PROP_FOURCC, CV_FOURCC('Y', 'U', 'Y', 'V'));
 
-#elif FROM == FILESYSTEM
-
-	int img_num;
-	cout << "img_num : " << endl;
-	cin >> img_num;
-	if (utils::readImage("InputImage/" + to_string(img_num) + ".jpg", image)) {
-		cerr << "File No Exist." << endl;
-	}
-
 #endif
+
+	string answer = "0226FBV";
+	Mat image;
+	Mat templ;
+
 	OCR ocrChar(CHARACTER);
 	OCR ocrNum(NUMBER);
 	Svm svm;
+	Analyzer analyzer(answer);
+	Trainer trainer(answer);
+	Dicider dicider;
 
-	int cnt = -1;
-	string keyStrings;
+	while (waitKey(1) != 27) {
 
 #if FROM == CAMERA
 
-	while (waitKey(1) != 27) {
 		camera >> image;
+
+#elif FROM == FILESYSTEM
+
+		if (waitKey(0) == 27)
+			break;
+
+		int img_num;
+		cout << "img_num : " << endl;
+		cin >> img_num;
+		if (utils::readImage("InputImage/" + to_string(img_num) + ".jpg", image)) {
+			cerr << "File No Exist." << endl;
+			exit(1);
+		}
 
 #endif
 
@@ -99,6 +98,11 @@ int startOpencv(int mode) {
 			PossiblePlates[i].canonicalize();
 			int response = (int)svm.predict(PossiblePlates[i].canonical);
 
+			if (mode & WINDOWON) {
+				imshow("plate", PossiblePlates[i].img);
+				moveWindow("plate", WINDOW_X, SAMPLESIZE * 5);
+			}
+
 			if (response != 1)
 				continue;
 
@@ -109,7 +113,13 @@ int startOpencv(int mode) {
 
 			Plate *foundPlate = &PossiblePlates[i];
 			clock_t findNumbers_start = clock();
-			foundPlate->findNumbers();
+
+			bool isNumber = foundPlate->findNumbers(NUMSIZE);
+
+#if FROM == CAMERA
+			if (!isNumber)
+				continue;
+#endif
 
 			if (mode & COSTTIME) {
 				cout << fixed;
@@ -117,29 +127,23 @@ int startOpencv(int mode) {
 				cout << "\t\tCost Time In the FindNumbers : " << (double)(clock() - findNumbers_start) / CLOCKS_PER_SEC << "s" << endl;
 			}
 
-#if FROM == FILESYSTEM
-			if (foundPlate->numbers.size() < 7)
-				continue;
-#elif FROM == CAMERA
-			if (foundPlate->numbers.size() != 7)
-				continue;
-#endif
-
-			cnt++;
-
 			string str = "";
-			for (int j = (int)foundPlate->numbers.size() - 1; j >= 0; j--) {
+			int numbersSize = (int)foundPlate->numbers.size();
+
+			Mat num(Size(SAMPLESIZE*numbersSize, SAMPLESIZE), CV_8UC3, Scalar(255, 255, 255));
+
+			for (int j = 0; j < numbersSize; j++) {
 				Plate::Number* number = &foundPlate->numbers[j];
 				number->canonicalize(SAMPLESIZE);
 
 				if (mode & TRAIN)
-					sample.push_back(foundPlate->numbers[j].canonical);
+					sample.push_back(number->canonical);
 
 				OCR *ocr;
-				/* 마지막에서 4번째를 문자로 설정 - 한글 */
-				/* if (j == 4) */
-				/* 마지막에서 0,1,2번째를 문자로 설정 - 영문 */
-				if ((j == 0) || (j == 1) || (j == 2))
+				/* 2번째를 문자로 설정 - 한글 */
+				/* if (j == 2) */
+				/* 4,5,6번째를 문자로 설정 - 영문 */
+				if ((j == 4) || (j == 5) || (j == 6))
 					ocr = &ocrChar;
 				else
 					ocr = &ocrNum;
@@ -150,104 +154,43 @@ int startOpencv(int mode) {
 				ocr->predict(feature, output);
 				str += ocr->classify(output);
 
+				Rect numberArea = Rect(SAMPLESIZE*j, 0, SAMPLESIZE, SAMPLESIZE);
+				cvtColor(number->canonical, num(numberArea), CV_GRAY2BGR);
+				rectangle(num, numberArea, Scalar(0, 0, 255));
+			}
+			if (numbersSize)
 				if (mode & WINDOWON) {
-					int winNo = (int)foundPlate->numbers.size() - j - 1;
-					string winName = to_string(winNo);
-					imshow(winName, number->canonical);
-					moveWindow(winName, WINDOW_X + 20 * winNo, 0 + k * 60);
+					imshow("Number", num);
+					moveWindow("Number", WINDOW_X, 0 + k * SAMPLESIZE);
 				}
 
-			}
-
-			if (mode & PLATESTR) {
+			if (mode & PLATESTR)
 				cout << "\t\t" << str << endl;
+
+			if (mode & FINALDCS)
+				dicider.decide(str);
+
+			if (mode & ANALYSIS)
+				analyzer.Analyze(str);
+
+			if (mode & WINDOWON) {
+				imshow("warp" /*+ to_string(i)*/, foundPlate->img);
+				moveWindow("warp" /*+ to_string(i)*/, WINDOW_X, WINDOW_Y);
 			}
 
-			if (cnt == 0)
-				keyStrings = str;
-			else if (cnt < MAXMATCH)
-				if (keyStrings != str)
-					cnt = -1;
-				else {
-					if (mode & FINALDCS) {
-						cout << "\t\tThe answer is " << str << "  " << rand() % 256 << endl;
-
-						string path = "\"Network\\http_test.exe enter " + str + "\"";
-						//path += str;
-						/*cout << path << endl;*/
-
-						if (mode & NETWORK)
-							system(path.c_str());
-
-					}
-					cnt = -1;
-				}
-
-				//	t->joinable();
-				//	t = new thread(&send2server, str);
-
-#if FROM == CAMERA
-
-				if (mode & ANALYSIS) {
-					int correct = 0;
-					for (int j = 0; j < 7; j++)
-						if (str[j] == answer[j])
-							correct++;
-
-					totalTry++;
-					totalCorrect += correct;
-					double average = correct / 7.0;
-					double totalAverage = totalCorrect / (totalTry * 7.0);
-					cout << "\t\tCorrect Answer Rate : " << average * 100 << "%";
-					cout << "\tTotal Correct Answer Rate : " << totalAverage * 100 << "%" << endl;
-				}
-
-#endif
-				if (mode & WINDOWON) {
-					imshow("warp" /*+ to_string(i)*/, foundPlate->img);
-					moveWindow("warp" /*+ to_string(i)*/, WINDOW_X, WINDOW_Y);
-				}
-
-				k++;
+			k++;
 		}
 
-		//t->joinable();
+		for (int i = 0; i < SEGMENTSIZE; i++)
+			rectangle(image, area[i], Scalar(0, 0, 255), 1);
 
-		if (mode & WINDOWON)
-			for (int i = 0; i < SEGMENTSIZE; i++) {
-				Mat divArea = image(area[i]);
-				imshow("divArea" + to_string(i), divArea);
-				moveWindow("divArea" + to_string(i), 0 + divArea.size().width*i, WINDOW_Y);
-			}
-
+		imshow("image", image);
+		moveWindow("image", 0, WINDOW_Y);
 
 		if (mode & TRAIN)
-			if (sample.size() == answer.size())
-				for (int i = 0; i < answer.size(); i++) {
-					if (i != 4)
-						continue;
-					string path;
-					Mat img;
-					do {
-						path = "TrainNumber/" + string(1, answer[i]) + "/" + to_string(fileIndex[i]) + ".jpg";
-						cout << path << endl;
-						fileIndex[i]++;
-					} while (!utils::readImage(path, img, 1));
+			trainer.train(sample);
 
-					//cout << path << endl;
-					if (utils::writeImage(path, sample[i])) {
-						cerr << "Fail To Write." << endl;
-						exit(1);
-					}
-				}
-
-#if FROM == CAMERA
 	}
-#elif FROM == FILESYSTEM
-		int key = waitKey(0);
 
-#endif
-
-		//	t->joinable();
-		return 0;
+	return 0;
 }

@@ -14,10 +14,10 @@
 #define FALSE 0
 
 /* ----- Debug Setting ----- */
-#define SEGMENTSIZE 1
+#define SEGMENTSIZE 4
 #define MAXMATCH 10
+#define NUMSIZE 7
 #define FROM CAMERA
-//#define CAMERA		0x01
 #define NETWORK		0x01
 #define TRAIN		0x02
 #define POSITION 	0x04
@@ -27,6 +27,94 @@
 #define ANALYSIS	0x40
 #define FINALDCS	0x80
 /* ------------------------- */
+
+class Dicider {
+private:
+	std::string keyStr;
+	int match;
+
+public:
+	Dicider() {
+		keyStr = "";
+		match = -1;
+	}
+
+	void decide(std::string str) {
+		match++;
+		if (match == 0) {
+			keyStr = str;
+			return;
+		}
+		else if (keyStr == str) {
+			if (match == MAXMATCH)
+				std::cout << "\t\t\tThe answer is " << str << "  " << rand() % 256 << std::endl;
+			else
+				return;
+		}
+		match = -1;
+	}
+};
+
+class Analyzer {
+private:
+	int totalCorrect;
+	int totalTry;
+	std::string answer;
+
+public:
+	Analyzer(std::string answer) {
+		totalCorrect = 0;
+		totalTry = 0;
+		this->answer = answer;
+	}
+
+	void Analyze(std::string str) {
+		int correct = 0;
+		for (int j = 0; j < NUMSIZE; j++)
+			if (str[j] == answer[j])
+				correct++;
+
+		totalTry++;
+		totalCorrect += correct;
+		double average = (double)correct / NUMSIZE;
+		double totalAverage = (double)totalCorrect / (totalTry * NUMSIZE);
+		std::cout << "\t\tCorrect Answer Rate : " << average * 100 << "%";
+		std::cout << "\tTotal Correct Answer Rate : " << totalAverage * 100 << "%" << std::endl;
+	}
+};
+
+class Trainer {
+private:
+	int fileIndex[NUMBER + CHARACTER];
+	std::string answer;
+public:
+	Trainer(std::string answer) {
+		memset(fileIndex, 0, sizeof(fileIndex));
+		this->answer = answer;
+	}
+
+	void train(std::vector<cv::Mat> &sample) {
+		if (sample.size() == answer.size()) {
+			for (int i = 0; i < answer.size(); i++) {
+				if (i != 2)
+					continue;
+				std::string path;
+				cv::Mat img;
+				do {
+					path = "TrainNumber/" + std::string(1, answer[i]) + "/" + std::to_string(fileIndex[i]) + ".jpg";
+					std::cout << path << std::endl;
+					fileIndex[i]++;
+				} while (!utils::readImage(path, img, 1));
+
+				//std::cout << path << std::endl;
+				if (utils::writeImage(path, sample[i])) {
+					std::cerr << "Fail To Write." << std::endl;
+					exit(1);
+				}
+			}
+		}
+	}
+};
 
 int startOpencv(int mode);
 

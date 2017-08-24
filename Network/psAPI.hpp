@@ -11,6 +11,10 @@
 #include "Socket.hpp"
 #include "Http.hpp"
 #include <iostream>
+#include <string>
+
+#define HEADERNUM 8
+
 namespace ps{
 class API{
 private:

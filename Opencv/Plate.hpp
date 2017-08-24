@@ -31,7 +31,7 @@ public:
 		void canonicalize(int sampleSize);
 	};
 	std::vector<Number> numbers;
-	void findNumbers();
+	bool findNumbers(int number);
 
 	static void find(cv::Mat &input, std::vector<Plate> &PossiblePlates, std::vector<cv::Point> &PlatePositions);
 	static void drawRotatedRect(cv::Mat& img, cv::RotatedRect roRec, const cv::Scalar& color, int thickness = 1, int lineType = cv::LINE_8, int shift = 0);

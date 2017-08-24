@@ -42,7 +42,7 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 	morphologyEx(thImg, morph, MORPH_CLOSE, kernel);
 
 	vector < vector< Point> > contours;
-	findContours(morph, contours, RETR_EXTERNAL, CHAIN_APPROX_NONE);
+	findContours(morph, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
 
 	int contoursSize = (int)contours.size();
 	for (int i = 0; i < contoursSize; i++) {
@@ -75,7 +75,7 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 
 		vector<vector<Point> > plateContours;
 
-		findContours(Mat(mask, Rect(1, 1, mask.size().width - 1, mask.size().height - 1)), plateContours, RETR_EXTERNAL, CHAIN_APPROX_NONE);
+		findContours(Mat(mask, Rect(1, 1, mask.size().width - 1, mask.size().height - 1)), plateContours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
 
 		for (int j = 0; j < plateContours.size(); j++) {
 			RotatedRect minRect = minAreaRect(plateContours[j]);
@@ -96,12 +96,10 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 			Mat rotmat = getRotationMatrix2D(minRect.center, angle, 1);
 			warpAffine(gray, imgRotated, rotmat, gray.size(), CV_INTER_CUBIC);
 
-
 			Mat imgCrop;
 			getRectSubPix(imgRotated, m_size, minRect.center, imgCrop);
-			imshow("imgcrop", imgCrop);
 
-			PossiblePlates.push_back(Plate(imgCrop));
+			PossiblePlates.push_back(imgCrop);
 			PlatePositions.push_back(rect->center);
 		}
 	}
@@ -136,13 +134,13 @@ inline bool Plate::verifySizes(RotatedRect &mr) {
 }
 
 /*		번호판에서 숫자영역 추출		*/
-void Plate::findNumbers() {
+bool Plate::findNumbers(int number) {
 
 	Mat thresholded;
 	adaptiveThreshold(img, thresholded, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY_INV, 255, 0);
 
 	vector<vector<Point> > contours;
-	findContours(thresholded, contours, RETR_EXTERNAL, CHAIN_APPROX_NONE);
+	findContours(thresholded, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
 
 	Size flatSize = thresholded.size();
 
@@ -151,13 +149,18 @@ void Plate::findNumbers() {
 		moveWindow("thresholded", WINDOW_X, WINDOW_Y + flatSize.height + 50);
 	}
 
-	
 	Mat contoursfound(flatSize, CV_8UC4, Scalar(255, 255, 255));
 	srand((int)time(0));		// 숫자 색 seed 값
 
-	vector<Rect> rectNum;
-
 	/* ----- 숫자 영역 비율 및 위치 검사 ----- */
+
+	struct cmp {
+		bool operator()(Rect t, Rect u) { return t.x > u.x; }
+	};
+
+	priority_queue<Rect, vector<Rect>, cmp> rectPQ;
+	int k = 0;
+
 	int contoursSize = (int)contours.size();
 	for (int i = 0; i < contoursSize; i++) {
 		vector<Point> *contour = &contours[i];
@@ -166,8 +169,8 @@ void Plate::findNumbers() {
 		endPoint(*contour, mPoint);
 
 		int uy = min(mPoint[UP].y + 1, flatSize.height);
-		int dy = max(mPoint[DOWN].y - 1, 0);
 		int lx = min(mPoint[LEFT].x + 1, flatSize.width);
+		int dy = max(mPoint[DOWN].y - 1, 0);
 		int rx = max(mPoint[RIGHT].x - 1, 0);
 
 		int contourWidth = lx - rx;
@@ -185,44 +188,32 @@ void Plate::findNumbers() {
 			}
 
 			if ((uy > flatSize.height / 2.0) && (dy < flatSize.height / 2.0)) {
-				rectNum.push_back(Rect(Point(lx, uy), Point(rx, dy)));
+				rectPQ.push(Rect(Point(lx, uy), Point(rx, dy)));
 			}
 		}
 	}
 
-	/* ----- x좌표 정렬 ----- */
-	typedef pair<int, int> Index;
-	priority_queue<Index> index;
+	/* ----- x좌표 정렬 및 겹침 검사 ----- */
+	Rect preRect;
+	if(!rectPQ.empty())
+		preRect = rectPQ.top();
 
-	int rectNumSize = (int)rectNum.size();
-	for (int i = 0; i < rectNumSize; i++) {
-		index.push(make_pair(rectNum[i].x, i));
-	}
+	while (!rectPQ.empty()) {
+		Rect curRect = rectPQ.top();
+		rectPQ.pop();
 
-	vector<Rect> alignedNum;
-	while (!index.empty()) {
-		alignedNum.push_back(rectNum[index.top().second]);
-		index.pop();
-	}
-
-	/* ----- 겹침 검사 ----- */
-	vector<Rect> overlapRemoved;
-	int alignedNumSize = (int)alignedNum.size();
-	for (int i = 0; i < alignedNumSize; i++) {
-		if (i && !isOverlap(alignedNum[i - 1], alignedNum[i - 1]))
-			overlapRemoved.push_back(alignedNum[i - 1] | alignedNum[i]);
+		if (isOverlap(curRect, preRect))
+			preRect = preRect | curRect;
 		else
-			overlapRemoved.push_back(alignedNum[i]);
+			preRect = curRect;
+		
+		Mat matNum = ~thresholded(preRect);
+		numbers.push_back(matNum);
+		
+		preRect = curRect;
 	}
 
-	int overlapRemovedSize = (int)overlapRemoved.size();
-	for (int i = 0; i < overlapRemovedSize; i++) {
-		double ratio = (double)overlapRemoved[i].width / (double)overlapRemoved[i].height;
-		Mat matNum = ~thresholded(overlapRemoved[i]);
-		/*Mat thresholdedNum;
-		adaptiveThreshold(matNum, thresholdedNum, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY, 255, 0);*/
-		numbers.push_back(matNum);
-	}
+	return (number == numbers.size());
 }
 
 /*		Contour 4방향 끝점 추출		*/
@@ -262,13 +253,9 @@ inline bool Plate::isOverlap(Rect &A, Rect &B) {
 
 /*		RotatedRect 그리기		*/
 void Plate::drawRotatedRect(Mat& img, RotatedRect roRec, const Scalar& color, int thickness, int lineType , int shift) {
-	Point2f src[4];
-	roRec.points(src);
 
-	vector<Point> pts;
-	for (int j = 0; j < 4; j++)
-		pts.push_back(src[j]);
-
-	polylines(img, pts, true, color);
+	Point2f vertices[4];
+	roRec.points(vertices);
+	for (int i = 0; i < 4; i++)
+		line(img, vertices[i], vertices[(i + 1) % 4], Scalar(0, 255, 0));
 }
-

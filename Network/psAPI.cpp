@@ -39,13 +39,13 @@ void ps::API::setHeader(HeaderLine headerLine[], string content){
 	HeaderLine contentLength = {"Content-Length", to_string(content.length()) };
 	HeaderLine headers[] = {host, connection, date, contentType, contentEncoding, server , acceptRange, contentLength};
 
-	for(int i = 0; i< 8; i++ )
+	for(int i = 0; i< HEADERNUM; i++ )
 		headerLine[i] = headers[i];
 }
 
 void ps::API::inout(string plateNum, string inout){
 	RequestLine requestLine = {"POST", "/cars/" + plateNum + inout, "HTTP/1.1"};
-	int headerSize = 8;
+	int headerSize = HEADERNUM;
 	HeaderLine headerLine[headerSize];
 	setHeader(headerLine,"");
 	HttpRequestMessge http(requestLine, headerLine, headerSize, "");
@@ -57,7 +57,7 @@ void ps::API::inout(string plateNum, string inout){
 
 void ps::API::parking(int floor, string zoneName, int zoneIndex, string plateNum){
 	RequestLine requestLine = {"POST", "/places/update_state", "HTTP/1.1"};
-	int headerSize = 8;
+	int headerSize = HEADERNUM;
 	HeaderLine headerLine[headerSize];
 	string jsondata =
 			"{"
@@ -96,7 +96,6 @@ void ps::API::resopnse(){
 
 	HttpRequestMessge http(recvbuff);
 
-	cout << http.getRequestLine().method << " ";
 	cout << http.getRequestLine().url << " ";
 	cout << http.getRequestLine().version << endl;
 
@@ -123,7 +122,5 @@ void ps::API::resopnse(){
 	FILE *html = fopen("output.html", "w+");
 	fwrite(content.c_str(), content.length(), 1, html);
 	fclose(html);
-
-	system("$WINDIR/System32/cmd.exe /C START /B output.html");
 
 }

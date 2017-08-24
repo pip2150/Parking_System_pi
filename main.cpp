@@ -18,17 +18,19 @@ int main(int argc, char *argv[]) {
 			case 'T': mode |= TRAIN; break;
 			case 'p': mode |= POSITION; break;
 			case 't': mode |= COSTTIME; break;
+			case 's': mode |= PLATESTR; break;
 			case 'w': mode |= WINDOWON; break;
 			case 'a': mode |= ANALYSIS; break;
 			case 'f': mode |= FINALDCS; break;
+			case 'A': mode |= 0xFF ^ TRAIN; break;
 			default: goto err; break;
 			}
 		}
 		return startOpencv(mode);
-	err:
-		cerr << "invalid input" << endl;
-		exit(1);
 	}
 	else
-		return startOpencv(WINDOWON | ANALYSIS);
+		return startOpencv(WINDOWON | FINALDCS | PLATESTR);
+err:
+	cerr << "invalid input" << endl;
+	exit(1);
 }

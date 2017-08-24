@@ -2,6 +2,11 @@
 
 using namespace std;
 
+void error(){
+	cerr << "잘못된 입력입니다." << endl;
+	exit(1);
+}
+
 int main(int argc, char* argv[]) {
 	string mod;
 	int statusCode;
@@ -11,18 +16,15 @@ int main(int argc, char* argv[]) {
 		mod = string(argv[1]);
 		if (mod == "enter")		statusCode = 1;
 		else if (mod == "exit")	statusCode = 2;
-		else goto error;
+		else error();
 		break;
 	case 6:
 		mod = string(argv[1]);
 		if (mod == "parking")	statusCode = 3;
-		else goto error;
+		else error();
 		break;
 	default:
-	error:
-		cerr << "잘못된 입력입니다." << endl;
-		exit(1);
-		break;
+		error();
 	}
 
 	ps::API api;
@@ -34,10 +36,12 @@ int main(int argc, char* argv[]) {
 		api.exit(string(argv[2])); break;
 	case 3:
 		api.parking(atoi(argv[2]),string(argv[3]), atoi(argv[4]), string(argv[5]));
-	break;
+		break;
 	default:
-		exit(1);
+		error();
 	}
 
 	api.resopnse();
+
+	return 0;
 }
