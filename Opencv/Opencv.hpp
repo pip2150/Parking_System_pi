@@ -5,7 +5,6 @@
 #include "Plate.hpp"
 #include "Svm.hpp"
 #include "Utils.hpp"
-#include <thread>
 #include <ctime>
 
 #define CAMERA 0

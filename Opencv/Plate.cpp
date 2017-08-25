@@ -46,7 +46,7 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 	findContours(morph, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
 
 	int contoursSize = (int)contours.size();
-#pragma omp parallel for
+//#pragma omp parallel for
 	for (int i = 0; i < contoursSize; i++) {
 		RotatedRect mr = minAreaRect(contours[i]);
 
@@ -100,9 +100,9 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 
 			Mat imgCrop;
 			getRectSubPix(imgRotated, m_size, minRect.center, imgCrop);
-#pragma	omp	critical (IMG)
+//#pragma	omp	critical (IMG)
 			PossiblePlates.push_back(imgCrop);
-#pragma	omp	critical (POSITION)
+//#pragma	omp	critical (POSITION)
 			PlatePositions.push_back(rect->center);
 		}
 	}

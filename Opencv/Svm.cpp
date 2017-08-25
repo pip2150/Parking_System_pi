@@ -29,7 +29,7 @@ void Svm::train() {
 }
 
 void Svm::collectTrainImages() {
-	int imagecnt = 110;
+	int imagecnt = 262;
 
 	for (int i = 0; i < imagecnt; i++) {
 		string path = "trainimage/" + to_string(i) + ".png";
@@ -44,7 +44,7 @@ void Svm::collectTrainImages() {
 
 		trainingData.push_back(tmp);
 
-		if (i < 75)
+		if (i < 233)
 			classes.push_back(1);
 		else
 			classes.push_back(0);

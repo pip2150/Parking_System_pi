@@ -1,4 +1,6 @@
 #include "Opencv.hpp"
+#include <thread>
+#include <mutex>
 
 using namespace cv;
 using namespace std;
@@ -15,6 +17,7 @@ int startOpencv(int mode) {
 
 #if FROM == CAMERA
 	VideoCapture camera;
+	Mat cameraFrame;
 
 	camera.open(0);
 	if (!camera.isOpened()) {
@@ -28,179 +31,206 @@ int startOpencv(int mode) {
 #endif
 
 	string answer = "0226FBV";
+
 	Mat image;
 	Mat templ;
+	Rect area[SEGMENTSIZE];
 
 	OCR ocrChar(CHARACTER);
 	OCR ocrNum(NUMBER);
 	Svm svm;
+
 	Analyzer analyzer(answer);
 	Trainer trainer(answer);
-    SVMTrainer svmtrainer;
+	SVMTrainer svmtrainer;
 	Dicider dicider;
 
-	while (waitKey(1) != 27) {
+	mutex m[2];
+
+	bool runing = true;
+
+	thread camThread([&] {
+		while (runing) {
+			m[0].try_lock();
+			camera >> cameraFrame;
+			m[1].lock();
+			m[0].unlock();
+			m[1].try_lock();
+		}
+	});
+
+	thread procThread([&] {
+		while (runing = (waitKey(1) != 27)) {
 
 #if FROM == CAMERA
+			clock_t cycleCost = clock();
+			m[0].try_lock();
+			cameraFrame.copyTo(image);
+			m[1].unlock();
+			m[0].unlock();
 
-		camera >> image;
+			if (image.empty())
+				continue;
+
+			for (int i = 0; i < SEGMENTSIZE; i++)
+				area[i] = Rect(image.cols * i / SEGMENTSIZE, 0, image.cols / SEGMENTSIZE, image.rows);
 
 #elif FROM == FILESYSTEM
 
-		if (waitKey(0) == 27)
-			break;
+			if (waitKey(0) == 27)
+				break;
 
-		int img_num;
-		cout << "img_num : " << endl;
-		cin >> img_num;
-		if (utils::readImage("InputImage/" + to_string(img_num) + ".jpg", image)) {
-			cerr << "File No Exist." << endl;
-			exit(1);
-		}
+			int img_num;
+			cout << "img_num : " << endl;
+			cin >> img_num;
+			if (utils::readImage("InputImage/" + to_string(img_num) + ".jpg", image)) {
+				cerr << "File No Exist." << endl;
+				exit(1);
+			}
 
 #endif
 
-		clock_t cycleCost = clock();
-		Rect area[SEGMENTSIZE];
+			//for (int i = 0; i < SEGMENTSIZE; i++) {
+			//	//		Matimage divArea;
+			//	Mat result;
+			//	double maxVal = 0;
+			//	Point maxLoc;
 
-		for (int i = 0; i < SEGMENTSIZE; i++) {
+			//	//	divArea = (area[j]);
+			//		//matchTemplate(divArea, templ, result, TM_CCOEFF_NORMED);
+			//		//minMaxLoc(result, NULL, &maxVal, NULL, &maxLoc);
+			//		//rectangle(divArea, maxLoc, Point(maxLoc.x + templ.cols, maxLoc.y + templ.rows), Scalar(255, 0, 255), 2);
 
-			area[i] = Rect(image.cols * i / SEGMENTSIZE, 0, image.cols / SEGMENTSIZE, image.rows);
-			//		Matimage divArea;
-			Mat result;
-			double maxVal = 0;
-			Point maxLoc;
+			//	if (maxVal >= 0.9) {
+			//		// DataBase로 비어있는 구역이라고 보내야됨
+			//		// DataBase로부터 값을 불러와서 보내려는값과 동일한 경우 보내지 않음
+			//		//cout << j << " 구역 차량 없음" << endl;
+			//		cout << i << "No Vehicle In Section" << endl;
+			//	}
+			//}
 
-			//	divArea = (area[j]);
-				//matchTemplate(divArea, templ, result, TM_CCOEFF_NORMED);
-				//minMaxLoc(result, NULL, &maxVal, NULL, &maxLoc);
-				//rectangle(divArea, maxLoc, Point(maxLoc.x + templ.cols, maxLoc.y + templ.rows), Scalar(255, 0, 255), 2);
+			vector<Plate> PossiblePlates;
+			vector<Point> PlatePositions;
 
-			if (maxVal >= 0.9) {
-				// DataBase로 비어있는 구역이라고 보내야됨
-				// DataBase로부터 값을 불러와서 보내려는값과 동일한 경우 보내지 않음
-				//cout << j << " 구역 차량 없음" << endl;
-				cout << i << "No Vehicle In Section" << endl;
-			}
-		}
+			Plate::find(image, PossiblePlates, PlatePositions);
 
-		vector<Plate> PossiblePlates;
-		vector<Point> PlatePositions;
-		Plate::find(image, PossiblePlates, PlatePositions);
+			int k = 0;
 
-		if (mode & COSTTIME) {
-			cout << fixed;
-			cout.precision(5);
-			cout << "\tCost Time In a Cycle : " << (double)(clock() - cycleCost) / CLOCKS_PER_SEC << "s" << endl;
-		}
+			vector<Mat> sample;
 
-		int k = 0;
+			int PossiblePlatesSize = (int)PossiblePlates.size();
+			for (int i = 0; i < PossiblePlatesSize; i++) {
+				PossiblePlates[i].setDebug(mode & WINDOWON);
+				PossiblePlates[i].canonicalize();
+				int response = (int)svm.predict(PossiblePlates[i].canonical);
 
-		vector<Mat> sample;
+				if (mode & WINDOWON) {
+					imshow("plate", PossiblePlates[i].img);
+					moveWindow("plate", WINDOW_X, SAMPLESIZE * 5);
+				}
 
-		int PossiblePlatesSize = (int)PossiblePlates.size();
-		for (int i = 0; i < PossiblePlatesSize; i++) {
-			PossiblePlates[i].setDebug(mode & WINDOWON);
-			PossiblePlates[i].canonicalize();
-			int response = (int)svm.predict(PossiblePlates[i].canonical);
+				Mat svmdata;
+				resize(PossiblePlates[i].img, svmdata, Size(144, 33), 0, 0, INTER_CUBIC);
+				//svmtrainer.train(svmdata);
 
-			if (mode & WINDOWON) {
-				imshow("plate", PossiblePlates[i].img);
-				moveWindow("plate", WINDOW_X, SAMPLESIZE * 5);
-			}
+				if (response != 1)
+					continue;
 
-            Mat svmdata;
-            resize(PossiblePlates[i].img, svmdata, Size(144, 33), 0, 0, INTER_CUBIC);
-            //svmtrainer.train(svmdata);
+				if (mode & POSITION)
+					for (int j = 0; j < SEGMENTSIZE; j++)
+						if (area[j].contains(PlatePositions[i]))
+							cout << "\t\tIt's " << j + 1 << "th Section." << endl;
 
-			if (response != 1)
-				continue;
+				Plate *foundPlate = &PossiblePlates[i];
+				clock_t findNumbers_start = clock();
 
-			if (mode & POSITION)
-				for (int j = 0; j < SEGMENTSIZE; j++)
-					if (area[j].contains(PlatePositions[i]))
-						cout << "\t\tIt's " << j + 1 << "th Section." << endl;
-
-			Plate *foundPlate = &PossiblePlates[i];
-			clock_t findNumbers_start = clock();
-
-			bool isNumber = foundPlate->findNumbers(NUMSIZE);
+				bool isNumber = foundPlate->findNumbers(NUMSIZE);
 
 #if FROM == CAMERA
-			if (!isNumber)
-				continue;
+				if (!isNumber)
+					continue;
 #endif
+
+				if (mode & COSTTIME) {
+					cout << fixed;
+					cout.precision(5);
+					cout << "\t\tCost Time In the FindNumbers : " << (double)(clock() - findNumbers_start) / CLOCKS_PER_SEC << "s" << endl;
+				}
+
+				string str = "";
+				int numbersSize = (int)foundPlate->numbers.size();
+
+				Mat num(Size(SAMPLESIZE*numbersSize, SAMPLESIZE), CV_8UC3, Scalar(255, 255, 255));
+
+				for (int j = 0; j < numbersSize; j++) {
+					Plate::Number* number = &foundPlate->numbers[j];
+					number->canonicalize(SAMPLESIZE);
+
+					if (mode & TRAIN)
+						sample.push_back(number->canonical);
+
+					OCR *ocr;
+					/* 2번째를 문자로 설정 - 한글 */
+					/* if (j == 2) */
+					/* 4,5,6번째를 문자로 설정 - 영문 */
+					if ((j == 4) || (j == 5) || (j == 6))
+						ocr = &ocrChar;
+					else
+						ocr = &ocrNum;
+
+					Mat feature = ocr->features(number->canonical, SAMPLESIZE);
+					Mat output(1, ocr->numCharacters, CV_32FC1);
+
+					ocr->predict(feature, output);
+					str += ocr->classify(output);
+
+					Rect numberArea = Rect(SAMPLESIZE*j, 0, SAMPLESIZE, SAMPLESIZE);
+					cvtColor(number->canonical, num(numberArea), CV_GRAY2BGR);
+					rectangle(num, numberArea, Scalar(0, 0, 255));
+				}
+				if (numbersSize)
+					if (mode & WINDOWON) {
+						imshow("Number", num);
+						moveWindow("Number", WINDOW_X, 0 + k * SAMPLESIZE);
+					}
+
+				if (mode & PLATESTR)
+					cout << "\t\t" << str << endl;
+
+				if (mode & FINALDCS)
+					dicider.decide(str);
+
+				if (mode & ANALYSIS)
+					analyzer.Analyze(str);
+
+				if (mode & WINDOWON) {
+					imshow("warp" /*+ to_string(i)*/, foundPlate->img);
+					moveWindow("warp" /*+ to_string(i)*/, WINDOW_X, WINDOW_Y);
+				}
+
+				k++;
+			}
 
 			if (mode & COSTTIME) {
 				cout << fixed;
 				cout.precision(5);
-				cout << "\t\tCost Time In the FindNumbers : " << (double)(clock() - findNumbers_start) / CLOCKS_PER_SEC << "s" << endl;
+				cout << "\tCost Time In a Cycle : " << (double)(clock() - cycleCost) / CLOCKS_PER_SEC << "s" << endl;
 			}
 
-			string str = "";
-			int numbersSize = (int)foundPlate->numbers.size();
+			for (int i = 0; i < SEGMENTSIZE; i++)
+				rectangle(image, area[i], Scalar(0, 0, 255), 1);
 
-			Mat num(Size(SAMPLESIZE*numbersSize, SAMPLESIZE), CV_8UC3, Scalar(255, 255, 255));
+			imshow("image", image);
+			moveWindow("image", 0, WINDOW_Y);
 
-			for (int j = 0; j < numbersSize; j++) {
-				Plate::Number* number = &foundPlate->numbers[j];
-				number->canonicalize(SAMPLESIZE);
+			if (mode & TRAIN)
+				trainer.train(sample);
 
-				if (mode & TRAIN)
-					sample.push_back(number->canonical);
-
-				OCR *ocr;
-				/* 2번째를 문자로 설정 - 한글 */
-				/* if (j == 2) */
-				/* 4,5,6번째를 문자로 설정 - 영문 */
-				if ((j == 4) || (j == 5) || (j == 6))
-					ocr = &ocrChar;
-				else
-					ocr = &ocrNum;
-
-				Mat feature = ocr->features(number->canonical, SAMPLESIZE);
-				Mat output(1, ocr->numCharacters, CV_32FC1);
-
-				ocr->predict(feature, output);
-				str += ocr->classify(output);
-
-				Rect numberArea = Rect(SAMPLESIZE*j, 0, SAMPLESIZE, SAMPLESIZE);
-				cvtColor(number->canonical, num(numberArea), CV_GRAY2BGR);
-				rectangle(num, numberArea, Scalar(0, 0, 255));
-			}
-			if (numbersSize)
-				if (mode & WINDOWON) {
-					imshow("Number", num);
-					moveWindow("Number", WINDOW_X, 0 + k * SAMPLESIZE);
-				}
-
-			if (mode & PLATESTR)
-				cout << "\t\t" << str << endl;
-
-			if (mode & FINALDCS)
-				dicider.decide(str);
-
-			if (mode & ANALYSIS)
-				analyzer.Analyze(str);
-
-			if (mode & WINDOWON) {
-				imshow("warp" /*+ to_string(i)*/, foundPlate->img);
-				moveWindow("warp" /*+ to_string(i)*/, WINDOW_X, WINDOW_Y);
-			}
-
-			k++;
 		}
+	});
 
-		for (int i = 0; i < SEGMENTSIZE; i++)
-			rectangle(image, area[i], Scalar(0, 0, 255), 1);
-
-		imshow("image", image);
-		moveWindow("image", 0, WINDOW_Y);
-
-		if (mode & TRAIN)
-			trainer.train(sample);
-
-	}
+	camThread.join();
+	procThread.join();
 
 	return 0;
 }
