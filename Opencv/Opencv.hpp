@@ -98,7 +98,7 @@ public:
             path = "trainimage/" +std::to_string(fileIndex) + ".png";
             std::cout << path << std::endl;
             fileIndex++;
-        } while (!utils::readImage(path, img, 1));
+        } while (!utils::readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE));
 
         //std::cout << path << std::endl;
         if (utils::writeImage(path, sample)) {
@@ -129,7 +129,7 @@ public:
 					path = "TrainNumber/" + std::string(1, answer[i]) + "/" + std::to_string(fileIndex[i]) + ".jpg";
 					std::cout << path << std::endl;
 					fileIndex[i]++;
-				} while (!utils::readImage(path, img, 1));
+				} while (!utils::readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE));
 
 				//std::cout << path << std::endl;
 				if (utils::writeImage(path, sample[i])) {

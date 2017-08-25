@@ -7,9 +7,9 @@ using namespace std;
 using namespace utils;
 
 Svm::Svm() {
-	collectTrainImages();
-	writeTraindata("Opencv/SVMDATA.xml");
-	readTraindata("Opencv/SVMDATA.xml");
+	/*collectTrainImages();
+	writeTraindata("Opencv/SVMDATA.json");*/
+	readTraindata("Opencv/SVMDATA.json");
 	train();
 }
 void Svm::train() {
@@ -39,7 +39,7 @@ void Svm::collectTrainImages() {
 			cerr << "File No Exist." << endl;
 			exit(1);
 		}
-        equalizeHist(img,img);
+		equalizeHist(img, img);
 		Mat tmp = img.reshape(1, 1);
 
 		trainingData.push_back(tmp);
@@ -58,7 +58,7 @@ float Svm::predict(Mat &img) {
 }
 
 void Svm::readTraindata(string fn) {
-	FileStorage fs(fn, FileStorage::READ);
+	FileStorage fs(fn, FileStorage::READ | FileStorage::FORMAT_JSON);
 
 	if (!fs.isOpened()) {
 		cout << "File Open Fail." << endl;
@@ -73,7 +73,7 @@ void Svm::readTraindata(string fn) {
 }
 
 void Svm::writeTraindata(string fn) {
-	FileStorage fs(fn, FileStorage::WRITE);
+	FileStorage fs(fn, FileStorage::WRITE | FileStorage::FORMAT_JSON);
 
 	fs << "TrainingData" << trainingData;
 	fs << "classes" << classes;

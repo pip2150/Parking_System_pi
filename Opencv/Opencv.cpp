@@ -105,7 +105,7 @@ int startOpencv(int mode) {
 			int response = (int)svm.predict(PossiblePlates[i].canonical);
 
 			if (mode & WINDOWON) {
-				imshow("plate", PossiblePlates[i].canonical);
+				imshow("plate", PossiblePlates[i].img);
 				moveWindow("plate", WINDOW_X, SAMPLESIZE * 5);
 			}
 

@@ -13,14 +13,14 @@ OCR::OCR(int format = NUMBER + CHARACTER) {
 	switch (format) {
 	case NUMBER: 
 	case CHARACTER:	
-		readTraindata("Opencv/OCR.xml", format);
+		readTraindata("Opencv/OCR.json", format);
 		train(NLAYERS);
 		break;
 
 	case NUMBER + CHARACTER: 
 		collectTrainImages();
-		writeTraindata("Opencv/OCR.xml");
-		/*readTraindata("Opencv/OCR.xml");*/
+		writeTraindata("Opencv/OCR.json");
+		/*readTraindata("Opencv/OCR.json");*/
 		break;
 	default:
 		cerr << "Long Format Was Inputed!" << endl;
@@ -29,7 +29,7 @@ OCR::OCR(int format = NUMBER + CHARACTER) {
 }
 
 void OCR::readTraindata(string fn) {
-	FileStorage fs(fn, cv::FileStorage::READ);
+	FileStorage fs(fn, cv::FileStorage::READ | FileStorage::FORMAT_JSON);
 
 	if (!fs.isOpened()) {
 		cerr << "File Open Fail." << endl;
@@ -39,6 +39,7 @@ void OCR::readTraindata(string fn) {
 	fs["TrainingData"] >> trainingData;
 	fs["classes"] >> classes;
 	fs.release();
+
 }
 
 void OCR::readTraindata(string fn, int format) {
@@ -68,7 +69,7 @@ void OCR::readTraindata(string fn, int format) {
 }
 
 void OCR::writeTraindata(string fn) {
-	FileStorage fs(fn, FileStorage::WRITE);
+	FileStorage fs(fn, FileStorage::WRITE | FileStorage::FORMAT_JSON);
 
 	if (!fs.isOpened()) {
 		cerr << "File Write Fail." << endl;
@@ -121,7 +122,7 @@ void OCR::collectTrainImages() {
 			string path = "TrainNumber/" + string(1, strCharacters[i]) + "/" + to_string(j) + ".jpg";
 			Mat img;
 			cout << path << endl;
-			if (readImage(path, img, 1)) {
+			if (readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE)) {
 				break;
 			}
 
