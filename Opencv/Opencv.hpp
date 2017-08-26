@@ -4,7 +4,7 @@
 #include "OCR.hpp"
 #include "Plate.hpp"
 #include "Svm.hpp"
-#include "Utils.hpp"
+#include "Tools.hpp"
 #include <ctime>
 
 #define CAMERA 0
@@ -97,10 +97,10 @@ public:
             path = "trainimage/" +std::to_string(fileIndex) + ".png";
             std::cout << path << std::endl;
             fileIndex++;
-        } while (!utils::readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE));
+        } while (!tools::readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE));
 
         //std::cout << path << std::endl;
-        if (utils::writeImage(path, sample)) {
+        if (tools::writeImage(path, sample)) {
             std::cerr << "Fail To Write." << std::endl;
             exit(1);
         }
@@ -128,10 +128,10 @@ public:
 					path = "TrainNumber/" + std::string(1, answer[i]) + "/" + std::to_string(fileIndex[i]) + ".jpg";
 					std::cout << path << std::endl;
 					fileIndex[i]++;
-				} while (!utils::readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE));
+				} while (!tools::readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE));
 
 				//std::cout << path << std::endl;
-				if (utils::writeImage(path, sample[i])) {
+				if (tools::writeImage(path, sample[i])) {
 					std::cerr << "Fail To Write." << std::endl;
 					exit(1);
 				}

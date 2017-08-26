@@ -1,10 +1,10 @@
 #include "OCR.hpp"
-#include "Utils.hpp"
+#include "Tools.hpp"
 
 using namespace cv::ml;
 using namespace cv;
 using namespace std;
-using namespace utils;
+using namespace tools;
 
 OCR::OCR(int format = NUMBER + CHARACTER) {
 
