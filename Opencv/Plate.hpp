@@ -10,6 +10,7 @@
 class Plate {
 private:
 	enum { UP, DOWN, LEFT, RIGHT };
+	static int minDistance(std::vector<cv::Point> &approxCurve);
 	void endPoint(std::vector<cv::Point> &contour, cv::Point mPoint[4]);
 	bool isOverlap(cv::Rect &A, cv::Rect &B);
 	bool debug;

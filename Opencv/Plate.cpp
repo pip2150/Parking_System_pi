@@ -13,7 +13,7 @@ inline Plate::Number::Number(Mat &src) {
 }
 
 /*		숫자 영역 정규화		*/
-void Plate::Number::canonicalize(int sampleSize) {	
+void Plate::Number::canonicalize(int sampleSize) {
 	resize(img, canonical, Size2d(sampleSize, sampleSize));
 }
 
@@ -22,6 +22,18 @@ inline Plate::Plate() {
 
 inline Plate::Plate(Mat &img) {
 	this->img = img;
+}
+
+int Plate::minDistance(vector<Point> &approxCurve) {
+	int minDist = numeric_limits<int>::max();
+
+	for (int i = 0; i < approxCurve.size(); i++) {
+		Point side = approxCurve[i] - approxCurve[(i + 1) % 4];
+		int squaredSideLegth = side.dot(side);
+		minDist = min(minDist, squaredSideLegth);
+	}
+
+	return minDist;
 }
 
 /*		번호판 영역 추출		*/
@@ -34,10 +46,10 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 
 	Mat sobel;
 	Sobel(gray, sobel, CV_8U, 1, 0, 3);
-	
+
 	Mat thImg;
 	threshold(sobel, thImg, 0, 255, THRESH_OTSU + THRESH_BINARY);
-	
+
 	Mat morph;
 	Mat kernel(3, 17, CV_8UC1, Scalar(1));
 	morphologyEx(thImg, morph, MORPH_CLOSE, kernel);
@@ -46,16 +58,27 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 	findContours(morph, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
 
 	int contoursSize = (int)contours.size();
-//#pragma omp parallel for
+
+#pragma omp parallel for
 	for (int i = 0; i < contoursSize; i++) {
-		RotatedRect mr = minAreaRect(contours[i]);
+		vector<Point> approxCurve;
+
+		double eps = contours[i].size() * 0.05;
+		approxPolyDP(contours[i], approxCurve, eps, true);
+
+		if (approxCurve.size() < 4)
+			continue;
+
+		if (minDistance(approxCurve) < 100)
+			continue;
+
+		RotatedRect mr = minAreaRect(approxCurve);
 
 		/*		크기 검사		*/
 		if (!verifySizes(mr))
 			continue;
 
-		RotatedRect* rect = &mr;
-		Size size = rect->size;
+		Size size = mr.size;
 
 		int minSize = (size.width < size.height) ? size.width : size.height;
 		minSize = (int)cvRound(minSize*0.3);
@@ -68,45 +91,66 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 		Mat mask(gray.size() + Size(2, 2), CV_8UC1, Scalar(0));
 
 		/*		번호판에 floodfill 연산		*/
-		for (int j = 0; j < 10; j++) {
-			int radius = rand() % (int)minSize - (minSize / 2);
-			Point seed = (Point)rect->center + Point(radius, radius);
-			if (Rect(0, 0, gray.size().width, gray.size().height).contains(seed))
-				int area = floodFill(gray, mask, seed, Scalar(250, 0, 0), &ccomp, loDiff, upDiff, flags);
-		}
+		int radius = rand() % (int)minSize - (minSize / 2);
+		Point seed = (Point)mr.center + Point(radius, radius);
+		if (Rect(0, 0, gray.size().width, gray.size().height).contains(seed))
+			int area = floodFill(gray, mask, seed, Scalar(250, 0, 0), &ccomp, loDiff, upDiff, flags);
 
 		vector<vector<Point> > plateContours;
 
 		findContours(Mat(mask, Rect(1, 1, mask.size().width - 1, mask.size().height - 1)), plateContours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
 
 		for (int j = 0; j < plateContours.size(); j++) {
-			RotatedRect minRect = minAreaRect(plateContours[j]);
+			vector<Point> approxCurve2;
+
+			double eps2 = plateContours[j].size() * 0.05;
+			approxPolyDP(plateContours[j], approxCurve2, eps2, true);
+
+			if (approxCurve.size() < 4)
+				continue;
+
+			if (minDistance(approxCurve2) < 100)
+				continue;
+
+			RotatedRect minRect = minAreaRect(approxCurve2);
 
 			if (!verifySizes(minRect))
 				continue;
 
+			drawRotatedRect(image, minRect, Scalar(0, 0, 255));
+
+			Point2f src[4];
+			minRect.points(src);
+
 			Size m_size = minRect.size;
-			float angle = minRect.angle;
-
-			if (m_size.width < m_size.height) {
-				angle += 90;
-				swap(m_size.width, m_size.height);
-			}
-
-			/*		RotateRect 회전		*/
-			Mat imgRotated;
-			Mat rotmat = getRotationMatrix2D(minRect.center, angle, 1);
-			warpAffine(gray, imgRotated, rotmat, gray.size(), CV_INTER_CUBIC);
 
 			Mat imgCrop;
-			getRectSubPix(imgRotated, m_size, minRect.center, imgCrop);
-//#pragma	omp	critical (IMG)
+			Mat M;
+
+			if (m_size.width < m_size.height) {
+				swap(m_size.width, m_size.height);
+
+				Point2f plateCorner[4] = {
+					Point(m_size.width, m_size.height), Point(0, m_size.height), Point(0, 0), Point(m_size.width, 0)
+				};
+				M = getPerspectiveTransform(src, plateCorner);
+			}
+			else {
+				Point2f plateCorner[4] = {
+					Point(0, m_size.height),Point(0, 0),Point(m_size.width, 0),Point(m_size.width, m_size.height)
+				};
+				M = getPerspectiveTransform(src, plateCorner);
+			}
+
+			warpPerspective(gray, imgCrop, M, m_size);
+
+#pragma	omp	critical (IMG)
 			PossiblePlates.push_back(imgCrop);
-//#pragma	omp	critical (POSITION)
-			PlatePositions.push_back(rect->center);
+#pragma	omp	critical (POSITION)
+			PlatePositions.push_back(minRect.center);
 		}
 	}
-	
+
 }
 
 /*		번호판 정규화		*/
@@ -199,7 +243,7 @@ bool Plate::findNumbers(int number) {
 
 	/* ----- x좌표 정렬 및 겹침 검사 ----- */
 	Rect preRect;
-	if(!rectPQ.empty())
+	if (!rectPQ.empty())
 		preRect = rectPQ.top();
 
 	while (!rectPQ.empty()) {
@@ -210,10 +254,10 @@ bool Plate::findNumbers(int number) {
 			preRect = preRect | curRect;
 		else
 			preRect = curRect;
-		
+
 		Mat matNum = ~thresholded(preRect);
 		numbers.push_back(matNum);
-		
+
 		preRect = curRect;
 	}
 
@@ -256,7 +300,7 @@ inline bool Plate::isOverlap(Rect &A, Rect &B) {
 }
 
 /*		RotatedRect 그리기		*/
-void Plate::drawRotatedRect(Mat& img, RotatedRect roRec, const Scalar& color, int thickness, int lineType , int shift) {
+void Plate::drawRotatedRect(Mat& img, RotatedRect roRec, const Scalar& color, int thickness, int lineType, int shift) {
 
 	Point2f vertices[4];
 	roRec.points(vertices);

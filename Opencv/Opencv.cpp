@@ -45,29 +45,28 @@ int startOpencv(int mode) {
 	SVMTrainer svmtrainer;
 	Dicider dicider;
 
-	mutex m[2];
+	mutex m;
 
 	bool runing = true;
 
 	thread camThread([&] {
 		while (runing) {
-			m[0].try_lock();
+			m.try_lock();
 			camera >> cameraFrame;
-			m[1].lock();
-			m[0].unlock();
-			m[1].try_lock();
+			waitKey(50);
+			m.unlock();			
 		}
 	});
 
 	thread procThread([&] {
-		while (runing = (waitKey(1) != 27)) {
+		while (runing = (waitKey(50) != 27)) {
 
 #if FROM == CAMERA
 			clock_t cycleCost = clock();
-			m[0].try_lock();
-			cameraFrame.copyTo(image);
-			m[1].unlock();
-			m[0].unlock();
+			
+			m.try_lock();
+			cameraFrame.copyTo(image);			
+			m.unlock();
 
 			if (image.empty())
 				continue;
@@ -119,6 +118,7 @@ int startOpencv(int mode) {
 			vector<Mat> sample;
 
 			int PossiblePlatesSize = (int)PossiblePlates.size();
+			/*int PossiblePlatesSize = 0;*/
 			for (int i = 0; i < PossiblePlatesSize; i++) {
 				PossiblePlates[i].setDebug(mode & WINDOWON);
 				PossiblePlates[i].canonicalize();
