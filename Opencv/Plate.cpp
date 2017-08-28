@@ -59,17 +59,18 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 
 	int contoursSize = (int)contours.size();
 
-#pragma omp parallel for
+#pragma omp parallel
+#pragma omp for nowait
 	for (int i = 0; i < contoursSize; i++) {
 		vector<Point> approxCurve;
 
-		double eps = contours[i].size() * 0.05;
+		double eps = contours[i].size() * 0.1;
 		approxPolyDP(contours[i], approxCurve, eps, true);
 
 		if (approxCurve.size() < 4)
 			continue;
 
-		if (minDistance(approxCurve) < 100)
+		if (!isContourConvex(approxCurve))
 			continue;
 
 		RotatedRect mr = minAreaRect(approxCurve);
@@ -91,63 +92,73 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 		Mat mask(gray.size() + Size(2, 2), CV_8UC1, Scalar(0));
 
 		/*		번호판에 floodfill 연산		*/
-		int radius = rand() % (int)minSize - (minSize / 2);
-		Point seed = (Point)mr.center + Point(radius, radius);
-		if (Rect(0, 0, gray.size().width, gray.size().height).contains(seed))
-			int area = floodFill(gray, mask, seed, Scalar(250, 0, 0), &ccomp, loDiff, upDiff, flags);
-
+		;
+		Point seed;
+		
+		int area = 0;
+		for (int j = 0; j < 10; j++) {
+			int radius = rand() % (int)minSize - (minSize * 0.5);
+			seed = (Point)mr.center + Point(radius, radius);
+			if (Rect(0, 0, gray.size().width, gray.size().height).contains(seed)) {
+				area = floodFill(gray, mask, seed, Scalar(250), &ccomp, loDiff, upDiff, flags);
+				break;
+			}
+		}
+		if (!area)
+			continue;
+		
 		vector<vector<Point> > plateContours;
+		findContours(mask(ccomp + Point(1, 1)), plateContours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
 
-		findContours(Mat(mask, Rect(1, 1, mask.size().width - 1, mask.size().height - 1)), plateContours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
-
-		for (int j = 0; j < plateContours.size(); j++) {
+		int plateContoursSize = (int)plateContours.size();
+		for (int j = 0; j < plateContoursSize; j++) {
 			vector<Point> approxCurve2;
 
-			double eps2 = plateContours[j].size() * 0.05;
+			double eps2 = plateContours[j].size() * 0.1;
 			approxPolyDP(plateContours[j], approxCurve2, eps2, true);
 
-			if (approxCurve.size() < 4)
+			if (approxCurve2.size() < 4)
 				continue;
 
-			if (minDistance(approxCurve2) < 100)
+			if (!isContourConvex(approxCurve2))
 				continue;
-
+			
 			RotatedRect minRect = minAreaRect(approxCurve2);
 
 			if (!verifySizes(minRect))
 				continue;
-
-			drawRotatedRect(image, minRect, Scalar(0, 0, 255));
-
+			
+			drawRotatedRect(image, mr, Scalar(0, 0, 255));
+			drawRotatedRect(image(ccomp), minRect, Scalar(0, 255, 0));
+			
 			Point2f src[4];
 			minRect.points(src);
 
 			Size m_size = minRect.size;
+			
+			if (minRect.size.width < minRect.size.height) {
+				swap(m_size.width, m_size.height);
+			}
+
+			Point2f plateCorner[4] = {
+				Point(0, m_size.height), Point(0, 0),
+				Point(m_size.width, 0), Point(m_size.width, m_size.height)
+			};
+
+			if (minRect.size.width < minRect.size.height){
+				for (int k = 1; k < 4; k++)
+					swap(plateCorner[0],plateCorner[k]);
+			}
 
 			Mat imgCrop;
-			Mat M;
+			Mat M = getPerspectiveTransform(src, plateCorner);
+			warpPerspective(gray(ccomp), imgCrop, M, m_size);
 
-			if (m_size.width < m_size.height) {
-				swap(m_size.width, m_size.height);
-
-				Point2f plateCorner[4] = {
-					Point(m_size.width, m_size.height), Point(0, m_size.height), Point(0, 0), Point(m_size.width, 0)
-				};
-				M = getPerspectiveTransform(src, plateCorner);
+#pragma	omp	critical
+			{
+				PossiblePlates.push_back(imgCrop);
+				PlatePositions.push_back(minRect.center);
 			}
-			else {
-				Point2f plateCorner[4] = {
-					Point(0, m_size.height),Point(0, 0),Point(m_size.width, 0),Point(m_size.width, m_size.height)
-				};
-				M = getPerspectiveTransform(src, plateCorner);
-			}
-
-			warpPerspective(gray, imgCrop, M, m_size);
-
-#pragma	omp	critical (IMG)
-			PossiblePlates.push_back(imgCrop);
-#pragma	omp	critical (POSITION)
-			PlatePositions.push_back(minRect.center);
 		}
 	}
 
@@ -305,5 +316,5 @@ void Plate::drawRotatedRect(Mat& img, RotatedRect roRec, const Scalar& color, in
 	Point2f vertices[4];
 	roRec.points(vertices);
 	for (int i = 0; i < 4; i++)
-		line(img, vertices[i], vertices[(i + 1) % 4], Scalar(0, 255, 0));
+		line(img, vertices[i], vertices[(i + 1) % 4], color, thickness, lineType, shift);
 }
