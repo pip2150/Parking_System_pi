@@ -42,7 +42,19 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 
 	Mat gray;
 	cvtColor(image, gray, CV_BGR2GRAY);
-	blur(gray, gray, Size(3, 3));
+
+	Mat blr;
+	int maxSize = 640 * 480;
+	if (gray.size().area() > maxSize) {
+		int width = gray.cols;
+		int height = gray.rows;
+		int redRatio = (int)pow(maxSize / (width*height), 0.5);
+		resize(gray, blr, Size(redRatio*width, redRatio*height));
+		blur(blr, blr, Size(3, 3));
+	}
+	else {
+		blur(gray, blr, Size(3, 3));
+	}
 
 	Mat sobel;
 	Sobel(gray, sobel, CV_8U, 1, 0, 3);
@@ -92,13 +104,10 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 		Mat mask(gray.size() + Size(2, 2), CV_8UC1, Scalar(0));
 
 		/*		번호판에 floodfill 연산		*/
-		;
-		Point seed;
-		
 		int area = 0;
 		for (int j = 0; j < 10; j++) {
-			int radius = rand() % (int)minSize - (minSize * 0.5);
-			seed = (Point)mr.center + Point(radius, radius);
+			float radius = rand() % (int)minSize - (float)(minSize * 0.5);
+			Point2f seed = mr.center + Point2f(radius, radius);
 			if (Rect(0, 0, gray.size().width, gray.size().height).contains(seed)) {
 				area = floodFill(gray, mask, seed, Scalar(250), &ccomp, loDiff, upDiff, flags);
 				break;
@@ -106,7 +115,7 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 		}
 		if (!area)
 			continue;
-		
+
 		vector<vector<Point> > plateContours;
 		findContours(mask(ccomp + Point(1, 1)), plateContours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
 
@@ -122,20 +131,20 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 
 			if (!isContourConvex(approxCurve2))
 				continue;
-			
+
 			RotatedRect minRect = minAreaRect(approxCurve2);
 
 			if (!verifySizes(minRect))
 				continue;
-			
+
 			drawRotatedRect(image, mr, Scalar(0, 0, 255));
 			drawRotatedRect(image(ccomp), minRect, Scalar(0, 255, 0));
-			
+
 			Point2f src[4];
 			minRect.points(src);
 
 			Size m_size = minRect.size;
-			
+
 			if (minRect.size.width < minRect.size.height) {
 				swap(m_size.width, m_size.height);
 			}
@@ -145,9 +154,9 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 				Point(m_size.width, 0), Point(m_size.width, m_size.height)
 			};
 
-			if (minRect.size.width < minRect.size.height){
+			if (minRect.size.width < minRect.size.height) {
 				for (int k = 1; k < 4; k++)
-					swap(plateCorner[0],plateCorner[k]);
+					swap(plateCorner[0], plateCorner[k]);
 			}
 
 			Mat imgCrop;
