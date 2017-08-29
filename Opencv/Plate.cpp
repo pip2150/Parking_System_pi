@@ -44,11 +44,11 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 	cvtColor(image, gray, CV_BGR2GRAY);
 
 	Mat blr;
-	int maxSize = 640 * 480;
-    double redRatio; 
+	int maxSize = 320 * 240;
+	double redRatio = 1;
 	if (gray.size().area() > maxSize) {
-		double width = (double) gray.cols;
-		double height = (double) gray.rows;
+		double width = (double)gray.cols;
+		double height = (double)gray.rows;
 		redRatio = pow(maxSize / (width*height), 0.5);
 		resize(gray, blr, Size(redRatio*width, redRatio*height));
 		blur(blr, blr, Size(3, 3));
@@ -56,6 +56,7 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 	else {
 		blur(gray, blr, Size(3, 3));
 	}
+	cout << redRatio << endl;
 
 	Mat sobel;
 	Sobel(blr, sobel, CV_8U, 1, 0, 3);
@@ -138,19 +139,19 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 			if (!verifySizes(minRect))
 				continue;
 
-            /*
+			/*
 			drawRotatedRect(image, mr, Scalar(0, 0, 255));
 			drawRotatedRect(image(ccomp), minRect, Scalar(0, 255, 0));
-            */
+			*/
 
 			Point2f src[4];
 			minRect.points(src);
 
-            for(int k=0; k< 4; k++){
-                src[k] = Point2f(src[k].x * redRatio, src[k].y * redRatio);
-            }
+			for (int k = 0; k < 4; k++) {
+				src[k] = Point2f(src[k].x / redRatio, src[k].y / redRatio);
+			}
 
-			Size m_size = Size(minRect.size.width * redRatio , minRect.size.height*redRatio );
+			Size m_size = Size(minRect.size.width / redRatio, minRect.size.height / redRatio);
 
 			if (minRect.size.width < minRect.size.height) {
 				swap(m_size.width, m_size.height);
@@ -166,8 +167,8 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 					swap(plateCorner[0], plateCorner[k]);
 			}
 
-            Rect ccomp_(ccomp.x * redRatio, ccomp.y * redRatio,
-                    ccomp.width * redRatio, ccomp.height * redRatio);
+			Rect ccomp_(ccomp.x / redRatio, ccomp.y / redRatio,
+				ccomp.width / redRatio, ccomp.height / redRatio);
 
 			Mat imgCrop;
 			Mat M = getPerspectiveTransform(src, plateCorner);
