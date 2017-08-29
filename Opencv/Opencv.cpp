@@ -5,8 +5,8 @@
 using namespace cv;
 using namespace std;
 
-#define CAMERAWIDTH 640
-#define CAMERAHEIGHT 480
+#define CAMERAWIDTH 1280
+#define CAMERAHEIGHT 960
 
 int startOpencv(int mode) {
 

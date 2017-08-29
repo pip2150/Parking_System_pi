@@ -45,10 +45,11 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 
 	Mat blr;
 	int maxSize = 640 * 480;
+    double redRatio; 
 	if (gray.size().area() > maxSize) {
-		int width = gray.cols;
-		int height = gray.rows;
-		int redRatio = (int)pow(maxSize / (width*height), 0.5);
+		double width = (double) gray.cols;
+		double height = (double) gray.rows;
+		redRatio = pow(maxSize / (width*height), 0.5);
 		resize(gray, blr, Size(redRatio*width, redRatio*height));
 		blur(blr, blr, Size(3, 3));
 	}
@@ -57,7 +58,7 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 	}
 
 	Mat sobel;
-	Sobel(gray, sobel, CV_8U, 1, 0, 3);
+	Sobel(blr, sobel, CV_8U, 1, 0, 3);
 
 	Mat thImg;
 	threshold(sobel, thImg, 0, 255, THRESH_OTSU + THRESH_BINARY);
@@ -101,15 +102,15 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 		int connectivity = 4;
 		int flags = connectivity + 0xff00 + FLOODFILL_FIXED_RANGE + FLOODFILL_MASK_ONLY;
 		Rect ccomp;
-		Mat mask(gray.size() + Size(2, 2), CV_8UC1, Scalar(0));
+		Mat mask(blr.size() + Size(2, 2), CV_8UC1, Scalar(0));
 
 		/*		번호판에 floodfill 연산		*/
 		int area = 0;
 		for (int j = 0; j < 10; j++) {
 			float radius = rand() % (int)minSize - (float)(minSize * 0.5);
 			Point2f seed = mr.center + Point2f(radius, radius);
-			if (Rect(0, 0, gray.size().width, gray.size().height).contains(seed)) {
-				area = floodFill(gray, mask, seed, Scalar(250), &ccomp, loDiff, upDiff, flags);
+			if (Rect(0, 0, blr.size().width, blr.size().height).contains(seed)) {
+				area = floodFill(blr, mask, seed, Scalar(250), &ccomp, loDiff, upDiff, flags);
 				break;
 			}
 		}
@@ -137,13 +138,19 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 			if (!verifySizes(minRect))
 				continue;
 
+            /*
 			drawRotatedRect(image, mr, Scalar(0, 0, 255));
 			drawRotatedRect(image(ccomp), minRect, Scalar(0, 255, 0));
+            */
 
 			Point2f src[4];
 			minRect.points(src);
 
-			Size m_size = minRect.size;
+            for(int k=0; k< 4; k++){
+                src[k] = Point2f(src[k].x * redRatio, src[k].y * redRatio);
+            }
+
+			Size m_size = Size(minRect.size.width * redRatio , minRect.size.height*redRatio );
 
 			if (minRect.size.width < minRect.size.height) {
 				swap(m_size.width, m_size.height);
@@ -159,9 +166,12 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 					swap(plateCorner[0], plateCorner[k]);
 			}
 
+            Rect ccomp_(ccomp.x * redRatio, ccomp.y * redRatio,
+                    ccomp.width * redRatio, ccomp.height * redRatio);
+
 			Mat imgCrop;
 			Mat M = getPerspectiveTransform(src, plateCorner);
-			warpPerspective(gray(ccomp), imgCrop, M, m_size);
+			warpPerspective(gray(Rect(ccomp_)), imgCrop, M, m_size);
 
 #pragma	omp	critical
 			{
