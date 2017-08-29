@@ -49,6 +49,14 @@ int startOpencv(int mode) {
 
 	bool runing = true;
 
+	/* 창 위치 초기화 */
+	moveWindow("plate", WINDOW_X, SAMPLESIZE * 5);
+	moveWindow("Number", WINDOW_X, SAMPLESIZE);
+	moveWindow("warp", WINDOW_X, WINDOW_Y);
+	moveWindow("image", 0, WINDOW_Y);
+	moveWindow("contoursfound", WINDOW_X, WINDOW_Y * 2);
+	moveWindow("thresholded", WINDOW_X, WINDOW_Y * 1.5);
+
 	thread camThread([&] {
 		while (runing) {
 			m.try_lock();
@@ -125,7 +133,6 @@ int startOpencv(int mode) {
 
 				if (mode & WINDOWON) {
 					imshow("plate", PossiblePlates[i].img);
-					moveWindow("plate", WINDOW_X, SAMPLESIZE * 5);
 				}
 
 				Mat svmdata;
@@ -190,7 +197,6 @@ int startOpencv(int mode) {
 				if (numbersSize)
 					if (mode & WINDOWON) {
 						imshow("Number", num);
-						moveWindow("Number", WINDOW_X, 0 + k * SAMPLESIZE);
 					}
 
 				if (mode & PLATESTR)
@@ -204,7 +210,6 @@ int startOpencv(int mode) {
 
 				if (mode & WINDOWON) {
 					imshow("warp" /*+ to_string(i)*/, foundPlate->img);
-					moveWindow("warp" /*+ to_string(i)*/, WINDOW_X, WINDOW_Y);
 				}
 
 				k++;
@@ -220,7 +225,6 @@ int startOpencv(int mode) {
 				rectangle(image, area[i], Scalar(0, 0, 255), 1);
 
 			imshow("image", image);
-			moveWindow("image", 0, WINDOW_Y);
 
 			if (mode & TRAIN)
 				trainer.train(sample);

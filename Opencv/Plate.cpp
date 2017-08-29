@@ -44,7 +44,7 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 	cvtColor(image, gray, CV_BGR2GRAY);
 
 	Mat blr;
-	int maxSize = 320 * 240;
+	int maxSize = 640 * 480;
 	double redRatio = 1;
 	if (gray.size().area() > maxSize) {
 		double width = (double)gray.cols;
@@ -56,7 +56,6 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 	else {
 		blur(gray, blr, Size(3, 3));
 	}
-	cout << redRatio << endl;
 
 	Mat sobel;
 	Sobel(blr, sobel, CV_8U, 1, 0, 3);
@@ -225,7 +224,6 @@ bool Plate::findNumbers(int number) {
 
 	if (debug) {
 		imshow("thresholded", thresholded);
-		moveWindow("thresholded", WINDOW_X, WINDOW_Y + flatSize.height + 50);
 	}
 
 	Mat contoursfound(flatSize, CV_8UC4, Scalar(255, 255, 255));
@@ -263,7 +261,6 @@ bool Plate::findNumbers(int number) {
 				drawContours(contoursfound, tmp, -1, Scalar(rand() % 255, 0, rand() % 255), 1);	// 숫자 출력 시 랜덤 색상으로 출력
 				line(contoursfound, Point2d(0, flatSize.height / 2.0), Point2d(flatSize.width, flatSize.height / 2.0), Scalar(255, 0, 255));
 				imshow("contoursfound", contoursfound);
-				moveWindow("contoursfound", WINDOW_X, WINDOW_Y + (flatSize.height + 50) * 2);
 			}
 
 			if ((uy > flatSize.height / 2.0) && (dy < flatSize.height / 2.0)) {
