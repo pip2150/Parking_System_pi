@@ -35,7 +35,7 @@ public:
 	bool findNumbers(int number);
 
 	static void find(cv::Mat &input, std::vector<Plate> &PossiblePlates, std::vector<cv::Point> &PlatePositions);
-	static void drawRotatedRect(cv::Mat& img, cv::RotatedRect roRec, const cv::Scalar& color, int thickness = 1, int lineType = cv::LINE_8, int shift = 0);
+	static void drawRotatedRect(cv::Mat img, cv::RotatedRect roRec, const cv::Scalar color, int thickness = 1, int lineType = cv::LINE_8, int shift = 0);
 	static bool verifySizes(cv::RotatedRect &mr);	
 	void canonicalize();
 

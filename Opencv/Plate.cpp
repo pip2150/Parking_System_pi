@@ -320,7 +320,7 @@ inline bool Plate::isOverlap(Rect &A, Rect &B) {
 }
 
 /*		RotatedRect ±×¸®±â		*/
-void Plate::drawRotatedRect(Mat& img, RotatedRect roRec, const Scalar& color, int thickness, int lineType, int shift) {
+void Plate::drawRotatedRect(Mat img, RotatedRect roRec, const Scalar color, int thickness, int lineType, int shift) {
 
 	Point2f vertices[4];
 	roRec.points(vertices);
