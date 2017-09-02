@@ -5,32 +5,60 @@ using namespace std;
 int main(int argc, char *argv[]) {
 	int mode = 0;
 
-	if (argc > 1) {
-		for (int i = 1; i < argc; i++) {
-			char *arg = argv[i];
-			int len = (int)strlen(arg);
+	const string keys =
+		"{ help h usage ? |     | print this message    }"
+		"{ @width         | 640 | width of image        }"
+		"{ @height        | 480 | height of image       }"
+		"{ @floor         | 0   | floor of parking area }"
+		"{ @zone          | Z   | name of parking zone  }"
+		"{ enter          |     | camera in enterance   }"
+		"{ exit           |     | camera in exit        }"
+		"{ n              |     | enable netwrok        }"
+		"{ T              |     | enable train          }"
+		"{ p              |     | print section         }"
+		"{ t              |     | print cost time       }"
+		"{ s              |     | print plate's string  }"
+		"{ w              |     | show debuging window  }"
+		"{ a              |     | print analysis        }"
+		"{ f              |     | print final dicision  }"
+		"{ A              |     | enable all option     }"
+		;
 
-			if ((len != 2) || (arg[0] != '-'))
-				goto err;
+	cv::CommandLineParser parser(argc, argv, keys);
 
-			switch (arg[1]) {
-			case 'n': mode |= NETWORK; break;
-			case 'T': mode |= TRAIN; break;
-			case 'p': mode |= POSITION; break;
-			case 't': mode |= COSTTIME; break;
-			case 's': mode |= PLATESTR; break;
-			case 'w': mode |= WINDOWON; break;
-			case 'a': mode |= ANALYSIS; break;
-			case 'f': mode |= FINALDCS; break;
-			case 'A': mode |= 0xFF ^ TRAIN; break;
-			default: goto err; break;
-			}
-		}
-		return startOpencv(mode);
+	if (parser.has("help")) {
+		parser.printMessage();
+		return 0;
 	}
-	else
-		return startOpencv(WINDOWON | FINALDCS | PLATESTR);
-err:
-	cerr << "invalid input" << endl;
-	exit(1);
+
+	int width = parser.get<int>(0);
+	int height = parser.get<int>(1);
+	int floor = parser.get<int>(2);
+	string zoneName = parser.get<string>(3);
+	int way = -1;
+
+	if (parser.has("enter") && parser.has("exit"))
+		parser.printErrors();
+	else {
+		if (parser.has("enter"))
+			way = ENTER;
+		if (parser.has("exit"))
+			way = EXIT;
+	}
+
+	string key = "nTptswaf";
+
+	for (int i = 0; i < key.length(); i++)
+		if (parser.has(string(1, key[i])))
+			mode |= 0x01 << i;
+
+	if (parser.has("A"))
+		mode |= 0xFF ^ TRAIN;
+
+	if (!parser.check()) {
+		parser.printErrors();
+		return 0;
+	}
+
+	return startOpencv(width, height, way, floor, zoneName, mode);
 }

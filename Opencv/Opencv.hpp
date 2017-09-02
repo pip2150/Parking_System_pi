@@ -2,8 +2,6 @@
 #define OPENCV_HPP_
 
 #include "OCR.hpp"
-#include "Plate.hpp"
-#include "Svm.hpp"
 #include "Tools.hpp"
 #include <ctime>
 
@@ -13,6 +11,8 @@
 #define FALSE 0
 
 /* ----- Debug Setting ----- */
+#define ENTER 0
+#define EXIT 1
 #define SEGMENTSIZE 4
 #define MAXMATCH 10
 #define NUMSIZE 7
@@ -38,19 +38,21 @@ public:
 		match = -1;
 	}
 
-	void decide(std::string str) {
+	bool decide(std::string str) {
 		match++;
 		if (match == 0) {
 			keyStr = str;
-			return;
+			return false;
 		}
 		else if (keyStr == str) {
-			if (match == MAXMATCH)
-				std::cout << "\t\t\tThe answer is " << str << "  " << rand() % 256 << std::endl;
+			if (match == MAXMATCH) {
+				return true;
+			}
 			else
-				return;
+				return false;
 		}
 		match = -1;
+		return false;
 	}
 };
 
@@ -67,7 +69,7 @@ public:
 		this->answer = answer;
 	}
 
-	void Analyze(std::string str) {
+	void analyze(std::string str) {
 		int correct = 0;
 		for (int j = 0; j < NUMSIZE; j++)
 			if (str[j] == answer[j])
@@ -86,25 +88,25 @@ class SVMTrainer {
 private:
 	int fileIndex;
 public:
-    SVMTrainer() {
-        fileIndex = 0;
-    }
+	SVMTrainer() {
+		fileIndex = 0;
+	}
 
-    void train(cv::Mat &sample) {
-        std::string path;
-        cv::Mat img;
-        do {
-            path = "trainimage/" +std::to_string(fileIndex) + ".png";
-            std::cout << path << std::endl;
-            fileIndex++;
-        } while (!tools::readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE));
+	void train(cv::Mat &sample) {
+		std::string path;
+		cv::Mat img;
+		do {
+			path = "trainimage/" + std::to_string(fileIndex) + ".png";
+			std::cout << path << std::endl;
+			fileIndex++;
+		} while (!tools::readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE));
 
-        //std::cout << path << std::endl;
-        if (tools::writeImage(path, sample)) {
-            std::cerr << "Fail To Write." << std::endl;
-            exit(1);
-        }
-    }
+		//std::cout << path << std::endl;
+		if (tools::writeImage(path, sample)) {
+			std::cerr << "Fail To Write." << std::endl;
+			exit(1);
+		}
+	}
 };
 
 class Trainer {
@@ -140,6 +142,6 @@ public:
 	}
 };
 
-int startOpencv(int mode);
+int startOpencv(int width, int height, int way, int floor, std::string zoneName, int mode);
 
 #endif

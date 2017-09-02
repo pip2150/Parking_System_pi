@@ -4,16 +4,12 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/core/core.hpp>
 
-#define WINDOW_X 650
-#define WINDOW_Y 300
-
 class Plate {
 private:
-	enum { UP, DOWN, LEFT, RIGHT };
-	static int minDistance(std::vector<cv::Point> &approxCurve);
-	void endPoint(std::vector<cv::Point> &contour, cv::Point mPoint[4]);
 	bool isOverlap(cv::Rect &A, cv::Rect &B);
 	bool debug;
+	static cv::RotatedRect Plate::minApproxRect(std::vector<cv::Point> &contour);
+	static bool verifySizes(cv::RotatedRect &mr);
 
 public:
 	Plate();
@@ -36,7 +32,6 @@ public:
 
 	static void find(cv::Mat &input, std::vector<Plate> &PossiblePlates, std::vector<cv::Point> &PlatePositions);
 	static void drawRotatedRect(cv::Mat img, cv::RotatedRect roRec, const cv::Scalar color, int thickness = 1, int lineType = cv::LINE_8, int shift = 0);
-	static bool verifySizes(cv::RotatedRect &mr);	
 	void canonicalize();
 
 };

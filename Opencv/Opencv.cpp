@@ -1,19 +1,14 @@
+#include "Plate.hpp"
+#include "Svm.hpp"
 #include "Opencv.hpp"
 #include <thread>
 #include <mutex>
+//#include "../Network/psAPI.hpp"
 
 using namespace cv;
 using namespace std;
 
-#define CAMERAWIDTH 1280
-#define CAMERAHEIGHT 960
-
-int startOpencv(int mode) {
-
-	/*if (utils::readImage("divArea2.png", templ)) {
-	cerr << "File No Exist." << endl;
-	exit(1);
-	}*/
+int startOpencv(int width, int height, int way, int floor, string zoneName, int mode) {
 
 #if FROM == CAMERA
 	VideoCapture camera;
@@ -24,9 +19,8 @@ int startOpencv(int mode) {
 		cerr << "Can Not Access The Camera." << endl;
 		exit(1);
 	}
-	camera.set(CV_CAP_PROP_FOURCC, CV_FOURCC('m', 'j', 'p', 'g'));
-	camera.set(CV_CAP_PROP_FRAME_WIDTH, CAMERAWIDTH);
-	camera.set(CV_CAP_PROP_FRAME_HEIGHT, CAMERAHEIGHT);
+	camera.set(CV_CAP_PROP_FRAME_WIDTH, width);
+	camera.set(CV_CAP_PROP_FRAME_HEIGHT, height);
 
 #endif
 
@@ -36,9 +30,24 @@ int startOpencv(int mode) {
 	Mat templ;
 	Rect area[SEGMENTSIZE];
 
-	OCR ocrChar(CHARACTER);
-	OCR ocrNum(NUMBER);
-	Svm svm;
+	OCR *ocrChar;
+	OCR *ocrNum;
+	Svm *svm;
+
+#pragma omp parallel
+#pragma omp sections
+	{
+#pragma omp section
+		ocrChar = new OCR(CHARACTER);
+#pragma omp section
+		ocrNum = new OCR(NUMBER);
+#pragma omp section
+		svm = new Svm();
+	}
+
+#ifdef PSAPI_HPP_
+	ps::API api;
+#endif
 
 	Analyzer analyzer(answer);
 	Trainer trainer(answer);
@@ -49,19 +58,11 @@ int startOpencv(int mode) {
 
 	bool runing = true;
 
-	/* 창 위치 초기화 */
-	moveWindow("plate", WINDOW_X, SAMPLESIZE * 5);
-	moveWindow("Number", WINDOW_X, SAMPLESIZE);
-	moveWindow("warp", WINDOW_X, WINDOW_Y);
-	moveWindow("image", 0, WINDOW_Y);
-	moveWindow("contoursfound", WINDOW_X, WINDOW_Y * 2);
-	moveWindow("thresholded", WINDOW_X, WINDOW_Y * 1.5);
-
 	thread camThread([&] {
 		while (runing) {
 			m.try_lock();
 			camera >> cameraFrame;
-			m.unlock();			
+			m.unlock();
 		}
 	});
 
@@ -69,10 +70,10 @@ int startOpencv(int mode) {
 		while (runing = (waitKey(50) != 27)) {
 
 #if FROM == CAMERA
-			clock_t cycleCost = clock();
-			
+			double cycle_t = (double)getTickCount();
+
 			m.try_lock();
-			cameraFrame.copyTo(image);			
+			cameraFrame.copyTo(image);
 			m.unlock();
 
 			if (image.empty())
@@ -95,77 +96,52 @@ int startOpencv(int mode) {
 			}
 
 #endif
+			vector<Plate> possiblePlates;
+			vector<Point> platePositions;
 
-			//for (int i = 0; i < SEGMENTSIZE; i++) {
-			//	//		Matimage divArea;
-			//	Mat result;
-			//	double maxVal = 0;
-			//	Point maxLoc;
-
-			//	//	divArea = (area[j]);
-			//		//matchTemplate(divArea, templ, result, TM_CCOEFF_NORMED);
-			//		//minMaxLoc(result, NULL, &maxVal, NULL, &maxLoc);
-			//		//rectangle(divArea, maxLoc, Point(maxLoc.x + templ.cols, maxLoc.y + templ.rows), Scalar(255, 0, 255), 2);
-
-			//	if (maxVal >= 0.9) {
-			//		// DataBase로 비어있는 구역이라고 보내야됨
-			//		// DataBase로부터 값을 불러와서 보내려는값과 동일한 경우 보내지 않음
-			//		//cout << j << " 구역 차량 없음" << endl;
-			//		cout << i << "No Vehicle In Section" << endl;
-			//	}
-			//}
-
-			vector<Plate> PossiblePlates;
-			vector<Point> PlatePositions;
-
-			Plate::find(image, PossiblePlates, PlatePositions);
-
-			int k = 0;
+			Plate::find(image, possiblePlates, platePositions);
 
 			vector<Mat> sample;
+			int k = 0;
+			int possiblePlatesSize = (int)possiblePlates.size();
 
-			int PossiblePlatesSize = (int)PossiblePlates.size();
-			/*int PossiblePlatesSize = 0;*/
-			for (int i = 0; i < PossiblePlatesSize; i++) {
-				PossiblePlates[i].setDebug(mode & WINDOWON);
-				PossiblePlates[i].canonicalize();
-				int response = (int)svm.predict(PossiblePlates[i].canonical);
+			for (int i = 0; i < possiblePlatesSize; i++) {
+				possiblePlates[i].setDebug(mode & WINDOWON);
+				possiblePlates[i].canonicalize();
+				int response = (int)svm->predict(possiblePlates[i].canonical);
 
-				if (mode & WINDOWON) {
-					imshow("plate", PossiblePlates[i].img);
-				}
+				if (mode & WINDOWON)
+					imshow("plate", possiblePlates[i].img);
 
 				Mat svmdata;
-				resize(PossiblePlates[i].img, svmdata, Size(144, 33), 0, 0, INTER_CUBIC);
-				//svmtrainer.train(svmdata);
+				resize(possiblePlates[i].img, svmdata, Size(144, 33), 0, 0, INTER_CUBIC);
+				if (mode & TRAIN)
+					svmtrainer.train(svmdata);
 
 				if (response != 1)
 					continue;
 
+				int section = 0;	// NULL
 				if (mode & POSITION)
 					for (int j = 0; j < SEGMENTSIZE; j++)
-						if (area[j].contains(PlatePositions[i]))
-							cout << "\t\tIt's " << j + 1 << "th Section." << endl;
+						if (area[j].contains(platePositions[i]))
+							cout << "\t\tIt's " << (section = j + 1) << "th Section." << endl;
 
-				Plate *foundPlate = &PossiblePlates[i];
-				clock_t findNumbers_start = clock();
-
+				Plate *foundPlate = &possiblePlates[i];
+				double findNum_t = (double)getTickCount();
 				bool isNumber = foundPlate->findNumbers(NUMSIZE);
+
+				findNum_t = (double)getTickCount() - findNum_t;
 
 #if FROM == CAMERA
 				if (!isNumber)
 					continue;
 #endif
-
-				if (mode & COSTTIME) {
-					cout << fixed;
-					cout.precision(5);
-					cout << "\t\tCost Time In the FindNumbers : " << (double)(clock() - findNumbers_start) / CLOCKS_PER_SEC << "s" << endl;
-				}
+				if (mode & COSTTIME)
+					cout << "\t\tCost Time In the FindNumbers : " << findNum_t * 1000 / getTickFrequency() << "ms" << endl;
 
 				string str = "";
 				int numbersSize = (int)foundPlate->numbers.size();
-
 				Mat num(Size(SAMPLESIZE*numbersSize, SAMPLESIZE), CV_8UC3, Scalar(255, 255, 255));
 
 				for (int j = 0; j < numbersSize; j++) {
@@ -176,13 +152,11 @@ int startOpencv(int mode) {
 						sample.push_back(number->canonical);
 
 					OCR *ocr;
-					/* 2번째를 문자로 설정 - 한글 */
-					/* if (j == 2) */
-					/* 4,5,6번째를 문자로 설정 - 영문 */
+					/* j 번째를 문자로 설정 - 한글 : 2 영문 : {4 ,5, 6} */
 					if ((j == 4) || (j == 5) || (j == 6))
-						ocr = &ocrChar;
+						ocr = ocrChar;
 					else
-						ocr = &ocrNum;
+						ocr = ocrNum;
 
 					Mat feature = ocr->features(number->canonical, SAMPLESIZE);
 					Mat output(1, ocr->numCharacters, CV_32FC1);
@@ -194,46 +168,59 @@ int startOpencv(int mode) {
 					cvtColor(number->canonical, num(numberArea), CV_GRAY2BGR);
 					rectangle(num, numberArea, Scalar(0, 0, 255));
 				}
-				if (numbersSize)
-					if (mode & WINDOWON) {
-						imshow("Number", num);
-					}
 
+				if (mode & WINDOWON)
+					imshow("Number", num);
 				if (mode & PLATESTR)
 					cout << "\t\t" << str << endl;
 
-				if (mode & FINALDCS)
-					dicider.decide(str);
+				if (dicider.decide(str)) {
+#ifdef PSAPI_HPP_
+					if (mode & NETWORK) {
+						if (!floor) {
+							if (way == ENTER)
+								api.enter(str);
+							else if (way == EXIT)
+								api.exit(str);
+						}
+						else
+							api.parking(floor, zoneName, section, str);
 
-				if (mode & ANALYSIS)
-					analyzer.Analyze(str);
-
-				if (mode & WINDOWON) {
-					imshow("warp" /*+ to_string(i)*/, foundPlate->img);
+						api.resopnse();
+					}
+#endif
+					if (mode & FINALDCS)
+						std::cout << "\t\t\tThe answer is " << str << "  " << rand() % 256 << std::endl;
 				}
+				if (mode & ANALYSIS)
+					analyzer.analyze(str);
+				if (mode & WINDOWON)
+					imshow("warp" /*+ to_string(i)*/, foundPlate->img);
 
 				k++;
 			}
 
-			if (mode & COSTTIME) {
-				cout << fixed;
-				cout.precision(5);
-				cout << "\tCost Time In a Cycle : " << (double)(clock() - cycleCost) / CLOCKS_PER_SEC << "s" << endl;
-			}
+			cycle_t = (double)getTickCount() - cycle_t;
+
+			if (mode & COSTTIME)
+				cout << "\tCost Time In a Cycle : " << cycle_t * 1000 / getTickFrequency() << "ms" << endl;
+			if (mode & TRAIN)
+				trainer.train(sample);
 
 			for (int i = 0; i < SEGMENTSIZE; i++)
 				rectangle(image, area[i], Scalar(0, 0, 255), 1);
 
 			imshow("image", image);
 
-			if (mode & TRAIN)
-				trainer.train(sample);
-
 		}
 	});
 
 	camThread.join();
 	procThread.join();
+
+	delete ocrChar;
+	delete ocrNum;
+	delete svm;
 
 	return 0;
 }
