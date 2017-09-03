@@ -8,7 +8,7 @@ class Plate {
 private:
 	bool isOverlap(cv::Rect &A, cv::Rect &B);
 	bool debug;
-	static cv::RotatedRect Plate::minApproxRect(std::vector<cv::Point> &contour);
+	static cv::RotatedRect minApproxRect(std::vector<cv::Point> &contour);
 	static bool verifySizes(cv::RotatedRect &mr);
 
 public:

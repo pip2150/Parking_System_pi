@@ -3,33 +3,34 @@
 #include "Opencv.hpp"
 #include <thread>
 #include <mutex>
-//#include "../Network/psAPI.hpp"
+#include <unistd.h>
+#include "../Network/psAPI.hpp"
 
 using namespace cv;
 using namespace std;
 
-int startOpencv(int width, int height, int way, int floor, string zoneName, int mode) {
+int startOpencv(int width, int height, int way, int floor, string zoneName, string answer, int mode) {
 
 #if FROM == CAMERA
 	VideoCapture camera;
 	Mat cameraFrame;
 
 	camera.open(0);
-	if (!camera.isOpened()) {
+    while(!camera.isOpened()){
+        camera.open(0);
 		cerr << "Can Not Access The Camera." << endl;
-		exit(1);
-	}
+        sleep(2);
+    }
 	camera.set(CV_CAP_PROP_FRAME_WIDTH, width);
 	camera.set(CV_CAP_PROP_FRAME_HEIGHT, height);
 
 #endif
 
-	string answer = "0226FBV";
-
 	Mat image;
 	Mat templ;
 	Rect area[SEGMENTSIZE];
 
+    OCR(CHARACTER+NUMBER);
 	OCR *ocrChar;
 	OCR *ocrNum;
 	Svm *svm;
@@ -38,15 +39,16 @@ int startOpencv(int width, int height, int way, int floor, string zoneName, int 
 #pragma omp sections
 	{
 #pragma omp section
-		ocrChar = new OCR(CHARACTER);
+        if(!(mode & NOTUSEML))
+    		ocrChar = new OCR(CHARACTER);
 #pragma omp section
-		ocrNum = new OCR(NUMBER);
+        if(!(mode & NOTUSEML))
+            ocrNum = new OCR(NUMBER);
 #pragma omp section
 		svm = new Svm();
 	}
 
 #ifdef PSAPI_HPP_
-	ps::API api;
 #endif
 
 	Analyzer analyzer(answer);
@@ -116,16 +118,12 @@ int startOpencv(int width, int height, int way, int floor, string zoneName, int 
 				Mat svmdata;
 				resize(possiblePlates[i].img, svmdata, Size(144, 33), 0, 0, INTER_CUBIC);
 				if (mode & TRAIN)
-					svmtrainer.train(svmdata);
-
+					//svmtrainer.train(svmdata);
+                    ;
 				if (response != 1)
 					continue;
 
 				int section = 0;	// NULL
-				if (mode & POSITION)
-					for (int j = 0; j < SEGMENTSIZE; j++)
-						if (area[j].contains(platePositions[i]))
-							cout << "\t\tIt's " << (section = j + 1) << "th Section." << endl;
 
 				Plate *foundPlate = &possiblePlates[i];
 				double findNum_t = (double)getTickCount();
@@ -139,6 +137,13 @@ int startOpencv(int width, int height, int way, int floor, string zoneName, int 
 #endif
 				if (mode & COSTTIME)
 					cout << "\t\tCost Time In the FindNumbers : " << findNum_t * 1000 / getTickFrequency() << "ms" << endl;
+
+				if (mode & POSITION)
+					for (int j = 0; j < SEGMENTSIZE; j++)
+						if (area[j].contains(platePositions[i])){
+							cout << "\t\tIt's " << (section = j + 1) << "th Section." << endl;
+                            circle(image, platePositions[i], 2, Scalar(0,0,255),2);
+                        }
 
 				string str = "";
 				int numbersSize = (int)foundPlate->numbers.size();
@@ -158,11 +163,13 @@ int startOpencv(int width, int height, int way, int floor, string zoneName, int 
 					else
 						ocr = ocrNum;
 
-					Mat feature = ocr->features(number->canonical, SAMPLESIZE);
-					Mat output(1, ocr->numCharacters, CV_32FC1);
+                    if(!(mode & NOTUSEML)){
+                        Mat feature = ocr->features(number->canonical, SAMPLESIZE);
+                        Mat output(1, ocr->numCharacters, CV_32FC1);
 
-					ocr->predict(feature, output);
-					str += ocr->classify(output);
+                        ocr->predict(feature, output);
+                        str += ocr->classify(output);
+                    }
 
 					Rect numberArea = Rect(SAMPLESIZE*j, 0, SAMPLESIZE, SAMPLESIZE);
 					cvtColor(number->canonical, num(numberArea), CV_GRAY2BGR);
@@ -173,25 +180,42 @@ int startOpencv(int width, int height, int way, int floor, string zoneName, int 
 					imshow("Number", num);
 				if (mode & PLATESTR)
 					cout << "\t\t" << str << endl;
+                putText(image, str, platePositions[i], cv::FONT_HERSHEY_SIMPLEX, 1, Scalar(255,0,0));
 
-				if (dicider.decide(str)) {
+                if (dicider.decide(str)) {
 #ifdef PSAPI_HPP_
-					if (mode & NETWORK) {
-						if (!floor) {
-							if (way == ENTER)
-								api.enter(str);
-							else if (way == EXIT)
-								api.exit(str);
-						}
-						else
-							api.parking(floor, zoneName, section, str);
-
-						api.resopnse();
-					}
+                    if (mode & NETWORK) {
+	                    ps::API api;
+                        cout << "send to server" <<endl;
+                        if (!floor) {
+                            if (way == ENTER)
+                                api.enter(str);
+                            else if (way == EXIT)
+                                api.exit(str);
+                        }
+                        else
+                            api.parking(floor, zoneName, section, str);
+                        cout << __LINE__ <<endl;
+                        api.resopnse();
+                    }
 #endif
-					if (mode & FINALDCS)
-						std::cout << "\t\t\tThe answer is " << str << "  " << rand() % 256 << std::endl;
-				}
+#ifndef PSAPI_HPP_
+                    if (mode & NETWORK) {
+                        cout << "send to server" <<endl;
+                        if (!floor) {
+                            if (way == ENTER)
+                                system(("http_test enter "+str).c_str());
+                            else if (way == EXIT)
+                                system(("http_test exit "+str).c_str());
+                        }
+                        else{
+                            cout << "http_test parking "+to_string(floor)+" "+zoneName+" "+to_string(section)+" "+str <<endl;
+                            system(("http_test parking "+to_string(floor)+" "+zoneName+" "+to_string(section)+" "+str).c_str());
+                        }
+                    }
+#endif
+                    //std::cout << "\t\t\tThe answer is " << str << "  " << rand() % 256 << std::endl;
+                }
 				if (mode & ANALYSIS)
 					analyzer.analyze(str);
 				if (mode & WINDOWON)

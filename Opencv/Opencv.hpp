@@ -14,7 +14,7 @@
 #define ENTER 0
 #define EXIT 1
 #define SEGMENTSIZE 4
-#define MAXMATCH 10
+#define MAXMATCH 5
 #define NUMSIZE 7
 #define FROM CAMERA
 #define NETWORK		0x01
@@ -24,7 +24,7 @@
 #define PLATESTR 	0x10
 #define WINDOWON 	0x20
 #define ANALYSIS	0x40
-#define FINALDCS	0x80
+#define NOTUSEML	0x80
 /* ------------------------- */
 
 class Dicider {
@@ -46,6 +46,7 @@ public:
 		}
 		else if (keyStr == str) {
 			if (match == MAXMATCH) {
+                match = -1;
 				return true;
 			}
 			else
@@ -122,17 +123,15 @@ public:
 	void train(std::vector<cv::Mat> &sample) {
 		if (sample.size() == answer.size()) {
 			for (int i = 0; i < answer.size(); i++) {
-				if (i != 2)
-					continue;
 				std::string path;
 				cv::Mat img;
 				do {
-					path = "TrainNumber/" + std::string(1, answer[i]) + "/" + std::to_string(fileIndex[i]) + ".jpg";
+					path = "TrainNumber/" + std::string(1, answer[i]) + "/" + std::to_string(fileIndex[i]) + ".png";
 					std::cout << path << std::endl;
 					fileIndex[i]++;
 				} while (!tools::readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE));
 
-				//std::cout << path << std::endl;
+				std::cout << path << std::endl;
 				if (tools::writeImage(path, sample[i])) {
 					std::cerr << "Fail To Write." << std::endl;
 					exit(1);
@@ -142,6 +141,6 @@ public:
 	}
 };
 
-int startOpencv(int width, int height, int way, int floor, std::string zoneName, int mode);
+int startOpencv(int width, int height, int way, int floor, std::string zoneName, std::string answer, int mode);
 
 #endif

@@ -11,6 +11,7 @@ int main(int argc, char *argv[]) {
 		"{ @height        | 480 | height of image       }"
 		"{ @floor         | 0   | floor of parking area }"
 		"{ @zone          | Z   | name of parking zone  }"
+		"{ @answer        | -1  | answer                }"
 		"{ enter          |     | camera in enterance   }"
 		"{ exit           |     | camera in exit        }"
 		"{ n              |     | enable netwrok        }"
@@ -20,7 +21,7 @@ int main(int argc, char *argv[]) {
 		"{ s              |     | print plate's string  }"
 		"{ w              |     | show debuging window  }"
 		"{ a              |     | print analysis        }"
-		"{ f              |     | print final dicision  }"
+		"{ m              |     | not use ML  }"
 		"{ A              |     | enable all option     }"
 		;
 
@@ -35,6 +36,8 @@ int main(int argc, char *argv[]) {
 	int height = parser.get<int>(1);
 	int floor = parser.get<int>(2);
 	string zoneName = parser.get<string>(3);
+    string answer = parser.get<string>(4);
+
 	int way = -1;
 
 	if (parser.has("enter") && parser.has("exit"))
@@ -46,19 +49,19 @@ int main(int argc, char *argv[]) {
 			way = EXIT;
 	}
 
-	string key = "nTptswaf";
+	string key = "nTptswam";
 
 	for (int i = 0; i < key.length(); i++)
 		if (parser.has(string(1, key[i])))
 			mode |= 0x01 << i;
 
 	if (parser.has("A"))
-		mode |= 0xFF ^ TRAIN;
+		mode |= 0xFF ^ TRAIN ^ NOTUSEML;
 
 	if (!parser.check()) {
 		parser.printErrors();
 		return 0;
 	}
 
-	return startOpencv(width, height, way, floor, zoneName, mode);
+	return startOpencv(width, height, way, floor, zoneName, answer, mode);
 }

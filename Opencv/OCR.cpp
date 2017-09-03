@@ -119,7 +119,7 @@ void OCR::collectTrainImages() {
 	for (int i = 0; i < numCharacters; i++) {
 		int j = 0;
 		while (1) {
-			string path = "TrainNumber/" + string(1, strCharacters[i]) + "/" + to_string(j) + ".jpg";
+			string path = "TrainNumber/" + string(1, strCharacters[i]) + "/" + to_string(j) + ".png";
 			Mat img;
 			cout << path << endl;
 			if (readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE)) {

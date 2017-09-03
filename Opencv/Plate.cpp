@@ -23,10 +23,10 @@ RotatedRect Plate::minApproxRect(vector<Point> &contour) {
 	if (approxCurve.size() < 4)
 		return RotatedRect();
 
-	if (!isContourConvex(approxCurve))
-		return RotatedRect();
+/*	if (!isContourConvex(approxCurve))
+		return RotatedRect();*/
 	
-	return minAreaRect(approxCurve);
+	return minAreaRect(contour);
 }
 
 /*		번호판 영역 추출		*/
@@ -37,15 +37,15 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 	cvtColor(image, gray, CV_BGR2GRAY);
 
 	Mat blr;
-	int maxSize = 640 * 480;
-	int graySize = gray.size().area();
-	float redRatio = (float)pow(maxSize / graySize, 0.5);
+	float maxSize = 640 * 480;
+	float graySize = gray.size().area();
+	float redRatio = sqrtf(maxSize / graySize);
 
 	Mat lowRes;
 	if (graySize > maxSize)
-		resize(gray, lowRes, Size2f(redRatio*gray.cols, redRatio*gray.rows));
+		resize(gray, lowRes, Size(redRatio*gray.cols, redRatio*gray.rows));
 	else
-		lowRes = gray;
+        lowRes = gray;
 
 	blur(lowRes, blr, Size(3, 3));
 
@@ -58,6 +58,8 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 	Mat morph;
 	Mat kernel(3, 17, CV_8UC1, Scalar(1));
 	morphologyEx(thImg, morph, MORPH_CLOSE, kernel);
+
+    imshow("bin", morph);
 
 	vector < vector< Point> > contours;
 	findContours(morph, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
@@ -132,7 +134,6 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 
 			ccomp = Rect(ccomp.tl() / redRatio, ccomp.br() / redRatio);
 
-			drawRotatedRect(image, mr, Scalar(0, 0, 255));
 			drawRotatedRect(image(ccomp), minRect, Scalar(0, 255, 0));
 
 			Mat imgCrop;
@@ -181,7 +182,9 @@ inline bool Plate::verifySizes(RotatedRect &mr) {
 bool Plate::findNumbers(int number) {
 
 	Mat thresholded;
-	adaptiveThreshold(img, thresholded, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY_INV, 255, 0);
+	threshold(img, thresholded, 0, 255, THRESH_OTSU + THRESH_BINARY);
+    thresholded = ~thresholded;
+	//adaptiveThreshold(img, thresholded, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY_INV, 255, 0);
 
 	vector<vector<Point> > contours;
 	findContours(thresholded, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
