@@ -23,6 +23,7 @@ HttpMessage::HttpMessage(string firstLine[], HeaderLine headerLine[], int header
 HttpMessage::HttpMessage(string msg){
 	int start = 0, end = -1;
 	int i = 0;
+    this->headerSize = 0;
 	while(1){
 		end = msg.find("\r\n",start);
 		string line = string(msg, start, end-start);

@@ -9,6 +9,11 @@
 using namespace cv;
 using namespace std;
 
+struct SendData{
+    string plateStr;
+    int section;
+};
+
 int startOpencv(int width, int height, int way, int floor, string zoneName, string answer, int mode) {
 
 #if FROM == CAMERA
@@ -29,6 +34,8 @@ int startOpencv(int width, int height, int way, int floor, string zoneName, stri
 	Mat image;
 	Mat templ;
 	Rect area[SEGMENTSIZE];
+
+    cout << "Loading Machine learning Module." <<endl;
 
     OCR(CHARACTER+NUMBER);
 	OCR *ocrChar;
@@ -60,15 +67,19 @@ int startOpencv(int width, int height, int way, int floor, string zoneName, stri
 
 	bool runing = true;
 
-	thread camThread([&] {
-		while (runing) {
-			m.try_lock();
-			camera >> cameraFrame;
-			m.unlock();
-		}
-	});
+    thread camThread([&] {
+            cout << "camThread start" <<endl;
+            while (runing) {
+                m.try_lock();
+                camera >> cameraFrame;
+                m.unlock();
+            }
+    });
 
-	thread procThread([&] {
+    thread procThread([&] {
+        cout << "procThread start" <<endl;
+        SendData sendData;
+
 		while (runing = (waitKey(50) != 27)) {
 
 #if FROM == CAMERA
@@ -141,7 +152,7 @@ int startOpencv(int width, int height, int way, int floor, string zoneName, stri
 				if (mode & POSITION)
 					for (int j = 0; j < SEGMENTSIZE; j++)
 						if (area[j].contains(platePositions[i])){
-							cout << "\t\tIt's " << (section = j + 1) << "th Section." << endl;
+							cout << "\t\tIt's " << (section = 4 -j) << "th Section." << endl;
                             circle(image, platePositions[i], 2, Scalar(0,0,255),2);
                         }
 
@@ -185,18 +196,25 @@ int startOpencv(int width, int height, int way, int floor, string zoneName, stri
                 if (dicider.decide(str)) {
 #ifdef PSAPI_HPP_
                     if (mode & NETWORK) {
-	                    ps::API api;
-                        cout << "send to server" <<endl;
-                        if (!floor) {
-                            if (way == ENTER)
-                                api.enter(str);
-                            else if (way == EXIT)
-                                api.exit(str);
+                        if((sendData.plateStr!=str) || (sendData.section != section))
+                        {
+                            ps::API api;
+                            cout << "send to server" <<endl;
+                            if (!floor) {
+                                if (way == ENTER)
+                                    api.enter(str);
+                                else if (way == EXIT)
+                                    api.exit(str);
+                            }
+                            else
+                                api.parking(floor, zoneName, section, str);
+                            cout << "recive from server" <<endl;
+                            api.resopnse();
+                            cout << "sending complete" <<endl;
+
+                            sendData.plateStr = str;
+                            sendData.section = section;
                         }
-                        else
-                            api.parking(floor, zoneName, section, str);
-                        cout << __LINE__ <<endl;
-                        api.resopnse();
                     }
 #endif
 #ifndef PSAPI_HPP_
@@ -204,13 +222,13 @@ int startOpencv(int width, int height, int way, int floor, string zoneName, stri
                         cout << "send to server" <<endl;
                         if (!floor) {
                             if (way == ENTER)
-                                system(("http_test enter "+str).c_str());
+                                system(("Network/http_test enter "+str).c_str());
                             else if (way == EXIT)
-                                system(("http_test exit "+str).c_str());
+                                system(("Network/http_test exit "+str).c_str());
                         }
                         else{
                             cout << "http_test parking "+to_string(floor)+" "+zoneName+" "+to_string(section)+" "+str <<endl;
-                            system(("http_test parking "+to_string(floor)+" "+zoneName+" "+to_string(section)+" "+str).c_str());
+                            system(("Network/http_test parking "+to_string(floor)+" "+zoneName+" "+to_string(section)+" "+str).c_str());
                         }
                     }
 #endif

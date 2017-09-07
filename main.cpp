@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
 		"{ w              |     | show debuging window  }"
 		"{ a              |     | print analysis        }"
 		"{ m              |     | not use ML  }"
-		"{ A              |     | enable all option     }"
+		"{ A              |     | enable all exp. -m -T }"
 		;
 
 	cv::CommandLineParser parser(argc, argv, keys);

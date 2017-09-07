@@ -37,7 +37,7 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 	cvtColor(image, gray, CV_BGR2GRAY);
 
 	Mat blr;
-	float maxSize = 640 * 480;
+	float maxSize = 960 * 720;
 	float graySize = gray.size().area();
 	float redRatio = sqrtf(maxSize / graySize);
 
@@ -50,19 +50,20 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 	blur(lowRes, blr, Size(3, 3));
 
 	Mat sobel;
-	Sobel(blr, sobel, CV_8U, 1, 0, 3);
+    Canny(blr, sobel, 50, 100, 3);
+//	Sobel(blr, sobel, CV_8U, 1, 0, 3);
 
 	Mat thImg;
 	threshold(sobel, thImg, 0, 255, THRESH_OTSU + THRESH_BINARY);
 
 	Mat morph;
-	Mat kernel(3, 17, CV_8UC1, Scalar(1));
-	morphologyEx(thImg, morph, MORPH_CLOSE, kernel);
+//	Mat kernel(3, 17, CV_8UC1, Scalar(1));
+//	morphologyEx(thImg, morph, MORPH_CLOSE, kernel);
 
-    imshow("bin", morph);
+  //  imshow("bin", morph);
 
 	vector < vector< Point> > contours;
-	findContours(morph, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
+	findContours(sobel, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
 
 	int contoursSize = (int)contours.size();
 

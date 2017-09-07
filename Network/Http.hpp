@@ -33,7 +33,7 @@ class HttpMessage {
 protected:
 	string firstLine[3];
 private :
-	HeaderLine headerLine[100];
+	HeaderLine headerLine[500];
 	string messageBody;
 	bool error;
 	int headerSize;

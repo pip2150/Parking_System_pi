@@ -88,10 +88,11 @@ void ps::API::resopnse(){
 	string content = "";
 
 	int size = MAXRECV;
-
 	while(size >= MAXRECV){
 		size = sock.recv(buff);
-		recvbuff += buff;
+		recvbuff += buff; 
+        if(size == -1)
+            break;
 	}
 
 	HttpRequestMessge http(recvbuff);
