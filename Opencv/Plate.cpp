@@ -8,6 +8,7 @@ Plate::Plate() {}
 Plate::Plate(Mat &img) { this->img = img; }
 Plate::Number::Number(Mat &src) { this->img = src; }
 void Plate::setDebug(bool debug) { this->debug = debug; }
+static int lowThreshold = 50, highThreshold = 100;
 
 /*		숫자 영역 정규화		*/
 void Plate::Number::canonicalize(int sampleSize) {
@@ -23,9 +24,9 @@ RotatedRect Plate::minApproxRect(vector<Point> &contour) {
 	if (approxCurve.size() < 4)
 		return RotatedRect();
 
-/*	if (!isContourConvex(approxCurve))
-		return RotatedRect();*/
-	
+	/*	if (!isContourConvex(approxCurve))
+	return RotatedRect();*/
+
 	return minAreaRect(contour);
 }
 
@@ -45,22 +46,25 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 	if (graySize > maxSize)
 		resize(gray, lowRes, Size(redRatio*gray.cols, redRatio*gray.rows));
 	else
-        lowRes = gray;
+		lowRes = gray;
 
 	blur(lowRes, blr, Size(3, 3));
 
+	createTrackbar("min threahold", "bin", &lowThreshold, 300);
+	createTrackbar("max threahold", "bin", &highThreshold, 300);
+
 	Mat sobel;
-    Canny(blr, sobel, 50, 100, 3);
-//	Sobel(blr, sobel, CV_8U, 1, 0, 3);
+	Canny(blr, sobel, lowThreshold, highThreshold, 3);
+	//	Sobel(blr, sobel, CV_8U, 1, 0, 3);
 
 	Mat thImg;
 	threshold(sobel, thImg, 0, 255, THRESH_OTSU + THRESH_BINARY);
 
 	Mat morph;
-//	Mat kernel(3, 17, CV_8UC1, Scalar(1));
-//	morphologyEx(thImg, morph, MORPH_CLOSE, kernel);
+	//	Mat kernel(3, 17, CV_8UC1, Scalar(1));
+	//	morphologyEx(thImg, morph, MORPH_CLOSE, kernel);
 
-  //  imshow("bin", morph);
+	imshow("bin", thImg);
 
 	vector < vector< Point> > contours;
 	findContours(sobel, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
@@ -115,7 +119,7 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 				Size2f(minRect.size.width / redRatio, minRect.size.height / redRatio),
 				minRect.angle
 			);
-			
+
 			Point2f src[4];
 			minRect.points(src);
 
@@ -184,7 +188,7 @@ bool Plate::findNumbers(int number) {
 
 	Mat thresholded;
 	threshold(img, thresholded, 0, 255, THRESH_OTSU + THRESH_BINARY);
-    thresholded = ~thresholded;
+	thresholded = ~thresholded;
 	//adaptiveThreshold(img, thresholded, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY_INV, 255, 0);
 
 	vector<vector<Point> > contours;
@@ -205,7 +209,7 @@ bool Plate::findNumbers(int number) {
 
 	srand((int)time(0));		// 숫자 색 seed 값
 
-	/* ----- 숫자 영역 비율 및 위치 검사 ----- */
+								/* ----- 숫자 영역 비율 및 위치 검사 ----- */
 
 	struct cmp {
 		bool operator()(Rect t, Rect u) { return t.x > u.x; }
@@ -240,7 +244,7 @@ bool Plate::findNumbers(int number) {
 		imshow("thresholded", thresholded);
 		imshow("contoursfound", contoursfound);
 	}
-	
+
 	if (rectPQ.size() < number)
 		return false;
 
