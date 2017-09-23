@@ -4,28 +4,50 @@
 using namespace cv::ml;
 using namespace cv;
 using namespace std;
-using namespace tools;
 
-OCR::OCR(int format = NUMBER + CHARACTER) {
-
+OCR::OCR(int format, int flags) {
 	this->numCharacters = format;
 
-	switch (format) {
-	case NUMBER: 
-	case CHARACTER:	
-		readTraindata("Opencv/OCR.json", format);
-		train(NLAYERS);
-		break;
-
-	case NUMBER + CHARACTER: 
-		collectTrainImages();
-		writeTraindata("Opencv/OCR.json");
-		/*readTraindata("Opencv/OCR.json");*/
-		break;
-	default:
+	if ((format != NUMBER) && (format != CHARACTER) && (format != (NUMBER + CHARACTER))) {
 		cerr << "Long Format Was Inputed!" << endl;
 		exit(1);
 	}
+
+	if (flags & COLLECT) {
+		collectTrainImages();
+		if(flags & WRITEDT)
+			writeTraindata("Opencv/OCR.json");
+	}
+	else
+		readTraindata("Opencv/OCR.json", format);
+	
+	Mat layerSizes(3, 1, CV_32SC1);
+
+	layerSizes.at<int>(0) = trainingData.cols;
+	layerSizes.at<int>(1) = NLAYERS;
+	layerSizes.at<int>(2) = numCharacters;
+
+	ann = ANN_MLP::create();
+
+	ann->setLayerSizes(layerSizes);
+	ann->setActivationFunction(ANN_MLP::SIGMOID_SYM, 1, 1);
+	ann->setTermCriteria(TermCriteria(TermCriteria::MAX_ITER + TermCriteria::EPS, 300, 0.0001));
+	ann->setTrainMethod(ml::ANN_MLP::BACKPROP, 0.0001);
+
+	Mat trainClasses;
+	trainClasses.create(trainingData.rows, numCharacters, CV_32FC1);
+
+	for (int i = 0; i < trainClasses.rows; i++) {
+		for (int k = 0; k < trainClasses.cols; k++) {
+			if (k == classes.at<int>(i))
+				trainClasses.at<float>(i, k) = 1;
+			else
+				trainClasses.at<float>(i, k) = 0;
+		}
+	}
+
+	ann->train(trainingData, ROW_SAMPLE, trainClasses);
+
 }
 
 void OCR::readTraindata(string fn) {
@@ -45,6 +67,9 @@ void OCR::readTraindata(string fn) {
 void OCR::readTraindata(string fn, int format) {
 	readTraindata(fn);
 	
+	if (format == CHARACTER + NUMBER)
+		return;
+
 	Mat _trainingData;
 	Mat _classes;
 
@@ -82,47 +107,14 @@ void OCR::writeTraindata(string fn) {
 
 }
 
-void OCR::train(int nlayers) {
-
-	Mat layerSizes(3, 1, CV_32SC1);
-
-	layerSizes.at<int>(0) = trainingData.cols;
-	layerSizes.at<int>(1) = nlayers;
-	layerSizes.at<int>(2) = numCharacters;
-
-	/*cout << "layout : " << layerSizes << endl;*/
-	ann = ANN_MLP::create();
-
-	ann->setLayerSizes(layerSizes);
-	ann->setActivationFunction(ANN_MLP::SIGMOID_SYM, 1, 1);
-	ann->setTermCriteria(TermCriteria(TermCriteria::MAX_ITER + TermCriteria::EPS, 300, 0.0001));
-	ann->setTrainMethod(ml::ANN_MLP::BACKPROP, 0.0001);
-
-	Mat trainClasses;
-	trainClasses.create(trainingData.rows, numCharacters, CV_32FC1);
-
-	for (int i = 0; i < trainClasses.rows; i++)
-	{
-		for (int k = 0; k < trainClasses.cols; k++)
-		{
-			if (k == classes.at<int>(i))
-				trainClasses.at<float>(i, k) = 1;
-			else
-				trainClasses.at<float>(i, k) = 0;
-		}
-	}
-
-	ann->train(trainingData, ROW_SAMPLE, trainClasses);
-}
-
 void OCR::collectTrainImages() {
-	for (int i = 0; i < numCharacters; i++) {
+	for (int i = 0; i < CHARACTER + NUMBER; i++) {
 		int j = 0;
 		while (1) {
 			string path = "TrainNumber/" + string(1, strCharacters[i]) + "/" + to_string(j) + ".png";
 			Mat img;
 			cout << path << endl;
-			if (readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE)) {
+			if (tools::readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE)) {
 				break;
 			}
 

@@ -2,7 +2,6 @@
 #define PLATE_HPP_
 
 #include <opencv2/opencv.hpp>
-#include <opencv2/core/core.hpp>
 
 class Plate {
 private:
@@ -14,11 +13,13 @@ private:
 public:
 	Plate();
 	Plate(cv::Mat& binarizatied);
+	Plate(cv::Mat &img, cv::Point &position);
 	void setDebug(bool debug);
 
 	cv::Mat img;
 	cv::Mat binarizatied;
 	cv::Mat canonical;
+	cv::Point position;
 
 	class Number {
 	public:
@@ -30,7 +31,7 @@ public:
 	std::vector<Number> numbers;
 	bool findNumbers(int number);
 
-	static void find(cv::Mat &input, std::vector<Plate> &PossiblePlates, std::vector<cv::Point> &PlatePositions);
+	static void find(cv::Mat &input, std::vector<Plate> &PossiblePlates);
 	static void drawRotatedRect(cv::Mat img, cv::RotatedRect roRec, const cv::Scalar color, int thickness = 1, int lineType = cv::LINE_8, int shift = 0);
 	void canonicalize();
 

@@ -1,8 +1,7 @@
 #ifndef SVM_HPP_
 #define SVM_HPP_
 
-#include <opencv2/core/core.hpp>
-#include <opencv2/ml/ml.hpp>
+#include <opencv2/opencv.hpp>
 
 class Svm {
 private:
@@ -12,7 +11,7 @@ private:
 
 public:
 	Svm();
-	void train();
+	Svm(int flags);
 	void collectTrainImages();
 	float predict(cv::Mat &img);
 	void readTraindata(std::string fn);

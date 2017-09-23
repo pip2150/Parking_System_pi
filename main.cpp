@@ -1,4 +1,5 @@
-#include "Opencv/Opencv.hpp"
+#include <opencv2\opencv.hpp>
+#include "Opencv\Opencv.hpp"
 
 using namespace std;
 
@@ -34,22 +35,18 @@ int main(int argc, char *argv[]) {
 
 	int width = parser.get<int>(0);
 	int height = parser.get<int>(1);
-	int floor = parser.get<int>(2);
-	string zoneName = parser.get<string>(3);
-    string answer = parser.get<string>(4);
-
-	int way = -1;
+	ParkingInfo info = { -1, parser.get<int>(2), parser.get<string>(3) };
+	string answer = parser.get<string>(4);
+	string key = "nTptswam";
 
 	if (parser.has("enter") && parser.has("exit"))
 		parser.printErrors();
 	else {
 		if (parser.has("enter"))
-			way = ENTER;
+			info.way = ENTER;
 		if (parser.has("exit"))
-			way = EXIT;
+			info.way = EXIT;
 	}
-
-	string key = "nTptswam";
 
 	for (int i = 0; i < key.length(); i++)
 		if (parser.has(string(1, key[i])))
@@ -63,5 +60,5 @@ int main(int argc, char *argv[]) {
 		return 0;
 	}
 
-	return startOpencv(width, height, way, floor, zoneName, answer, mode);
+	return startOpencv(width, height, info, answer, mode);
 }

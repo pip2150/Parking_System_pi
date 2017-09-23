@@ -6,6 +6,10 @@ using namespace std;
 
 Plate::Plate() {}
 Plate::Plate(Mat &img) { this->img = img; }
+Plate::Plate(Mat &img, Point &position) { 
+	this->img = img;
+	this->position = position;
+}
 Plate::Number::Number(Mat &src) { this->img = src; }
 void Plate::setDebug(bool debug) { this->debug = debug; }
 static int lowThreshold = 50, highThreshold = 100;
@@ -31,20 +35,22 @@ RotatedRect Plate::minApproxRect(vector<Point> &contour) {
 }
 
 /*		번호판 영역 추출		*/
-void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &PlatePositions) {
+void Plate::find(Mat &image, vector<Plate> &PossiblePlates) {
 	srand((int)time(NULL));
 
 	Mat gray;
 	cvtColor(image, gray, CV_BGR2GRAY);
 
 	Mat blr;
-	float maxSize = 960 * 720;
-	float graySize = gray.size().area();
-	float redRatio = sqrtf(maxSize / graySize);
+	int maxSize = 960 * 720;
+	int graySize = gray.size().area();
+	float redRatio = 1.0;
 
 	Mat lowRes;
-	if (graySize > maxSize)
-		resize(gray, lowRes, Size(redRatio*gray.cols, redRatio*gray.rows));
+	if (graySize > maxSize) {
+		redRatio = sqrtf((float)maxSize / graySize);
+		resize(gray, lowRes, Size2f(redRatio*gray.cols, redRatio*gray.rows));
+	}
 	else
 		lowRes = gray;
 
@@ -145,11 +151,12 @@ void Plate::find(Mat &image, vector<Plate> &PossiblePlates, vector<Point> &Plate
 			Mat M = getPerspectiveTransform(src, plateCorner);
 			warpPerspective(gray(ccomp), imgCrop, M, m_size);
 
+			Point position = minRect.center + (Point2f)ccomp.tl();
+			Plate plate(imgCrop, position);
+
 #pragma	omp	critical
-			{
-				PossiblePlates.push_back(imgCrop);
-				PlatePositions.push_back(minRect.center + (Point2f)ccomp.tl());
-			}
+				PossiblePlates.push_back(plate);
+
 		}
 	}
 

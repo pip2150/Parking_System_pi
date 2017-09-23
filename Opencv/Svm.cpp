@@ -4,15 +4,17 @@
 using namespace cv::ml;
 using namespace cv;
 using namespace std;
-using namespace tools;
 
-Svm::Svm() {
-	/*collectTrainImages();
-	writeTraindata("Opencv/SVMDATA.json");*/
-	readTraindata("Opencv/SVMDATA.json");
-	train();
-}
-void Svm::train() {
+Svm::Svm(int flags) {
+
+	if (flags & COLLECT) {
+		collectTrainImages();
+		if (flags & WRITEDT)
+			writeTraindata("Opencv/SVMDATA.json");
+	}
+	else
+		readTraindata("Opencv/SVMDATA.json");
+	
 	svm = SVM::create();
 
 	svm->setType(SVM::C_SVC);
@@ -35,7 +37,7 @@ void Svm::collectTrainImages() {
 		string path = "trainimage/" + to_string(i) + ".png";
 		Mat img;
 
-		if (readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE)) {
+		if (tools::readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE)) {
 			cerr << "File No Exist." << endl;
 			exit(1);
 		}
