@@ -13,14 +13,17 @@ OCR::OCR(const int format, const int flags) {
 		exit(1);
 	}
 
+	//* Json File 경로
+	string jsonPath = "Opencv/OCR.json";
 	if (flags & COLLECT) {
 		collectTrainImages();
-		if(flags & WRITEDT)
-			writeTraindata("Opencv/OCR.json");
+		if (flags & WRITEDT)
+			writeTraindata(jsonPath);
 	}
 	else
-		readTraindata("Opencv/OCR.json", format);
-	
+		readTraindata(jsonPath, format);
+
+	//* layer 크기
 	Mat layerSizes(3, 1, CV_32SC1);
 
 	layerSizes.at<int>(0) = trainingData.cols;
@@ -34,6 +37,8 @@ OCR::OCR(const int format, const int flags) {
 	ann->setTermCriteria(TermCriteria(TermCriteria::MAX_ITER + TermCriteria::EPS, 300, 0.0001));
 	ann->setTrainMethod(ml::ANN_MLP::BACKPROP, 0.0001);
 
+	/**
+	*/
 	Mat trainClasses;
 	trainClasses.create(trainingData.rows, numCharacters, CV_32FC1);
 
@@ -66,7 +71,7 @@ void OCR::readTraindata(const string fn) {
 
 void OCR::readTraindata(const string fn, const int format) {
 	readTraindata(fn);
-	
+
 	if (format == CHARACTER + NUMBER)
 		return;
 
@@ -74,12 +79,14 @@ void OCR::readTraindata(const string fn, const int format) {
 	Mat _classes;
 
 	for (int i = 0; i < classes.rows; i++) {
+		//* 문자 OCR의 경우
 		if (format == CHARACTER) {
 			if (classes.at<int>(i, 0) >= NUMBER) {
 				_classes.push_back(classes.at<int>(i, 0) - NUMBER);
 				_trainingData.push_back(trainingData.row(i));
 			}
 		}
+		//* 숫자 OCR의 경우
 		else if (format == NUMBER) {
 			if (classes.at<int>(i, 0) < NUMBER) {
 				_classes.push_back(classes.at<int>(i, 0));
@@ -87,7 +94,7 @@ void OCR::readTraindata(const string fn, const int format) {
 			}
 		}
 	}
-	
+
 	_trainingData.copyTo(trainingData);
 	_classes.copyTo(classes);
 
@@ -134,22 +141,17 @@ char OCR::classify(Mat *output) {
 	double maxVal;
 
 	minMaxLoc(*output, 0, &maxVal, 0, &maxLoc);
-	
+
 	if (numCharacters == CHARACTER)
 		return strCharacters[maxLoc.x + 10];
 	else
 		return strCharacters[maxLoc.x];
 }
 
-float OCR::predict(const Mat &img) {
-	return ann->predict(img);
-}
-
 float OCR::predict(const Mat &img, Mat *out) {
 	return ann->predict(img, *out);
 }
 
-/*		히스토그램 추출		*/
 Mat OCR::getHistogram(const Mat &img, const int t) {
 	int sz = (t) ? img.rows : img.cols;
 	Mat mhist = Mat::zeros(1, sz, CV_32F);
@@ -169,7 +171,6 @@ Mat OCR::getHistogram(const Mat &img, const int t) {
 	return mhist;
 }
 
-/*		특징 추출		*/
 Mat OCR::features(const Mat &numbers, const int sizeData) {
 
 	Mat vhist = getHistogram(numbers, VERTICAL);

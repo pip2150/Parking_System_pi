@@ -7,14 +7,17 @@ using namespace std;
 
 Svm::Svm(const int flags) {
 
+	//* Json File °æ·Î
+	string jsonPath = "Opencv/SVMDATA.json";
+
 	if (flags & COLLECT) {
 		collectTrainImages();
 		if (flags & WRITEDT)
-			writeTraindata("Opencv/SVMDATA.json");
+			writeTraindata(jsonPath);
 	}
 	else
-		readTraindata("Opencv/SVMDATA.json");
-	
+		readTraindata(jsonPath);
+
 	svm = SVM::create();
 
 	svm->setType(SVM::C_SVC);
@@ -60,6 +63,7 @@ float Svm::predict(const Mat &img) {
 }
 
 void Svm::readTraindata(const string fn) {
+
 	FileStorage fs(fn, FileStorage::READ | FileStorage::FORMAT_JSON);
 
 	if (!fs.isOpened()) {
@@ -75,6 +79,7 @@ void Svm::readTraindata(const string fn) {
 }
 
 void Svm::writeTraindata(const string fn) {
+
 	FileStorage fs(fn, FileStorage::WRITE | FileStorage::FORMAT_JSON);
 
 	fs << "TrainingData" << trainingData;

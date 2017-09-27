@@ -32,7 +32,7 @@ bool tools::Dicider::decide(const std::string str) {
 		return false;
 	}
 	else if (keyStr == str) {
-		if (match == MAXMATCH) {
+		if (match == LEASTMATCH) {
 			match = -1;
 			return true;
 		}
@@ -50,15 +50,20 @@ tools::Analyzer::Analyzer(const std::string answer) {
 }
 
 void tools::Analyzer::analyze(const std::string str) {
+
+	//* TEXTSIZE개의 텍스트 중 일치한 횟수
 	int correct = 0;
-	for (int j = 0; j < NUMSIZE; j++)
+	for (int j = 0; j < TEXTSIZE; j++)
 		if (str[j] == answer[j])
 			correct++;
 
 	totalTry++;
 	totalCorrect += correct;
-	double average = (double)correct / NUMSIZE;
-	double totalAverage = (double)totalCorrect / (totalTry * NUMSIZE);
+
+	//* 하나의 번호판에서 예측한 텍스트가 평균적으로 맞은 횟수
+	double average = (double)correct / TEXTSIZE;
+	//* 모든 시도에서 예측한 텍스트가 평균적으로 맞은 횟수
+	double totalAverage = (double)totalCorrect / (totalTry * TEXTSIZE);
 	std::cout << "\t\tCorrect Answer Rate : " << average * 100 << "%";
 	std::cout << "\tTotal Correct Answer Rate : " << totalAverage * 100 << "%" << std::endl;
 }
@@ -68,9 +73,12 @@ tools::SVMTrainer::SVMTrainer() {
 }
 
 void tools::SVMTrainer::train(const cv::Mat &sample) {
+	//* trainimage들의 경로
 	std::string path;
+	//* 저장할 image
 	cv::Mat img;
 
+	//* 정규화된 image
 	Mat svmdata;
 	resize(sample, svmdata, Size(144, 33), 0, 0, INTER_CUBIC);
 
@@ -88,19 +96,22 @@ void tools::SVMTrainer::train(const cv::Mat &sample) {
 }
 
 tools::OCRTrainer::OCRTrainer(const std::string answer) {
-	memset(fileIndex, 0, sizeof(fileIndex));
+	for (int index : fileIndexs)
+		index = 0;
 	this->answer = answer;
 }
 
 void tools::OCRTrainer::train(const std::vector<cv::Mat> &sample) {
 	if (sample.size() == answer.size()) {
 		for (int i = 0; i < answer.size(); i++) {
+			//* TrainNumber들의 경로
 			std::string path;
+			//* 저장할 image
 			cv::Mat img;
 			do {
-				path = "TrainNumber/" + std::string(1, answer[i]) + "/" + std::to_string(fileIndex[i]) + ".png";
+				path = "TrainNumber/" + std::string(1, answer[i]) + "/" + std::to_string(fileIndexs[i]) + ".png";
 				std::cout << path << std::endl;
-				fileIndex[i]++;
+				fileIndexs[i]++;
 			} while (!tools::readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE));
 
 			std::cout << path << std::endl;

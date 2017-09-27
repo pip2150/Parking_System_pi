@@ -4,27 +4,29 @@
 using namespace cv;
 using namespace std;
 
-Plate::Plate() {}
-Plate::Plate(const Mat &img) { this->img = img; }
 Plate::Plate(const Mat &img, const Point &position) {
 	this->img = img;
 	this->position = position;
 }
-Plate::Number::Number(const Mat &src) { this->img = src; }
+Plate::Text::Text(const Mat &src) { this->img = src; }
 void Plate::setDebug(bool debug) { this->debug = debug; }
 static int lowThreshold = 50, highThreshold = 100;
 
-/*		숫자 영역 정규화		*/
-void Plate::Number::canonicalize(int sampleSize) {
+Mat Plate::Text::canonical(int sampleSize) {
+	Mat canonical;
 	resize(img, canonical, Size2d(sampleSize, sampleSize));
+
+	return canonical;
 }
 
 RotatedRect Plate::minApproxRect(const vector<Point> &contour) {
 	vector<Point> approxCurve;
 
+	/** 근사도 */
 	double eps = contour.size() * 0.1;
 	approxPolyDP(contour, approxCurve, eps, true);
 
+	/** 사각형 이하의 다각형 제외 */
 	if (approxCurve.size() < 4)
 		return RotatedRect();
 
@@ -34,7 +36,6 @@ RotatedRect Plate::minApproxRect(const vector<Point> &contour) {
 	return minAreaRect(contour);
 }
 
-/*		번호판 영역 추출		*/
 void Plate::find(const Mat &image, vector<Plate> *PossiblePlates) {
 	srand((int)time(NULL));
 
@@ -44,11 +45,15 @@ void Plate::find(const Mat &image, vector<Plate> *PossiblePlates) {
 	cvtColor(image, gray, CV_BGR2GRAY);
 
 	Mat blr;
+
+	/** 최고 해상도 */
 	int maxSize = 960 * 720;
 	int graySize = gray.size().area();
 	float redRatio = 1.0;
 
 	Mat lowRes;
+
+	/** 최고 해상도 이상 해상도를 강제로 저하 */
 	if (graySize > maxSize) {
 		redRatio = sqrtf((float)maxSize / graySize);
 		resize(gray, lowRes, Size2f(redRatio*gray.cols, redRatio*gray.rows));
@@ -77,12 +82,13 @@ void Plate::find(const Mat &image, vector<Plate> *PossiblePlates) {
 	vector < vector< Point> > contours;
 	findContours(sobel, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
 
+	/** OpenMP Thread 생성 */
 #pragma omp parallel
+	/** implicit barrier 사용안함 */
 #pragma omp for nowait
-	for (int i = 0; i < contours.size();i++) {
+	for (int i = 0; i < contours.size(); i++) {
 		RotatedRect mr = minApproxRect(contours[i]);
 
-		/*		크기 검사		*/
 		if (!verifySizes(mr))
 			continue;
 
@@ -97,7 +103,8 @@ void Plate::find(const Mat &image, vector<Plate> *PossiblePlates) {
 		Rect ccomp;
 		Mat mask(blr.size() + Size(2, 2), CV_8UC1, Scalar(0));
 
-		/*		번호판에 floodfill 연산		*/
+		/**	------ 번호판에 floodfill 연산 ------ */
+
 		int area = 0;
 		for (int j = 0; j < 10; j++) {
 			float radius = rand() % (int)minSize - (float)(minSize * 0.5);
@@ -110,6 +117,8 @@ void Plate::find(const Mat &image, vector<Plate> *PossiblePlates) {
 		if (!area)
 			continue;
 
+		/**	------ /번호판에 floodfill 연산 ------ */
+
 		vector<vector<Point> > plateContours;
 		findContours(mask(ccomp + Point(1, 1)), plateContours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
 
@@ -118,6 +127,8 @@ void Plate::find(const Mat &image, vector<Plate> *PossiblePlates) {
 
 			if (!verifySizes(minRect))
 				continue;
+
+			/** ------ image warping ------ */
 
 			minRect = RotatedRect(minRect.center / redRatio, Size2f(minRect.size / redRatio), minRect.angle);
 
@@ -146,9 +157,12 @@ void Plate::find(const Mat &image, vector<Plate> *PossiblePlates) {
 			Mat M = getPerspectiveTransform(src, plateCorner);
 			warpPerspective(gray(ccomp), imgCrop, M, m_size);
 
+			/** ------ /image warping ------ */
+
 			Point position = minRect.center + (Point2f)ccomp.tl();
 			Plate plate(imgCrop, position);
 
+			/** thread 에 대한 ciritical 영역 생성*/
 #pragma	omp	critical
 			PossiblePlates->push_back(plate);
 
@@ -157,15 +171,28 @@ void Plate::find(const Mat &image, vector<Plate> *PossiblePlates) {
 
 }
 
-/*		번호판 정규화		*/
-void Plate::canonicalize() {
+Mat Plate::canonical() {
+	Mat canonical;
 	resize(img, canonical, Size(144, 33), 0, 0, INTER_CUBIC);
 	equalizeHist(canonical, canonical);
 	canonical = canonical.reshape(1, 1);
 	canonical.convertTo(canonical, CV_32FC1);
+
+	return canonical;
 }
 
-/*		크기 검사		*/
+/*
+	*	      Size
+	*	      ^
+	*	      |
+	*	      |
+	*	rmax _|       _____________
+	*	      |      |             |
+	*	      |      |     rect    |
+	*	rmin _|      |_____________|
+	*	      |________________________________> ratio
+	*	             |min          |max
+*/
 inline bool Plate::verifySizes(const RotatedRect &mr) {
 	float min = 800;
 	float max = 70000;
@@ -185,8 +212,7 @@ inline bool Plate::verifySizes(const RotatedRect &mr) {
 	return rect.contains(pt);
 }
 
-/*		번호판에서 숫자영역 추출		*/
-bool Plate::findNumbers(const int number) {
+bool Plate::findTexts(const int textSize) {
 
 	Mat thresholded;
 	threshold(img, thresholded, 0, 255, THRESH_OTSU + THRESH_BINARY);
@@ -197,15 +223,16 @@ bool Plate::findNumbers(const int number) {
 	findContours(thresholded, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
 
 	int contoursSize = (int)contours.size();
-	if (contoursSize < number)
+	if (contoursSize < textSize)
 		return false;
 
-	Size flatSize = thresholded.size();
+	Size plateSize = thresholded.size();
 
-	Mat contoursfound(flatSize, CV_8UC4, Scalar(255, 255, 255));
+	Mat contoursfound(plateSize, CV_8UC4, Scalar(255, 255, 255));
+
 	line(contoursfound,
-		Point2d(0, flatSize.height * 0.5),
-		Point2d(flatSize.width, flatSize.height * 0.5),
+		Point2d(0, plateSize.height * 0.5),
+		Point2d(plateSize.width, plateSize.height * 0.5),
 		Scalar(255, 0, 255)
 	);
 
@@ -228,26 +255,42 @@ bool Plate::findNumbers(const int number) {
 		int uy = contourRect.y;
 		int rx = contourRect.x + contourRect.width;
 
+		/** 가로 세로 비율 */
 		double ratio = ((double)contourRect.width / (double)contourRect.height)
-			* ((double)flatSize.width / (double)flatSize.height);
+			* ((double)plateSize.width / (double)plateSize.height);
 
+		/** 0.5 < ratio < 5 */
 		if ((ratio > 0.5) && (ratio < 5)) {
-			if ((dy > flatSize.height * 0.5) && (uy < flatSize.height * 0.5)) {
+			/*
+			*	번호판의 중심 횡단부를 차지하는 contour 만 허용
+			*	       _____________________________
+			*	      |    ____     _      _____    |
+			*	      |   |    |     |          |   |
+			*	      |___|____|_____|__________|___|
+			*	      |   |    |     |     |        |
+			*	      |   |____|   __|__   |_____   |
+			*	      |_____________________________|
+			*/
+			if ((dy > plateSize.height * 0.5) && (uy < plateSize.height * 0.5)) {
 				/* 숫자 출력 시 랜덤 색상으로 출력 */
 				vector<vector<Point> > tmp;
 				tmp.push_back(contour);
 				drawContours(contoursfound, tmp, -1, Scalar(rand() % 255, 0, rand() % 255), 1);
+
+				/** Priority Queue에 입력 */
 				rectPQ.push(contourRect);
 			}
 		}
 	}
+
+	/* ----- /숫자 영역 비율 및 위치 검사 ----- */
 
 	if (debug) {
 		imshow("thresholded", thresholded);
 		imshow("contoursfound", contoursfound);
 	}
 
-	if (rectPQ.size() < number)
+	if (rectPQ.size() < textSize)
 		return false;
 
 	/* ----- x좌표 정렬 및 겹침 검사 ----- */
@@ -264,25 +307,25 @@ bool Plate::findNumbers(const int number) {
 		else
 			preRect = curRect;
 
-		Mat matNum = ~thresholded(preRect);
-		numbers.push_back(matNum);
+		Mat text = ~thresholded(preRect);
+		texts.push_back(text);
 
 		preRect = curRect;
 	}
 
-	return (number == numbers.size());
+	/* ----- /x좌표 정렬 및 겹침 검사 ----- */
+
+	return (textSize == texts.size());
 }
 
-/*		겹침 검사	*/
 inline bool Plate::isOverlap(const Rect &A, const Rect &B) {
 	return (A & B).area() > 0;
 }
 
-/*		RotatedRect 그리기		*/
-void Plate::drawRotatedRect(const Mat &img, const RotatedRect &roRec, const Scalar color, int thickness, int lineType, int shift) {
+void Plate::drawRotatedRect(const Mat &img, const RotatedRect &roRec, const Scalar color, int thickness) {
 
 	Point2f vertices[4];
 	roRec.points(vertices);
 	for (int i = 0; i < 4; i++)
-		line(img, vertices[i], vertices[(i + 1) % 4], color, thickness, lineType, shift);
+		line(img, vertices[i], vertices[(i + 1) % 4], color, thickness);
 }

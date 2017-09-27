@@ -6,6 +6,7 @@ using namespace std;
 int main(int argc, char *argv[]) {
 	int mode = 0;
 
+	//* 도움말 호출 시 출력할 내용
 	const string keys =
 		"{ help h usage ? |     | print this message    }"
 		"{ @width         | 640 | width of image        }"
@@ -33,21 +34,28 @@ int main(int argc, char *argv[]) {
 		return 0;
 	}
 
+	//* image 너비
 	int width = parser.get<int>(0);
+	//* image 높이
 	int height = parser.get<int>(1);
 	ParkingInfo info = { -1, parser.get<int>(2), parser.get<string>(3) };
+	//* 지도 학습 또는 통계 수치 계산을 위한 답
 	string answer = parser.get<string>(4);
 	string key = "nTptswam";
 
+	//* 입구 모드, 출구 모드 동시에 지정 했을 경우 오류 출력
 	if (parser.has("enter") && parser.has("exit"))
 		parser.printErrors();
 	else {
+		//* 입구 모드
 		if (parser.has("enter"))
 			info.way = ENTER;
+		//* 출구 모드
 		if (parser.has("exit"))
 			info.way = EXIT;
 	}
 
+	//* 모드 지정
 	for (int i = 0; i < key.length(); i++)
 		if (parser.has(string(1, key[i])))
 			mode |= 0x01 << i;
@@ -55,6 +63,7 @@ int main(int argc, char *argv[]) {
 	if (parser.has("A"))
 		mode |= 0xFF ^ TRAIN ^ NOTUSEML;
 
+	//* 오류 발생시 오류 내용 출력
 	if (!parser.check()) {
 		parser.printErrors();
 		return 0;
