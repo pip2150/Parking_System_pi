@@ -107,7 +107,6 @@ int startOpencv(int width, int height, ParkingInfo info, string answer, int mode
 
 	cout << "Loading Machine learning Modules." << endl;
 
-	/*OCR(CHARACTER + NUMBER, WRITEDT);*/
 	OCR *ocrChar, *ocrNum;
 	Svm *svm;
 
@@ -234,7 +233,7 @@ int startOpencv(int width, int height, ParkingInfo info, string answer, int mode
 					if (mode & TRAIN)
 						sample.push_back(number.canonical);
 					if (!(mode & NOTUSEML)) {
-						Mat feature = ocr->features(number.canonical, SAMPLESIZE);
+						Mat feature = OCR::features(number.canonical, SAMPLESIZE);
 						Mat output(1, ocr->numCharacters, CV_32FC1);
 
 						ocr->predict(feature, &output);
