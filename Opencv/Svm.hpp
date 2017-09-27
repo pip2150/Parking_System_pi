@@ -10,12 +10,11 @@ private:
 	cv::Mat trainingData;
 
 public:
-	Svm();
-	Svm(int flags);
+	Svm(const int flags);
 	void collectTrainImages();
-	float predict(cv::Mat &img);
-	void readTraindata(std::string fn);
-	void writeTraindata(std::string fn);
+	float predict(const cv::Mat &img);
+	void readTraindata(const std::string fn);
+	void writeTraindata(const std::string fn);
 };
 
 #endif

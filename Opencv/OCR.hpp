@@ -17,18 +17,18 @@ private:
 	cv::Mat trainingData;
 	std::string strCharacters = "0123456789BCDEFGNSTVWXY";
 
-	void readTraindata(std::string fn);
-	void readTraindata(std::string fn, int format);
-	void writeTraindata(std::string fn);
+	void readTraindata(const std::string fn);
+	void readTraindata(const std::string fn, const int format);
+	void writeTraindata(const std::string fn);
 	void collectTrainImages();
 public:
-	OCR(int format, int flags);
+	OCR(const int format, const int flags);
 	int numCharacters;	
-	cv::Mat getHistogram(cv::Mat &img, int t);
-	cv::Mat features(cv::Mat &numbers, int sizeData);
-	float predict(cv::Mat &img);
-	float predict(cv::Mat &img, cv::Mat &out);
-	char classify(cv::Mat &output);
+	cv::Mat getHistogram(const cv::Mat &img, const int t);
+	cv::Mat features(const cv::Mat &numbers, const int sizeData);
+	float predict(const cv::Mat &img);
+	float predict(const cv::Mat &img, cv::Mat *out);
+	char classify(cv::Mat *output);
 };
 
 #endif

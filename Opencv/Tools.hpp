@@ -11,8 +11,8 @@
 #define NUMSIZE 7
 
 namespace tools {
-	int readImage(std::string fn, cv::Mat& image, int mode = 1);
-	int writeImage(std::string fn, cv::Mat& image, int mode = 1);
+	int readImage(const std::string fn, cv::Mat& image, int mode = 1);
+	int writeImage(const std::string fn, const cv::Mat& image, int mode = 1);
 
 	class Dicider {
 	private:
@@ -24,6 +24,7 @@ namespace tools {
 		bool decide(std::string str);
 	};
 
+
 	class Analyzer {
 	private:
 		int totalCorrect;
@@ -31,8 +32,11 @@ namespace tools {
 		std::string answer;
 
 	public:
-		Analyzer(std::string answer);
-		void analyze(std::string str);
+		Analyzer(const std::string answer);
+
+		/** ¡÷ºÆ
+		*/
+		void analyze(const std::string str);
 	};
 
 	class SVMTrainer {
@@ -41,7 +45,7 @@ namespace tools {
 
 	public:
 		SVMTrainer();
-		void train(cv::Mat &sample);
+		void train(const cv::Mat &sample);
 	};
 
 	class OCRTrainer {
@@ -50,8 +54,8 @@ namespace tools {
 		std::string answer;
 
 	public:
-		OCRTrainer(std::string answer);
-		void train(std::vector<cv::Mat> &sample);
+		OCRTrainer(const std::string answer);
+		void train(const std::vector<cv::Mat> &sample);
 	};
 };
 

@@ -4,7 +4,7 @@
 using namespace cv;
 using namespace std;
 
-int tools::readImage(string fn, Mat& image, int mode) {
+int tools::readImage(const string fn, Mat& image, int mode) {
 	image = imread(fn, mode);
 
 	if (image.empty()) {
@@ -13,7 +13,7 @@ int tools::readImage(string fn, Mat& image, int mode) {
 	return 0;
 }
 
-int tools::writeImage(string fn, Mat &image, int mode) {
+int tools::writeImage(const string fn, const Mat &image, int mode) {
 	if (!imwrite(fn, image)) {
 		return 1;
 	}
@@ -25,7 +25,7 @@ tools::Dicider::Dicider() {
 	match = -1;
 }
 
-bool tools::Dicider::decide(std::string str) {
+bool tools::Dicider::decide(const std::string str) {
 	match++;
 	if (match == 0) {
 		keyStr = str;
@@ -43,13 +43,13 @@ bool tools::Dicider::decide(std::string str) {
 	return false;
 }
 
-tools::Analyzer::Analyzer(std::string answer) {
+tools::Analyzer::Analyzer(const std::string answer) {
 	totalCorrect = 0;
 	totalTry = 0;
 	this->answer = answer;
 }
 
-void tools::Analyzer::analyze(std::string str) {
+void tools::Analyzer::analyze(const std::string str) {
 	int correct = 0;
 	for (int j = 0; j < NUMSIZE; j++)
 		if (str[j] == answer[j])
@@ -67,7 +67,7 @@ tools::SVMTrainer::SVMTrainer() {
 	fileIndex = 0;
 }
 
-void tools::SVMTrainer::train(cv::Mat &sample) {
+void tools::SVMTrainer::train(const cv::Mat &sample) {
 	std::string path;
 	cv::Mat img;
 
@@ -87,12 +87,12 @@ void tools::SVMTrainer::train(cv::Mat &sample) {
 	}
 }
 
-tools::OCRTrainer::OCRTrainer(std::string answer) {
+tools::OCRTrainer::OCRTrainer(const std::string answer) {
 	memset(fileIndex, 0, sizeof(fileIndex));
 	this->answer = answer;
 }
 
-void tools::OCRTrainer::train(std::vector<cv::Mat> &sample) {
+void tools::OCRTrainer::train(const std::vector<cv::Mat> &sample) {
 	if (sample.size() == answer.size()) {
 		for (int i = 0; i < answer.size(); i++) {
 			std::string path;
@@ -104,6 +104,7 @@ void tools::OCRTrainer::train(std::vector<cv::Mat> &sample) {
 			} while (!tools::readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE));
 
 			std::cout << path << std::endl;
+
 			if (tools::writeImage(path, sample[i])) {
 				std::cerr << "Fail To Write." << std::endl;
 				exit(1);

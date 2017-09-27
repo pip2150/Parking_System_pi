@@ -5,7 +5,7 @@ using namespace cv::ml;
 using namespace cv;
 using namespace std;
 
-OCR::OCR(int format, int flags) {
+OCR::OCR(const int format, const int flags) {
 	this->numCharacters = format;
 
 	if ((format != NUMBER) && (format != CHARACTER) && (format != (NUMBER + CHARACTER))) {
@@ -50,7 +50,7 @@ OCR::OCR(int format, int flags) {
 
 }
 
-void OCR::readTraindata(string fn) {
+void OCR::readTraindata(const string fn) {
 	FileStorage fs(fn, cv::FileStorage::READ | FileStorage::FORMAT_JSON);
 
 	if (!fs.isOpened()) {
@@ -64,7 +64,7 @@ void OCR::readTraindata(string fn) {
 
 }
 
-void OCR::readTraindata(string fn, int format) {
+void OCR::readTraindata(const string fn, const int format) {
 	readTraindata(fn);
 	
 	if (format == CHARACTER + NUMBER)
@@ -93,7 +93,7 @@ void OCR::readTraindata(string fn, int format) {
 
 }
 
-void OCR::writeTraindata(string fn) {
+void OCR::writeTraindata(const string fn) {
 	FileStorage fs(fn, FileStorage::WRITE | FileStorage::FORMAT_JSON);
 
 	if (!fs.isOpened()) {
@@ -129,11 +129,11 @@ void OCR::collectTrainImages() {
 	trainingData.convertTo(trainingData, CV_32FC1);
 }
 
-char OCR::classify(Mat &output) {
+char OCR::classify(Mat *output) {
 	Point maxLoc;
 	double maxVal;
 
-	minMaxLoc(output, 0, &maxVal, 0, &maxLoc);
+	minMaxLoc(*output, 0, &maxVal, 0, &maxLoc);
 	
 	if (numCharacters == CHARACTER)
 		return strCharacters[maxLoc.x + 10];
@@ -141,16 +141,16 @@ char OCR::classify(Mat &output) {
 		return strCharacters[maxLoc.x];
 }
 
-float OCR::predict(Mat &img) {
+float OCR::predict(const Mat &img) {
 	return ann->predict(img);
 }
 
-float OCR::predict(Mat &img, Mat &out) {
-	return ann->predict(img, out);
+float OCR::predict(const Mat &img, Mat *out) {
+	return ann->predict(img, *out);
 }
 
 /*		히스토그램 추출		*/
-Mat OCR::getHistogram(Mat &img, int t) {
+Mat OCR::getHistogram(const Mat &img, const int t) {
 	int sz = (t) ? img.rows : img.cols;
 	Mat mhist = Mat::zeros(1, sz, CV_32F);
 
@@ -170,7 +170,7 @@ Mat OCR::getHistogram(Mat &img, int t) {
 }
 
 /*		특징 추출		*/
-Mat OCR::features(Mat &numbers, int sizeData) {
+Mat OCR::features(const Mat &numbers, const int sizeData) {
 
 	Mat vhist = getHistogram(numbers, VERTICAL);
 	Mat hhist = getHistogram(numbers, HORIZONTAL);

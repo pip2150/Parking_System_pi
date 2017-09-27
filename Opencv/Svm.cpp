@@ -5,7 +5,7 @@ using namespace cv::ml;
 using namespace cv;
 using namespace std;
 
-Svm::Svm(int flags) {
+Svm::Svm(const int flags) {
 
 	if (flags & COLLECT) {
 		collectTrainImages();
@@ -55,11 +55,11 @@ void Svm::collectTrainImages() {
 	trainingData.convertTo(trainingData, CV_32FC1);
 }
 
-float Svm::predict(Mat &img) {
+float Svm::predict(const Mat &img) {
 	return svm->predict(img);
 }
 
-void Svm::readTraindata(string fn) {
+void Svm::readTraindata(const string fn) {
 	FileStorage fs(fn, FileStorage::READ | FileStorage::FORMAT_JSON);
 
 	if (!fs.isOpened()) {
@@ -74,7 +74,7 @@ void Svm::readTraindata(string fn) {
 	trainingData.convertTo(trainingData, CV_32FC1);
 }
 
-void Svm::writeTraindata(string fn) {
+void Svm::writeTraindata(const string fn) {
 	FileStorage fs(fn, FileStorage::WRITE | FileStorage::FORMAT_JSON);
 
 	fs << "TrainingData" << trainingData;

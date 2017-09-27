@@ -44,7 +44,7 @@ struct Table {
 
 void send2Server(Table table[SEGMENTSIZE], ParkingInfo info) {
 	cout << "send to server" << endl;
-	
+
 	for (int i = 0; i < SEGMENTSIZE; i++) {
 		if (table[i].sended)
 			continue;
@@ -69,6 +69,15 @@ void send2Server(Table table[SEGMENTSIZE], ParkingInfo info) {
 	}
 
 	cout << "sending complete" << endl;
+}
+
+bool deductIndex(Rect area[SEGMENTSIZE], Point &position, int *zoneIndex) {
+	for (int j = 0; j < SEGMENTSIZE; j++)
+		if (area[j].contains(position)) {
+			cout << "\t\tIt's " << (*zoneIndex = 4 - j) << "th Section." << endl;
+			return true;
+		}
+	return false;
 }
 
 int startOpencv(int width, int height, ParkingInfo info, string answer, int mode) {
@@ -170,7 +179,7 @@ int startOpencv(int width, int height, ParkingInfo info, string answer, int mode
 #endif
 			vector<Plate> possiblePlates;
 
-			Plate::find(image, possiblePlates);
+			Plate::find(image, &possiblePlates);
 
 			vector<Mat> sample;
 			int k = 0;
@@ -188,7 +197,7 @@ int startOpencv(int width, int height, ParkingInfo info, string answer, int mode
 				if (response != 1)
 					continue;
 
-				int section = 0;	// NULL
+				int zoneIndex = 0;	// NULL
 
 				Plate &foundPlate = plate;
 				double findNum_t = (double)getTickCount();
@@ -204,11 +213,8 @@ int startOpencv(int width, int height, ParkingInfo info, string answer, int mode
 					cout << "\t\tCost Time In the FindNumbers : " << findNum_t * 1000 / getTickFrequency() << "ms" << endl;
 
 				if (mode & POSITION)
-					for (int j = 0; j < SEGMENTSIZE; j++)
-						if (area[j].contains(plate.position)) {
-							cout << "\t\tIt's " << (section = 4 - j) << "th Section." << endl;
-							circle(image, plate.position, 2, Scalar(0, 0, 255), 2);
-						}
+					if(deductIndex(area, plate.position, &zoneIndex))
+						circle(image, plate.position, 2, Scalar(0, 0, 255), 2);
 
 				int numbersSize = (int)foundPlate.numbers.size();
 				Mat num(Size(SAMPLESIZE*numbersSize, SAMPLESIZE), CV_8UC3, white);
@@ -231,8 +237,8 @@ int startOpencv(int width, int height, ParkingInfo info, string answer, int mode
 						Mat feature = ocr->features(number.canonical, SAMPLESIZE);
 						Mat output(1, ocr->numCharacters, CV_32FC1);
 
-						ocr->predict(feature, output);
-						str += ocr->classify(output);
+						ocr->predict(feature, &output);
+						str += ocr->classify(&output);
 					}
 
 					Rect numberArea = Rect(SAMPLESIZE*j, 0, SAMPLESIZE, SAMPLESIZE);
@@ -240,12 +246,12 @@ int startOpencv(int width, int height, ParkingInfo info, string answer, int mode
 					rectangle(num, numberArea, red);
 				}
 
-				if (table[section].plateStr == str)
-					table[section].match++;
+				if (table[zoneIndex].plateStr == str)
+					table[zoneIndex].match++;
 				else {
-					table[section].plateStr = str;
-					table[section].match = 0;
-					table[section].sended = false;
+					table[zoneIndex].plateStr = str;
+					table[zoneIndex].match = 0;
+					table[zoneIndex].sended = false;
 				}
 
 				putText(image, str, plate.position, cv::FONT_HERSHEY_SIMPLEX, 1, blue);
