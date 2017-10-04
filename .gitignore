@@ -4,3 +4,4 @@ Makefile
 CMakeFiles
 main
 tags
+*.tmp

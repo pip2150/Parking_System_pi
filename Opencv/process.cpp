@@ -12,76 +12,55 @@
 #include "Plate.hpp"
 #include "Svm.hpp"
 #include "OCR.hpp"
-#include "Opencv.hpp"
+#include "process.hpp"
 #include "Tools.hpp"
 
 using namespace cv;
 using namespace std;
 
-#define ESC 27
-
-//* 주차 차량 정보
-struct Table {
-
-	//* 번호판 텍스트
-	string plateStr = "";
-
-	//* 일치한 횟수
-	int match = 0;
-
-	//* Sever 전송 여부
-	bool sended = false;
-};
-
-//* Server 에게 보내기
-void send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE]);
-
-//* 차량 위치 도출
-bool deductIndex(const Rect area[SEGMENTSIZE], const Point &position, int *zoneIndex);
-
 #ifndef PSAPI_HPP_
 namespace ps {
 
-	//* Database Server API
+	// Database Server API
 	class API {
 
-		//* API Program 경로
+		// API Program 경로
 		string path = "Network/http_test";
 
 	public:
 
-		//* 차량 진입
+		// 차량 진입
 		void enter(string str) {
 			system((path + " enter " + str).c_str());
 		}
 
-		//* 차량 퇴장
+		// 차량 퇴장
 		void exit(string str) {
 			system((path + " exit " + str).c_str());
 		}
 
-		//* 차량 주차
+		// 차량 주차
 		void parking(int floor, string zoneName, int i, string str) {
 			system((path + " parking " + to_string(floor) + " " + zoneName + " " + to_string(i) + " " + str).c_str());
 		}
 
-		//* Server 응답
+		// Server 응답
 		void resopnse() {
 		}
 	};
 }
 #endif
 
-void send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE]) {
+void process::send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE]) {
 	cout << "send to server" << endl;
 
 	for (int i = 0; i < SEGMENTSIZE; i++) {
-		/** 이미 Server에 보낸 경우*/
+		/* 이미 Server에 보낸 경우*/
 		if (table[i].sended)
 			continue;
 
-		/** 이미 Server에 보낸 경우*/
-		if (table[i].match < LEASTMATCH)
+		/* 이미 Server에 보낸 경우*/
+		if (table[i].match < tools::Dicider::LEASTMATCH)
 			continue;
 
 		ps::API api;
@@ -97,7 +76,7 @@ void send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE]) {
 
 		api.resopnse();
 
-		/** 주차 차량 정보 갱신 */
+		/* 주차 차량 정보 갱신 */
 
 		table[i].sended = true;
 	}
@@ -105,7 +84,7 @@ void send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE]) {
 	cout << "sending complete" << endl;
 }
 
-bool deductIndex(const Rect area[SEGMENTSIZE], const Point &position, int *zoneIndex) {
+bool process::deductIndex(const cv::Rect area[SEGMENTSIZE], const cv::Point &position, int *zoneIndex) {
 	for (int j = 0; j < SEGMENTSIZE; j++)
 		if (area[j].contains(position)) {
 			cout << "\t\tIt's " << (*zoneIndex = 4 - j) << "th Section." << endl;
@@ -115,7 +94,7 @@ bool deductIndex(const Rect area[SEGMENTSIZE], const Point &position, int *zoneI
 	return false;
 }
 
-int startOpencv(int width, int height, ParkingInfo info, string answer, int mode) {
+int process::startOpencv(int width, int height, int mode, ParkingInfo info, std::string answer) {
 
 #if FROM == CAMERA
 	VideoCapture camera;
@@ -155,20 +134,20 @@ int startOpencv(int width, int height, ParkingInfo info, string answer, int mode
 	{
 #pragma omp section
 		if (!(mode & NOTUSEML))
-			ocrChar = new OCR(CHARACTER, READDT);
+			ocrChar = new OCR(CHARACTER, OCR::READDT);
 #pragma omp section
 		if (!(mode & NOTUSEML))
-			ocrNum = new OCR(NUMBER, READDT);
+			ocrNum = new OCR(NUMBER, OCR::READDT);
 #pragma omp section
-		svm = new Svm(READDT);
+		svm = new Svm(Svm::READDT);
 	}
 
 	cout << "Loading was Complete." << endl;
 
 	tools::Analyzer analyzer(answer);
-	tools::OCRTrainer ocrtrainer(answer);
-	tools::SVMTrainer svmtrainer;
 	tools::Dicider dicider;
+	OCRTrainer ocrtrainer(answer);
+	SVMTrainer svmtrainer;
 
 	mutex m;
 
@@ -184,17 +163,17 @@ int startOpencv(int width, int height, ParkingInfo info, string answer, int mode
 		}
 	});
 
-	/** image 처리 Thread */
+	/* image 처리 Thread */
 	thread procThread([&] {
 		cout << "procThread start" << endl;
 		Table table[SEGMENTSIZE];
 
-		/** ESC 입력 시 종료 */
+		/* ESC 입력 시 종료 */
 		while (runing = (waitKey(50) != ESC)) {
 
 #if FROM == CAMERA
 
-			/** 하나의 Cycle 당 소요 시간*/
+			/* 하나의 Cycle 당 소요 시간*/
 			double cycle_t = (double)getTickCount();
 
 			m.try_lock();
@@ -204,7 +183,7 @@ int startOpencv(int width, int height, ParkingInfo info, string answer, int mode
 			if (image.empty())
 				continue;
 
-			/** 각각의 주차 영역 계산 */
+			/* 각각의 주차 영역 계산 */
 			for (int i = 0; i < SEGMENTSIZE; i++)
 				area[i] = Rect(image.cols * i / SEGMENTSIZE, 0, image.cols / SEGMENTSIZE, image.rows);
 
@@ -216,7 +195,7 @@ int startOpencv(int width, int height, ParkingInfo info, string answer, int mode
 			int img_num;
 			cout << "img_num : " << endl;
 			cin >> img_num;
-			if (utils::readImage("InputImage/" + to_string(img_num) + ".jpg", image)) {
+			if (!tools::readImage("InputImage/" + to_string(img_num) + ".jpg", image)) {
 				cerr << "File No Exist." << endl;
 				exit(1);
 			}
@@ -236,22 +215,24 @@ int startOpencv(int width, int height, ParkingInfo info, string answer, int mode
 
 				if (mode & WINDOWON)
 					imshow("plate", plate.img);
-				/*if (mode & TRAIN)
-					svmtrainer.train(plate.img);*/
+				/*
+				if (mode & TRAIN)
+					svmtrainer.train(plate.img);
+				*/
 
-					/** Svm을 통해 번호판 여부 확인 */
+				/** Svm을 통해 번호판 여부 확인 */
 				if (response != 1)
 					continue;
 
-				/** 주차 영역 번호 */
+				/* 주차 영역 번호 */
 				int zoneIndex = NULL;
 
 				Plate &foundPlate = plate;
 
-				/** 텍스트 추출 시 소요 시간 */
+				/* 텍스트 추출 시 소요 시간 */
 				double findText_t = (double)getTickCount();
 
-				/** 추출된 텍스트가 TEXTSIZE 일치 여부 */
+				/* 추출된 텍스트가 TEXTSIZE 일치 여부 */
 				bool isText = foundPlate.findTexts(TEXTSIZE);
 
 				findText_t = (double)getTickCount() - findText_t;
@@ -270,13 +251,13 @@ int startOpencv(int width, int height, ParkingInfo info, string answer, int mode
 
 				int textsSize = (int)foundPlate.texts.size();
 
-				/** text 모음 - Debug 용 */
+				/* text 모음 - Debug 용 */
 				Mat textCollection(Size(SAMPLESIZE*textsSize, SAMPLESIZE), CV_8UC3, white);
 
-				/** 번호판의 텍스트 */
+				/* 번호판의 텍스트 */
 				string str;
 
-				/** 추출된 텍스트를 OCR를 통해 검사 */
+				/* 추출된 텍스트를 OCR를 통해 검사 */
 				for (int j = 0; j < textsSize; j++) {
 					Plate::Text& text = foundPlate.texts[j];
 
@@ -295,10 +276,10 @@ int startOpencv(int width, int height, ParkingInfo info, string answer, int mode
 					if (mode & TRAIN)
 						sample.push_back(canonical);
 					if (!(mode & NOTUSEML)) {
-						/** 정규화된 Text의 특징 */
+						/* 정규화된 Text의 특징 */
 						Mat feature = OCR::features(canonical, SAMPLESIZE);
 
-						/** OCR에 의해 분석된 결과 */
+						/* OCR에 의해 분석된 결과 */
 						Mat output(1, ocr->numCharacters, CV_32FC1);
 
 						ocr->predict(feature, &output);
@@ -308,11 +289,11 @@ int startOpencv(int width, int height, ParkingInfo info, string answer, int mode
 					Rect textArea = Rect(SAMPLESIZE*j, 0, SAMPLESIZE, SAMPLESIZE);
 					cvtColor(canonical, textCollection(textArea), CV_GRAY2BGR);
 
-					/** 붉은 사각형 hightlight */
+					/* 붉은 사각형 hightlight */
 					rectangle(textCollection, textArea, red);
 				}
 
-				/** 주차 차량 정보 갱신 */
+				/* 주차 차량 정보 갱신 */
 				if (table[zoneIndex].plateStr == str)
 					table[zoneIndex].match++;
 				else {
@@ -321,14 +302,16 @@ int startOpencv(int width, int height, ParkingInfo info, string answer, int mode
 					table[zoneIndex].sended = false;
 				}
 
-				/** Plate Text 문자열을 image에 넣기 */
+				/* Plate Text 문자열을 image에 넣기 */
 				putText(image, str, plate.position, cv::FONT_HERSHEY_SIMPLEX, 1, blue);
 
 				if (mode & PLATESTR)
 					cout << "\t\t" << str << endl;
-				/*if (dicider.decide(str)) {
+				/*
+				if (dicider.decide(str)) {
 					std::cout << "\t\t\tThe answer is " << str << "  " << rand() % 256 << std::endl;
-				}*/
+				}
+				*/
 				if (mode & ANALYSIS)
 					analyzer.analyze(str);
 				if (mode & WINDOWON)

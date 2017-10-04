@@ -22,11 +22,11 @@ Mat Plate::Text::canonical(int sampleSize) {
 RotatedRect Plate::minApproxRect(const vector<Point> &contour) {
 	vector<Point> approxCurve;
 
-	/** 근사도 */
+	/* 근사도 */
 	double eps = contour.size() * 0.1;
 	approxPolyDP(contour, approxCurve, eps, true);
 
-	/** 사각형 이하의 다각형 제외 */
+	/* 사각형 이하의 다각형 제외 */
 	if (approxCurve.size() < 4)
 		return RotatedRect();
 
@@ -46,14 +46,14 @@ void Plate::find(const Mat &image, vector<Plate> *PossiblePlates) {
 
 	Mat blr;
 
-	/** 최고 해상도 */
+	/* 최고 해상도 */
 	int maxSize = 960 * 720;
 	int graySize = gray.size().area();
 	float redRatio = 1.0;
 
 	Mat lowRes;
 
-	/** 최고 해상도 이상 해상도를 강제로 저하 */
+	/* 최고 해상도 이상 해상도를 강제로 저하 */
 	if (graySize > maxSize) {
 		redRatio = sqrtf((float)maxSize / graySize);
 		resize(gray, lowRes, Size2f(redRatio*gray.cols, redRatio*gray.rows));
@@ -82,9 +82,9 @@ void Plate::find(const Mat &image, vector<Plate> *PossiblePlates) {
 	vector < vector< Point> > contours;
 	findContours(sobel, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
 
-	/** OpenMP Thread 생성 */
+	/* OpenMP Thread 생성 */
 #pragma omp parallel
-	/** implicit barrier 사용안함 */
+	/* implicit barrier 사용안함 */
 #pragma omp for nowait
 	for (int i = 0; i < contours.size(); i++) {
 		RotatedRect mr = minApproxRect(contours[i]);
@@ -103,7 +103,7 @@ void Plate::find(const Mat &image, vector<Plate> *PossiblePlates) {
 		Rect ccomp;
 		Mat mask(blr.size() + Size(2, 2), CV_8UC1, Scalar(0));
 
-		/**	------ 번호판에 floodfill 연산 ------ */
+		/*	------ 번호판에 floodfill 연산 ------ */
 
 		int area = 0;
 		for (int j = 0; j < 10; j++) {
@@ -117,7 +117,7 @@ void Plate::find(const Mat &image, vector<Plate> *PossiblePlates) {
 		if (!area)
 			continue;
 
-		/**	------ /번호판에 floodfill 연산 ------ */
+		/*	------ /번호판에 floodfill 연산 ------ */
 
 		vector<vector<Point> > plateContours;
 		findContours(mask(ccomp + Point(1, 1)), plateContours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
@@ -128,7 +128,7 @@ void Plate::find(const Mat &image, vector<Plate> *PossiblePlates) {
 			if (!verifySizes(minRect))
 				continue;
 
-			/** ------ image warping ------ */
+			/* ------ image warping ------ */
 
 			minRect = RotatedRect(minRect.center / redRatio, Size2f(minRect.size / redRatio), minRect.angle);
 
@@ -157,12 +157,12 @@ void Plate::find(const Mat &image, vector<Plate> *PossiblePlates) {
 			Mat M = getPerspectiveTransform(src, plateCorner);
 			warpPerspective(gray(ccomp), imgCrop, M, m_size);
 
-			/** ------ /image warping ------ */
+			/* ------ /image warping ------ */
 
 			Point position = minRect.center + (Point2f)ccomp.tl();
 			Plate plate(imgCrop, position);
 
-			/** thread 에 대한 ciritical 영역 생성*/
+			/* thread 에 대한 ciritical 영역 생성*/
 #pragma	omp	critical
 			PossiblePlates->push_back(plate);
 
@@ -255,11 +255,11 @@ bool Plate::findTexts(const int textSize) {
 		int uy = contourRect.y;
 		int rx = contourRect.x + contourRect.width;
 
-		/** 가로 세로 비율 */
+		/* 가로 세로 비율 */
 		double ratio = ((double)contourRect.width / (double)contourRect.height)
 			* ((double)plateSize.width / (double)plateSize.height);
 
-		/** 0.5 < ratio < 5 */
+		/* 0.5 < ratio < 5 */
 		if ((ratio > 0.5) && (ratio < 5)) {
 			/*
 			*	번호판의 중심 횡단부를 차지하는 contour 만 허용
@@ -277,7 +277,7 @@ bool Plate::findTexts(const int textSize) {
 				tmp.push_back(contour);
 				drawContours(contoursfound, tmp, -1, Scalar(rand() % 255, 0, rand() % 255), 1);
 
-				/** Priority Queue에 입력 */
+				/* Priority Queue에 입력 */
 				rectPQ.push(contourRect);
 			}
 		}

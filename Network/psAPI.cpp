@@ -5,6 +5,10 @@
  *      Author: dhrco
  */
 
+#include <iostream>
+#include <cstring>
+#include "Socket.hpp"
+#include "Http.hpp"
 #include "psAPI.hpp"
 
 using namespace std;
@@ -22,8 +26,9 @@ string getCurrentTime(){
 ps::API::API(){
 	hostname = "13.124.74.249";
 	port = 3000;
+	sock = new ClientSocket();
 
-	if(!sock.connect(hostname, port))
+	if(!sock->connect(hostname, port))
 		::exit(1);
 
 };
@@ -51,7 +56,7 @@ void ps::API::inout(string plateNum, string inout){
 	HttpRequestMessge http(requestLine, headerLine, headerSize, "");
 	string buff = http.getString();
 
-	if(!sock.send(buff))
+	if(!sock->send(buff))
 		::exit(1);
 }
 
@@ -70,7 +75,7 @@ void ps::API::parking(int floor, string zoneName, int zoneIndex, string plateNum
 	HttpRequestMessge http(requestLine, headerLine, headerSize, jsondata);
 	string buff = http.getString();
 
-	if(!sock.send(buff))
+	if(!sock->send(buff))
 		::exit(1);
 }
 
@@ -87,9 +92,9 @@ void ps::API::resopnse(){
 	string buff="";
 	string content = "";
 
-	int size = MAXRECV;
-	while(size >= MAXRECV){
-		size = sock.recv(buff);
+	int size = Socket::MAXRECV;
+	while(size >= Socket::MAXRECV){
+		size = sock->recv(buff);
 		recvbuff += buff; 
         if(size == -1)
             break;
@@ -116,7 +121,7 @@ void ps::API::resopnse(){
 	contentLength -= http.getMessageBody().length();
 
 	while(contentLength > 0){
-		contentLength -= sock.recv(buff);
+		contentLength -= sock->recv(buff);
 		content += buff;
 	}
 

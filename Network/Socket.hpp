@@ -8,27 +8,21 @@
 #ifndef SOCKET_HPP_
 #define SOCKET_HPP_
 
-#include <iostream>
-#include <cstdlib>
-#include <string>
-#include <cstring>
-#include <cerrno>
-#include <unistd.h>
-#include <fcntl.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <arpa/inet.h>
-
-const int MAXHOSTNAME = 200;
-const int MAXCONNECTIONS = 5;
-const int MAXRECV = 500;
+struct sockaddr_in;
 
 class Socket{
+
 protected:
-	sockaddr_in addr;
+
+	sockaddr_in *addr;
 	int sock;
 
 public:
+
+	static const int MAXHOSTNAME = 200;
+	static const int MAXCONNECTIONS = 5;
+	static const int MAXRECV = 500;
+
 	Socket();
 	void setSocket(int);
 	virtual ~Socket();

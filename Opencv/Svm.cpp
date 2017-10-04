@@ -5,14 +5,14 @@ using namespace cv::ml;
 using namespace cv;
 using namespace std;
 
-Svm::Svm(const int flags) {
+Svm::Svm(const int mode) {
 
-	//* Json File 경로
+	// Json File 경로
 	string jsonPath = "Opencv/SVMDATA.json";
 
-	if (flags & COLLECT) {
+	if (mode & COLLECT) {
 		collectTrainImages();
-		if (flags & WRITEDT)
+		if (mode & WRITEDT)
 			writeTraindata(jsonPath);
 	}
 	else
@@ -40,7 +40,7 @@ void Svm::collectTrainImages() {
 		string path = "trainimage/" + to_string(i) + ".png";
 		Mat img;
 
-		if (tools::readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE)) {
+		if (!tools::readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE)) {
 			cerr << "File No Exist." << endl;
 			exit(1);
 		}
@@ -86,3 +86,31 @@ void Svm::writeTraindata(const string fn) {
 	fs << "classes" << classes;
 	fs.release();
 }
+
+SVMTrainer::SVMTrainer() {
+	fileIndex = 0;
+}
+
+void SVMTrainer::train(const cv::Mat &sample) {
+	// trainimage들의 경로
+	std::string path;
+	// 저장할 image
+	cv::Mat img;
+
+	// 정규화된 image
+	Mat svmdata;
+	resize(sample, svmdata, Size(144, 33), 0, 0, INTER_CUBIC);
+
+	do {
+		path = "trainimage/" + std::to_string(fileIndex) + ".png";
+		std::cout << path << std::endl;
+		fileIndex++;
+	} while (tools::readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE));
+
+	//std::cout << path << std::endl;
+	if (!tools::writeImage(path, svmdata)) {
+		std::cerr << "Fail To Write." << std::endl;
+		exit(1);
+	}
+}
+

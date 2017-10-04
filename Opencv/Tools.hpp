@@ -2,119 +2,83 @@
 #define TOOLS_HPP_
 
 #include <opencv2/opencv.hpp>
-#include "OCR.hpp"
 
-//* 최소한의 일치 횟수
-#define LEASTMATCH 5
-
+/**
+	@brief tools
+	영상 처리 시 유용한 tool 모음
+*/
 namespace tools {
-
-	/** File System으로 부터 Image 불러오기
-		성공 시 0, 실패 시 1을 반환
+	
+	/**
+		@brief File System으로 부터 이미지 불러오기
+		@param fn 이미지 파일 경로
+		@param image File System에서 불러온 이미지를 저장할 변수
+		@param flags cv::ImreadModes 의 값을 지정
+		@return 성공 시 true 그렇지 않으면 false
 	*/
-	int readImage(const std::string fn, cv::Mat& image, int mode = 1);
+	bool readImage(const std::string fn, cv::Mat& image, int flags = 1);
 
-	/** File System으로 Image를 쓰기
-		성공 시 0, 실패 시 1을 반환
+	/**
+		@brief File System으로 Image를 쓰기
+		@param fn 이미지 파일 경로
+		@param image File System에 쓸 이미지 변수
+		@return 성공 시 true 그렇지 않으면 false
 	*/
-	int writeImage(const std::string fn, const cv::Mat& image, int mode = 1);
+	bool writeImage(const std::string fn, const cv::Mat& image);
 
-	/** 최종 결과를 도출하는 클래스
+	/**
+		@brief 초기에 입력된 문자열과 비교하여 tools::Dicider::LEASTMATCH 를 넘었을 경우 결과를 도출한다.
 	*/
 	class Dicider {
 	private:
-
-		/** 비교할 문자열
-		*/
-		std::string keyStr;
-
-		/** 일치한 횟수
-		*/
-		int match;
+		
+		std::string keyStr;		//!< @brief 초기 문자열
+		int match;				//!< @brief 일치한 횟수
 
 	public:
 
-		/** Dicider 초기화
+		static const int LEASTMATCH = 5;		//!< @brief 최소한의 일치 횟수
+
+		/**
+			@brief Dicider 초기화
+			비교할 문자열을 설정한다.
 		*/
 		Dicider();
 
-		/** 연속으로 일정 횟수까지 같은 문자열을 입력받으면 최종 결과를 출력
+		/**
+			@brief 연속으로 일정 횟수까지 같은 문자열을 입력받으면 최종 결과를 출력
+			@param str 비교 문자열
+			@return  str과 초기 문자열이 LEASTMATCH 의 횟수 이상 일치할 경우 true 그렇지 않으면 false 을 반환
 		*/
 		bool decide(std::string str);
 	};
 
-	/** 통계적 계산을 출력하는 클래스
+	/**
+		@brief 통계 분석 결과 출력 클래스
+		입력된 초기 정답 문자열를 영상으로부터 도출된 문자열과 통계적 비교된 결과를 출력한다.
 	*/
 	class Analyzer {
 	private:
 
-		/** 총 맞은 횟수
-		*/
-		int totalCorrect;
-
-		/** 총 시도한 횟수
-		*/
-		int totalTry;
-
-		/** 비교할 정답
-		*/
-		std::string answer;
+		int totalCorrect;		//!< @brief 총 맞은 횟수
+		int totalTry;			//!< @brief 총 시도한 횟수
+		std::string answer;		//!< @brief 비교할 정답
 
 	public:
 
-		/** Analyzer 초기화
+		/**
+			@brief Analyzer 초기화
+			@param answer 정답을 설정
 		*/
 		Analyzer(const std::string answer);
 
-		/** 정답과 비교하며 통계적 계산 결과를 출력
+		/**
+			@brief 입력받은 문자열을 정답과 비교하며 통계적 계산 결과를 출력
+			@param str 정답과 비교할 문자열
 		*/
 		void analyze(const std::string str);
 	};
 
-	/** SVM 클래스의 collectTrainImages 시 필요한 image를 생성하는 클래스
-	*/
-	class SVMTrainer {
-	private:
-
-		/** File 검색을 위한 Index 변수
-		*/
-		int fileIndex;
-
-	public:
-
-		/** SVMTrainer 초기화
-		*/
-		SVMTrainer();
-
-		/** 입력받은 Mat 변수를 TrainImage로써 File System에 기록
-		*/
-		void train(const cv::Mat &sample);
-	};
-
-	/** OCR 클래스의 collectTrainImages 시 필요한 image를 생성하는 클래스
-	*/
-	class OCRTrainer {
-	private:
-
-		/** File 검색을 위한 Index 변수
-		*/
-		int fileIndexs[NUMBER + CHARACTER];
-
-		/** 지도학습을 위한 정답
-		*/
-		std::string answer;
-
-	public:
-
-		/** OCRTrainer 초기화
-		*/
-		OCRTrainer(const std::string answer);
-
-		/** 입력받은 Mat 변수들을 TrainImage로써 File System에 기록
-		*/
-		void train(const std::vector<cv::Mat> &sample);
-	};
 };
-
 
 #endif

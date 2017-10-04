@@ -3,97 +3,133 @@
 
 #include <opencv2/opencv.hpp>
 
-//* 훈련 데이터의 가로, 세로의 픽셀 크기
-#define SAMPLESIZE 20
 
-//* 수직
-#define VERTICAL 0
+#define SAMPLESIZE 20		//!< 훈련 데이터의 가로, 세로의 픽셀 크기
+#define NLAYERS 30			//!< OCR의 은닉 층
+#define TEXTSIZE 7			//!< 번호판의 숫자 수
 
-//* 수평
-#define HORIZONTAL 1
+//! OCR이 인식할 형식
+enum FORMAT {
+	CHARACTER = 13,		//!< OCR에 문자의 갯수
+	NUMBER = 10			//!< OCR에 숫자의 갯수
+};
 
-//* OCR에 문자의 갯수
-#define CHARACTER 13
-
-//* OCR에 숫자의 갯수
-#define NUMBER 10
-
-//* OCR의 은닉 층
-#define NLAYERS 30
-
-//* Json File에서 읽기
-#define READDT 0b00
-
-//* trainimage에서 읽기
-#define COLLECT 0b01
-
-//* Json File로 쓰기
-#define WRITEDT 0b11
-
-//* 번호판의 숫자 수
-#define TEXTSIZE 7
-
-/** Artificial Neural Networks을 다루기 위한 클래스
+/** 
+	@brief Artificial Neural Networks을 다루기 위한 클래스
 */
 class OCR {
 private:
 
-	/** Artificial Neural Networks
-	*/
-	cv::Ptr<cv::ml::ANN_MLP> ann;
+	//! Histogram 추출 시의 방향
+	enum ORIENTATION {
+		VERTICAL = 0,		//!< 수직
+		HORIZONTAL = 1		//!< 수평
+	};
 
-	/** trainingData와 연관된 출력될 vector들
-	*/
-	cv::Mat classes;
+	cv::Ptr<cv::ml::ANN_MLP> ann;		//!< @brief Artificial Neural Networks
+	cv::Mat classes;					//!< @brief trainingData와 연관된 출력될 vector들
+	cv::Mat trainingData;				//!< @brief 훈련을 위한 Sample들
+	std::string strCharacters = "0123456789BCDEFGNSTVWXY";		//!< @brief classes와 대응되는 문자열
 
-	/** 훈련을 위한 Sample들
-	*/
-	cv::Mat trainingData;
-
-	/** classes와 대응되는 문자열
-	*/
-	std::string strCharacters = "0123456789BCDEFGNSTVWXY";
-
-	/** trainimage에서 훈련 데이터 불러오기
+	/** 
+		@brief TrainNumber에서 훈련 데이터 불러오기
+		'TrainNumber'에 경로에서 모든 이미지 파일을 읽어들여 훈련 데이터를 생성한다.
 	*/
 	void collectTrainImages();
 
-	/** 훈련 데이터를 File System에 json 파일로 쓰기
+	/** 
+		@brief 훈련 데이터를 File System에 Json 파일로 쓰기
+		@param fn josn 파일의 경로
 	*/
 	void writeTraindata(const std::string fn);
 
-	/** 훈련 데이터를 File System에 json 파일로부터 불러오기
+	/** 
+		@overload
+		@brief 훈련 데이터를 File System에서 Json 파일로부터 불러오기
+		@param fn Josn 파일의 경로
 	*/
 	void readTraindata(const std::string fn);
 
-	/** 훈련 데이터를 File System에서 json 파일로부터 불러오기
+	/**
+		@overload
+		@brief 훈련 데이터를 File System에서 Json 파일로부터 불러오기
+		@param fn Josn 파일의 경로
+		@param format Json OCR이 인식할 형식
 	*/
-	void readTraindata(const std::string fn, const int format);
+	void readTraindata(const std::string fn, const FORMAT format);
 
-	/** Histogram 추출
+	/** 
+		@brief Histogram 추출
+		@param img Histogram을 추출할 이미지		
+		@param t Histogram 추출 시의 방향
+		@return 추출된 Histogram의 매트릭스
 	*/
-	static cv::Mat getHistogram(const cv::Mat &img, const int t);
+	static cv::Mat getHistogram(const cv::Mat &img, const ORIENTATION t);
+
 public:
 
-	/** 출력될 vector의 크기
-	*/
-	int numCharacters;
+	//! 훈련 데이터를 다룰 방법 
+	enum MODE {
+		READDT = 0b00,		//!< Json File에서 읽기 @see readTraindata
+		COLLECT = 0b01,		//!< TrainImage에서 읽기 @see collectTrainImages
+		WRITEDT = 0b11		//!< Json File로 쓰기 @see writeTraindata
+	};
 
-	/** OCR 초기화
-	*/
-	OCR(const int format, const int flags);
+	int numCharacters;		//!< @brief 출력될 vector의 크기
 
-	/** 입력된 Sample이 훈련된 Artificial Neural Networks의해 예측된 결과를 출력
+	/** 
+		@brief OCR 초기화
+		@param format OCR이 인식할 형식
+		@param mode 훈련 데이터를 다룰 방법
+	*/
+	OCR(const FORMAT format, const int mode);
+
+	/** 
+		@brief 입력된 Sample이 훈련된 Artificial Neural Networks의해 예측된 결과를 출력
+		@param img 입력할 Sample
+		@param out 예측된 결과의 매트릭스
+		@return OCR을 통해 예측된 결과
 	*/
 	float predict(const cv::Mat &img, cv::Mat *out);
 
-	/** 예측된 결과 중 가장 가능성이 높은 문자를 추출
+	/** 
+		@brief 예측된 결과 중 가장 가능성이 높은 문자를 추출
+		@param output 문자를 추출할 결과 매트릭스
+		@return 가능성 높은 문자
 	*/
 	char classify(cv::Mat *output);
 
-	/** features 추출
+	/** 
+		@brief features 추출
+		@param texts features을 추출할 이미지
+		@param sizeData 추출될 features의 가로 세로 크기
+		@return 입력받은 이미지에 대한 features
 	*/
-	static cv::Mat features(const cv::Mat &numbers, const int sizeData);
+	static cv::Mat features(const cv::Mat &texts, const int sizeData);
+};
+
+/** 
+	@brief OCR::collectTrainImages 실행 시 필요한 image를 생성하는 클래스
+*/
+class OCRTrainer {
+private:
+
+	int fileIndexs[NUMBER + CHARACTER];		//!< @brief File 검색을 위한 Index 변수
+	std::string answer;						//!< @brief 지도학습을 위한 정답
+
+public:
+
+	/**
+		@brief OCRTrainer 초기화
+		@param answer 지도 학습을 위한 정답
+	*/
+	OCRTrainer(const std::string answer);
+
+	/**
+		@brief OCR 클래스에서 참조할 이미지를 File System에 쓰기
+		입력받은 이미지를 'TrainImage'경로에 File System로 쓴다.
+	*/
+	void train(const std::vector<cv::Mat> &sample);
 };
 
 #endif

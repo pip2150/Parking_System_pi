@@ -1,3 +1,13 @@
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <fcntl.h>
+#include <iostream>
+#include <cstdlib>
+#include <string>
+#include <cstring>
+#include <cerrno>
 #include "Socket.hpp"
 
 Socket::Socket() {
@@ -5,12 +15,12 @@ Socket::Socket() {
 		std::cerr << "socket : "<<strerror(errno) << std::endl;
 		exit(1);
 	};
-	memset(&addr, 0, sizeof(addr));
+	addr = new sockaddr_in;
 }
 
 void Socket::setSocket(int sock) {
 	this->sock = sock;
-	memset(&addr, 0, sizeof(addr));
+	addr = new sockaddr_in;
 }
 
 Socket::~Socket() {
@@ -88,11 +98,11 @@ bool ServerSocket::bind(int port) {
 	if(!isValid())
 		return false;
 
-	addr.sin_family = AF_INET;
-	addr.sin_addr.s_addr = INADDR_ANY;
-	addr.sin_port = htons(port);
+	addr->sin_family = AF_INET;
+	addr->sin_addr.s_addr = INADDR_ANY;
+	addr->sin_port = htons(port);
 
-	if((::bind(sock,(struct sockaddr*)&addr, sizeof(addr))) == -1){
+	if((::bind(sock,(struct sockaddr*)addr, sizeof(*addr))) == -1){
 		std::cerr << "bind : "<<strerror(errno) << std::endl;
 		return false;
 	}
@@ -115,9 +125,9 @@ bool ServerSocket::listen() {
 }
 
 bool ServerSocket::accept(Socket &clientsocket) {
-	int addrLen = sizeof(addr);
+	int addrLen = sizeof(*addr);
 
-	int csock = ::accept(sock,(sockaddr *)&addr, (socklen_t *)&addrLen);
+	int csock = ::accept(sock,(sockaddr *)addr, (socklen_t *)&addrLen);
 	clientsocket.setSocket(csock);
 
 	if(clientsocket.isValid()){
@@ -132,14 +142,14 @@ bool ClientSocket::connect(std::string host,  int port) {
 //	if(!isValid())
 //		return false;
 
-	addr.sin_family = AF_INET;
-	addr.sin_port = htons(port);
+	addr->sin_family = AF_INET;
+	addr->sin_port = htons(port);
 
-	int status = inet_pton(AF_INET, host.c_str(), &addr.sin_addr);
+	int status = inet_pton(AF_INET, host.c_str(), &addr->sin_addr);
 
 	//if(errno == EAFNOSUPPORT) return false;
 
-	status = ::connect(sock,(sockaddr *)&addr, sizeof(addr));
+	status = ::connect(sock,(sockaddr *)addr, sizeof(*addr));
 
 	if(status == 0)
 		return true;

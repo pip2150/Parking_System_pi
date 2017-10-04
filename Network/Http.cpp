@@ -5,6 +5,7 @@
  *      Author: dhrco
  */
 
+#include <iostream>
 #include "Http.hpp"
 
 HttpMessage::HttpMessage(string firstLine[], HeaderLine headerLine[], int headerSize, string content){

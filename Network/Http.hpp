@@ -8,26 +8,24 @@
 #ifndef HTTP_HPP_
 #define HTTP_HPP_
 
-#include <iostream>
-
 using namespace std;
 
-typedef struct HeaderLine {
+struct HeaderLine {
 	string field;
 	string value;
-} HeaderLine;
+};
 
-typedef struct StatusCode{
+struct StatusCode{
 	string version;
 	string status;
 	string message;
-}StatusCode;
+};
 
-typedef struct RequestLine{
+struct RequestLine{
 	string method;
 	string url;
 	string version;
-}RequestLine;
+};
 
 class HttpMessage {
 protected:

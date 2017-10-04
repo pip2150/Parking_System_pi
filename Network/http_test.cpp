@@ -3,7 +3,7 @@
 using namespace std;
 
 void error(){
-	cerr << "ìž˜ëª»ëœ ìž…ë ¥ìž…ë‹ˆë‹¤." << endl;
+	cerr << "Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù." << endl;
 	exit(1);
 }
 

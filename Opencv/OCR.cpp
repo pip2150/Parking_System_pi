@@ -3,27 +3,26 @@
 
 using namespace cv::ml;
 using namespace cv;
-using namespace std;
 
-OCR::OCR(const int format, const int flags) {
+OCR::OCR(const FORMAT format, const int mode) {
 	this->numCharacters = format;
 
 	if ((format != NUMBER) && (format != CHARACTER) && (format != (NUMBER + CHARACTER))) {
-		cerr << "Long Format Was Inputed!" << endl;
+		std::cerr << "Long Format Was Inputed!" << std::endl;
 		exit(1);
 	}
 
-	//* Json File 경로
-	string jsonPath = "Opencv/OCR.json";
-	if (flags & COLLECT) {
+	// Json File 경로
+	std::string jsonPath = "Opencv/OCR.json";
+	if (mode & COLLECT) {
 		collectTrainImages();
-		if (flags & WRITEDT)
+		if (mode & WRITEDT)
 			writeTraindata(jsonPath);
 	}
 	else
 		readTraindata(jsonPath, format);
 
-	//* layer 크기
+	// layer 크기
 	Mat layerSizes(3, 1, CV_32SC1);
 
 	layerSizes.at<int>(0) = trainingData.cols;
@@ -37,8 +36,6 @@ OCR::OCR(const int format, const int flags) {
 	ann->setTermCriteria(TermCriteria(TermCriteria::MAX_ITER + TermCriteria::EPS, 300, 0.0001));
 	ann->setTrainMethod(ml::ANN_MLP::BACKPROP, 0.0001);
 
-	/**
-	*/
 	Mat trainClasses;
 	trainClasses.create(trainingData.rows, numCharacters, CV_32FC1);
 
@@ -55,11 +52,11 @@ OCR::OCR(const int format, const int flags) {
 
 }
 
-void OCR::readTraindata(const string fn) {
+void OCR::readTraindata(const std::string fn) {
 	FileStorage fs(fn, cv::FileStorage::READ | FileStorage::FORMAT_JSON);
 
 	if (!fs.isOpened()) {
-		cerr << "File Open Fail." << endl;
+		std::cerr << "File Open Fail." << std::endl;
 		exit(1);
 	}
 
@@ -69,7 +66,7 @@ void OCR::readTraindata(const string fn) {
 
 }
 
-void OCR::readTraindata(const string fn, const int format) {
+void OCR::readTraindata(const std::string fn, const FORMAT format) {
 	readTraindata(fn);
 
 	if (format == CHARACTER + NUMBER)
@@ -79,14 +76,14 @@ void OCR::readTraindata(const string fn, const int format) {
 	Mat _classes;
 
 	for (int i = 0; i < classes.rows; i++) {
-		//* 문자 OCR의 경우
+		// 문자 OCR의 경우
 		if (format == CHARACTER) {
 			if (classes.at<int>(i, 0) >= NUMBER) {
 				_classes.push_back(classes.at<int>(i, 0) - NUMBER);
 				_trainingData.push_back(trainingData.row(i));
 			}
 		}
-		//* 숫자 OCR의 경우
+		// 숫자 OCR의 경우
 		else if (format == NUMBER) {
 			if (classes.at<int>(i, 0) < NUMBER) {
 				_classes.push_back(classes.at<int>(i, 0));
@@ -100,11 +97,11 @@ void OCR::readTraindata(const string fn, const int format) {
 
 }
 
-void OCR::writeTraindata(const string fn) {
+void OCR::writeTraindata(const std::string fn) {
 	FileStorage fs(fn, FileStorage::WRITE | FileStorage::FORMAT_JSON);
 
 	if (!fs.isOpened()) {
-		cerr << "File Write Fail." << endl;
+		std::cerr << "File Write Fail." << std::endl;
 		exit(1);
 	}
 
@@ -118,10 +115,10 @@ void OCR::collectTrainImages() {
 	for (int i = 0; i < CHARACTER + NUMBER; i++) {
 		int j = 0;
 		while (1) {
-			string path = "TrainNumber/" + string(1, strCharacters[i]) + "/" + to_string(j) + ".png";
+			std::string path = "TrainNumber/" + std::string(1, strCharacters[i]) + "/" + std::to_string(j) + ".png";
 			Mat img;
-			cout << path << endl;
-			if (tools::readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE)) {
+			std::cout << path << std::endl;
+			if (!tools::readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE)) {
 				break;
 			}
 
@@ -152,12 +149,12 @@ float OCR::predict(const Mat &img, Mat *out) {
 	return ann->predict(img, *out);
 }
 
-Mat OCR::getHistogram(const Mat &img, const int t) {
-	int sz = (t) ? img.rows : img.cols;
+Mat OCR::getHistogram(const Mat &img, const ORIENTATION t) {
+	int sz = (t == HORIZONTAL) ? img.rows : img.cols;
 	Mat mhist = Mat::zeros(1, sz, CV_32F);
 
 	for (int j = 0; j < sz; j++) {
-		Mat data = (t) ? img.row(j) : img.col(j);
+		Mat data = (t == HORIZONTAL) ? img.row(j) : img.col(j);
 
 		mhist.at<float>(j) = (float)countNonZero(data);
 	}
@@ -171,13 +168,16 @@ Mat OCR::getHistogram(const Mat &img, const int t) {
 	return mhist;
 }
 
-Mat OCR::features(const Mat &numbers, const int sizeData) {
+Mat OCR::features(const Mat &texts, const int sizeData) {
 
-	Mat vhist = getHistogram(numbers, VERTICAL);
-	Mat hhist = getHistogram(numbers, HORIZONTAL);
+	Mat vhist = getHistogram(texts, VERTICAL);
+	Mat hhist = getHistogram(texts, HORIZONTAL);
 	Mat lowData;
 
-	resize(numbers, lowData, Size(sizeData, sizeData));
+	if (texts.size() == Size(sizeData, sizeData))
+		texts.copyTo(lowData);
+	else
+		resize(texts, lowData, Size(sizeData, sizeData));
 
 	int numCols = vhist.cols + hhist.cols + lowData.cols * lowData.cols;
 	Mat out = Mat::zeros(1, numCols, CV_32F);
@@ -200,3 +200,33 @@ Mat OCR::features(const Mat &numbers, const int sizeData) {
 
 	return out;
 }
+
+OCRTrainer::OCRTrainer(const std::string answer) {
+	for (int index : fileIndexs)
+		index = 0;
+	this->answer = answer;
+}
+
+void OCRTrainer::train(const std::vector<cv::Mat> &sample) {
+	if (sample.size() == answer.size()) {
+		for (int i = 0; i < answer.size(); i++) {
+			// TrainNumber들의 경로
+			std::string path;
+			// 저장할 image
+			cv::Mat img;
+			do {
+				path = "TrainNumber/" + std::string(1, answer[i]) + "/" + std::to_string(fileIndexs[i]) + ".png";
+				std::cout << path << std::endl;
+				fileIndexs[i]++;
+			} while (tools::readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE));
+
+			std::cout << path << std::endl;
+
+			if (!tools::writeImage(path, sample[i])) {
+				std::cerr << "Fail To Write." << std::endl;
+				exit(1);
+			}
+		}
+	}
+}
+

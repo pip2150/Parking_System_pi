@@ -8,17 +8,16 @@
 #ifndef PSAPI_HPP_
 #define PSAPI_HPP_
 
-#include "Socket.hpp"
-#include "Http.hpp"
-#include <iostream>
-#include <string>
-
 #define HEADERNUM 8
+#include <iostream>
+
+class ClientSocket;
+struct HeaderLine;
 
 namespace ps{
 class API{
 private:
-	ClientSocket sock;
+	ClientSocket *sock;
 	std::string hostname;
 	int port;
 	std::string path;
