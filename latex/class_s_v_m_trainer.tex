@@ -1,0 +1,52 @@
+\hypertarget{class_s_v_m_trainer}{}\section{S\+V\+M\+Trainer 클래스 참조}
+\label{class_s_v_m_trainer}\index{S\+V\+M\+Trainer@{S\+V\+M\+Trainer}}
+
+
+\hyperlink{class_svm_a1b18e97fffb268f9cfe91152f7e96298}{Svm\+::collect\+Train\+Images} 실행 시 필요한 image를 생성하는 클래스  
+
+
+
+
+{\ttfamily \#include $<$Svm.\+hpp$>$}
+
+\subsection*{Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_s_v_m_trainer_a2109fcf47792fe25ac12e14368c775bb}\label{class_s_v_m_trainer_a2109fcf47792fe25ac12e14368c775bb}} 
+\hyperlink{class_s_v_m_trainer_a2109fcf47792fe25ac12e14368c775bb}{S\+V\+M\+Trainer} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_s_v_m_trainer}{S\+V\+M\+Trainer} 초기화 \end{DoxyCompactList}\item 
+void \hyperlink{class_s_v_m_trainer_a60f3eb8020709966c067246c98b610c4}{train} (const cv\+::\+Mat \&sample)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_svm}{Svm} 클래스에서 참조할 이미지를 File System에 쓰기 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private 속성}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_s_v_m_trainer_ad7ac47f8d93360bac934cf399f37b967}\label{class_s_v_m_trainer_ad7ac47f8d93360bac934cf399f37b967}} 
+int \hyperlink{class_s_v_m_trainer_ad7ac47f8d93360bac934cf399f37b967}{file\+Index}
+\begin{DoxyCompactList}\small\item\em File 검색을 위한 Index 변수 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{상세한 설명}
+\hyperlink{class_svm_a1b18e97fffb268f9cfe91152f7e96298}{Svm\+::collect\+Train\+Images} 실행 시 필요한 image를 생성하는 클래스 
+
+\subsection{멤버 함수 문서화}
+\mbox{\Hypertarget{class_s_v_m_trainer_a60f3eb8020709966c067246c98b610c4}\label{class_s_v_m_trainer_a60f3eb8020709966c067246c98b610c4}} 
+\index{S\+V\+M\+Trainer@{S\+V\+M\+Trainer}!train@{train}}
+\index{train@{train}!S\+V\+M\+Trainer@{S\+V\+M\+Trainer}}
+\subsubsection{\texorpdfstring{train()}{train()}}
+{\footnotesize\ttfamily void S\+V\+M\+Trainer\+::train (\begin{DoxyParamCaption}\item[{const cv\+::\+Mat \&}]{sample }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{class_svm}{Svm} 클래스에서 참조할 이미지를 File System에 쓰기 
+
+
+\begin{DoxyParams}{매개변수}
+{\em sample} & File System에 쓸 이미지 입력받은 이미지를 \textquotesingle{}Train\+Image\textquotesingle{}경로에 File System로 쓴다. \\
+\hline
+\end{DoxyParams}
+
+
+이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.\+:\begin{DoxyCompactItemize}
+\item 
+Opencv/Svm.\+hpp\item 
+Opencv/Svm.\+cpp\end{DoxyCompactItemize}

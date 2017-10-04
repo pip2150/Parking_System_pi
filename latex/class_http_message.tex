@@ -1,0 +1,62 @@
+\hypertarget{class_http_message}{}\section{Http\+Message 클래스 참조}
+\label{class_http_message}\index{Http\+Message@{Http\+Message}}
+Http\+Message에 대한 상속 다이어그램 \+: \begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_http_message}
+\end{center}
+\end{figure}
+\subsection*{Public 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_http_message_a93cbf59a394c96113807425b1c6bb68a}\label{class_http_message_a93cbf59a394c96113807425b1c6bb68a}} 
+{\bfseries Http\+Message} (string msg)
+\item 
+\mbox{\Hypertarget{class_http_message_aa139c771fc372013df56558d6f61c9d0}\label{class_http_message_aa139c771fc372013df56558d6f61c9d0}} 
+{\bfseries Http\+Message} (string first\+Line\mbox{[}$\,$\mbox{]}, \hyperlink{struct_header_line}{Header\+Line} header\+Line\mbox{[}$\,$\mbox{]}, int header\+Size, string content)
+\item 
+\mbox{\Hypertarget{class_http_message_adaff26ec4d75c3a452a4ad5ca513e991}\label{class_http_message_adaff26ec4d75c3a452a4ad5ca513e991}} 
+\hyperlink{struct_header_line}{Header\+Line} $\ast$ {\bfseries get\+Header} ()
+\item 
+\mbox{\Hypertarget{class_http_message_a2cb549126adb8a918de216fe46799b80}\label{class_http_message_a2cb549126adb8a918de216fe46799b80}} 
+string {\bfseries get\+Message\+Body} ()
+\item 
+\mbox{\Hypertarget{class_http_message_ac5e7789f4368df8f4c7d8ef933866608}\label{class_http_message_ac5e7789f4368df8f4c7d8ef933866608}} 
+int {\bfseries get\+Header\+Size} ()
+\item 
+\mbox{\Hypertarget{class_http_message_aa1229eb8813c168b39a069c305d6d377}\label{class_http_message_aa1229eb8813c168b39a069c305d6d377}} 
+string {\bfseries get\+String} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected 속성}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_http_message_aa7ad90849c8df65b3260725b015f5256}\label{class_http_message_aa7ad90849c8df65b3260725b015f5256}} 
+string {\bfseries first\+Line} \mbox{[}3\mbox{]}
+\end{DoxyCompactItemize}
+\subsection*{Private 멤버 함수}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_http_message_af806f3a54030bf45033fb51bb006c742}\label{class_http_message_af806f3a54030bf45033fb51bb006c742}} 
+bool {\bfseries parser\+Line} (string input, string key, string output\mbox{[}$\,$\mbox{]}, int size)
+\end{DoxyCompactItemize}
+\subsection*{Private 속성}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_http_message_a3bfa478f8060697b81302641535ee642}\label{class_http_message_a3bfa478f8060697b81302641535ee642}} 
+\hyperlink{struct_header_line}{Header\+Line} {\bfseries header\+Line} \mbox{[}500\mbox{]}
+\item 
+\mbox{\Hypertarget{class_http_message_ab4ace05a1b827df046db1a358a8c55bb}\label{class_http_message_ab4ace05a1b827df046db1a358a8c55bb}} 
+string {\bfseries message\+Body}
+\item 
+\mbox{\Hypertarget{class_http_message_aedde7947cf32eac14ae98815f7298be4}\label{class_http_message_aedde7947cf32eac14ae98815f7298be4}} 
+bool {\bfseries error}
+\item 
+\mbox{\Hypertarget{class_http_message_aceb0bc8791d5213c4fb676be5fe2d079}\label{class_http_message_aceb0bc8791d5213c4fb676be5fe2d079}} 
+int {\bfseries header\+Size}
+\end{DoxyCompactItemize}
+
+
+이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.\+:\begin{DoxyCompactItemize}
+\item 
+Network/Http.\+hpp\item 
+Network/Http.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,3449 @@
+{\rtf1\ansi\ansicpg949\uc1 \deff0\deflang1033\deflangfe1033
+{\fonttbl {\f0\froman\fcharset129\fprq2{\*\panose 02020603050405020304}Times New Roman;}
+{\f1\fswiss\fcharset129\fprq2{\*\panose 020b0604020202020204}Arial;}
+{\f2\fmodern\fcharset129\fprq1{\*\panose 02070309020205020404}Courier New;}
+{\f3\froman\fcharset2\fprq2{\*\panose 05050102010706020507}Symbol;}
+}
+{\colortbl;\red0\green0\blue0;\red0\green0\blue255;\red0\green255\blue255;\red0\green255\blue0;\red255\green0\blue255;\red255\green0\blue0;\red255\green255\blue0;\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;\red128\green0\blue128;\red128\green0\blue0;\red128\green128\blue0;\red128\green128\blue128;\red192\green192\blue192;}
+{\stylesheet
+{\widctlpar\adjustright \fs20\cgrid \snext0 Normal;}
+{\paperw11900\paperh16840\margl1800\margr1800\margt1440\margb1440\gutter0\ltrsect}
+{\s1\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs36\kerning36\cgrid \sbasedon0 \snext0 heading 1;}
+{\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid \sbasedon0 \snext0 heading 2;}
+{\s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid \sbasedon0 \snext0 heading 3;}
+{\s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid \sbasedon0 \snext0 heading 4;}{\*\cs10 \additive Default Paragraph Font;}
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid \sbasedon0 \snext0 heading 5;}{\*\cs10 \additive Default Paragraph Font;}
+{\s15\qc\sb240\sa60\widctlpar\outlinelevel0\adjustright \b\f1\fs32\kerning28\cgrid \sbasedon0 \snext15 Title;}
+{\s16\qc\sa60\widctlpar\outlinelevel1\adjustright \f1\cgrid \sbasedon0 \snext16 Subtitle;}
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid \sbasedon0 \snext17 BodyText;}
+{\s18\widctlpar\fs22\cgrid \sbasedon0 \snext18 DenseText;}
+{\s28\widctlpar\tqc\tx4320\tqr\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext28 header;}
+{\s29\widctlpar\tqc\tx4320\tqr\tx8640\qr\adjustright \fs20\cgrid \sbasedon0 \snext29 footer;}
+{\s30\li360\sa60\sb120\keepn\widctlpar\adjustright \b\f1\fs20\cgrid \sbasedon0 \snext30 GroupHeader;}
+{\s40\li0\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext41 Code Example 0;}
+{\s41\li360\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext42 Code Example 1;}
+{\s42\li720\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext43 Code Example 2;}
+{\s43\li1080\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext44 Code Example 3;}
+{\s44\li1440\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext45 Code Example 4;}
+{\s45\li1800\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext46 Code Example 5;}
+{\s46\li2160\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext47 Code Example 6;}
+{\s47\li2520\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext48 Code Example 7;}
+{\s48\li2880\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext49 Code Example 8;}
+{\s49\li3240\widctlpar\adjustright \shading1000\cbpat8 \f2\fs16\cgrid \sbasedon0 \snext49 Code Example 9;}
+{\s50\li0\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext51 List Continue 0;}
+{\s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext52 List Continue 1;}
+{\s52\li720\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext53 List Continue 2;}
+{\s53\li1080\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext54 List Continue 3;}
+{\s54\li1440\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext55 List Continue 4;}
+{\s55\li1800\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext56 List Continue 5;}
+{\s56\li2160\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext57 List Continue 6;}
+{\s57\li2520\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext58 List Continue 7;}
+{\s58\li2880\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext59 List Continue 8;}
+{\s59\li3240\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid \sbasedon0 \snext59 List Continue 9;}
+{\s60\li0\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext61 DescContinue 0;}
+{\s61\li360\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext62 DescContinue 1;}
+{\s62\li720\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext63 DescContinue 2;}
+{\s63\li1080\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext64 DescContinue 3;}
+{\s64\li1440\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext65 DescContinue 4;}
+{\s65\li1800\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext66 DescContinue 5;}
+{\s66\li2160\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext67 DescContinue 6;}
+{\s67\li2520\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext68 DescContinue 7;}
+{\s68\li2880\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext69 DescContinue 8;}
+{\s69\li3240\widctlpar\ql\adjustright \fs20\cgrid \sbasedon0 \snext69 DescContinue 9;}
+{\s70\li0\sa30\sb30\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext81 LatexTOC 0;}
+{\s71\li360\sa27\sb27\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext82 LatexTOC 1;}
+{\s72\li720\sa24\sb24\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext83 LatexTOC 2;}
+{\s73\li1080\sa21\sb21\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext84 LatexTOC 3;}
+{\s74\li1440\sa18\sb18\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext85 LatexTOC 4;}
+{\s75\li1800\sa15\sb15\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext86 LatexTOC 5;}
+{\s76\li2160\sa12\sb12\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext87 LatexTOC 6;}
+{\s77\li2520\sa9\sb9\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext88 LatexTOC 7;}
+{\s78\li2880\sa6\sb6\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext89 LatexTOC 8;}
+{\s79\li3240\sa3\sb3\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext89 LatexTOC 9;}
+{\s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid \sbasedon0 \snext81 \sautoupd List Bullet 0;}
+{\s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid \sbasedon0 \snext82 \sautoupd List Bullet 1;}
+{\s82\fi-360\li1080\widctlpar\jclisttab\tx1080{\*\pn \pnlvlbody\ilvl0\ls3\pnrnot0\pndec }\ls3\adjustright \fs20\cgrid \sbasedon0 \snext83 \sautoupd List Bullet 2;}
+{\s83\fi-360\li1440\widctlpar\jclisttab\tx1440{\*\pn \pnlvlbody\ilvl0\ls4\pnrnot0\pndec }\ls4\adjustright \fs20\cgrid \sbasedon0 \snext84 \sautoupd List Bullet 3;}
+{\s84\fi-360\li1800\widctlpar\jclisttab\tx1800{\*\pn \pnlvlbody\ilvl0\ls5\pnrnot0\pndec }\ls5\adjustright \fs20\cgrid \sbasedon0 \snext85 \sautoupd List Bullet 4;}
+{\s85\fi-360\li2160\widctlpar\jclisttab\tx2160{\*\pn \pnlvlbody\ilvl0\ls6\pnrnot0\pndec }\ls6\adjustright \fs20\cgrid \sbasedon0 \snext86 \sautoupd List Bullet 5;}
+{\s86\fi-360\li2520\widctlpar\jclisttab\tx2520{\*\pn \pnlvlbody\ilvl0\ls7\pnrnot0\pndec }\ls7\adjustright \fs20\cgrid \sbasedon0 \snext87 \sautoupd List Bullet 6;}
+{\s87\fi-360\li2880\widctlpar\jclisttab\tx2880{\*\pn \pnlvlbody\ilvl0\ls8\pnrnot0\pndec }\ls8\adjustright \fs20\cgrid \sbasedon0 \snext88 \sautoupd List Bullet 7;}
+{\s88\fi-360\li3240\widctlpar\jclisttab\tx3240{\*\pn \pnlvlbody\ilvl0\ls9\pnrnot0\pndec }\ls9\adjustright \fs20\cgrid \sbasedon0 \snext89 \sautoupd List Bullet 8;}
+{\s89\fi-360\li3600\widctlpar\jclisttab\tx3600{\*\pn \pnlvlbody\ilvl0\ls10\pnrnot0\pndec }\ls10\adjustright \fs20\cgrid \sbasedon0 \snext89 \sautoupd List Bullet 9;}
+{\s90\fi-360\li360\widctlpar\fs20\cgrid \sbasedon0 \snext91 \sautoupd List Enum 0;}
+{\s91\fi-360\li720\widctlpar\fs20\cgrid \sbasedon0 \snext92 \sautoupd List Enum 1;}
+{\s92\fi-360\li1080\widctlpar\fs20\cgrid \sbasedon0 \snext93 \sautoupd List Enum 2;}
+{\s93\fi-360\li1440\widctlpar\fs20\cgrid \sbasedon0 \snext94 \sautoupd List Enum 3;}
+{\s94\fi-360\li1800\widctlpar\fs20\cgrid \sbasedon0 \snext95 \sautoupd List Enum 4;}
+{\s95\fi-360\li2160\widctlpar\fs20\cgrid \sbasedon0 \snext96 \sautoupd List Enum 5;}
+{\s96\fi-360\li2520\widctlpar\fs20\cgrid \sbasedon0 \snext96 \sautoupd List Enum 5;}
+{\s97\fi-360\li2880\widctlpar\fs20\cgrid \sbasedon0 \snext98 \sautoupd List Enum 7;}
+{\s98\fi-360\li3240\widctlpar\fs20\cgrid \sbasedon0 \snext99 \sautoupd List Enum 8;}
+{\s99\fi-360\li3600\widctlpar\fs20\cgrid \sbasedon0 \snext99 \sautoupd List Enum 9;}
+}
+{\info 
+{\title {\comment Parking System }Parking System}
+{\comment \'B4\'D9\'C0\'BD\'BF\'A1 \'C0\'C7\'C7\'D8 \'BB\'FD\'BC\'BA\'B5\'CA : Doxgyen. }
+{\creatim \yr2017\mo10\dy5\hr7\min26\sec18}
+}\pard\plain 
+\sectd\pgnlcrm
+{\footer \s29\widctlpar\tqc\tx4320\tqr\tx8640\qr\adjustright \fs20\cgrid {\chpgn}}
+\pard\plain \s16\qc\sa60\widctlpar\outlinelevel1\adjustright \f1\cgrid 
+\vertalc\qc\par\par\par\par\par\par\par
+\pard\plain \s15\qc\sb240\sa60\widctlpar\outlinelevel0\adjustright \b\f1\fs32\kerning28\cgrid 
+{\field\fldedit {\*\fldinst TITLE \\*MERGEFORMAT}{\fldrslt Parking System}}\par
+\pard\plain \s16\qc\sa60\widctlpar\outlinelevel1\adjustright \f1\cgrid 
+\par
+\par\par\par\par\par\par\par\par\par\par\par\par
+\pard\plain \s16\qc\sa60\widctlpar\outlinelevel1\adjustright \f1\cgrid 
+{\field\fldedit {\*\fldinst AUTHOR \\*MERGEFORMAT}{\fldrslt AUTHOR}}\par
+\'B9\'F6\'C0\'FC \par{\field\fldedit {\*\fldinst CREATEDATE \\*MERGEFORMAT}{\fldrslt \'B8\'F1 10\'BF\'F9 5 2017 }}\par
+\page\page\vertalt
+\pard\plain 
+\s1\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs36\kerning36\cgrid \'B8\'F1\'C2\'F7\par
+\pard\plain \par
+{\field\fldedit {\*\fldinst TOC \\f \\*MERGEFORMAT}{\fldrslt Table of contents}}\par
+\pard\plain 
+\sect \sbkpage \pgndec \pgnrestart
+\sect \sectd \sbknone
+{\footer \s29\widctlpar\tqc\tx4320\tqr\tx8640\qr\adjustright \fs20\cgrid {\chpgn}}
+
+\pard\plain \sect\sbkpage
+\s1\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs36\kerning36\cgrid 
+\'B3\'D7\'C0\'D3\'BD\'BA\'C6\'E4\'C0\'CC\'BD\'BA \'BB\'F6\'C0\'CE\par \pard\plain 
+{\tc \v \'B3\'D7\'C0\'D3\'BD\'BA\'C6\'E4\'C0\'CC\'BD\'BA \'BB\'F6\'C0\'CE}
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\'B3\'D7\'C0\'D3\'BD\'BA\'C6\'E4\'C0\'CC\'BD\'BA \'B8\'F1\'B7\'CF\par \pard\plain 
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid \'B4\'D9\'C0\'BD\'C0\'BA \'B9\'AE\'BC\'AD\'C8\'AD\'B5\'C8 \'B8\'F0\'B5\'E7 \'B3\'D7\'C0\'D3\'BD\'BA\'C6\'E4\'C0\'CC\'BD\'BA\'BF\'A1 \'B4\'EB\'C7\'D1 \'B8\'F1\'B7\'CF\'C0\'D4\'B4\'CF\'B4\'D9. (\'B0\'A3\'B7\'AB\'C7\'D1 \'BC\'B3\'B8\'ED\'B8\'B8\'C0\'BB \'BA\'B8\'BF\'A9\'C1\'DD\'B4\'CF\'B4\'D9) :}
+{
+\par
+\pard\plain \s71\li360\sa27\sb27\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid 
+{\b {\b process} ({\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Process \'C1\'BE\'C7\'D5\'C0\'FB\'C0\'CE \'C1\'F8\'C7\'E0 namespace })} \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAEK \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b {\b tools} ({\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Tools \'BF\'B5\'BB\'F3 \'C3\'B3\'B8\'AE \'BD\'C3 \'C0\'AF\'BF\'EB\'C7\'D1 tool \'B8\'F0\'C0\'BD })} \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAGB \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+\par}
+\pard\plain \sect\sbkpage
+\s1\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs36\kerning36\cgrid 
+\'B0\'E8\'C5\'EB\'B5\'B5 \'BB\'F6\'C0\'CE\par \pard\plain 
+{\tc \v \'B0\'E8\'C5\'EB\'B5\'B5 \'BB\'F6\'C0\'CE}
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\'C5\'AC\'B7\'A1\'BD\'BA \'B0\'E8\'C5\'EB\'B5\'B5\par \pard\plain 
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid \'C0\'CC \'BB\'F3\'BC\'D3 \'B8\'F1\'B7\'CF\'C0\'BA \'BF\'CF\'C0\'FC\'C7\'CF\'C1\'F8 \'BE\'CA\'C1\'F6\'B8\'B8 \'BE\'CB\'C6\'C4\'BA\'AA\'BC\'F8\'C0\'B8\'B7\'CE \'B4\'EB\'B7\'AB\'C0\'FB\'C0\'B8\'B7\'CE \'C1\'A4\'B7\'C4\'B5\'C7\'BE\'EE\'C0\'D6\'BD\'C0\'B4\'CF\'B4\'D9.:}
+{
+\par
+\pard\plain \s71\li360\sa27\sb27\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid 
+tools::Analyzer\tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAGE \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+ps::API\tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAFM \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+tools::Dicider\tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAGK \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+HeaderLine\tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAAC \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+HttpMessage\tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAAF \\*MERGEFORMAT}{\fldrslt pagenum}}
+{
+\par
+\pard\plain \s72\li720\sa24\sb24\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid 
+HttpRequestMessge\tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAAS \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+HttpResponseMessge\tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAAX \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+}\par
+OCR\tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAABC \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+OCRTrainer\tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAABY \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+process::ParkingInfo\tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAFE \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+Plate\tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAACD \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+RequestLine\tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAACV \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+Socket\tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAADE \\*MERGEFORMAT}{\fldrslt pagenum}}
+{
+\par
+\pard\plain \s72\li720\sa24\sb24\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid 
+ClientSocket\tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAAA \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+ServerSocket\tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAACZ \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+}\par
+StatusCode\tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAADP \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+Svm\tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAADT \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+SVMTrainer\tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAEG \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+process::Table\tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAFI \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+Plate::Text\tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAACR \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+}
+\pard\plain \sect\sbkpage
+\s1\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs36\kerning36\cgrid 
+\'C5\'AC\'B7\'A1\'BD\'BA \'BB\'F6\'C0\'CE\par \pard\plain 
+{\tc \v \'C5\'AC\'B7\'A1\'BD\'BA \'BB\'F6\'C0\'CE}
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\'C5\'AC\'B7\'A1\'BD\'BA \'B8\'F1\'B7\'CF\par \pard\plain 
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid \'B4\'D9\'C0\'BD\'C0\'BA \'C5\'AC\'B7\'A1\'BD\'BA, \'B1\'B8\'C1\'B6\'C3\'BC, \'B0\'F8\'BF\'EB\'C3\'BC \'B1\'D7\'B8\'AE\'B0\'ED \'C0\'CE\'C5\'CD\'C6\'E4\'C0\'CC\'BD\'BA\'B5\'E9\'C0\'D4\'B4\'CF\'B4\'D9. (\'B0\'A3\'B7\'AB\'C7\'D1 \'BC\'B3\'B8\'ED\'B8\'B8\'C0\'BB \'BA\'B8\'BF\'A9\'C1\'DD\'B4\'CF\'B4\'D9) :}
+{
+\par
+\pard\plain \s71\li360\sa27\sb27\widctlpar\tqr\tldot\tx8640\adjustright \fs20\cgrid 
+{\b {\b tools::Analyzer} ({\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C5\'EB\'B0\'E8 \'BA\'D0\'BC\'AE \'B0\'E1\'B0\'FA \'C3\'E2\'B7\'C2 \'C5\'AC\'B7\'A1\'BD\'BA \'C0\'D4\'B7\'C2\'B5\'C8 \'C3\'CA\'B1\'E2 \'C1\'A4\'B4\'E4 \'B9\'AE\'C0\'DA\'BF\'AD\'B8\'A6 \'BF\'B5\'BB\'F3\'C0\'B8\'B7\'CE\'BA\'CE\'C5\'CD \'B5\'B5\'C3\'E2\'B5\'C8 \'B9\'AE\'C0\'DA\'BF\'AD\'B0\'FA \'C5\'EB\'B0\'E8\'C0\'FB \'BA\'F1\'B1\'B3\'B5\'C8 \'B0\'E1\'B0\'FA\'B8\'A6 \'C3\'E2\'B7\'C2\'C7\'D1\'B4\'D9 })} \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAGE \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b {\b ps::API} } \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAFM \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b {\b ClientSocket} } \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAAA \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b {\b tools::Dicider} ({\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C3\'CA\'B1\'E2\'BF\'A1 \'C0\'D4\'B7\'C2\'B5\'C8 \'B9\'AE\'C0\'DA\'BF\'AD\'B0\'FA \'BA\'F1\'B1\'B3\'C7\'CF\'BF\'A9 {\b tools::Dicider::LEASTMATCH} \'B8\'A6 \'B3\'D1\'BE\'FA\'C0\'BB \'B0\'E6\'BF\'EC \'B0\'E1\'B0\'FA\'B8\'A6 \'B5\'B5\'C3\'E2\'C7\'D1\'B4\'D9 })} \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAGK \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b {\b HeaderLine} } \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAAC \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b {\b HttpMessage} } \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAAF \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b {\b HttpRequestMessge} } \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAAS \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b {\b HttpResponseMessge} } \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAAX \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b {\b OCR} ({\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Artificial Neural Networks\'C0\'BB \'B4\'D9\'B7\'E7\'B1\'E2 \'C0\'A7\'C7\'D1 \'C5\'AC\'B7\'A1\'BD\'BA })} \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAABC \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b {\b OCRTrainer} ({\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\b OCR::collectTrainImages} \'BD\'C7\'C7\'E0 \'BD\'C3 \'C7\'CA\'BF\'E4\'C7\'D1 image\'B8\'A6 \'BB\'FD\'BC\'BA\'C7\'CF\'B4\'C2 \'C5\'AC\'B7\'A1\'BD\'BA })} \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAABY \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b {\b process::ParkingInfo} ({\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C1\'D6\'C2\'F7\'C0\'E5 \'C1\'A4\'BA\'B8 })} \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAFE \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b {\b Plate} ({\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'B9\'F8\'C8\'A3\'C6\'C7 \'B9\'F8\'C8\'A3\'C6\'C7 \'C0\'CC\'B9\'CC\'C1\'F6\'BF\'CD \'BB\'F3\'B4\'EB\'C0\'FB \'C0\'A7\'C4\'A1\'B8\'A6 \'C6\'F7\'C7\'D4\'C7\'D1 \'C5\'AC\'B7\'A1\'BD\'BA })} \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAACD \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b {\b RequestLine} } \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAACV \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b {\b ServerSocket} } \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAACZ \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b {\b Socket} } \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAADE \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b {\b StatusCode} } \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAADP \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b {\b Svm} ({\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Support Vector Machines\'C0\'BB \'B4\'D9\'B7\'E7\'B1\'E2 \'C0\'A7\'C7\'D1 \'C5\'AC\'B7\'A1\'BD\'BA })} \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAADT \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b {\b SVMTrainer} ({\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\b Svm::collectTrainImages} \'BD\'C7\'C7\'E0 \'BD\'C3 \'C7\'CA\'BF\'E4\'C7\'D1 image\'B8\'A6 \'BB\'FD\'BC\'BA\'C7\'CF\'B4\'C2 \'C5\'AC\'B7\'A1\'BD\'BA })} \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAEG \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b {\b process::Table} ({\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C1\'D6\'C2\'F7 \'C2\'F7\'B7\'AE \'C1\'A4\'BA\'B8 })} \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAAFI \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+{\b {\b Plate::Text} ({\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C5\'D8\'BD\'BA\'C6\'AE \'B9\'F8\'C8\'A3\'C6\'C7\'C0\'BB \'B1\'B8\'BC\'BA\'C7\'CF\'B4\'C2 \'C5\'D8\'BD\'BA\'C6\'AE\'B5\'E9 \'C1\'DF \'C7\'CF\'B3\'AA })} \tab {\field\fldedit {\*\fldinst PAGEREF AAAAAAAACR \\*MERGEFORMAT}{\fldrslt pagenum}}
+\par
+\par}
+\pard\plain \sect\sbkpage
+\s1\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs36\kerning36\cgrid 
+\'B3\'D7\'C0\'D3\'BD\'BA\'C6\'E4\'C0\'CC\'BD\'BA \'B9\'AE\'BC\'AD\'C8\'AD\par \pard\plain 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+process \'B3\'D7\'C0\'D3\'BD\'BA\'C6\'E4\'C0\'CC\'BD\'BA \'C2\'FC\'C1\'B6\par \pard\plain 
+{\tc\tcl2 \v process}
+{\xe \v process}
+{\bkmkstart AAAAAAAAEK}
+{\bkmkend AAAAAAAAEK}
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Process \'C1\'BE\'C7\'D5\'C0\'FB\'C0\'CE \'C1\'F8\'C7\'E0 namespace }}\par
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'C5\'AC\'B7\'A1\'BD\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+struct {\b ParkingInfo}\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C1\'D6\'C2\'F7\'C0\'E5 \'C1\'A4\'BA\'B8 }}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+struct {\b Table}\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C1\'D6\'C2\'F7 \'C2\'F7\'B7\'AE \'C1\'A4\'BA\'B8 }}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'BF\'AD\'B0\'C5\'C7\'FC \'C5\'B8\'C0\'D4\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+enum {\b FROM} \{ {\b CAMERA} = 0, 
+{\b FILESYSTEM} = 1
+ \}{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+image\'B8\'A6 \'C0\'D4\'B7\'C2\'B9\'DE\'C0\'BB \'B0\'F7 }}}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+enum {\b WAY} \{ {\b NONE} = -1, 
+{\b ENTER} = 0, 
+{\b EXIT} = 1
+ \}{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C4\'AB\'B8\'DE\'B6\'F3 \'B9\'E6\'C7\'E2 }}}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+enum {\b MODE} \{ {\b NETWORK} = 0x01, 
+{\b TRAIN} = 0x02, 
+{\b POSITION} = 0x04, 
+{\b COSTTIME} = 0x08, 
+{\b PLATESTR} = 0x10, 
+{\b WINDOWON} = 0x20, 
+{\b ANALYSIS} = 0x40, 
+{\b NOTUSEML} = 0x80
+ \}{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C7\'C1\'B7\'CE\'B1\'D7\'B7\'A5 Mode }}}
+\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+void {\b send2Server} (const {\b ParkingInfo} &info, {\b Table} table[SEGMENTSIZE])\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Server \'BF\'A1\'B0\'D4 \'BA\'B8\'B3\'BB\'B1\'E2 }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+bool {\b deductIndex} (const cv::Rect area[SEGMENTSIZE], const cv::Point &position, int *zoneIndex)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C2\'F7\'B7\'AE \'C0\'A7\'C4\'A1 \'B5\'B5\'C3\'E2 }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+int {\b startOpencv} (int width, int height, int mode, {\b process::ParkingInfo} info, std::string answer)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Opencv \'C0\'DB\'BE\'F7 \'BD\'C3\'C0\'DB }{
+}\par
+}}
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'BB\'F3\'BC\'BC\'C7\'D1 \'BC\'B3\'B8\'ED\par
+\pard\plain 
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Process \'C1\'BE\'C7\'D5\'C0\'FB\'C0\'CE \'C1\'F8\'C7\'E0 namespace \par
+}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'BF\'AD\'B0\'C5\'C7\'FC \'C5\'B8\'C0\'D4 \'B9\'AE\'BC\'AD\'C8\'AD\par
+\pard\plain 
+{\xe \v FROM\:process}
+{\xe \v process\:FROM}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+enum {\b process::FROM}}}
+\par
+{\bkmkstart AAAAAAAAEL}
+{\bkmkend AAAAAAAAEL}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+image\'B8\'A6 \'C0\'D4\'B7\'C2\'B9\'DE\'C0\'BB \'B0\'F7 }}\par
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'BF\'AD\'B0\'C5\'C7\'FC \'B8\'E2\'B9\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{\xe \v CAMERA\:process}
+{\xe \v process\:CAMERA}
+{\qr CAMERA{\bkmkstart AAAAAAAAEM}
+{\bkmkend AAAAAAAAEM}
+\cell }{{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Camera\'B7\'CE \'BA\'CE\'C5\'CD \par
+}\cell }{\row }
+{\xe \v FILESYSTEM\:process}
+{\xe \v process\:FILESYSTEM}
+{\qr FILESYSTEM{\bkmkstart AAAAAAAAEN}
+{\bkmkend AAAAAAAAEN}
+\cell }{{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+File System\'C0\'B8\'B7\'CE \'BA\'CE\'C5\'CD \par
+}\cell }{\row }
+}
+}
+{\xe \v MODE\:process}
+{\xe \v process\:MODE}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+enum {\b process::MODE}}}
+\par
+{\bkmkstart AAAAAAAAEO}
+{\bkmkend AAAAAAAAEO}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C7\'C1\'B7\'CE\'B1\'D7\'B7\'A5 Mode }}\par
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'BF\'AD\'B0\'C5\'C7\'FC \'B8\'E2\'B9\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{\xe \v NETWORK\:process}
+{\xe \v process\:NETWORK}
+{\qr NETWORK{\bkmkstart AAAAAAAAEP}
+{\bkmkend AAAAAAAAEP}
+\cell }{{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Network \'C8\'B0\'BC\'BA\'C8\'AD \par
+}\cell }{\row }
+{\xe \v TRAIN\:process}
+{\xe \v process\:TRAIN}
+{\qr TRAIN{\bkmkstart AAAAAAAAEQ}
+{\bkmkend AAAAAAAAEQ}
+\cell }{{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Train \'C8\'B0\'BC\'BA\'C8\'AD \par
+}\cell }{\row }
+{\xe \v POSITION\:process}
+{\xe \v process\:POSITION}
+{\qr POSITION{\bkmkstart AAAAAAAAER}
+{\bkmkend AAAAAAAAER}
+\cell }{{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Position \'C7\'A5\'BD\'C3 \par
+}\cell }{\row }
+{\xe \v COSTTIME\:process}
+{\xe \v process\:COSTTIME}
+{\qr COSTTIME{\bkmkstart AAAAAAAAES}
+{\bkmkend AAAAAAAAES}
+\cell }{{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'BC\'D2\'BF\'E4\'BD\'C3\'B0\'A3 \'C7\'A5\'BD\'C3 \par
+}\cell }{\row }
+{\xe \v PLATESTR\:process}
+{\xe \v process\:PLATESTR}
+{\qr PLATESTR{\bkmkstart AAAAAAAAET}
+{\bkmkend AAAAAAAAET}
+\cell }{{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'BC\'D2\'BF\'E4\'BD\'C3\'B0\'A3 \'C7\'A5\'BD\'C3 \par
+}\cell }{\row }
+{\xe \v WINDOWON\:process}
+{\xe \v process\:WINDOWON}
+{\qr WINDOWON{\bkmkstart AAAAAAAAEU}
+{\bkmkend AAAAAAAAEU}
+\cell }{{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'B0\'A2 \'B0\'FA\'C1\'A4\'C0\'BB Windows\'B7\'CE \'B6\'E7\'BF\'EC\'B1\'E2 \par
+}\cell }{\row }
+{\xe \v ANALYSIS\:process}
+{\xe \v process\:ANALYSIS}
+{\qr ANALYSIS{\bkmkstart AAAAAAAAEV}
+{\bkmkend AAAAAAAAEV}
+\cell }{{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C5\'EB\'B0\'E8\'C0\'FB \'B0\'E8\'BB\'EA \'C3\'F8\'C1\'A4 \par
+}\cell }{\row }
+{\xe \v NOTUSEML\:process}
+{\xe \v process\:NOTUSEML}
+{\qr NOTUSEML{\bkmkstart AAAAAAAAEW}
+{\bkmkend AAAAAAAAEW}
+\cell }{{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C0\'CE\'B0\'F8\'BD\'C5\'B0\'E6\'B8\'C1 \'BB\'E7\'BF\'EB\'C7\'CF\'C1\'F6 \'BE\'CA\'B1\'E2 \par
+}\cell }{\row }
+}
+}
+{\xe \v WAY\:process}
+{\xe \v process\:WAY}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+enum {\b process::WAY}}}
+\par
+{\bkmkstart AAAAAAAAEX}
+{\bkmkend AAAAAAAAEX}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C4\'AB\'B8\'DE\'B6\'F3 \'B9\'E6\'C7\'E2 }}\par
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'BF\'AD\'B0\'C5\'C7\'FC \'B8\'E2\'B9\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{\xe \v NONE\:process}
+{\xe \v process\:NONE}
+{\qr NONE{\bkmkstart AAAAAAAAEY}
+{\bkmkend AAAAAAAAEY}
+\cell }{{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+NONE \par
+}\cell }{\row }
+{\xe \v ENTER\:process}
+{\xe \v process\:ENTER}
+{\qr ENTER{\bkmkstart AAAAAAAAEZ}
+{\bkmkend AAAAAAAAEZ}
+\cell }{{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C0\'D4\'B1\'B8 \par
+}\cell }{\row }
+{\xe \v EXIT\:process}
+{\xe \v process\:EXIT}
+{\qr EXIT{\bkmkstart AAAAAAAAFA}
+{\bkmkend AAAAAAAAFA}
+\cell }{{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C3\'E2\'B1\'B8 \par
+}\cell }{\row }
+}
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'C7\'D4\'BC\'F6 \'B9\'AE\'BC\'AD\'C8\'AD\par
+\pard\plain 
+{\xe \v deductIndex\:process}
+{\xe \v process\:deductIndex}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+bool process::deductIndex (const cv::Rect  {\i area}[SEGMENTSIZE], const cv::Point &  {\i position}, int *  {\i zoneIndex})}}
+\par
+{\bkmkstart AAAAAAAAFB}
+{\bkmkend AAAAAAAAFB}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C2\'F7\'B7\'AE \'C0\'A7\'C4\'A1 \'B5\'B5\'C3\'E2 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i area} \cell }{SEGMENTSIZE \'B0\'B3\'BC\'F6\'B7\'CE \'B3\'AA\'B4\'B5\'BE\'EE\'C1\'F8 \'BB\'E7\'B0\'A2\'C7\'FC \'BF\'B5\'BF\'AA \cell }
+{\row }
+\trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i position} \cell }{\'B9\'F8\'C8\'A3\'C6\'C7\'C0\'C7 \'C1\'C2\'C7\'A5 \cell }
+{\row }
+\trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i zoneIndex} \cell }{\'B5\'B5\'C3\'E2\'B5\'C8 \'C2\'F7\'B7\'AE \'C0\'A7\'C4\'A1 \cell }
+{\row }
+}
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B9\'DD\'C8\'AF\'B0\'AA:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid \'C7\'D8\'B4\'E7\'C7\'CF\'B4\'C2 \'C0\'A7\'C4\'A1\'B0\'A1 \'C1\'B8\'C0\'E7\'C7\'CF\'B8\'E9 true \'B1\'D7\'B7\'B8\'C1\'F6 \'BE\'CA\'C0\'B8\'B8\'E9 false position\'C0\'CC \'B0\'A2\'B0\'A2\'C0\'C7 area \'C1\'DF\'BF\'A1 \'C6\'F7\'C7\'D4\'B5\'C7\'B4\'C2\'C1\'F6 \'B0\'CB\'BB\'E7\'C7\'D1\'B4\'D9. \par
+}}}
+{\xe \v send2Server\:process}
+{\xe \v process\:send2Server}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+void process::send2Server (const {\b ParkingInfo} &  {\i info}, {\b Table}  {\i table}[SEGMENTSIZE])}}
+\par
+{\bkmkstart AAAAAAAAFC}
+{\bkmkend AAAAAAAAFC}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Server \'BF\'A1\'B0\'D4 \'BA\'B8\'B3\'BB\'B1\'E2 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i info} \cell }{\'C1\'D6\'C2\'F7\'C0\'E5 \'C1\'A4\'BA\'B8 \cell }
+{\row }
+\trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i table} \cell }{\'C1\'D6\'C2\'F7 \'C2\'F7\'B7\'AE \'C1\'A4\'BA\'B8 \cell }
+{\row }
+}
+}}
+{\xe \v startOpencv\:process}
+{\xe \v process\:startOpencv}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+int process::startOpencv (int  {\i width}, int  {\i height}, int  {\i mode}, {\b process::ParkingInfo}  {\i info}, std::string  {\i answer})}}
+\par
+{\bkmkstart AAAAAAAAFD}
+{\bkmkend AAAAAAAAFD}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Opencv \'C0\'DB\'BE\'F7 \'BD\'C3\'C0\'DB }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i width} \cell }{\'BF\'B5\'BB\'F3 \'C3\'B3\'B8\'AE\'C7\'D2 \'C0\'CC\'B9\'CC\'C1\'F6\'C0\'C7 \'B0\'A1\'B7\'CE \'B1\'E6\'C0\'CC \cell }
+{\row }
+\trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i height} \cell }{\'BF\'B5\'BB\'F3 \'C3\'B3\'B8\'AE\'C7\'D2 \'C0\'CC\'B9\'CC\'C1\'F6\'C0\'C7 \'BC\'BC\'B7\'CE \'B1\'E6\'C0\'CC \cell }
+{\row }
+\trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i mode} \cell }{\'BF\'B5\'BB\'F3 \'C3\'B3\'B8\'AE\'BF\'A1 \'B4\'EB\'C7\'D1 \'B8\'F0\'B5\'E5 \cell }
+{\row }
+\trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i info} \cell }{\'C1\'D6\'C2\'F7 \'C2\'F7\'B7\'AE \'C1\'A4\'BA\'B8 \cell }
+{\row }
+\trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i answer} \cell }{\'C5\'EB\'B0\'E8 \'C1\'A4\'BA\'B8 \'B6\'C7\'B4\'C2 \'B0\'E1\'B0\'FA\'B9\'B0\'C0\'BB \'C8\'C6\'B7\'C3 \'B5\'A5\'C0\'CC\'C5\'CD\'BF\'A1 \'C0\'FA\'C0\'E5\'C7\'CF\'B1\'E2 \'C0\'A7\'C7\'D1 \'C1\'A4\'B4\'E4 \cell }
+{\row }
+}
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'C2\'FC\'B0\'ED:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid {\b OCRTrainer} \par
+}}{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Camera \'BF\'AD\'B1\'E2\par
+\'C1\'D6\'C2\'F7 \'BF\'B5\'BF\'AA\par
+OpenMP Thread \'BB\'FD\'BC\'BA\par
+Camera image \'BA\'D2\'B7\'AF\'BF\'C0\'B4\'C2 Thread\par
+Svm\'C0\'BB \'C5\'EB\'C7\'D8 \'B9\'F8\'C8\'A3\'C6\'C7 \'BF\'A9\'BA\'CE \'C8\'AE\'C0\'CE \par
+}}
+\par \pard\plain 
+
+\pard\plain \sect\sbkpage
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+tools \'B3\'D7\'C0\'D3\'BD\'BA\'C6\'E4\'C0\'CC\'BD\'BA \'C2\'FC\'C1\'B6\par \pard\plain 
+{\tc\tcl2 \v tools}
+{\xe \v tools}
+{\bkmkstart AAAAAAAAGB}
+{\bkmkend AAAAAAAAGB}
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+tools \'BF\'B5\'BB\'F3 \'C3\'B3\'B8\'AE \'BD\'C3 \'C0\'AF\'BF\'EB\'C7\'D1 tool \'B8\'F0\'C0\'BD }}\par
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'C5\'AC\'B7\'A1\'BD\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+class {\b Analyzer}\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C5\'EB\'B0\'E8 \'BA\'D0\'BC\'AE \'B0\'E1\'B0\'FA \'C3\'E2\'B7\'C2 \'C5\'AC\'B7\'A1\'BD\'BA \'C0\'D4\'B7\'C2\'B5\'C8 \'C3\'CA\'B1\'E2 \'C1\'A4\'B4\'E4 \'B9\'AE\'C0\'DA\'BF\'AD\'B8\'A6 \'BF\'B5\'BB\'F3\'C0\'B8\'B7\'CE\'BA\'CE\'C5\'CD \'B5\'B5\'C3\'E2\'B5\'C8 \'B9\'AE\'C0\'DA\'BF\'AD\'B0\'FA \'C5\'EB\'B0\'E8\'C0\'FB \'BA\'F1\'B1\'B3\'B5\'C8 \'B0\'E1\'B0\'FA\'B8\'A6 \'C3\'E2\'B7\'C2\'C7\'D1\'B4\'D9. }}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+class {\b Dicider}\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C3\'CA\'B1\'E2\'BF\'A1 \'C0\'D4\'B7\'C2\'B5\'C8 \'B9\'AE\'C0\'DA\'BF\'AD\'B0\'FA \'BA\'F1\'B1\'B3\'C7\'CF\'BF\'A9 {\b tools::Dicider::LEASTMATCH} \'B8\'A6 \'B3\'D1\'BE\'FA\'C0\'BB \'B0\'E6\'BF\'EC \'B0\'E1\'B0\'FA\'B8\'A6 \'B5\'B5\'C3\'E2\'C7\'D1\'B4\'D9. }}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+bool {\b readImage} (const std::string fn, cv::Mat &image, int flags=1)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+File System\'C0\'B8\'B7\'CE \'BA\'CE\'C5\'CD \'C0\'CC\'B9\'CC\'C1\'F6 \'BA\'D2\'B7\'AF\'BF\'C0\'B1\'E2 }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+bool {\b writeImage} (const std::string fn, const cv::Mat &image)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+File System\'C0\'B8\'B7\'CE Image\'B8\'A6 \'BE\'B2\'B1\'E2 }{
+}\par
+}}
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'BB\'F3\'BC\'BC\'C7\'D1 \'BC\'B3\'B8\'ED\par
+\pard\plain 
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+tools \'BF\'B5\'BB\'F3 \'C3\'B3\'B8\'AE \'BD\'C3 \'C0\'AF\'BF\'EB\'C7\'D1 tool \'B8\'F0\'C0\'BD \par
+}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'C7\'D4\'BC\'F6 \'B9\'AE\'BC\'AD\'C8\'AD\par
+\pard\plain 
+{\xe \v readImage\:tools}
+{\xe \v tools\:readImage}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+bool tools::readImage (const std::string  {\i fn}, cv::Mat &  {\i image}, int  {\i flags} = {\f2 1})}}
+\par
+{\bkmkstart AAAAAAAAGC}
+{\bkmkend AAAAAAAAGC}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+File System\'C0\'B8\'B7\'CE \'BA\'CE\'C5\'CD \'C0\'CC\'B9\'CC\'C1\'F6 \'BA\'D2\'B7\'AF\'BF\'C0\'B1\'E2 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i fn} \cell }{\'C0\'CC\'B9\'CC\'C1\'F6 \'C6\'C4\'C0\'CF \'B0\'E6\'B7\'CE \cell }
+{\row }
+\trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i image} \cell }{File System\'BF\'A1\'BC\'AD \'BA\'D2\'B7\'AF\'BF\'C2 \'C0\'CC\'B9\'CC\'C1\'F6\'B8\'A6 \'C0\'FA\'C0\'E5\'C7\'D2 \'BA\'AF\'BC\'F6 \cell }
+{\row }
+\trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i flags} \cell }{cv::ImreadModes \'C0\'C7 \'B0\'AA\'C0\'BB \'C1\'F6\'C1\'A4 \cell }
+{\row }
+}
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B9\'DD\'C8\'AF\'B0\'AA:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid \'BC\'BA\'B0\'F8 \'BD\'C3 true \'B1\'D7\'B7\'B8\'C1\'F6 \'BE\'CA\'C0\'B8\'B8\'E9 false \par
+}}}
+{\xe \v writeImage\:tools}
+{\xe \v tools\:writeImage}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+bool tools::writeImage (const std::string  {\i fn}, const cv::Mat &  {\i image})}}
+\par
+{\bkmkstart AAAAAAAAGD}
+{\bkmkend AAAAAAAAGD}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+File System\'C0\'B8\'B7\'CE Image\'B8\'A6 \'BE\'B2\'B1\'E2 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i fn} \cell }{\'C0\'CC\'B9\'CC\'C1\'F6 \'C6\'C4\'C0\'CF \'B0\'E6\'B7\'CE \cell }
+{\row }
+\trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i image} \cell }{File System\'BF\'A1 \'BE\'B5 \'C0\'CC\'B9\'CC\'C1\'F6 \'BA\'AF\'BC\'F6 \cell }
+{\row }
+}
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B9\'DD\'C8\'AF\'B0\'AA:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid \'BC\'BA\'B0\'F8 \'BD\'C3 true \'B1\'D7\'B7\'B8\'C1\'F6 \'BE\'CA\'C0\'B8\'B8\'E9 false \par
+}}}
+
+\pard\plain \sect\sbkpage
+\s1\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs36\kerning36\cgrid 
+\'C5\'AC\'B7\'A1\'BD\'BA \'B9\'AE\'BC\'AD\'C8\'AD{\tc \v \'C5\'AC\'B7\'A1\'BD\'BA \'B9\'AE\'BC\'AD\'C8\'AD}
+\par \pard\plain 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+tools::Analyzer \'C5\'AC\'B7\'A1\'BD\'BA \'C2\'FC\'C1\'B6\par \pard\plain 
+{\tc\tcl2 \v tools::Analyzer}
+{\xe \v tools::Analyzer}
+{\bkmkstart AAAAAAAAGE}
+{\bkmkend AAAAAAAAGE}
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C5\'EB\'B0\'E8 \'BA\'D0\'BC\'AE \'B0\'E1\'B0\'FA \'C3\'E2\'B7\'C2 \'C5\'AC\'B7\'A1\'BD\'BA \'C0\'D4\'B7\'C2\'B5\'C8 \'C3\'CA\'B1\'E2 \'C1\'A4\'B4\'E4 \'B9\'AE\'C0\'DA\'BF\'AD\'B8\'A6 \'BF\'B5\'BB\'F3\'C0\'B8\'B7\'CE\'BA\'CE\'C5\'CD \'B5\'B5\'C3\'E2\'B5\'C8 \'B9\'AE\'C0\'DA\'BF\'AD\'B0\'FA \'C5\'EB\'B0\'E8\'C0\'FB \'BA\'F1\'B1\'B3\'B5\'C8 \'B0\'E1\'B0\'FA\'B8\'A6 \'C3\'E2\'B7\'C2\'C7\'D1\'B4\'D9. }}\par
+{
+{\f2 #include <Tools.hpp>}}\par
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\b Analyzer} (const std::string {\b answer})\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\b Analyzer} \'C3\'CA\'B1\'E2\'C8\'AD }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+void {\b analyze} (const std::string str)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C0\'D4\'B7\'C2\'B9\'DE\'C0\'BA \'B9\'AE\'C0\'DA\'BF\'AD\'C0\'BB \'C1\'A4\'B4\'E4\'B0\'FA \'BA\'F1\'B1\'B3\'C7\'CF\'B8\'E7 \'C5\'EB\'B0\'E8\'C0\'FB \'B0\'E8\'BB\'EA \'B0\'E1\'B0\'FA\'B8\'A6 \'C3\'E2\'B7\'C2 }{
+}\par
+}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Private \'BC\'D3\'BC\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+int {\b totalCorrect}{\bkmkstart AAAAAAAAGF}
+{\bkmkend AAAAAAAAGF}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C3\'D1 \'B8\'C2\'C0\'BA \'C8\'BD\'BC\'F6 }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+int {\b totalTry}{\bkmkstart AAAAAAAAGG}
+{\bkmkend AAAAAAAAGG}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C3\'D1 \'BD\'C3\'B5\'B5\'C7\'D1 \'C8\'BD\'BC\'F6 }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+std::string {\b answer}{\bkmkstart AAAAAAAAGH}
+{\bkmkend AAAAAAAAGH}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'BA\'F1\'B1\'B3\'C7\'D2 \'C1\'A4\'B4\'E4 }{
+}\par
+}}
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'BB\'F3\'BC\'BC\'C7\'D1 \'BC\'B3\'B8\'ED\par
+\pard\plain 
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C5\'EB\'B0\'E8 \'BA\'D0\'BC\'AE \'B0\'E1\'B0\'FA \'C3\'E2\'B7\'C2 \'C5\'AC\'B7\'A1\'BD\'BA \'C0\'D4\'B7\'C2\'B5\'C8 \'C3\'CA\'B1\'E2 \'C1\'A4\'B4\'E4 \'B9\'AE\'C0\'DA\'BF\'AD\'B8\'A6 \'BF\'B5\'BB\'F3\'C0\'B8\'B7\'CE\'BA\'CE\'C5\'CD \'B5\'B5\'C3\'E2\'B5\'C8 \'B9\'AE\'C0\'DA\'BF\'AD\'B0\'FA \'C5\'EB\'B0\'E8\'C0\'FB \'BA\'F1\'B1\'B3\'B5\'C8 \'B0\'E1\'B0\'FA\'B8\'A6 \'C3\'E2\'B7\'C2\'C7\'D1\'B4\'D9. \par
+}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'BB\'FD\'BC\'BA\'C0\'DA & \'BC\'D2\'B8\'EA\'C0\'DA \'B9\'AE\'BC\'AD\'C8\'AD\par
+\pard\plain 
+{\xe \v Analyzer\:tools::Analyzer}
+{\xe \v tools::Analyzer\:Analyzer}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+tools::Analyzer::Analyzer (const std::string  {\i answer})}}
+\par
+{\bkmkstart AAAAAAAAGI}
+{\bkmkend AAAAAAAAGI}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\b Analyzer} \'C3\'CA\'B1\'E2\'C8\'AD }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i answer} \cell }{\'C1\'A4\'B4\'E4\'C0\'BB \'BC\'B3\'C1\'A4 \cell }
+{\row }
+}
+}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6 \'B9\'AE\'BC\'AD\'C8\'AD\par
+\pard\plain 
+{\xe \v analyze\:tools::Analyzer}
+{\xe \v tools::Analyzer\:analyze}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+void tools::Analyzer::analyze (const std::string  {\i str})}}
+\par
+{\bkmkstart AAAAAAAAGJ}
+{\bkmkend AAAAAAAAGJ}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C0\'D4\'B7\'C2\'B9\'DE\'C0\'BA \'B9\'AE\'C0\'DA\'BF\'AD\'C0\'BB \'C1\'A4\'B4\'E4\'B0\'FA \'BA\'F1\'B1\'B3\'C7\'CF\'B8\'E7 \'C5\'EB\'B0\'E8\'C0\'FB \'B0\'E8\'BB\'EA \'B0\'E1\'B0\'FA\'B8\'A6 \'C3\'E2\'B7\'C2 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i str} \cell }{\'C1\'A4\'B4\'E4\'B0\'FA \'BA\'F1\'B1\'B3\'C7\'D2 \'B9\'AE\'C0\'DA\'BF\'AD \cell }
+{\row }
+}
+}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\'C0\'CC \'C5\'AC\'B7\'A1\'BD\'BA\'BF\'A1 \'B4\'EB\'C7\'D1 \'B9\'AE\'BC\'AD\'C8\'AD \'C6\'E4\'C0\'CC\'C1\'F6\'B4\'C2 \'B4\'D9\'C0\'BD\'C0\'C7 \'C6\'C4\'C0\'CF\'B5\'E9\'B7\'CE\'BA\'CE\'C5\'CD \'BB\'FD\'BC\'BA\'B5\'C7\'BE\'FA\'BD\'C0\'B4\'CF\'B4\'D9.:{\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Opencv/Tools.hpp\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Opencv/Tools.cpp\par
+}\par \pard\plain 
+
+\pard\plain \sect\sbkpage
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+ps::API \'C5\'AC\'B7\'A1\'BD\'BA \'C2\'FC\'C1\'B6\par \pard\plain 
+{\tc\tcl2 \v ps::API}
+{\xe \v ps::API}
+{\bkmkstart AAAAAAAAFM}
+{\bkmkend AAAAAAAAFM}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+void {\b inout} (std::string plateNum, std::string inout){\bkmkstart AAAAAAAAFN}
+{\bkmkend AAAAAAAAFN}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+void {\b enter} (std::string plateNum){\bkmkstart AAAAAAAAFO}
+{\bkmkend AAAAAAAAFO}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+void {\b exit} (std::string plateNum){\bkmkstart AAAAAAAAFP}
+{\bkmkend AAAAAAAAFP}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+void {\b parking} (int floor, std::string zoneName, int zoneIndex, std::string plateNum){\bkmkstart AAAAAAAAFQ}
+{\bkmkend AAAAAAAAFQ}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+void {\b resopnse} (){\bkmkstart AAAAAAAAFR}
+{\bkmkend AAAAAAAAFR}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+void {\b enter} (string str){\bkmkstart AAAAAAAAFS}
+{\bkmkend AAAAAAAAFS}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+void {\b exit} (string str){\bkmkstart AAAAAAAAFT}
+{\bkmkend AAAAAAAAFT}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+void {\b parking} (int floor, string zoneName, int i, string str){\bkmkstart AAAAAAAAFU}
+{\bkmkend AAAAAAAAFU}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+void {\b resopnse} (){\bkmkstart AAAAAAAAFR}
+{\bkmkend AAAAAAAAFR}
+\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Private \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+void {\b setHeader} ({\b HeaderLine} headerLine[], std::string content){\bkmkstart AAAAAAAAFV}
+{\bkmkend AAAAAAAAFV}
+\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Private \'BC\'D3\'BC\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+{\b ClientSocket} * {\b sock}{\bkmkstart AAAAAAAAFW}
+{\bkmkend AAAAAAAAFW}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+std::string {\b hostname}{\bkmkstart AAAAAAAAFX}
+{\bkmkend AAAAAAAAFX}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+int {\b port}{\bkmkstart AAAAAAAAFY}
+{\bkmkend AAAAAAAAFY}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+std::string {\b path}{\bkmkstart AAAAAAAAFZ}
+{\bkmkend AAAAAAAAFZ}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+string {\b path} = "Network/http_test"{\bkmkstart AAAAAAAAGA}
+{\bkmkend AAAAAAAAGA}
+\par
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\'C0\'CC \'C5\'AC\'B7\'A1\'BD\'BA\'BF\'A1 \'B4\'EB\'C7\'D1 \'B9\'AE\'BC\'AD\'C8\'AD \'C6\'E4\'C0\'CC\'C1\'F6\'B4\'C2 \'B4\'D9\'C0\'BD\'C0\'C7 \'C6\'C4\'C0\'CF\'B5\'E9\'B7\'CE\'BA\'CE\'C5\'CD \'BB\'FD\'BC\'BA\'B5\'C7\'BE\'FA\'BD\'C0\'B4\'CF\'B4\'D9.:{\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Network/psAPI.hpp\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Opencv/process.cpp\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Network/psAPI.cpp\par
+}\par \pard\plain 
+
+\pard\plain \sect\sbkpage
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+ClientSocket \'C5\'AC\'B7\'A1\'BD\'BA \'C2\'FC\'C1\'B6\par \pard\plain 
+{\tc\tcl2 \v ClientSocket}
+{\xe \v ClientSocket}
+{\bkmkstart AAAAAAAAAA}
+{\bkmkend AAAAAAAAAA}
+ClientSocket\'BF\'A1 \'B4\'EB\'C7\'D1 \'BB\'F3\'BC\'D3 \'B4\'D9\'C0\'CC\'BE\'EE\'B1\'D7\'B7\'A5 : {
+\pard\plain 
+\par\pard \qc {\field\flddirty {\*\fldinst INCLUDEPICTURE "class_client_socket.png" \\d \\*MERGEFORMAT}{\fldrslt IMAGE}}\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+bool {\b connect} (std::string host, int port){\bkmkstart AAAAAAAAAB}
+{\bkmkend AAAAAAAAAB}
+\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'C3\'DF\'B0\'A1\'B7\'CE \'BB\'F3\'BC\'D3\'B5\'C8 \'B8\'E2\'B9\'F6\'B5\'E9\par
+\pard\plain 
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\'C0\'CC \'C5\'AC\'B7\'A1\'BD\'BA\'BF\'A1 \'B4\'EB\'C7\'D1 \'B9\'AE\'BC\'AD\'C8\'AD \'C6\'E4\'C0\'CC\'C1\'F6\'B4\'C2 \'B4\'D9\'C0\'BD\'C0\'C7 \'C6\'C4\'C0\'CF\'B5\'E9\'B7\'CE\'BA\'CE\'C5\'CD \'BB\'FD\'BC\'BA\'B5\'C7\'BE\'FA\'BD\'C0\'B4\'CF\'B4\'D9.:{\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Network/Socket.hpp\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Network/Socket.cpp\par
+}\par \pard\plain 
+
+\pard\plain \sect\sbkpage
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+tools::Dicider \'C5\'AC\'B7\'A1\'BD\'BA \'C2\'FC\'C1\'B6\par \pard\plain 
+{\tc\tcl2 \v tools::Dicider}
+{\xe \v tools::Dicider}
+{\bkmkstart AAAAAAAAGK}
+{\bkmkend AAAAAAAAGK}
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C3\'CA\'B1\'E2\'BF\'A1 \'C0\'D4\'B7\'C2\'B5\'C8 \'B9\'AE\'C0\'DA\'BF\'AD\'B0\'FA \'BA\'F1\'B1\'B3\'C7\'CF\'BF\'A9 {\b tools::Dicider::LEASTMATCH} \'B8\'A6 \'B3\'D1\'BE\'FA\'C0\'BB \'B0\'E6\'BF\'EC \'B0\'E1\'B0\'FA\'B8\'A6 \'B5\'B5\'C3\'E2\'C7\'D1\'B4\'D9. }}\par
+{
+{\f2 #include <Tools.hpp>}}\par
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+{\b Dicider} (){\bkmkstart AAAAAAAAGL}
+{\bkmkend AAAAAAAAGL}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\b Dicider} \'C3\'CA\'B1\'E2\'C8\'AD \'BA\'F1\'B1\'B3\'C7\'D2 \'B9\'AE\'C0\'DA\'BF\'AD\'C0\'BB \'BC\'B3\'C1\'A4\'C7\'D1\'B4\'D9. }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+bool {\b decide} (std::string str)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'BF\'AC\'BC\'D3\'C0\'B8\'B7\'CE \'C0\'CF\'C1\'A4 \'C8\'BD\'BC\'F6\'B1\'EE\'C1\'F6 \'B0\'B0\'C0\'BA \'B9\'AE\'C0\'DA\'BF\'AD\'C0\'BB \'C0\'D4\'B7\'C2\'B9\'DE\'C0\'B8\'B8\'E9 \'C3\'D6\'C1\'BE \'B0\'E1\'B0\'FA\'B8\'A6 \'C3\'E2\'B7\'C2 }{
+}\par
+}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'C1\'A4\'C0\'FB Public \'BC\'D3\'BC\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+static const int {\b LEASTMATCH} = 5{\bkmkstart AAAAAAAAGM}
+{\bkmkend AAAAAAAAGM}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C3\'D6\'BC\'D2\'C7\'D1\'C0\'C7 \'C0\'CF\'C4\'A1 \'C8\'BD\'BC\'F6 }{
+}\par
+}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Private \'BC\'D3\'BC\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+std::string {\b keyStr}{\bkmkstart AAAAAAAAGN}
+{\bkmkend AAAAAAAAGN}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C3\'CA\'B1\'E2 \'B9\'AE\'C0\'DA\'BF\'AD }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+int {\b match}{\bkmkstart AAAAAAAAGO}
+{\bkmkend AAAAAAAAGO}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C0\'CF\'C4\'A1\'C7\'D1 \'C8\'BD\'BC\'F6 }{
+}\par
+}}
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'BB\'F3\'BC\'BC\'C7\'D1 \'BC\'B3\'B8\'ED\par
+\pard\plain 
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C3\'CA\'B1\'E2\'BF\'A1 \'C0\'D4\'B7\'C2\'B5\'C8 \'B9\'AE\'C0\'DA\'BF\'AD\'B0\'FA \'BA\'F1\'B1\'B3\'C7\'CF\'BF\'A9 {\b tools::Dicider::LEASTMATCH} \'B8\'A6 \'B3\'D1\'BE\'FA\'C0\'BB \'B0\'E6\'BF\'EC \'B0\'E1\'B0\'FA\'B8\'A6 \'B5\'B5\'C3\'E2\'C7\'D1\'B4\'D9. \par
+}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6 \'B9\'AE\'BC\'AD\'C8\'AD\par
+\pard\plain 
+{\xe \v decide\:tools::Dicider}
+{\xe \v tools::Dicider\:decide}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+bool tools::Dicider::decide (std::string  {\i str})}}
+\par
+{\bkmkstart AAAAAAAAGP}
+{\bkmkend AAAAAAAAGP}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'BF\'AC\'BC\'D3\'C0\'B8\'B7\'CE \'C0\'CF\'C1\'A4 \'C8\'BD\'BC\'F6\'B1\'EE\'C1\'F6 \'B0\'B0\'C0\'BA \'B9\'AE\'C0\'DA\'BF\'AD\'C0\'BB \'C0\'D4\'B7\'C2\'B9\'DE\'C0\'B8\'B8\'E9 \'C3\'D6\'C1\'BE \'B0\'E1\'B0\'FA\'B8\'A6 \'C3\'E2\'B7\'C2 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i str} \cell }{\'BA\'F1\'B1\'B3 \'B9\'AE\'C0\'DA\'BF\'AD \cell }
+{\row }
+}
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B9\'DD\'C8\'AF\'B0\'AA:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid str\'B0\'FA \'C3\'CA\'B1\'E2 \'B9\'AE\'C0\'DA\'BF\'AD\'C0\'CC LEASTMATCH \'C0\'C7 \'C8\'BD\'BC\'F6 \'C0\'CC\'BB\'F3 \'C0\'CF\'C4\'A1\'C7\'D2 \'B0\'E6\'BF\'EC true \'B1\'D7\'B7\'B8\'C1\'F6 \'BE\'CA\'C0\'B8\'B8\'E9 false \'C0\'BB \'B9\'DD\'C8\'AF \par
+}}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\'C0\'CC \'C5\'AC\'B7\'A1\'BD\'BA\'BF\'A1 \'B4\'EB\'C7\'D1 \'B9\'AE\'BC\'AD\'C8\'AD \'C6\'E4\'C0\'CC\'C1\'F6\'B4\'C2 \'B4\'D9\'C0\'BD\'C0\'C7 \'C6\'C4\'C0\'CF\'B5\'E9\'B7\'CE\'BA\'CE\'C5\'CD \'BB\'FD\'BC\'BA\'B5\'C7\'BE\'FA\'BD\'C0\'B4\'CF\'B4\'D9.:{\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Opencv/Tools.hpp\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Opencv/Tools.cpp\par
+}\par \pard\plain 
+
+\pard\plain \sect\sbkpage
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+HeaderLine \'B1\'B8\'C1\'B6\'C3\'BC \'C2\'FC\'C1\'B6\par \pard\plain 
+{\tc\tcl2 \v HeaderLine}
+{\xe \v HeaderLine}
+{\bkmkstart AAAAAAAAAC}
+{\bkmkend AAAAAAAAAC}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'BC\'D3\'BC\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+string {\b field}{\bkmkstart AAAAAAAAAD}
+{\bkmkend AAAAAAAAAD}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+string {\b value}{\bkmkstart AAAAAAAAAE}
+{\bkmkend AAAAAAAAAE}
+\par
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\'C0\'CC \'B1\'B8\'C1\'B6\'C3\'BC\'BF\'A1 \'B4\'EB\'C7\'D1 \'B9\'AE\'BC\'AD\'C8\'AD \'C6\'E4\'C0\'CC\'C1\'F6\'B4\'C2 \'B4\'D9\'C0\'BD\'C0\'C7 \'C6\'C4\'C0\'CF\'B7\'CE\'BA\'CE\'C5\'CD \'BB\'FD\'BC\'BA\'B5\'C7\'BE\'FA\'BD\'C0\'B4\'CF\'B4\'D9.:{\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Network/Http.hpp\par
+}\par \pard\plain 
+
+\pard\plain \sect\sbkpage
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+HttpMessage \'C5\'AC\'B7\'A1\'BD\'BA \'C2\'FC\'C1\'B6\par \pard\plain 
+{\tc\tcl2 \v HttpMessage}
+{\xe \v HttpMessage}
+{\bkmkstart AAAAAAAAAF}
+{\bkmkend AAAAAAAAAF}
+HttpMessage\'BF\'A1 \'B4\'EB\'C7\'D1 \'BB\'F3\'BC\'D3 \'B4\'D9\'C0\'CC\'BE\'EE\'B1\'D7\'B7\'A5 : {
+\pard\plain 
+\par\pard \qc {\field\flddirty {\*\fldinst INCLUDEPICTURE "class_http_message.png" \\d \\*MERGEFORMAT}{\fldrslt IMAGE}}\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+{\b HttpMessage} (string msg){\bkmkstart AAAAAAAAAG}
+{\bkmkend AAAAAAAAAG}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+{\b HttpMessage} (string firstLine[], {\b HeaderLine} headerLine[], int headerSize, string content){\bkmkstart AAAAAAAAAH}
+{\bkmkend AAAAAAAAAH}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+{\b HeaderLine} * {\b getHeader} (){\bkmkstart AAAAAAAAAI}
+{\bkmkend AAAAAAAAAI}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+string {\b getMessageBody} (){\bkmkstart AAAAAAAAAJ}
+{\bkmkend AAAAAAAAAJ}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+int {\b getHeaderSize} (){\bkmkstart AAAAAAAAAK}
+{\bkmkend AAAAAAAAAK}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+string {\b getString} (){\bkmkstart AAAAAAAAAL}
+{\bkmkend AAAAAAAAAL}
+\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Protected \'BC\'D3\'BC\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+string {\b firstLine} [3]{\bkmkstart AAAAAAAAAM}
+{\bkmkend AAAAAAAAAM}
+\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Private \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+bool {\b parserLine} (string input, string key, string output[], int size){\bkmkstart AAAAAAAAAN}
+{\bkmkend AAAAAAAAAN}
+\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Private \'BC\'D3\'BC\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+{\b HeaderLine} {\b headerLine} [500]{\bkmkstart AAAAAAAAAO}
+{\bkmkend AAAAAAAAAO}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+string {\b messageBody}{\bkmkstart AAAAAAAAAP}
+{\bkmkend AAAAAAAAAP}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+bool {\b error}{\bkmkstart AAAAAAAAAQ}
+{\bkmkend AAAAAAAAAQ}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+int {\b headerSize}{\bkmkstart AAAAAAAAAR}
+{\bkmkend AAAAAAAAAR}
+\par
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\'C0\'CC \'C5\'AC\'B7\'A1\'BD\'BA\'BF\'A1 \'B4\'EB\'C7\'D1 \'B9\'AE\'BC\'AD\'C8\'AD \'C6\'E4\'C0\'CC\'C1\'F6\'B4\'C2 \'B4\'D9\'C0\'BD\'C0\'C7 \'C6\'C4\'C0\'CF\'B5\'E9\'B7\'CE\'BA\'CE\'C5\'CD \'BB\'FD\'BC\'BA\'B5\'C7\'BE\'FA\'BD\'C0\'B4\'CF\'B4\'D9.:{\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Network/Http.hpp\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Network/Http.cpp\par
+}\par \pard\plain 
+
+\pard\plain \sect\sbkpage
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+HttpRequestMessge \'C5\'AC\'B7\'A1\'BD\'BA \'C2\'FC\'C1\'B6\par \pard\plain 
+{\tc\tcl2 \v HttpRequestMessge}
+{\xe \v HttpRequestMessge}
+{\bkmkstart AAAAAAAAAS}
+{\bkmkend AAAAAAAAAS}
+HttpRequestMessge\'BF\'A1 \'B4\'EB\'C7\'D1 \'BB\'F3\'BC\'D3 \'B4\'D9\'C0\'CC\'BE\'EE\'B1\'D7\'B7\'A5 : {
+\pard\plain 
+\par\pard \qc {\field\flddirty {\*\fldinst INCLUDEPICTURE "class_http_request_messge.png" \\d \\*MERGEFORMAT}{\fldrslt IMAGE}}\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+{\b HttpRequestMessge} (string msg){\bkmkstart AAAAAAAAAT}
+{\bkmkend AAAAAAAAAT}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+{\b HttpRequestMessge} ({\b RequestLine} requestLine, {\b HeaderLine} headerLine[], int headerSize, string content){\bkmkstart AAAAAAAAAU}
+{\bkmkend AAAAAAAAAU}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+{\b RequestLine} {\b getRequestLine} (){\bkmkstart AAAAAAAAAV}
+{\bkmkend AAAAAAAAAV}
+\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Private \'BC\'D3\'BC\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+{\b RequestLine} {\b requestLine}{\bkmkstart AAAAAAAAAW}
+{\bkmkend AAAAAAAAAW}
+\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'C3\'DF\'B0\'A1\'B7\'CE \'BB\'F3\'BC\'D3\'B5\'C8 \'B8\'E2\'B9\'F6\'B5\'E9\par
+\pard\plain 
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\'C0\'CC \'C5\'AC\'B7\'A1\'BD\'BA\'BF\'A1 \'B4\'EB\'C7\'D1 \'B9\'AE\'BC\'AD\'C8\'AD \'C6\'E4\'C0\'CC\'C1\'F6\'B4\'C2 \'B4\'D9\'C0\'BD\'C0\'C7 \'C6\'C4\'C0\'CF\'B5\'E9\'B7\'CE\'BA\'CE\'C5\'CD \'BB\'FD\'BC\'BA\'B5\'C7\'BE\'FA\'BD\'C0\'B4\'CF\'B4\'D9.:{\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Network/Http.hpp\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Network/Http.cpp\par
+}\par \pard\plain 
+
+\pard\plain \sect\sbkpage
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+HttpResponseMessge \'C5\'AC\'B7\'A1\'BD\'BA \'C2\'FC\'C1\'B6\par \pard\plain 
+{\tc\tcl2 \v HttpResponseMessge}
+{\xe \v HttpResponseMessge}
+{\bkmkstart AAAAAAAAAX}
+{\bkmkend AAAAAAAAAX}
+HttpResponseMessge\'BF\'A1 \'B4\'EB\'C7\'D1 \'BB\'F3\'BC\'D3 \'B4\'D9\'C0\'CC\'BE\'EE\'B1\'D7\'B7\'A5 : {
+\pard\plain 
+\par\pard \qc {\field\flddirty {\*\fldinst INCLUDEPICTURE "class_http_response_messge.png" \\d \\*MERGEFORMAT}{\fldrslt IMAGE}}\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+{\b HttpResponseMessge} (string msg){\bkmkstart AAAAAAAAAY}
+{\bkmkend AAAAAAAAAY}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+{\b HttpResponseMessge} ({\b StatusCode} statusCode, {\b HeaderLine} headerLine[], int headerSize, string content){\bkmkstart AAAAAAAAAZ}
+{\bkmkend AAAAAAAAAZ}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+{\b StatusCode} {\b getStatusCode} (){\bkmkstart AAAAAAAABA}
+{\bkmkend AAAAAAAABA}
+\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Private \'BC\'D3\'BC\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+{\b StatusCode} {\b statusCode}{\bkmkstart AAAAAAAABB}
+{\bkmkend AAAAAAAABB}
+\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'C3\'DF\'B0\'A1\'B7\'CE \'BB\'F3\'BC\'D3\'B5\'C8 \'B8\'E2\'B9\'F6\'B5\'E9\par
+\pard\plain 
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\'C0\'CC \'C5\'AC\'B7\'A1\'BD\'BA\'BF\'A1 \'B4\'EB\'C7\'D1 \'B9\'AE\'BC\'AD\'C8\'AD \'C6\'E4\'C0\'CC\'C1\'F6\'B4\'C2 \'B4\'D9\'C0\'BD\'C0\'C7 \'C6\'C4\'C0\'CF\'B5\'E9\'B7\'CE\'BA\'CE\'C5\'CD \'BB\'FD\'BC\'BA\'B5\'C7\'BE\'FA\'BD\'C0\'B4\'CF\'B4\'D9.:{\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Network/Http.hpp\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Network/Http.cpp\par
+}\par \pard\plain 
+
+\pard\plain \sect\sbkpage
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+OCR \'C5\'AC\'B7\'A1\'BD\'BA \'C2\'FC\'C1\'B6\par \pard\plain 
+{\tc\tcl2 \v OCR}
+{\xe \v OCR}
+{\bkmkstart AAAAAAAABC}
+{\bkmkend AAAAAAAABC}
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Artificial Neural Networks\'C0\'BB \'B4\'D9\'B7\'E7\'B1\'E2 \'C0\'A7\'C7\'D1 \'C5\'AC\'B7\'A1\'BD\'BA }}\par
+{
+{\f2 #include <OCR.hpp>}}\par
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'C5\'B8\'C0\'D4\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+enum {\b MODE} \{ {\b READDT} = 0b00, 
+{\b COLLECT} = 0b01, 
+{\b WRITEDT} = 0b11
+ \}{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C8\'C6\'B7\'C3 \'B5\'A5\'C0\'CC\'C5\'CD\'B8\'A6 \'B4\'D9\'B7\'EA \'B9\'E6\'B9\'FD }}}
+\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\b OCR} (const FORMAT format, const int mode)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\b OCR} \'C3\'CA\'B1\'E2\'C8\'AD }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+float {\b predict} (const cv::Mat &img, cv::Mat *out)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C0\'D4\'B7\'C2\'B5\'C8 Sample\'C0\'CC \'C8\'C6\'B7\'C3\'B5\'C8 Artificial Neural Networks\'C0\'C7\'C7\'D8 \'BF\'B9\'C3\'F8\'B5\'C8 \'B0\'E1\'B0\'FA\'B8\'A6 \'C3\'E2\'B7\'C2 }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+char {\b classify} (cv::Mat *output)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'BF\'B9\'C3\'F8\'B5\'C8 \'B0\'E1\'B0\'FA \'C1\'DF \'B0\'A1\'C0\'E5 \'B0\'A1\'B4\'C9\'BC\'BA\'C0\'CC \'B3\'F4\'C0\'BA \'B9\'AE\'C0\'DA\'B8\'A6 \'C3\'DF\'C3\'E2 }{
+}\par
+}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'C1\'A4\'C0\'FB Public \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+static cv::Mat {\b features} (const cv::Mat &texts, const int sizeData)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+features \'C3\'DF\'C3\'E2 }{
+}\par
+}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'BC\'D3\'BC\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+int {\b numCharacters}{\bkmkstart AAAAAAAABD}
+{\bkmkend AAAAAAAABD}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C3\'E2\'B7\'C2\'B5\'C9 vector\'C0\'C7 \'C5\'A9\'B1\'E2 }{
+}\par
+}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Private \'C5\'B8\'C0\'D4\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+enum {\b ORIENTATION} \{ {\b VERTICAL} = 0, 
+{\b HORIZONTAL} = 1
+ \}{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Histogram \'C3\'DF\'C3\'E2 \'BD\'C3\'C0\'C7 \'B9\'E6\'C7\'E2 }}}
+\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Private \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+void {\b collectTrainImages} (){\bkmkstart AAAAAAAABE}
+{\bkmkend AAAAAAAABE}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+TrainNumber\'BF\'A1\'BC\'AD \'C8\'C6\'B7\'C3 \'B5\'A5\'C0\'CC\'C5\'CD \'BA\'D2\'B7\'AF\'BF\'C0\'B1\'E2 'TrainNumber'\'BF\'A1 \'B0\'E6\'B7\'CE\'BF\'A1\'BC\'AD \'B8\'F0\'B5\'E7 \'C0\'CC\'B9\'CC\'C1\'F6 \'C6\'C4\'C0\'CF\'C0\'BB \'C0\'D0\'BE\'EE\'B5\'E9\'BF\'A9 \'C8\'C6\'B7\'C3 \'B5\'A5\'C0\'CC\'C5\'CD\'B8\'A6 \'BB\'FD\'BC\'BA\'C7\'D1\'B4\'D9. }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+void {\b writeTraindata} (const std::string fn)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C8\'C6\'B7\'C3 \'B5\'A5\'C0\'CC\'C5\'CD\'B8\'A6 File System\'BF\'A1 Json \'C6\'C4\'C0\'CF\'B7\'CE \'BE\'B2\'B1\'E2 }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+void {\b readTraindata} (const std::string fn)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C8\'C6\'B7\'C3 \'B5\'A5\'C0\'CC\'C5\'CD\'B8\'A6 File System\'BF\'A1\'BC\'AD Json \'C6\'C4\'C0\'CF\'B7\'CE\'BA\'CE\'C5\'CD \'BA\'D2\'B7\'AF\'BF\'C0\'B1\'E2 }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+void {\b readTraindata} (const std::string fn, const FORMAT format)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C8\'C6\'B7\'C3 \'B5\'A5\'C0\'CC\'C5\'CD\'B8\'A6 File System\'BF\'A1\'BC\'AD Json \'C6\'C4\'C0\'CF\'B7\'CE\'BA\'CE\'C5\'CD \'BA\'D2\'B7\'AF\'BF\'C0\'B1\'E2 }{
+}\par
+}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'C1\'A4\'C0\'FB Private \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+static cv::Mat {\b getHistogram} (const cv::Mat &img, const {\b ORIENTATION} t)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Histogram \'C3\'DF\'C3\'E2 }{
+}\par
+}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Private \'BC\'D3\'BC\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+cv::Ptr< cv::ml::ANN_MLP > {\b ann}{\bkmkstart AAAAAAAABF}
+{\bkmkend AAAAAAAABF}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Artificial Neural Networks }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+cv::Mat {\b classes}{\bkmkstart AAAAAAAABG}
+{\bkmkend AAAAAAAABG}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+trainingData\'BF\'CD \'BF\'AC\'B0\'FC\'B5\'C8 \'C3\'E2\'B7\'C2\'B5\'C9 vector\'B5\'E9 }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+cv::Mat {\b trainingData}{\bkmkstart AAAAAAAABH}
+{\bkmkend AAAAAAAABH}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C8\'C6\'B7\'C3\'C0\'BB \'C0\'A7\'C7\'D1 Sample\'B5\'E9 }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+std::string {\b strCharacters} = "0123456789BCDEFGNSTVWXY"{\bkmkstart AAAAAAAABI}
+{\bkmkend AAAAAAAABI}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+classes\'BF\'CD \'B4\'EB\'C0\'C0\'B5\'C7\'B4\'C2 \'B9\'AE\'C0\'DA\'BF\'AD }{
+}\par
+}}
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'BB\'F3\'BC\'BC\'C7\'D1 \'BC\'B3\'B8\'ED\par
+\pard\plain 
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Artificial Neural Networks\'C0\'BB \'B4\'D9\'B7\'E7\'B1\'E2 \'C0\'A7\'C7\'D1 \'C5\'AC\'B7\'A1\'BD\'BA \par
+}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'B8\'E2\'B9\'F6 \'BF\'AD\'B0\'C5\'C7\'FC \'B9\'AE\'BC\'AD\'C8\'AD\par
+\pard\plain 
+{\xe \v MODE\:OCR}
+{\xe \v OCR\:MODE}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+enum {\b OCR::MODE}}}
+\par
+{\bkmkstart AAAAAAAABJ}
+{\bkmkend AAAAAAAABJ}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C8\'C6\'B7\'C3 \'B5\'A5\'C0\'CC\'C5\'CD\'B8\'A6 \'B4\'D9\'B7\'EA \'B9\'E6\'B9\'FD }}\par
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'BF\'AD\'B0\'C5\'C7\'FC \'B8\'E2\'B9\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{\xe \v READDT\:OCR}
+{\xe \v OCR\:READDT}
+{\qr READDT{\bkmkstart AAAAAAAABK}
+{\bkmkend AAAAAAAABK}
+\cell }{{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Json File\'BF\'A1\'BC\'AD \'C0\'D0\'B1\'E2 \par
+}{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\par
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'C2\'FC\'B0\'ED:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid {\b readTraindata} \par
+}}\cell }{\row }
+{\xe \v COLLECT\:OCR}
+{\xe \v OCR\:COLLECT}
+{\qr COLLECT{\bkmkstart AAAAAAAABL}
+{\bkmkend AAAAAAAABL}
+\cell }{{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+TrainImage\'BF\'A1\'BC\'AD \'C0\'D0\'B1\'E2 \par
+}{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\par
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'C2\'FC\'B0\'ED:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid {\b collectTrainImages} \par
+}}\cell }{\row }
+{\xe \v WRITEDT\:OCR}
+{\xe \v OCR\:WRITEDT}
+{\qr WRITEDT{\bkmkstart AAAAAAAABM}
+{\bkmkend AAAAAAAABM}
+\cell }{{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Json File\'B7\'CE \'BE\'B2\'B1\'E2 \par
+}{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\par
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'C2\'FC\'B0\'ED:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid {\b writeTraindata} \par
+}}\cell }{\row }
+}
+}
+{\xe \v ORIENTATION\:OCR}
+{\xe \v OCR\:ORIENTATION}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+enum {\b OCR::ORIENTATION}{\f2 [private]}}}
+\par
+{\bkmkstart AAAAAAAABN}
+{\bkmkend AAAAAAAABN}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Histogram \'C3\'DF\'C3\'E2 \'BD\'C3\'C0\'C7 \'B9\'E6\'C7\'E2 }}\par
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'BF\'AD\'B0\'C5\'C7\'FC \'B8\'E2\'B9\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{\xe \v VERTICAL\:OCR}
+{\xe \v OCR\:VERTICAL}
+{\qr VERTICAL{\bkmkstart AAAAAAAABO}
+{\bkmkend AAAAAAAABO}
+\cell }{{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'BC\'F6\'C1\'F7 \par
+}\cell }{\row }
+{\xe \v HORIZONTAL\:OCR}
+{\xe \v OCR\:HORIZONTAL}
+{\qr HORIZONTAL{\bkmkstart AAAAAAAABP}
+{\bkmkend AAAAAAAABP}
+\cell }{{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'BC\'F6\'C6\'F2 \par
+}\cell }{\row }
+}
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'BB\'FD\'BC\'BA\'C0\'DA & \'BC\'D2\'B8\'EA\'C0\'DA \'B9\'AE\'BC\'AD\'C8\'AD\par
+\pard\plain 
+{\xe \v OCR\:OCR}
+{\xe \v OCR\:OCR}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+OCR::OCR (const FORMAT  {\i format}, const int  {\i mode})}}
+\par
+{\bkmkstart AAAAAAAABQ}
+{\bkmkend AAAAAAAABQ}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\b OCR} \'C3\'CA\'B1\'E2\'C8\'AD }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i format} \cell }{OCR\'C0\'CC \'C0\'CE\'BD\'C4\'C7\'D2 \'C7\'FC\'BD\'C4 \cell }
+{\row }
+\trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i mode} \cell }{\'C8\'C6\'B7\'C3 \'B5\'A5\'C0\'CC\'C5\'CD\'B8\'A6 \'B4\'D9\'B7\'EA \'B9\'E6\'B9\'FD \cell }
+{\row }
+}
+}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6 \'B9\'AE\'BC\'AD\'C8\'AD\par
+\pard\plain 
+{\xe \v classify\:OCR}
+{\xe \v OCR\:classify}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+char OCR::classify (cv::Mat *  {\i output})}}
+\par
+{\bkmkstart AAAAAAAABR}
+{\bkmkend AAAAAAAABR}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'BF\'B9\'C3\'F8\'B5\'C8 \'B0\'E1\'B0\'FA \'C1\'DF \'B0\'A1\'C0\'E5 \'B0\'A1\'B4\'C9\'BC\'BA\'C0\'CC \'B3\'F4\'C0\'BA \'B9\'AE\'C0\'DA\'B8\'A6 \'C3\'DF\'C3\'E2 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i output} \cell }{\'B9\'AE\'C0\'DA\'B8\'A6 \'C3\'DF\'C3\'E2\'C7\'D2 \'B0\'E1\'B0\'FA \'B8\'C5\'C6\'AE\'B8\'AF\'BD\'BA \cell }
+{\row }
+}
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B9\'DD\'C8\'AF\'B0\'AA:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid \'B0\'A1\'B4\'C9\'BC\'BA \'B3\'F4\'C0\'BA \'B9\'AE\'C0\'DA \par
+}}}
+{\xe \v features\:OCR}
+{\xe \v OCR\:features}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+Mat OCR::features (const cv::Mat &  {\i texts}, const int  {\i sizeData}){\f2 [static]}}}
+\par
+{\bkmkstart AAAAAAAABS}
+{\bkmkend AAAAAAAABS}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+features \'C3\'DF\'C3\'E2 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i texts} \cell }{features\'C0\'BB \'C3\'DF\'C3\'E2\'C7\'D2 \'C0\'CC\'B9\'CC\'C1\'F6 \cell }
+{\row }
+\trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i sizeData} \cell }{\'C3\'DF\'C3\'E2\'B5\'C9 features\'C0\'C7 \'B0\'A1\'B7\'CE \'BC\'BC\'B7\'CE \'C5\'A9\'B1\'E2 \cell }
+{\row }
+}
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B9\'DD\'C8\'AF\'B0\'AA:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid \'C0\'D4\'B7\'C2\'B9\'DE\'C0\'BA \'C0\'CC\'B9\'CC\'C1\'F6\'BF\'A1 \'B4\'EB\'C7\'D1 features \par
+}}}
+{\xe \v getHistogram\:OCR}
+{\xe \v OCR\:getHistogram}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+Mat OCR::getHistogram (const cv::Mat &  {\i img}, const {\b ORIENTATION}  {\i t}){\f2 [static]}, {\f2 [private]}}}
+\par
+{\bkmkstart AAAAAAAABT}
+{\bkmkend AAAAAAAABT}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Histogram \'C3\'DF\'C3\'E2 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i img} \cell }{Histogram\'C0\'BB \'C3\'DF\'C3\'E2\'C7\'D2 \'C0\'CC\'B9\'CC\'C1\'F6 \cell }
+{\row }
+\trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i t} \cell }{Histogram \'C3\'DF\'C3\'E2 \'BD\'C3\'C0\'C7 \'B9\'E6\'C7\'E2 \cell }
+{\row }
+}
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B9\'DD\'C8\'AF\'B0\'AA:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid \'C3\'DF\'C3\'E2\'B5\'C8 Histogram\'C0\'C7 \'B8\'C5\'C6\'AE\'B8\'AF\'BD\'BA \par
+}}}
+{\xe \v predict\:OCR}
+{\xe \v OCR\:predict}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+float OCR::predict (const cv::Mat &  {\i img}, cv::Mat *  {\i out})}}
+\par
+{\bkmkstart AAAAAAAABU}
+{\bkmkend AAAAAAAABU}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C0\'D4\'B7\'C2\'B5\'C8 Sample\'C0\'CC \'C8\'C6\'B7\'C3\'B5\'C8 Artificial Neural Networks\'C0\'C7\'C7\'D8 \'BF\'B9\'C3\'F8\'B5\'C8 \'B0\'E1\'B0\'FA\'B8\'A6 \'C3\'E2\'B7\'C2 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i img} \cell }{\'C0\'D4\'B7\'C2\'C7\'D2 Sample \cell }
+{\row }
+\trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i out} \cell }{\'BF\'B9\'C3\'F8\'B5\'C8 \'B0\'E1\'B0\'FA\'C0\'C7 \'B8\'C5\'C6\'AE\'B8\'AF\'BD\'BA \cell }
+{\row }
+}
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B9\'DD\'C8\'AF\'B0\'AA:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid OCR\'C0\'BB \'C5\'EB\'C7\'D8 \'BF\'B9\'C3\'F8\'B5\'C8 \'B0\'E1\'B0\'FA \par
+}}}
+{\xe \v readTraindata\:OCR}
+{\xe \v OCR\:readTraindata}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+void OCR::readTraindata (const std::string  {\i fn}){\f2 [private]}}}
+\par
+{\bkmkstart AAAAAAAABV}
+{\bkmkend AAAAAAAABV}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C8\'C6\'B7\'C3 \'B5\'A5\'C0\'CC\'C5\'CD\'B8\'A6 File System\'BF\'A1\'BC\'AD Json \'C6\'C4\'C0\'CF\'B7\'CE\'BA\'CE\'C5\'CD \'BA\'D2\'B7\'AF\'BF\'C0\'B1\'E2 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C0\'CC \'C7\'D4\'BC\'F6\'B4\'C2 \'C6\'ED\'C0\'C7\'B8\'A6 \'C1\'A6\'B0\'F8\'C7\'CF\'B1\'E2 \'C0\'A7\'C7\'D8 \'BF\'C0\'B9\'F6\'B7\'CE\'B5\'E5\'B5\'C8 \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\'C0\'D4\'B4\'CF\'B4\'D9. \'C0\'A7\'C0\'C7 \'C7\'D4\'BC\'F6\'BF\'CD \'C6\'B2\'B8\'B0 \'C1\'A1\'C0\'BA \'B4\'DC\'C1\'F6 \'B9\'DE\'BE\'C6\'B5\'E9\'C0\'CC\'B4\'C2 \'BE\'C6\'B1\'D4\'B8\'D5\'C6\'AE(argument)\'B0\'A1 \'B4\'D9\'B8\'A3\'B4\'D9\'B4\'C2 \'B0\'CD\'C0\'D4\'B4\'CF\'B4\'D9. {\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i fn} \cell }{Josn \'C6\'C4\'C0\'CF\'C0\'C7 \'B0\'E6\'B7\'CE \cell }
+{\row }
+}
+}}
+{\xe \v readTraindata\:OCR}
+{\xe \v OCR\:readTraindata}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+void OCR::readTraindata (const std::string  {\i fn}, const FORMAT  {\i format}){\f2 [private]}}}
+\par
+{\bkmkstart AAAAAAAABW}
+{\bkmkend AAAAAAAABW}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C8\'C6\'B7\'C3 \'B5\'A5\'C0\'CC\'C5\'CD\'B8\'A6 File System\'BF\'A1\'BC\'AD Json \'C6\'C4\'C0\'CF\'B7\'CE\'BA\'CE\'C5\'CD \'BA\'D2\'B7\'AF\'BF\'C0\'B1\'E2 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C0\'CC \'C7\'D4\'BC\'F6\'B4\'C2 \'C6\'ED\'C0\'C7\'B8\'A6 \'C1\'A6\'B0\'F8\'C7\'CF\'B1\'E2 \'C0\'A7\'C7\'D8 \'BF\'C0\'B9\'F6\'B7\'CE\'B5\'E5\'B5\'C8 \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\'C0\'D4\'B4\'CF\'B4\'D9. \'C0\'A7\'C0\'C7 \'C7\'D4\'BC\'F6\'BF\'CD \'C6\'B2\'B8\'B0 \'C1\'A1\'C0\'BA \'B4\'DC\'C1\'F6 \'B9\'DE\'BE\'C6\'B5\'E9\'C0\'CC\'B4\'C2 \'BE\'C6\'B1\'D4\'B8\'D5\'C6\'AE(argument)\'B0\'A1 \'B4\'D9\'B8\'A3\'B4\'D9\'B4\'C2 \'B0\'CD\'C0\'D4\'B4\'CF\'B4\'D9. {\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i fn} \cell }{Josn \'C6\'C4\'C0\'CF\'C0\'C7 \'B0\'E6\'B7\'CE \cell }
+{\row }
+\trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i format} \cell }{Json OCR\'C0\'CC \'C0\'CE\'BD\'C4\'C7\'D2 \'C7\'FC\'BD\'C4 \cell }
+{\row }
+}
+}}
+{\xe \v writeTraindata\:OCR}
+{\xe \v OCR\:writeTraindata}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+void OCR::writeTraindata (const std::string  {\i fn}){\f2 [private]}}}
+\par
+{\bkmkstart AAAAAAAABX}
+{\bkmkend AAAAAAAABX}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C8\'C6\'B7\'C3 \'B5\'A5\'C0\'CC\'C5\'CD\'B8\'A6 File System\'BF\'A1 Json \'C6\'C4\'C0\'CF\'B7\'CE \'BE\'B2\'B1\'E2 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i fn} \cell }{josn \'C6\'C4\'C0\'CF\'C0\'C7 \'B0\'E6\'B7\'CE \cell }
+{\row }
+}
+}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\'C0\'CC \'C5\'AC\'B7\'A1\'BD\'BA\'BF\'A1 \'B4\'EB\'C7\'D1 \'B9\'AE\'BC\'AD\'C8\'AD \'C6\'E4\'C0\'CC\'C1\'F6\'B4\'C2 \'B4\'D9\'C0\'BD\'C0\'C7 \'C6\'C4\'C0\'CF\'B5\'E9\'B7\'CE\'BA\'CE\'C5\'CD \'BB\'FD\'BC\'BA\'B5\'C7\'BE\'FA\'BD\'C0\'B4\'CF\'B4\'D9.:{\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Opencv/OCR.hpp\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Opencv/OCR.cpp\par
+}\par \pard\plain 
+
+\pard\plain \sect\sbkpage
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+OCRTrainer \'C5\'AC\'B7\'A1\'BD\'BA \'C2\'FC\'C1\'B6\par \pard\plain 
+{\tc\tcl2 \v OCRTrainer}
+{\xe \v OCRTrainer}
+{\bkmkstart AAAAAAAABY}
+{\bkmkend AAAAAAAABY}
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\b OCR::collectTrainImages} \'BD\'C7\'C7\'E0 \'BD\'C3 \'C7\'CA\'BF\'E4\'C7\'D1 image\'B8\'A6 \'BB\'FD\'BC\'BA\'C7\'CF\'B4\'C2 \'C5\'AC\'B7\'A1\'BD\'BA }}\par
+{
+{\f2 #include <OCR.hpp>}}\par
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\b OCRTrainer} (const std::string {\b answer})\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\b OCRTrainer} \'C3\'CA\'B1\'E2\'C8\'AD }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+void {\b train} (const std::vector< cv::Mat > &sample){\bkmkstart AAAAAAAABZ}
+{\bkmkend AAAAAAAABZ}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\b OCR} \'C5\'AC\'B7\'A1\'BD\'BA\'BF\'A1\'BC\'AD \'C2\'FC\'C1\'B6\'C7\'D2 \'C0\'CC\'B9\'CC\'C1\'F6\'B8\'A6 File System\'BF\'A1 \'BE\'B2\'B1\'E2 \'C0\'D4\'B7\'C2\'B9\'DE\'C0\'BA \'C0\'CC\'B9\'CC\'C1\'F6\'B8\'A6 'TrainImage'\'B0\'E6\'B7\'CE\'BF\'A1 File System\'B7\'CE \'BE\'B4\'B4\'D9. }{
+}\par
+}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Private \'BC\'D3\'BC\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+int {\b fileIndexs} [NUMBER+CHARACTER]{\bkmkstart AAAAAAAACA}
+{\bkmkend AAAAAAAACA}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+File \'B0\'CB\'BB\'F6\'C0\'BB \'C0\'A7\'C7\'D1 Index \'BA\'AF\'BC\'F6 }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+std::string {\b answer}{\bkmkstart AAAAAAAACB}
+{\bkmkend AAAAAAAACB}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C1\'F6\'B5\'B5\'C7\'D0\'BD\'C0\'C0\'BB \'C0\'A7\'C7\'D1 \'C1\'A4\'B4\'E4 }{
+}\par
+}}
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'BB\'F3\'BC\'BC\'C7\'D1 \'BC\'B3\'B8\'ED\par
+\pard\plain 
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\b OCR::collectTrainImages} \'BD\'C7\'C7\'E0 \'BD\'C3 \'C7\'CA\'BF\'E4\'C7\'D1 image\'B8\'A6 \'BB\'FD\'BC\'BA\'C7\'CF\'B4\'C2 \'C5\'AC\'B7\'A1\'BD\'BA \par
+}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'BB\'FD\'BC\'BA\'C0\'DA & \'BC\'D2\'B8\'EA\'C0\'DA \'B9\'AE\'BC\'AD\'C8\'AD\par
+\pard\plain 
+{\xe \v OCRTrainer\:OCRTrainer}
+{\xe \v OCRTrainer\:OCRTrainer}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+OCRTrainer::OCRTrainer (const std::string  {\i answer})}}
+\par
+{\bkmkstart AAAAAAAACC}
+{\bkmkend AAAAAAAACC}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\b OCRTrainer} \'C3\'CA\'B1\'E2\'C8\'AD }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i answer} \cell }{\'C1\'F6\'B5\'B5 \'C7\'D0\'BD\'C0\'C0\'BB \'C0\'A7\'C7\'D1 \'C1\'A4\'B4\'E4 \cell }
+{\row }
+}
+}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\'C0\'CC \'C5\'AC\'B7\'A1\'BD\'BA\'BF\'A1 \'B4\'EB\'C7\'D1 \'B9\'AE\'BC\'AD\'C8\'AD \'C6\'E4\'C0\'CC\'C1\'F6\'B4\'C2 \'B4\'D9\'C0\'BD\'C0\'C7 \'C6\'C4\'C0\'CF\'B5\'E9\'B7\'CE\'BA\'CE\'C5\'CD \'BB\'FD\'BC\'BA\'B5\'C7\'BE\'FA\'BD\'C0\'B4\'CF\'B4\'D9.:{\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Opencv/OCR.hpp\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Opencv/OCR.cpp\par
+}\par \pard\plain 
+
+\pard\plain \sect\sbkpage
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+process::ParkingInfo \'B1\'B8\'C1\'B6\'C3\'BC \'C2\'FC\'C1\'B6\par \pard\plain 
+{\tc\tcl2 \v process::ParkingInfo}
+{\xe \v process::ParkingInfo}
+{\bkmkstart AAAAAAAAFE}
+{\bkmkend AAAAAAAAFE}
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C1\'D6\'C2\'F7\'C0\'E5 \'C1\'A4\'BA\'B8 }}\par
+{
+{\f2 #include <process.hpp>}}\par
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'BC\'D3\'BC\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+{\b WAY} {\b way}{\bkmkstart AAAAAAAAFF}
+{\bkmkend AAAAAAAAFF}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C1\'D6\'C2\'F7\'C0\'E5 \'C3\'E2\'C0\'D4\'B1\'B8 \'B9\'E6\'C7\'E2 }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+int {\b floor}{\bkmkstart AAAAAAAAFG}
+{\bkmkend AAAAAAAAFG}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C1\'D6\'C2\'F7\'C0\'E5 \'C3\'FE }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+std::string {\b zoneName}{\bkmkstart AAAAAAAAFH}
+{\bkmkend AAAAAAAAFH}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C1\'D6\'C2\'F7 \'B1\'B8\'BF\'AA \'C0\'CC\'B8\'A7 }{
+}\par
+}}
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'BB\'F3\'BC\'BC\'C7\'D1 \'BC\'B3\'B8\'ED\par
+\pard\plain 
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C1\'D6\'C2\'F7\'C0\'E5 \'C1\'A4\'BA\'B8 \par
+}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\'C0\'CC \'B1\'B8\'C1\'B6\'C3\'BC\'BF\'A1 \'B4\'EB\'C7\'D1 \'B9\'AE\'BC\'AD\'C8\'AD \'C6\'E4\'C0\'CC\'C1\'F6\'B4\'C2 \'B4\'D9\'C0\'BD\'C0\'C7 \'C6\'C4\'C0\'CF\'B7\'CE\'BA\'CE\'C5\'CD \'BB\'FD\'BC\'BA\'B5\'C7\'BE\'FA\'BD\'C0\'B4\'CF\'B4\'D9.:{\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Opencv/process.hpp\par
+}\par \pard\plain 
+
+\pard\plain \sect\sbkpage
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+Plate \'C5\'AC\'B7\'A1\'BD\'BA \'C2\'FC\'C1\'B6\par \pard\plain 
+{\tc\tcl2 \v Plate}
+{\xe \v Plate}
+{\bkmkstart AAAAAAAACD}
+{\bkmkend AAAAAAAACD}
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'B9\'F8\'C8\'A3\'C6\'C7 \'B9\'F8\'C8\'A3\'C6\'C7 \'C0\'CC\'B9\'CC\'C1\'F6\'BF\'CD \'BB\'F3\'B4\'EB\'C0\'FB \'C0\'A7\'C4\'A1\'B8\'A6 \'C6\'F7\'C7\'D4\'C7\'D1 \'C5\'AC\'B7\'A1\'BD\'BA }}\par
+{
+{\f2 #include <Plate.hpp>}}\par
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'C5\'AC\'B7\'A1\'BD\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+class {\b Text}\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C5\'D8\'BD\'BA\'C6\'AE \'B9\'F8\'C8\'A3\'C6\'C7\'C0\'BB \'B1\'B8\'BC\'BA\'C7\'CF\'B4\'C2 \'C5\'D8\'BD\'BA\'C6\'AE\'B5\'E9 \'C1\'DF \'C7\'CF\'B3\'AA }}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\b Plate} (const cv::Mat &{\b img}, const cv::Point &{\b position})\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\b Plate} \'C3\'CA\'B1\'E2\'C8\'AD }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+void {\b setDebug} (bool {\b debug})\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+debug \'B8\'F0\'B5\'E5 \'BC\'B3\'C1\'A4 }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+bool {\b findTexts} (const int textSize)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Plate\'BF\'A1\'BC\'AD {\b Text} \'C0\'CC\'B9\'CC\'C1\'F6 \'C3\'DF\'C3\'E2 }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+cv::Mat {\b canonical} ()\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+img\'B8\'A6 \'C1\'A4\'B1\'D4\'C8\'AD\'C7\'D1 \'C0\'CC\'B9\'CC\'C1\'F6 \'C3\'E2\'B7\'C2 }{
+}\par
+}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'C1\'A4\'C0\'FB Public \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+static void {\b find} (const cv::Mat &input, std::vector< {\b Plate} > *PossiblePlates)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C0\'D4\'B7\'C2\'B9\'DE\'C0\'BA \'C0\'CC\'B9\'CC\'C1\'F6\'B7\'CE \'BA\'CE\'C5\'CD {\b Plate} \'C3\'DF\'C3\'E2 }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+static void {\b drawRotatedRect} (const cv::Mat &{\b img}, const cv::RotatedRect &roRec, const cv::Scalar color, int thickness=1)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C0\'D4\'B7\'C2\'B9\'DE\'C0\'BA \'C0\'CC\'B9\'CC\'C1\'F6\'BF\'A1 RotatedRect \'B1\'D7\'B8\'AE\'B1\'E2 }{
+}\par
+}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'BC\'D3\'BC\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+cv::Mat {\b img}{\bkmkstart AAAAAAAACE}
+{\bkmkend AAAAAAAACE}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Plate\'B8\'A6 \'B3\'AA\'C5\'B8\'B3\'BB\'B4\'C2 \'B8\'C5\'C6\'AE\'B8\'AF\'BD\'BA }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+cv::Point {\b position}{\bkmkstart AAAAAAAACF}
+{\bkmkend AAAAAAAACF}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'BF\'F8\'BA\'BB \'C0\'CC\'B9\'CC\'C1\'F6\'BF\'A1 \'B4\'EB\'C7\'D1 \'BB\'F3\'B4\'EB\'C0\'FB\'C0\'CE Plate\'C0\'C7 \'C0\'A7\'C4\'A1 }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+std::vector< {\b Text} > {\b texts}{\bkmkstart AAAAAAAACG}
+{\bkmkend AAAAAAAACG}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Plate\'BF\'A1 \'C6\'F7\'C7\'D4\'B5\'C8 Texts }{
+}\par
+}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Private \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+bool {\b isOverlap} (const cv::Rect &A, const cv::Rect &B)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'B0\'E3\'C4\'A7 \'B0\'CB\'BB\'E7 }{
+}\par
+}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'C1\'A4\'C0\'FB Private \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+static cv::RotatedRect {\b minApproxRect} (const std::vector< cv::Point > &contour)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'B1\'D9\'BB\'E7 \'C3\'D6\'BC\'D2\'BF\'B5\'BF\'AA \'BB\'E7\'B0\'A2\'C7\'FC }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+static bool {\b verifySizes} (const cv::RotatedRect &mr)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C5\'A9\'B1\'E2 \'B0\'CB\'BB\'E7 }{
+}\par
+}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Private \'BC\'D3\'BC\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+bool {\b debug}{\bkmkstart AAAAAAAACH}
+{\bkmkend AAAAAAAACH}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+debug \'BA\'AF\'BC\'F6 }{
+}\par
+}}
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'BB\'F3\'BC\'BC\'C7\'D1 \'BC\'B3\'B8\'ED\par
+\pard\plain 
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'B9\'F8\'C8\'A3\'C6\'C7 \'B9\'F8\'C8\'A3\'C6\'C7 \'C0\'CC\'B9\'CC\'C1\'F6\'BF\'CD \'BB\'F3\'B4\'EB\'C0\'FB \'C0\'A7\'C4\'A1\'B8\'A6 \'C6\'F7\'C7\'D4\'C7\'D1 \'C5\'AC\'B7\'A1\'BD\'BA \par
+}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'BB\'FD\'BC\'BA\'C0\'DA & \'BC\'D2\'B8\'EA\'C0\'DA \'B9\'AE\'BC\'AD\'C8\'AD\par
+\pard\plain 
+{\xe \v Plate\:Plate}
+{\xe \v Plate\:Plate}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+Plate::Plate (const cv::Mat &  {\i img}, const cv::Point &  {\i position})}}
+\par
+{\bkmkstart AAAAAAAACI}
+{\bkmkend AAAAAAAACI}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\b Plate} \'C3\'CA\'B1\'E2\'C8\'AD }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i img} \cell }{Plate\'B8\'A6 \'B3\'AA\'C5\'B8\'B3\'BB\'B4\'C2 \'B8\'C5\'C6\'AE\'B8\'AF\'BD\'BA \cell }
+{\row }
+\trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i position} \cell }{\'BF\'F8\'BA\'BB \'C0\'CC\'B9\'CC\'C1\'F6\'BF\'A1 \'B4\'EB\'C7\'D1 \'BB\'F3\'B4\'EB\'C0\'FB\'C0\'CE Plate\'C0\'C7 \'C0\'A7\'C4\'A1 \'BF\'F8\'BA\'BB \'C0\'CC\'B9\'CC\'C1\'F6\'B4\'C2 {\b Plate::find} \'C0\'C7 \'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6 input\'C0\'CC\'B4\'D9. \cell }
+{\row }
+}
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'C2\'FC\'B0\'ED:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid {\b find} \par
+}}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6 \'B9\'AE\'BC\'AD\'C8\'AD\par
+\pard\plain 
+{\xe \v canonical\:Plate}
+{\xe \v Plate\:canonical}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+Mat Plate::canonical ()}}
+\par
+{\bkmkstart AAAAAAAACJ}
+{\bkmkend AAAAAAAACJ}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+img\'B8\'A6 \'C1\'A4\'B1\'D4\'C8\'AD\'C7\'D1 \'C0\'CC\'B9\'CC\'C1\'F6 \'C3\'E2\'B7\'C2 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\par
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B9\'DD\'C8\'AF\'B0\'AA:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid \'C1\'A4\'B1\'D4\'C8\'AD\'B5\'C8 \'C0\'CC\'B9\'CC\'C1\'F6 \par
+}}}
+{\xe \v drawRotatedRect\:Plate}
+{\xe \v Plate\:drawRotatedRect}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+void Plate::drawRotatedRect (const cv::Mat &  {\i img}, const cv::RotatedRect &  {\i roRec}, const cv::Scalar  {\i color}, int  {\i thickness} = {\f2 1}){\f2 [static]}}}
+\par
+{\bkmkstart AAAAAAAACK}
+{\bkmkend AAAAAAAACK}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C0\'D4\'B7\'C2\'B9\'DE\'C0\'BA \'C0\'CC\'B9\'CC\'C1\'F6\'BF\'A1 RotatedRect \'B1\'D7\'B8\'AE\'B1\'E2 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i img} \cell }{\'C0\'D4\'B7\'C2\'B9\'DE\'C0\'BA RotatedRect\'B8\'A6 \'B1\'D7\'B8\'AE\'B4\'C2 \'C0\'CC\'B9\'CC\'C1\'F6 \cell }
+{\row }
+\trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i roRec} \cell }{\'B1\'D7\'B7\'C1\'BE\'DF\'C7\'CF\'B4\'C2 RotatedRect \cell }
+{\row }
+\trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i color} \cell }{\'B1\'D7\'B8\'AE\'B4\'C2 RotatedRect\'C0\'C7 \'BB\'F6 \cell }
+{\row }
+\trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i thickness} \cell }{\'B1\'D7\'B8\'AE\'B4\'C2 RotatedRect\'C0\'C7 \'B5\'CE\'B2\'B2 \cell }
+{\row }
+}
+}}
+{\xe \v find\:Plate}
+{\xe \v Plate\:find}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+void Plate::find (const cv::Mat &  {\i input}, std::vector< {\b Plate} > *  {\i PossiblePlates}){\f2 [static]}}}
+\par
+{\bkmkstart AAAAAAAACL}
+{\bkmkend AAAAAAAACL}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C0\'D4\'B7\'C2\'B9\'DE\'C0\'BA \'C0\'CC\'B9\'CC\'C1\'F6\'B7\'CE \'BA\'CE\'C5\'CD {\b Plate} \'C3\'DF\'C3\'E2 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i input} \cell }{Plate\'C0\'BB \'C3\'A3\'C0\'BB \'BF\'F8\'BA\'BB \'C0\'CC\'B9\'CC\'C1\'F6 \cell }
+{\row }
+\trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i PossiblePlates} \cell }{\'BF\'F8\'BA\'BB \'C0\'CC\'B9\'CC\'C1\'F6\'B7\'CE \'BA\'CE\'C5\'CD \'C3\'A3\'C0\'BA {\b Plate} \cell }
+{\row }
+}
+}}
+{\xe \v findTexts\:Plate}
+{\xe \v Plate\:findTexts}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+bool Plate::findTexts (const int  {\i textSize})}}
+\par
+{\bkmkstart AAAAAAAACM}
+{\bkmkend AAAAAAAACM}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Plate\'BF\'A1\'BC\'AD {\b Text} \'C0\'CC\'B9\'CC\'C1\'F6 \'C3\'DF\'C3\'E2 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i textSize} \cell }{Plate\'B8\'A6 \'B1\'B8\'BC\'BA\'C7\'CF\'B4\'C2 {\b Text} \'B5\'E9\'C0\'C7 \'B0\'B9\'BC\'F6\'B8\'A6 \'BC\'B3\'C1\'A4 \cell }
+{\row }
+}
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B9\'DD\'C8\'AF\'B0\'AA:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid Plate\'BF\'A1\'BC\'AD \'C3\'DF\'C3\'E2\'C7\'D1 Text\'C0\'C7 \'B0\'B9\'BC\'F6\'B0\'A1 textSize\'BF\'CD \'B0\'B0\'C0\'BB \'BD\'C3 true \'B1\'D7\'B7\'B8\'C1\'F6 \'BE\'CA\'C0\'B8\'B8\'E9 false \par
+}}}
+{\xe \v isOverlap\:Plate}
+{\xe \v Plate\:isOverlap}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+bool Plate::isOverlap (const cv::Rect &  {\i A}, const cv::Rect &  {\i B}){\f2 [inline]}, {\f2 [private]}}}
+\par
+{\bkmkstart AAAAAAAACN}
+{\bkmkend AAAAAAAACN}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'B0\'E3\'C4\'A7 \'B0\'CB\'BB\'E7 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i A} \cell }{\'B0\'E3\'C4\'A7 \'B0\'CB\'BB\'E7\'B8\'A6 \'C7\'D2 \'BB\'E7\'B0\'A2\'C7\'FC1 \cell }
+{\row }
+\trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i B} \cell }{\'B0\'E3\'C4\'A7 \'B0\'CB\'BB\'E7\'B8\'A6 \'C7\'D2 \'BB\'E7\'B0\'A2\'C7\'FC2 \cell }
+{\row }
+}
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B9\'DD\'C8\'AF\'B0\'AA:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid A\'BF\'CD B\'B0\'A1 \'B0\'E3\'C4\'A1\'B4\'C2\'C1\'F6 \'BF\'A9\'BA\'CE\'B8\'A6 \'C3\'E2\'B7\'C2. \'B0\'E3\'C4\'A1\'B8\'E9 true \'B1\'D7\'B7\'B8\'C1\'F6 \'BE\'CA\'C0\'B8\'B8\'E9 false \par
+}}}
+{\xe \v minApproxRect\:Plate}
+{\xe \v Plate\:minApproxRect}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+RotatedRect Plate::minApproxRect (const std::vector< cv::Point > &  {\i contour}){\f2 [static]}, {\f2 [private]}}}
+\par
+{\bkmkstart AAAAAAAACO}
+{\bkmkend AAAAAAAACO}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'B1\'D9\'BB\'E7 \'C3\'D6\'BC\'D2\'BF\'B5\'BF\'AA \'BB\'E7\'B0\'A2\'C7\'FC }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i contour} \cell }{\'B1\'D9\'BB\'E7 \'C3\'D6\'BC\'D2\'BF\'B5\'BF\'AA \'BB\'E7\'B0\'A2\'C7\'FC\'C0\'BB \'B1\'B8\'C7\'CF\'B1\'E2 \'C0\'A7\'C7\'D1 \'BF\'F8\'BA\'BB Contour \cell }
+{\row }
+}
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B9\'DD\'C8\'AF\'B0\'AA:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid \'B1\'D9\'BB\'E7\'C8\'AD \'C8\'C4\'C0\'C7 Contour \'B5\'E9\'C0\'BB \'C6\'F7\'C7\'D4\'C7\'CF\'B4\'C2 \'C3\'D6\'BC\'D2 \'B3\'D0\'C0\'CC\'C0\'C7 \'BB\'E7\'B0\'A2\'C7\'FC \par
+}}}
+{\xe \v setDebug\:Plate}
+{\xe \v Plate\:setDebug}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+void Plate::setDebug (bool  {\i debug})}}
+\par
+{\bkmkstart AAAAAAAACP}
+{\bkmkend AAAAAAAACP}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+debug \'B8\'F0\'B5\'E5 \'BC\'B3\'C1\'A4 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i debug} \cell }{\'C1\'DF\'C0\'CC\'B8\'E9 true \'B1\'D7\'B7\'B8\'C1\'F6 \'BE\'CA\'C0\'B8\'B8\'E9 false \'C1\'DF\'B0\'A3 \'C3\'B3\'B8\'AE \'B0\'FA\'C1\'A4\'C0\'BB \'C3\'A2\'C0\'B8\'B7\'CE \'B6\'E7\'BF\'EF\'C1\'F6 \'BF\'A9\'BA\'CE\'B8\'A6 \'C1\'A4\'C7\'D1\'B4\'D9. \cell }
+{\row }
+}
+}}
+{\xe \v verifySizes\:Plate}
+{\xe \v Plate\:verifySizes}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+bool Plate::verifySizes (const cv::RotatedRect &  {\i mr}){\f2 [inline]}, {\f2 [static]}, {\f2 [private]}}}
+\par
+{\bkmkstart AAAAAAAACQ}
+{\bkmkend AAAAAAAACQ}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C5\'A9\'B1\'E2 \'B0\'CB\'BB\'E7 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i mr} \cell }{\'C5\'A9\'B1\'E2 \'B0\'CB\'BB\'E7\'B8\'A6 \'C7\'D2 RotatedRect \cell }
+{\row }
+}
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B9\'DD\'C8\'AF\'B0\'AA:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid \'C0\'FB\'C7\'D5\'C7\'D1 \'C5\'A9\'B1\'E2\'C0\'C7 \'B0\'E6\'BF\'EC true \'B1\'D7\'B7\'B8\'C1\'F6 \'BE\'CA\'C0\'B8\'B8\'E9 false \par
+}}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\'C0\'CC \'C5\'AC\'B7\'A1\'BD\'BA\'BF\'A1 \'B4\'EB\'C7\'D1 \'B9\'AE\'BC\'AD\'C8\'AD \'C6\'E4\'C0\'CC\'C1\'F6\'B4\'C2 \'B4\'D9\'C0\'BD\'C0\'C7 \'C6\'C4\'C0\'CF\'B5\'E9\'B7\'CE\'BA\'CE\'C5\'CD \'BB\'FD\'BC\'BA\'B5\'C7\'BE\'FA\'BD\'C0\'B4\'CF\'B4\'D9.:{\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Opencv/Plate.hpp\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Opencv/Plate.cpp\par
+}\par \pard\plain 
+
+\pard\plain \sect\sbkpage
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+RequestLine \'B1\'B8\'C1\'B6\'C3\'BC \'C2\'FC\'C1\'B6\par \pard\plain 
+{\tc\tcl2 \v RequestLine}
+{\xe \v RequestLine}
+{\bkmkstart AAAAAAAACV}
+{\bkmkend AAAAAAAACV}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'BC\'D3\'BC\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+string {\b method}{\bkmkstart AAAAAAAACW}
+{\bkmkend AAAAAAAACW}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+string {\b url}{\bkmkstart AAAAAAAACX}
+{\bkmkend AAAAAAAACX}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+string {\b version}{\bkmkstart AAAAAAAACY}
+{\bkmkend AAAAAAAACY}
+\par
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\'C0\'CC \'B1\'B8\'C1\'B6\'C3\'BC\'BF\'A1 \'B4\'EB\'C7\'D1 \'B9\'AE\'BC\'AD\'C8\'AD \'C6\'E4\'C0\'CC\'C1\'F6\'B4\'C2 \'B4\'D9\'C0\'BD\'C0\'C7 \'C6\'C4\'C0\'CF\'B7\'CE\'BA\'CE\'C5\'CD \'BB\'FD\'BC\'BA\'B5\'C7\'BE\'FA\'BD\'C0\'B4\'CF\'B4\'D9.:{\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Network/Http.hpp\par
+}\par \pard\plain 
+
+\pard\plain \sect\sbkpage
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+ServerSocket \'C5\'AC\'B7\'A1\'BD\'BA \'C2\'FC\'C1\'B6\par \pard\plain 
+{\tc\tcl2 \v ServerSocket}
+{\xe \v ServerSocket}
+{\bkmkstart AAAAAAAACZ}
+{\bkmkend AAAAAAAACZ}
+ServerSocket\'BF\'A1 \'B4\'EB\'C7\'D1 \'BB\'F3\'BC\'D3 \'B4\'D9\'C0\'CC\'BE\'EE\'B1\'D7\'B7\'A5 : {
+\pard\plain 
+\par\pard \qc {\field\flddirty {\*\fldinst INCLUDEPICTURE "class_server_socket.png" \\d \\*MERGEFORMAT}{\fldrslt IMAGE}}\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+bool {\b create} (){\bkmkstart AAAAAAAADA}
+{\bkmkend AAAAAAAADA}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+bool {\b bind} (int port){\bkmkstart AAAAAAAADB}
+{\bkmkend AAAAAAAADB}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+bool {\b listen} (){\bkmkstart AAAAAAAADC}
+{\bkmkend AAAAAAAADC}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+bool {\b accept} ({\b Socket} &){\bkmkstart AAAAAAAADD}
+{\bkmkend AAAAAAAADD}
+\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'C3\'DF\'B0\'A1\'B7\'CE \'BB\'F3\'BC\'D3\'B5\'C8 \'B8\'E2\'B9\'F6\'B5\'E9\par
+\pard\plain 
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\'C0\'CC \'C5\'AC\'B7\'A1\'BD\'BA\'BF\'A1 \'B4\'EB\'C7\'D1 \'B9\'AE\'BC\'AD\'C8\'AD \'C6\'E4\'C0\'CC\'C1\'F6\'B4\'C2 \'B4\'D9\'C0\'BD\'C0\'C7 \'C6\'C4\'C0\'CF\'B5\'E9\'B7\'CE\'BA\'CE\'C5\'CD \'BB\'FD\'BC\'BA\'B5\'C7\'BE\'FA\'BD\'C0\'B4\'CF\'B4\'D9.:{\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Network/Socket.hpp\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Network/Socket.cpp\par
+}\par \pard\plain 
+
+\pard\plain \sect\sbkpage
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+Socket \'C5\'AC\'B7\'A1\'BD\'BA \'C2\'FC\'C1\'B6\par \pard\plain 
+{\tc\tcl2 \v Socket}
+{\xe \v Socket}
+{\bkmkstart AAAAAAAADE}
+{\bkmkend AAAAAAAADE}
+Socket\'BF\'A1 \'B4\'EB\'C7\'D1 \'BB\'F3\'BC\'D3 \'B4\'D9\'C0\'CC\'BE\'EE\'B1\'D7\'B7\'A5 : {
+\pard\plain 
+\par\pard \qc {\field\flddirty {\*\fldinst INCLUDEPICTURE "class_socket.png" \\d \\*MERGEFORMAT}{\fldrslt IMAGE}}\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+void {\b setSocket} (int){\bkmkstart AAAAAAAADF}
+{\bkmkend AAAAAAAADF}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+bool {\b send} (std::string){\bkmkstart AAAAAAAADG}
+{\bkmkend AAAAAAAADG}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+int {\b recv} (std::string &){\bkmkstart AAAAAAAADH}
+{\bkmkend AAAAAAAADH}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+bool {\b isValid} (){\bkmkstart AAAAAAAADI}
+{\bkmkend AAAAAAAADI}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+void {\b set_non_blocking} (bool){\bkmkstart AAAAAAAADJ}
+{\bkmkend AAAAAAAADJ}
+\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'C1\'A4\'C0\'FB Public \'BC\'D3\'BC\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+static const int {\b MAXHOSTNAME} = 200{\bkmkstart AAAAAAAADK}
+{\bkmkend AAAAAAAADK}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+static const int {\b MAXCONNECTIONS} = 5{\bkmkstart AAAAAAAADL}
+{\bkmkend AAAAAAAADL}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+static const int {\b MAXRECV} = 500{\bkmkstart AAAAAAAADM}
+{\bkmkend AAAAAAAADM}
+\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Protected \'BC\'D3\'BC\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+sockaddr_in * {\b addr}{\bkmkstart AAAAAAAADN}
+{\bkmkend AAAAAAAADN}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+int {\b sock}{\bkmkstart AAAAAAAADO}
+{\bkmkend AAAAAAAADO}
+\par
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\'C0\'CC \'C5\'AC\'B7\'A1\'BD\'BA\'BF\'A1 \'B4\'EB\'C7\'D1 \'B9\'AE\'BC\'AD\'C8\'AD \'C6\'E4\'C0\'CC\'C1\'F6\'B4\'C2 \'B4\'D9\'C0\'BD\'C0\'C7 \'C6\'C4\'C0\'CF\'B5\'E9\'B7\'CE\'BA\'CE\'C5\'CD \'BB\'FD\'BC\'BA\'B5\'C7\'BE\'FA\'BD\'C0\'B4\'CF\'B4\'D9.:{\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Network/Socket.hpp\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Network/Socket.cpp\par
+}\par \pard\plain 
+
+\pard\plain \sect\sbkpage
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+StatusCode \'B1\'B8\'C1\'B6\'C3\'BC \'C2\'FC\'C1\'B6\par \pard\plain 
+{\tc\tcl2 \v StatusCode}
+{\xe \v StatusCode}
+{\bkmkstart AAAAAAAADP}
+{\bkmkend AAAAAAAADP}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'BC\'D3\'BC\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+string {\b version}{\bkmkstart AAAAAAAADQ}
+{\bkmkend AAAAAAAADQ}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+string {\b status}{\bkmkstart AAAAAAAADR}
+{\bkmkend AAAAAAAADR}
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+string {\b message}{\bkmkstart AAAAAAAADS}
+{\bkmkend AAAAAAAADS}
+\par
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\'C0\'CC \'B1\'B8\'C1\'B6\'C3\'BC\'BF\'A1 \'B4\'EB\'C7\'D1 \'B9\'AE\'BC\'AD\'C8\'AD \'C6\'E4\'C0\'CC\'C1\'F6\'B4\'C2 \'B4\'D9\'C0\'BD\'C0\'C7 \'C6\'C4\'C0\'CF\'B7\'CE\'BA\'CE\'C5\'CD \'BB\'FD\'BC\'BA\'B5\'C7\'BE\'FA\'BD\'C0\'B4\'CF\'B4\'D9.:{\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Network/Http.hpp\par
+}\par \pard\plain 
+
+\pard\plain \sect\sbkpage
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+Svm \'C5\'AC\'B7\'A1\'BD\'BA \'C2\'FC\'C1\'B6\par \pard\plain 
+{\tc\tcl2 \v Svm}
+{\xe \v Svm}
+{\bkmkstart AAAAAAAADT}
+{\bkmkend AAAAAAAADT}
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Support Vector Machines\'C0\'BB \'B4\'D9\'B7\'E7\'B1\'E2 \'C0\'A7\'C7\'D1 \'C5\'AC\'B7\'A1\'BD\'BA }}\par
+{
+{\f2 #include <Svm.hpp>}}\par
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'C5\'B8\'C0\'D4\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+enum {\b MODE} \{ {\b READDT} = 0b00, 
+{\b COLLECT} = 0b01, 
+{\b WRITEDT} = 0b11
+ \}{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C8\'C6\'B7\'C3 \'B5\'A5\'C0\'CC\'C5\'CD\'B8\'A6 \'B4\'D9\'B7\'EA \'B9\'E6\'B9\'FD }}}
+\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\b Svm} (const int mode)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\b Svm} \'C3\'CA\'B1\'E2\'C8\'AD }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+float {\b predict} (const cv::Mat &img)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C0\'D4\'B7\'C2\'B5\'C8 Sample\'C0\'CC \'C8\'C6\'B7\'C3\'B5\'C8 Support Vector Machines\'C0\'C7\'C7\'D8 \'BF\'B9\'C3\'F8\'B5\'C8 \'B0\'E1\'B0\'FA\'B8\'A6 \'C3\'E2\'B7\'C2 }{
+}\par
+}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Private \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+void {\b collectTrainImages} (){\bkmkstart AAAAAAAADU}
+{\bkmkend AAAAAAAADU}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+trainimage\'BF\'A1\'BC\'AD \'C8\'C6\'B7\'C3 \'B5\'A5\'C0\'CC\'C5\'CD \'BA\'D2\'B7\'AF\'BF\'C0\'B1\'E2 'trainimage'\'BF\'A1 \'B0\'E6\'B7\'CE\'BF\'A1\'BC\'AD \'B8\'F0\'B5\'E7 \'C0\'CC\'B9\'CC\'C1\'F6 \'C6\'C4\'C0\'CF\'C0\'BB \'C0\'D0\'BE\'EE\'B5\'E9\'BF\'A9 \'C8\'C6\'B7\'C3 \'B5\'A5\'C0\'CC\'C5\'CD\'B8\'A6 \'BB\'FD\'BC\'BA\'C7\'D1\'B4\'D9. }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+void {\b writeTraindata} (const std::string fn)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C8\'C6\'B7\'C3 \'B5\'A5\'C0\'CC\'C5\'CD\'B8\'A6 File System\'BF\'A1 Json \'C6\'C4\'C0\'CF\'B7\'CE \'BE\'B2\'B1\'E2 }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+void {\b readTraindata} (const std::string fn)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C8\'C6\'B7\'C3 \'B5\'A5\'C0\'CC\'C5\'CD\'B8\'A6 File System\'BF\'A1\'BC\'AD Json \'C6\'C4\'C0\'CF\'B7\'CE\'BA\'CE\'C5\'CD \'BA\'D2\'B7\'AF\'BF\'C0\'B1\'E2 }{
+}\par
+}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Private \'BC\'D3\'BC\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+cv::Ptr< cv::ml::SVM > {\b svm}{\bkmkstart AAAAAAAADV}
+{\bkmkend AAAAAAAADV}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Support Vector Machines }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+cv::Mat {\b classes}{\bkmkstart AAAAAAAADW}
+{\bkmkend AAAAAAAADW}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+trainingData\'BF\'CD \'BF\'AC\'B0\'FC\'B5\'C8 \'C3\'E2\'B7\'C2\'B5\'C9 vectors }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+cv::Mat {\b trainingData}{\bkmkstart AAAAAAAADX}
+{\bkmkend AAAAAAAADX}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C8\'C6\'B7\'C3\'C0\'BB \'C0\'A7\'C7\'D1 Samples }{
+}\par
+}}
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'BB\'F3\'BC\'BC\'C7\'D1 \'BC\'B3\'B8\'ED\par
+\pard\plain 
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Support Vector Machines\'C0\'BB \'B4\'D9\'B7\'E7\'B1\'E2 \'C0\'A7\'C7\'D1 \'C5\'AC\'B7\'A1\'BD\'BA \par
+}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'B8\'E2\'B9\'F6 \'BF\'AD\'B0\'C5\'C7\'FC \'B9\'AE\'BC\'AD\'C8\'AD\par
+\pard\plain 
+{\xe \v MODE\:Svm}
+{\xe \v Svm\:MODE}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+enum {\b Svm::MODE}}}
+\par
+{\bkmkstart AAAAAAAADY}
+{\bkmkend AAAAAAAADY}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C8\'C6\'B7\'C3 \'B5\'A5\'C0\'CC\'C5\'CD\'B8\'A6 \'B4\'D9\'B7\'EA \'B9\'E6\'B9\'FD }}\par
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'BF\'AD\'B0\'C5\'C7\'FC \'B8\'E2\'B9\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{\xe \v READDT\:Svm}
+{\xe \v Svm\:READDT}
+{\qr READDT{\bkmkstart AAAAAAAADZ}
+{\bkmkend AAAAAAAADZ}
+\cell }{{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Json File\'BF\'A1\'BC\'AD \'C0\'D0\'B1\'E2 \par
+}{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\par
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'C2\'FC\'B0\'ED:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid {\b readTraindata} \par
+}}\cell }{\row }
+{\xe \v COLLECT\:Svm}
+{\xe \v Svm\:COLLECT}
+{\qr COLLECT{\bkmkstart AAAAAAAAEA}
+{\bkmkend AAAAAAAAEA}
+\cell }{{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+trainimage\'BF\'A1\'BC\'AD \'C0\'D0\'B1\'E2 \par
+}{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\par
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'C2\'FC\'B0\'ED:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid {\b collectTrainImages} \par
+}}\cell }{\row }
+{\xe \v WRITEDT\:Svm}
+{\xe \v Svm\:WRITEDT}
+{\qr WRITEDT{\bkmkstart AAAAAAAAEB}
+{\bkmkend AAAAAAAAEB}
+\cell }{{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Json File\'B7\'CE \'BE\'B2\'B1\'E2 \par
+}{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\par
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'C2\'FC\'B0\'ED:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid {\b writeTraindata} \par
+}}\cell }{\row }
+}
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'BB\'FD\'BC\'BA\'C0\'DA & \'BC\'D2\'B8\'EA\'C0\'DA \'B9\'AE\'BC\'AD\'C8\'AD\par
+\pard\plain 
+{\xe \v Svm\:Svm}
+{\xe \v Svm\:Svm}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+Svm::Svm (const int  {\i mode})}}
+\par
+{\bkmkstart AAAAAAAAEC}
+{\bkmkend AAAAAAAAEC}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\b Svm} \'C3\'CA\'B1\'E2\'C8\'AD }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i mode} \cell }{{\b Svm} \'B8\'F0\'B5\'E5 \'BC\'B3\'C1\'A4 \cell }
+{\row }
+}
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'C2\'FC\'B0\'ED:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid {\b MODE} \par
+}}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6 \'B9\'AE\'BC\'AD\'C8\'AD\par
+\pard\plain 
+{\xe \v predict\:Svm}
+{\xe \v Svm\:predict}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+float Svm::predict (const cv::Mat &  {\i img})}}
+\par
+{\bkmkstart AAAAAAAAED}
+{\bkmkend AAAAAAAAED}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C0\'D4\'B7\'C2\'B5\'C8 Sample\'C0\'CC \'C8\'C6\'B7\'C3\'B5\'C8 Support Vector Machines\'C0\'C7\'C7\'D8 \'BF\'B9\'C3\'F8\'B5\'C8 \'B0\'E1\'B0\'FA\'B8\'A6 \'C3\'E2\'B7\'C2 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i img} \cell }{\'C0\'D4\'B7\'C2\'C7\'D2 Sample \cell }
+{\row }
+}
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B9\'DD\'C8\'AF\'B0\'AA:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid Svm\'C0\'BB \'C5\'EB\'C7\'D8 0 ~ 1\'B7\'CE \'BA\'D0\'B7\'F9\'B5\'C8 \'B0\'E1\'B0\'FA \par
+}}}
+{\xe \v readTraindata\:Svm}
+{\xe \v Svm\:readTraindata}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+void Svm::readTraindata (const std::string  {\i fn}){\f2 [private]}}}
+\par
+{\bkmkstart AAAAAAAAEE}
+{\bkmkend AAAAAAAAEE}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C8\'C6\'B7\'C3 \'B5\'A5\'C0\'CC\'C5\'CD\'B8\'A6 File System\'BF\'A1\'BC\'AD Json \'C6\'C4\'C0\'CF\'B7\'CE\'BA\'CE\'C5\'CD \'BA\'D2\'B7\'AF\'BF\'C0\'B1\'E2 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i fn} \cell }{Josn \'C6\'C4\'C0\'CF\'C0\'C7 \'B0\'E6\'B7\'CE \cell }
+{\row }
+}
+}}
+{\xe \v writeTraindata\:Svm}
+{\xe \v Svm\:writeTraindata}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+void Svm::writeTraindata (const std::string  {\i fn}){\f2 [private]}}}
+\par
+{\bkmkstart AAAAAAAAEF}
+{\bkmkend AAAAAAAAEF}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C8\'C6\'B7\'C3 \'B5\'A5\'C0\'CC\'C5\'CD\'B8\'A6 File System\'BF\'A1 Json \'C6\'C4\'C0\'CF\'B7\'CE \'BE\'B2\'B1\'E2 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i fn} \cell }{Josn \'C6\'C4\'C0\'CF\'C0\'C7 \'B0\'E6\'B7\'CE \cell }
+{\row }
+}
+}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\'C0\'CC \'C5\'AC\'B7\'A1\'BD\'BA\'BF\'A1 \'B4\'EB\'C7\'D1 \'B9\'AE\'BC\'AD\'C8\'AD \'C6\'E4\'C0\'CC\'C1\'F6\'B4\'C2 \'B4\'D9\'C0\'BD\'C0\'C7 \'C6\'C4\'C0\'CF\'B5\'E9\'B7\'CE\'BA\'CE\'C5\'CD \'BB\'FD\'BC\'BA\'B5\'C7\'BE\'FA\'BD\'C0\'B4\'CF\'B4\'D9.:{\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Opencv/Svm.hpp\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Opencv/Svm.cpp\par
+}\par \pard\plain 
+
+\pard\plain \sect\sbkpage
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+SVMTrainer \'C5\'AC\'B7\'A1\'BD\'BA \'C2\'FC\'C1\'B6\par \pard\plain 
+{\tc\tcl2 \v SVMTrainer}
+{\xe \v SVMTrainer}
+{\bkmkstart AAAAAAAAEG}
+{\bkmkend AAAAAAAAEG}
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\b Svm::collectTrainImages} \'BD\'C7\'C7\'E0 \'BD\'C3 \'C7\'CA\'BF\'E4\'C7\'D1 image\'B8\'A6 \'BB\'FD\'BC\'BA\'C7\'CF\'B4\'C2 \'C5\'AC\'B7\'A1\'BD\'BA }}\par
+{
+{\f2 #include <Svm.hpp>}}\par
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+{\b SVMTrainer} (){\bkmkstart AAAAAAAAEH}
+{\bkmkend AAAAAAAAEH}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\b SVMTrainer} \'C3\'CA\'B1\'E2\'C8\'AD }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+void {\b train} (const cv::Mat &sample)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\b Svm} \'C5\'AC\'B7\'A1\'BD\'BA\'BF\'A1\'BC\'AD \'C2\'FC\'C1\'B6\'C7\'D2 \'C0\'CC\'B9\'CC\'C1\'F6\'B8\'A6 File System\'BF\'A1 \'BE\'B2\'B1\'E2 }{
+}\par
+}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Private \'BC\'D3\'BC\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+int {\b fileIndex}{\bkmkstart AAAAAAAAEI}
+{\bkmkend AAAAAAAAEI}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+File \'B0\'CB\'BB\'F6\'C0\'BB \'C0\'A7\'C7\'D1 Index \'BA\'AF\'BC\'F6 }{
+}\par
+}}
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'BB\'F3\'BC\'BC\'C7\'D1 \'BC\'B3\'B8\'ED\par
+\pard\plain 
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\b Svm::collectTrainImages} \'BD\'C7\'C7\'E0 \'BD\'C3 \'C7\'CA\'BF\'E4\'C7\'D1 image\'B8\'A6 \'BB\'FD\'BC\'BA\'C7\'CF\'B4\'C2 \'C5\'AC\'B7\'A1\'BD\'BA \par
+}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6 \'B9\'AE\'BC\'AD\'C8\'AD\par
+\pard\plain 
+{\xe \v train\:SVMTrainer}
+{\xe \v SVMTrainer\:train}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+void SVMTrainer::train (const cv::Mat &  {\i sample})}}
+\par
+{\bkmkstart AAAAAAAAEJ}
+{\bkmkend AAAAAAAAEJ}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\b Svm} \'C5\'AC\'B7\'A1\'BD\'BA\'BF\'A1\'BC\'AD \'C2\'FC\'C1\'B6\'C7\'D2 \'C0\'CC\'B9\'CC\'C1\'F6\'B8\'A6 File System\'BF\'A1 \'BE\'B2\'B1\'E2 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i sample} \cell }{File System\'BF\'A1 \'BE\'B5 \'C0\'CC\'B9\'CC\'C1\'F6 \'C0\'D4\'B7\'C2\'B9\'DE\'C0\'BA \'C0\'CC\'B9\'CC\'C1\'F6\'B8\'A6 'TrainImage'\'B0\'E6\'B7\'CE\'BF\'A1 File System\'B7\'CE \'BE\'B4\'B4\'D9. \cell }
+{\row }
+}
+}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\'C0\'CC \'C5\'AC\'B7\'A1\'BD\'BA\'BF\'A1 \'B4\'EB\'C7\'D1 \'B9\'AE\'BC\'AD\'C8\'AD \'C6\'E4\'C0\'CC\'C1\'F6\'B4\'C2 \'B4\'D9\'C0\'BD\'C0\'C7 \'C6\'C4\'C0\'CF\'B5\'E9\'B7\'CE\'BA\'CE\'C5\'CD \'BB\'FD\'BC\'BA\'B5\'C7\'BE\'FA\'BD\'C0\'B4\'CF\'B4\'D9.:{\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Opencv/Svm.hpp\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Opencv/Svm.cpp\par
+}\par \pard\plain 
+
+\pard\plain \sect\sbkpage
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+process::Table \'B1\'B8\'C1\'B6\'C3\'BC \'C2\'FC\'C1\'B6\par \pard\plain 
+{\tc\tcl2 \v process::Table}
+{\xe \v process::Table}
+{\bkmkstart AAAAAAAAFI}
+{\bkmkend AAAAAAAAFI}
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C1\'D6\'C2\'F7 \'C2\'F7\'B7\'AE \'C1\'A4\'BA\'B8 }}\par
+{
+{\f2 #include <process.hpp>}}\par
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'BC\'D3\'BC\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+std::string {\b plateStr} = ""{\bkmkstart AAAAAAAAFJ}
+{\bkmkend AAAAAAAAFJ}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'B9\'F8\'C8\'A3\'C6\'C7 \'C5\'D8\'BD\'BA\'C6\'AE }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+int {\b match} = 0{\bkmkstart AAAAAAAAFK}
+{\bkmkend AAAAAAAAFK}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C0\'CF\'C4\'A1\'C7\'D1 \'C8\'BD\'BC\'F6 }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+bool {\b sended} = false{\bkmkstart AAAAAAAAFL}
+{\bkmkend AAAAAAAAFL}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Sever \'C0\'FC\'BC\'DB \'BF\'A9\'BA\'CE }{
+}\par
+}}
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'BB\'F3\'BC\'BC\'C7\'D1 \'BC\'B3\'B8\'ED\par
+\pard\plain 
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C1\'D6\'C2\'F7 \'C2\'F7\'B7\'AE \'C1\'A4\'BA\'B8 \par
+}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\'C0\'CC \'B1\'B8\'C1\'B6\'C3\'BC\'BF\'A1 \'B4\'EB\'C7\'D1 \'B9\'AE\'BC\'AD\'C8\'AD \'C6\'E4\'C0\'CC\'C1\'F6\'B4\'C2 \'B4\'D9\'C0\'BD\'C0\'C7 \'C6\'C4\'C0\'CF\'B7\'CE\'BA\'CE\'C5\'CD \'BB\'FD\'BC\'BA\'B5\'C7\'BE\'FA\'BD\'C0\'B4\'CF\'B4\'D9.:{\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Opencv/process.hpp\par
+}\par \pard\plain 
+
+\pard\plain \sect\sbkpage
+\s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+\pard\plain \s2\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs28\kerning28\cgrid 
+Plate::Text \'C5\'AC\'B7\'A1\'BD\'BA \'C2\'FC\'C1\'B6\par \pard\plain 
+{\tc\tcl2 \v Plate::Text}
+{\xe \v Plate::Text}
+{\bkmkstart AAAAAAAACR}
+{\bkmkend AAAAAAAACR}
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C5\'D8\'BD\'BA\'C6\'AE \'B9\'F8\'C8\'A3\'C6\'C7\'C0\'BB \'B1\'B8\'BC\'BA\'C7\'CF\'B4\'C2 \'C5\'D8\'BD\'BA\'C6\'AE\'B5\'E9 \'C1\'DF \'C7\'CF\'B3\'AA }}\par
+{
+{\f2 #include <Plate.hpp>}}\par
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+{\b Text} (const cv::Mat &src)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Text\'C0\'C7 \'C0\'CC\'B9\'CC\'C1\'F6 \'C3\'CA\'B1\'E2\'C8\'AD }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+cv::Mat {\b canonical} (int sampleSize)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+img\'B8\'A6 \'C1\'A4\'B1\'D4\'C8\'AD\'C7\'D1 \'C0\'CC\'B9\'CC\'C1\'F6 \'C3\'E2\'B7\'C2 }{
+}\par
+}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Public \'BC\'D3\'BC\'BA\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+
+cv::Mat {\b img}{\bkmkstart AAAAAAAACS}
+{\bkmkend AAAAAAAACS}
+\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C5\'D8\'BD\'BA\'C6\'AE\'B8\'A6 \'B3\'AA\'C5\'B8\'B3\'BB\'B4\'C2 \'C0\'CC\'B9\'CC\'C1\'F6 }{
+}\par
+}}
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'BB\'F3\'BC\'BC\'C7\'D1 \'BC\'B3\'B8\'ED\par
+\pard\plain 
+{
+\pard\plain \s17\sa60\sb30\widctlpar\qj \fs22\cgrid {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+\'C5\'D8\'BD\'BA\'C6\'AE \'B9\'F8\'C8\'A3\'C6\'C7\'C0\'BB \'B1\'B8\'BC\'BA\'C7\'CF\'B4\'C2 \'C5\'D8\'BD\'BA\'C6\'AE\'B5\'E9 \'C1\'DF \'C7\'CF\'B3\'AA \par
+}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'BB\'FD\'BC\'BA\'C0\'DA & \'BC\'D2\'B8\'EA\'C0\'DA \'B9\'AE\'BC\'AD\'C8\'AD\par
+\pard\plain 
+{\xe \v Text\:Plate::Text}
+{\xe \v Plate::Text\:Text}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+Plate::Text::Text (const cv::Mat &  {\i src})}}
+\par
+{\bkmkstart AAAAAAAACT}
+{\bkmkend AAAAAAAACT}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Text\'C0\'C7 \'C0\'CC\'B9\'CC\'C1\'F6 \'C3\'CA\'B1\'E2\'C8\'AD }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i src} \cell }{\'C3\'CA\'B1\'E2\'C8\'AD \'C7\'D2 \'C0\'CC\'B9\'CC\'C1\'F6 \cell }
+{\row }
+}
+}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+\'B8\'E2\'B9\'F6 \'C7\'D4\'BC\'F6 \'B9\'AE\'BC\'AD\'C8\'AD\par
+\pard\plain 
+{\xe \v canonical\:Plate::Text}
+{\xe \v Plate::Text\:canonical}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+Mat Plate::Text::canonical (int  {\i sampleSize})}}
+\par
+{\bkmkstart AAAAAAAACU}
+{\bkmkend AAAAAAAACU}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+img\'B8\'A6 \'C1\'A4\'B1\'D4\'C8\'AD\'C7\'D1 \'C0\'CC\'B9\'CC\'C1\'F6 \'C3\'E2\'B7\'C2 }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+{\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B8\'C5\'B0\'B3\'BA\'AF\'BC\'F6:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i sampleSize} \cell }{\'C1\'A4\'B1\'D4\'C8\'AD\'C7\'CF\'B1\'E2 \'C0\'A7\'C7\'D1 \'B0\'A1\'B7\'CE \'BC\'BC\'B7\'CE\'C0\'C7 \'C5\'A9\'B1\'E2 \cell }
+{\row }
+}
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+\'B9\'DD\'C8\'AF\'B0\'AA:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid \'C1\'A4\'B1\'D4\'C8\'AD\'B5\'C8 \'C0\'CC\'B9\'CC\'C1\'F6 \par
+}}}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\'C0\'CC \'C5\'AC\'B7\'A1\'BD\'BA\'BF\'A1 \'B4\'EB\'C7\'D1 \'B9\'AE\'BC\'AD\'C8\'AD \'C6\'E4\'C0\'CC\'C1\'F6\'B4\'C2 \'B4\'D9\'C0\'BD\'C0\'C7 \'C6\'C4\'C0\'CF\'B5\'E9\'B7\'CE\'BA\'CE\'C5\'CD \'BB\'FD\'BC\'BA\'B5\'C7\'BE\'FA\'BD\'C0\'B4\'CF\'B4\'D9.:{\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Opencv/Plate.hpp\par
+\pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 
+Opencv/Plate.cpp\par
+}
+\pard\plain \sect\sbkpage
+\s1\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs36\kerning36\cgrid 
+\s1\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs36\kerning36\cgrid \'BB\'F6\'C0\'CE\par 
+\pard\plain 
+{\tc \v \'BB\'F6\'C0\'CE}
+{\field\fldedit {\*\fldinst INDEX \\c2 \\*MERGEFORMAT}{\fldrslt INDEX}}
+}

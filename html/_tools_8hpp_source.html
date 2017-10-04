@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Parking System: Opencv/Tools.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Parking System
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'검색');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','검색');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_23924673e3a8472d9378b01bb2c7321f.html">Opencv</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Tools.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef TOOLS_HPP_</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define TOOLS_HPP_</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;opencv2/opencv.hpp&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div><div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="namespacetools.html">   10</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacetools.html">tools</a> {</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    </div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespacetools.html#a0dabcdc87de76f44797f16ade56944cf">readImage</a>(<span class="keyword">const</span> std::string fn, cv::Mat&amp; image, <span class="keywordtype">int</span> flags = 1);</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespacetools.html#a22a0c0860e714d4b350f17ec02ec2b6b">writeImage</a>(<span class="keyword">const</span> std::string fn, <span class="keyword">const</span> cv::Mat&amp; image);</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div><div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classtools_1_1_dicider.html">   32</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classtools_1_1_dicider.html">Dicider</a> {</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">private</span>:</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        </div><div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classtools_1_1_dicider.html#ad5934d4a2abed460c22ea2b6313bdb5f">   35</a></span>&#160;        std::string <a class="code" href="classtools_1_1_dicider.html#ad5934d4a2abed460c22ea2b6313bdb5f">keyStr</a>;     </div><div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classtools_1_1_dicider.html#acb9cec03e38fc8609c48f1acc5fb934d">   36</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classtools_1_1_dicider.html#acb9cec03e38fc8609c48f1acc5fb934d">match</a>;              </div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">public</span>:</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div><div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classtools_1_1_dicider.html#afdc1fb561a2ed8037d0fa87b69a7792d">   40</a></span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classtools_1_1_dicider.html#afdc1fb561a2ed8037d0fa87b69a7792d">LEASTMATCH</a> = 5;        </div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <a class="code" href="classtools_1_1_dicider.html#a8648682b1eba05db80a14051fc0b16c6">Dicider</a>();</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classtools_1_1_dicider.html#a7340ce8845ca163e4bcddd73be54a0c9">decide</a>(std::string str);</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    };</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div><div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classtools_1_1_analyzer.html">   60</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classtools_1_1_analyzer.html">Analyzer</a> {</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">private</span>:</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div><div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classtools_1_1_analyzer.html#a8a38c47fc2d716a805f026dea1ea2868">   63</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classtools_1_1_analyzer.html#a8a38c47fc2d716a805f026dea1ea2868">totalCorrect</a>;       </div><div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="classtools_1_1_analyzer.html#a3e378819a8a7d97b4cffb83cd2cde912">   64</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classtools_1_1_analyzer.html#a3e378819a8a7d97b4cffb83cd2cde912">totalTry</a>;           </div><div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="classtools_1_1_analyzer.html#a266409271441e355f817ffe0ffd59250">   65</a></span>&#160;        std::string <a class="code" href="classtools_1_1_analyzer.html#a266409271441e355f817ffe0ffd59250">answer</a>;     </div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">public</span>:</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <a class="code" href="classtools_1_1_analyzer.html">Analyzer</a>(<span class="keyword">const</span> std::string answer);</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordtype">void</span> analyze(<span class="keyword">const</span> std::string str);</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    };</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;};</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="classtools_1_1_analyzer_html"><div class="ttname"><a href="classtools_1_1_analyzer.html">tools::Analyzer</a></div><div class="ttdoc">통계 분석 결과 출력 클래스 입력된 초기 정답 문자열를 영상으로부터 도출된 문자열과 통계적 비교된 결과�...</div><div class="ttdef"><b>Definition:</b> Tools.hpp:60</div></div>
+<div class="ttc" id="classtools_1_1_dicider_html_acb9cec03e38fc8609c48f1acc5fb934d"><div class="ttname"><a href="classtools_1_1_dicider.html#acb9cec03e38fc8609c48f1acc5fb934d">tools::Dicider::match</a></div><div class="ttdeci">int match</div><div class="ttdoc">일치한 횟수 </div><div class="ttdef"><b>Definition:</b> Tools.hpp:36</div></div>
+<div class="ttc" id="classtools_1_1_dicider_html_ad5934d4a2abed460c22ea2b6313bdb5f"><div class="ttname"><a href="classtools_1_1_dicider.html#ad5934d4a2abed460c22ea2b6313bdb5f">tools::Dicider::keyStr</a></div><div class="ttdeci">std::string keyStr</div><div class="ttdoc">초기 문자열 </div><div class="ttdef"><b>Definition:</b> Tools.hpp:35</div></div>
+<div class="ttc" id="namespacetools_html_a0dabcdc87de76f44797f16ade56944cf"><div class="ttname"><a href="namespacetools.html#a0dabcdc87de76f44797f16ade56944cf">tools::readImage</a></div><div class="ttdeci">bool readImage(const std::string fn, cv::Mat &amp;image, int flags=1)</div><div class="ttdoc">File System으로 부터 이미지 불러오기 </div><div class="ttdef"><b>Definition:</b> Tools.cpp:4</div></div>
+<div class="ttc" id="namespacetools_html_a22a0c0860e714d4b350f17ec02ec2b6b"><div class="ttname"><a href="namespacetools.html#a22a0c0860e714d4b350f17ec02ec2b6b">tools::writeImage</a></div><div class="ttdeci">bool writeImage(const std::string fn, const cv::Mat &amp;image)</div><div class="ttdoc">File System으로 Image를 쓰기 </div><div class="ttdef"><b>Definition:</b> Tools.cpp:10</div></div>
+<div class="ttc" id="classtools_1_1_dicider_html"><div class="ttname"><a href="classtools_1_1_dicider.html">tools::Dicider</a></div><div class="ttdoc">초기에 입력된 문자열과 비교하여 tools::Dicider::LEASTMATCH 를 넘었을 경우 결과를 도출한다. </div><div class="ttdef"><b>Definition:</b> Tools.hpp:32</div></div>
+<div class="ttc" id="classtools_1_1_dicider_html_afdc1fb561a2ed8037d0fa87b69a7792d"><div class="ttname"><a href="classtools_1_1_dicider.html#afdc1fb561a2ed8037d0fa87b69a7792d">tools::Dicider::LEASTMATCH</a></div><div class="ttdeci">static const int LEASTMATCH</div><div class="ttdoc">최소한의 일치 횟수 </div><div class="ttdef"><b>Definition:</b> Tools.hpp:40</div></div>
+<div class="ttc" id="classtools_1_1_dicider_html_a8648682b1eba05db80a14051fc0b16c6"><div class="ttname"><a href="classtools_1_1_dicider.html#a8648682b1eba05db80a14051fc0b16c6">tools::Dicider::Dicider</a></div><div class="ttdeci">Dicider()</div><div class="ttdoc">Dicider 초기화 비교할 문자열을 설정한다. </div><div class="ttdef"><b>Definition:</b> Tools.cpp:14</div></div>
+<div class="ttc" id="namespacetools_html"><div class="ttname"><a href="namespacetools.html">tools</a></div><div class="ttdoc">tools 영상 처리 시 유용한 tool 모음 </div><div class="ttdef"><b>Definition:</b> Tools.hpp:10</div></div>
+<div class="ttc" id="classtools_1_1_analyzer_html_a8a38c47fc2d716a805f026dea1ea2868"><div class="ttname"><a href="classtools_1_1_analyzer.html#a8a38c47fc2d716a805f026dea1ea2868">tools::Analyzer::totalCorrect</a></div><div class="ttdeci">int totalCorrect</div><div class="ttdoc">총 맞은 횟수 </div><div class="ttdef"><b>Definition:</b> Tools.hpp:63</div></div>
+<div class="ttc" id="classtools_1_1_dicider_html_a7340ce8845ca163e4bcddd73be54a0c9"><div class="ttname"><a href="classtools_1_1_dicider.html#a7340ce8845ca163e4bcddd73be54a0c9">tools::Dicider::decide</a></div><div class="ttdeci">bool decide(std::string str)</div><div class="ttdoc">연속으로 일정 횟수까지 같은 문자열을 입력받으면 최종 결과를 출력 </div><div class="ttdef"><b>Definition:</b> Tools.cpp:19</div></div>
+<div class="ttc" id="classtools_1_1_analyzer_html_a3e378819a8a7d97b4cffb83cd2cde912"><div class="ttname"><a href="classtools_1_1_analyzer.html#a3e378819a8a7d97b4cffb83cd2cde912">tools::Analyzer::totalTry</a></div><div class="ttdeci">int totalTry</div><div class="ttdoc">총 시도한 횟수 </div><div class="ttdef"><b>Definition:</b> Tools.hpp:64</div></div>
+<div class="ttc" id="classtools_1_1_analyzer_html_a266409271441e355f817ffe0ffd59250"><div class="ttname"><a href="classtools_1_1_analyzer.html#a266409271441e355f817ffe0ffd59250">tools::Analyzer::answer</a></div><div class="ttdeci">std::string answer</div><div class="ttdoc">비교할 정답 </div><div class="ttdef"><b>Definition:</b> Tools.hpp:65</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+다음에 의해 생성됨 :  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>
