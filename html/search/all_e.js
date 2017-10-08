@@ -1,7 +1,15 @@
 var searchData=
 [
-  ['readdt',['READDT',['../class_o_c_r.html#a442cab5841719df30befa282835b4eb3a85eb8164b9c5fc654a6492994fe80289',1,'OCR::READDT()'],['../class_svm.html#a479f12db422de0a4c4d46900ee154928aeb592b07b32a90ab0b49f8912740562a',1,'Svm::READDT()']]],
-  ['readimage',['readImage',['../namespacetools.html#a0dabcdc87de76f44797f16ade56944cf',1,'tools']]],
-  ['readtraindata',['readTraindata',['../class_o_c_r.html#a27494f2dca260d6710c332897c31f716',1,'OCR::readTraindata(const std::string fn)'],['../class_o_c_r.html#acef1528ddf01f01f301dcd489ec427fb',1,'OCR::readTraindata(const std::string fn, const FORMAT format)'],['../class_svm.html#afb95b76fa494604abcd022c5948fb728',1,'Svm::readTraindata()']]],
-  ['requestline',['RequestLine',['../struct_request_line.html',1,'']]]
+  ['parking_20system',['Parking System',['../index.html',1,'']]],
+  ['parking',['parking',['../classps_1_1_a_p_i.html#af7829fef44876d076e41f18e9978609e',1,'ps::API']]],
+  ['parkinginfo',['ParkingInfo',['../structprocess_1_1_parking_info.html',1,'process']]],
+  ['parser',['parser',['../classhttp_1_1_message.html#aa7346502a360e77b2da5cc9a35821a32',1,'http::Message']]],
+  ['path',['path',['../classps_1_1_a_p_i.html#ae93da803b67097f16a009d7acf78d957',1,'ps::API']]],
+  ['plate',['Plate',['../class_plate.html',1,'Plate'],['../class_plate.html#a90e24aeb2c5f3120d3958999b5c673a7',1,'Plate::Plate()']]],
+  ['platestr',['plateStr',['../structprocess_1_1_table.html#a5cffcdbe502a6165eb806b64ba27fbe0',1,'process::Table::plateStr()'],['../namespaceprocess.html#a38b4d487dfb47b712f32bfa52fa94464a8c488cdfb82009e72ed939d49fbf788e',1,'process::PLATESTR()']]],
+  ['port',['port',['../classps_1_1_a_p_i.html#a58739732fd3c99f9725e5e1376bd5dd7',1,'ps::API']]],
+  ['position',['position',['../class_plate.html#a9176604a4d578e74c085c6b77cef1fef',1,'Plate::position()'],['../namespaceprocess.html#a38b4d487dfb47b712f32bfa52fa94464af1a2ca0ae6e0d4685b3996a47e56c0a6',1,'process::POSITION()']]],
+  ['predict',['predict',['../class_o_c_r.html#aee086012d86e877ac029cdde3927a221',1,'OCR::predict()'],['../class_svm.html#ad157df6a49f7380a99232e5b8fa6b63e',1,'Svm::predict()']]],
+  ['process',['process',['../namespaceprocess.html',1,'']]],
+  ['ps',['ps',['../namespaceps.html',1,'']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['requestline',['RequestLine',['../struct_request_line.html',1,'']]]
+  ['parkinginfo',['ParkingInfo',['../structprocess_1_1_parking_info.html',1,'process']]],
+  ['plate',['Plate',['../class_plate.html',1,'']]]
 ];

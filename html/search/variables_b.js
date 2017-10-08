@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['texts',['texts',['../class_plate.html#a2f9fd5a829e54bfc844215d16bef1fe3',1,'Plate']]],
-  ['totalcorrect',['totalCorrect',['../classtools_1_1_analyzer.html#a8a38c47fc2d716a805f026dea1ea2868',1,'tools::Analyzer']]],
-  ['totaltry',['totalTry',['../classtools_1_1_analyzer.html#a3e378819a8a7d97b4cffb83cd2cde912',1,'tools::Analyzer']]],
-  ['trainingdata',['trainingData',['../class_o_c_r.html#a2c5101fa102a3fbb66144b3f511b3bd5',1,'OCR::trainingData()'],['../class_svm.html#a29ecb047ff1b1dc376b60e9e4bf11b37',1,'Svm::trainingData()']]]
+  ['sended',['sended',['../structprocess_1_1_table.html#aefdb336dc1532718fcbf1708a35d9aff',1,'process::Table']]],
+  ['sock',['sock',['../classps_1_1_a_p_i.html#af262de65cbf1ede5881c3c75d3cca049',1,'ps::API::sock()'],['../classsock_1_1_socket.html#a01040adb35eea5ad276090b9db112f4a',1,'sock::Socket::sock()']]],
+  ['status',['status',['../structhttp_1_1_status_line.html#acfd9752d4b62330a390f17f5d011fcd2',1,'http::StatusLine']]],
+  ['strcharacters',['strCharacters',['../class_o_c_r.html#acc9af89294d62414e9e7ccddd2d169dc',1,'OCR']]],
+  ['svm',['svm',['../class_svm.html#ac4e8ba994bfa1f66d17ef3b0fa2d856c',1,'Svm']]]
 ];

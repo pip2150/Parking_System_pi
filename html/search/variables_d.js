@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['zonename',['zoneName',['../structprocess_1_1_parking_info.html#a0435386b258dfafdebcf6ce33648cc8d',1,'process::ParkingInfo']]]
+  ['url',['url',['../structhttp_1_1_request_line.html#a1fe6a360ed5a98357163c0e42db12212',1,'http::RequestLine']]]
 ];

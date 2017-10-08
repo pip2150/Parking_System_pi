@@ -1,68 +1,85 @@
+﻿/*
+ * Socket.cpp
+ *
+ *  Created on: 2017. 7. 25.
+ *      Author: dhrco
+ */
+
 #include <unistd.h>
-#include <sys/types.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <fcntl.h>
 #include <iostream>
-#include <cstdlib>
-#include <string>
-#include <cstring>
-#include <cerrno>
 #include "Socket.hpp"
 
-Socket::Socket() {
-	if((sock  = socket( PF_INET, SOCK_STREAM, 0)) == -1){
-		std::cerr << "socket : "<<strerror(errno) << std::endl;
-		exit(1);
-	};
+sock::Socket::Socket() {
+
 	addr = new sockaddr_in;
+
+	if((sock  = ::socket( PF_INET, SOCK_STREAM, 0)) != -1)
+		return ;
+
+	perror("socket");
+	exit(1);
+
 }
 
-void Socket::setSocket(int sock) {
+sock::Socket::Socket(int sock){
+
 	this->sock = sock;
 	addr = new sockaddr_in;
+
 }
 
-Socket::~Socket() {
+sock::Socket::~Socket() {
+
 	if(sock != -1)
 		::close(sock);
+
 }
 
-bool Socket::isValid(){
+bool sock::Socket::isValid(){
+
 	return (sock != -1);
+
 }
 
-bool Socket::send(std::string s) {
-	if((::send(sock, s.c_str(), s.size(), MSG_NOSIGNAL)) == -1) {
-		std::cerr << "send : "<<strerror(errno) << std::endl;
-		return false;
-	}
-	else {
+bool sock::Socket::send(std::string data) {
+
+	if((::send(sock, data.c_str(), data.size(), MSG_NOSIGNAL)) != -1)
 		return true;
-	}
+
+	perror("send");
+	return false;
+
 }
 
-int Socket::recv(std::string& s) {
+int sock::Socket::recv(std::string *data) {
+
 	int status;
 
 	char buf[MAXRECV + 1];
-	s = "";
-	memset(buf, 0, MAXRECV + 1);
+	*data = "";
+
+	for(int i=0;i<MAXRECV+1;i++)
+		buf[i] = 0;
 
 	if((status = ::recv(sock, buf, MAXRECV, 0)) == -1) {
-		std::cerr << "recv : "<<strerror(errno) << std::endl;
+		perror("recv");
 		return -1;
 	}
 	else if(status == 0) {
 		return 0;
 	}
 	else {
-		s = buf;
+		*data = buf;
 		return status;
 	}
+
 }
 
-void Socket::set_non_blocking(bool b) {
+void sock::Socket::set_non_blocking(bool b) {
+
 	int opts;
 
 	opts = fcntl(sock, F_GETFL);
@@ -77,24 +94,27 @@ void Socket::set_non_blocking(bool b) {
 		opts =(opts & ~O_NONBLOCK);
 
 	fcntl(sock, F_SETFL, opts);
+
 }
 
-bool ServerSocket::create() {
+bool sock::ServerSocket::create() {
+
 	sock = socket(AF_INET, SOCK_STREAM, 0);
 
 	if(!isValid())
 		return false;
 
 	int on = 1;
-	if(setsockopt(sock, SOL_SOCKET, SO_REUSEADDR,(char*)&on, sizeof(on)) == -1){
-		std::cerr << "create : "<<strerror(errno) << std::endl;
-		return false;
-	}
+	if(setsockopt(sock, SOL_SOCKET, SO_REUSEADDR,(char*)&on, sizeof(on)) == -1)
+		return true;
 
-	return true;
+	perror("create");
+	return false;
+
 }
 
-bool ServerSocket::bind(int port) {
+bool sock::ServerSocket::bind(int port) {
+
 	if(!isValid())
 		return false;
 
@@ -102,58 +122,74 @@ bool ServerSocket::bind(int port) {
 	addr->sin_addr.s_addr = INADDR_ANY;
 	addr->sin_port = htons(port);
 
-	if((::bind(sock,(struct sockaddr*)addr, sizeof(*addr))) == -1){
-		std::cerr << "bind : "<<strerror(errno) << std::endl;
-		return false;
-	}
+	if((::bind(sock,(struct sockaddr*)addr, sizeof(*addr))) != -1)
+		return true;
 
+	perror("bind");
+	return false;
 
-	return true;
 }
 
+bool sock::ServerSocket::listen() {
 
-bool ServerSocket::listen() {
 	if(!isValid())
 		return false;
 
-	if((::listen(sock, MAXCONNECTIONS)) == -1){
-		std::cerr << "listen : "<<strerror(errno) << std::endl;
-		return false;
-	}
+	if((::listen(sock, MAXCONNECTIONS)) != -1)
+		return true;
 
-	return true;
+	perror("listen");
+	return false;
+
 }
 
-bool ServerSocket::accept(Socket &clientsocket) {
+bool sock::ServerSocket::accept(Socket *clientSocket) {
+
 	int addrLen = sizeof(*addr);
 
 	int csock = ::accept(sock,(sockaddr *)addr, (socklen_t *)&addrLen);
-	clientsocket.setSocket(csock);
+	clientSocket = new Socket(csock);
 
-	if(clientsocket.isValid()){
+	if(clientSocket->isValid()){
 		return true;
 	}
 
-	std::cerr << "accept : "<<strerror(errno) << std::endl;
+	perror("accept");
 	return false;
+
 }
 
-bool ClientSocket::connect(std::string host,  int port) {
-//	if(!isValid())
-//		return false;
+bool sock::ClientSocket::connect(std::string host,  int port) {
+
+	if(host.length() > MAXHOSTNAME){
+		std::cerr << "connect : Hostname is too long" <<std::endl;
+		exit(1);
+	}
+
+	if(!isValid())
+		return false;
 
 	addr->sin_family = AF_INET;
 	addr->sin_port = htons(port);
 
 	int status = inet_pton(AF_INET, host.c_str(), &addr->sin_addr);
 
-	//if(errno == EAFNOSUPPORT) return false;
+	if(status == -1){
+		perror("connect");
+		exit(1);
+	}
+
+	if(status == 0){
+		std::cerr << "connect : Valid Network address" <<std::endl;
+		exit(1);
+	}
 
 	status = ::connect(sock,(sockaddr *)addr, sizeof(*addr));
 
-	if(status == 0)
+	if(status != -1)
 		return true;
 
-	std::cerr << "connect : "<<strerror(errno) << std::endl;
+	perror("connect");
 	return false;
+
 }

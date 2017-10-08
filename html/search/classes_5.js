@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['parkinginfo',['ParkingInfo',['../structprocess_1_1_parking_info.html',1,'process']]],
-  ['plate',['Plate',['../class_plate.html',1,'']]]
+  ['ocr',['OCR',['../class_o_c_r.html',1,'']]],
+  ['ocrtrainer',['OCRTrainer',['../class_o_c_r_trainer.html',1,'']]]
 ];

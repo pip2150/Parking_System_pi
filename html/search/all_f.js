@@ -1,13 +1,11 @@
 var searchData=
 [
-  ['send2server',['send2Server',['../namespaceprocess.html#a1f0aa45cb765ba7d279ac2c2199074ea',1,'process']]],
-  ['sended',['sended',['../structprocess_1_1_table.html#aefdb336dc1532718fcbf1708a35d9aff',1,'process::Table']]],
-  ['serversocket',['ServerSocket',['../class_server_socket.html',1,'']]],
-  ['setdebug',['setDebug',['../class_plate.html#a4f307c5bc7cf3c5887d704fbeed3fd8a',1,'Plate']]],
-  ['socket',['Socket',['../class_socket.html',1,'']]],
-  ['startopencv',['startOpencv',['../namespaceprocess.html#a04e297268dc5195b3c29081e59cb411f',1,'process']]],
-  ['statuscode',['StatusCode',['../struct_status_code.html',1,'']]],
-  ['strcharacters',['strCharacters',['../class_o_c_r.html#acc9af89294d62414e9e7ccddd2d169dc',1,'OCR']]],
-  ['svm',['Svm',['../class_svm.html',1,'Svm'],['../class_svm.html#a762af972a037686ea80d9896905f57ed',1,'Svm::Svm(const int mode)'],['../class_svm.html#ac4e8ba994bfa1f66d17ef3b0fa2d856c',1,'Svm::svm()']]],
-  ['svmtrainer',['SVMTrainer',['../class_s_v_m_trainer.html',1,'SVMTrainer'],['../class_s_v_m_trainer.html#a2109fcf47792fe25ac12e14368c775bb',1,'SVMTrainer::SVMTrainer()']]]
+  ['readdt',['READDT',['../class_o_c_r.html#a442cab5841719df30befa282835b4eb3a85eb8164b9c5fc654a6492994fe80289',1,'OCR::READDT()'],['../class_svm.html#a479f12db422de0a4c4d46900ee154928aeb592b07b32a90ab0b49f8912740562a',1,'Svm::READDT()']]],
+  ['readimage',['readImage',['../namespacetools.html#a0dabcdc87de76f44797f16ade56944cf',1,'tools']]],
+  ['readtraindata',['readTraindata',['../class_o_c_r.html#a27494f2dca260d6710c332897c31f716',1,'OCR::readTraindata(const std::string fn)'],['../class_o_c_r.html#acef1528ddf01f01f301dcd489ec427fb',1,'OCR::readTraindata(const std::string fn, const FORMAT format)'],['../class_svm.html#afb95b76fa494604abcd022c5948fb728',1,'Svm::readTraindata()']]],
+  ['recv',['recv',['../classsock_1_1_socket.html#aa52c41c177bd1f7fe785d32d46f60b9f',1,'sock::Socket']]],
+  ['requestline',['RequestLine',['../structhttp_1_1_request_line.html',1,'http']]],
+  ['requestmessge',['RequestMessge',['../classhttp_1_1_request_messge.html',1,'http::RequestMessge'],['../classhttp_1_1_request_messge.html#aa79dcaf03eb6c49010e5df0c75fb3740',1,'http::RequestMessge::RequestMessge(std::string msg)'],['../classhttp_1_1_request_messge.html#a8b9e3bc54bc34d1ec19cf4253057444b',1,'http::RequestMessge::RequestMessge(RequestLine requestLine, HeaderLine headerLine[], int headerSize, std::string content)']]],
+  ['resopnse',['resopnse',['../classps_1_1_a_p_i.html#a394416393e2ad3bee0141213bbb912a5',1,'ps::API']]],
+  ['responsemessge',['ResponseMessge',['../classhttp_1_1_response_messge.html',1,'http::ResponseMessge'],['../classhttp_1_1_response_messge.html#a20f120ead2d600fc033c3f5ce3d5174e',1,'http::ResponseMessge::ResponseMessge(std::string msg)'],['../classhttp_1_1_response_messge.html#a278fe12044ee4b4d69b75b3bf6dbe652',1,'http::ResponseMessge::ResponseMessge(StatusLine statusCode, HeaderLine headerLine[], int headerSize, std::string content)']]]
 ];

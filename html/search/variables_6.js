@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['leastmatch',['LEASTMATCH',['../classtools_1_1_dicider.html#afdc1fb561a2ed8037d0fa87b69a7792d',1,'tools::Dicider']]]
+  ['keystr',['keyStr',['../classtools_1_1_dicider.html#ad5934d4a2abed460c22ea2b6313bdb5f',1,'tools::Dicider']]]
 ];

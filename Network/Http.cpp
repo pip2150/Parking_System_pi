@@ -1,142 +1,170 @@
-/*
- * HttpParser.cpp
+﻿/*
+ * Http.cpp
  *
  *  Created on: 2017. 7. 28.
  *      Author: dhrco
  */
 
-#include <iostream>
+#include <cstring>
 #include "Http.hpp"
 
-HttpMessage::HttpMessage(string firstLine[], HeaderLine headerLine[], int headerSize, string content){
-	for(int i=0;i<3;i++)
+using namespace std;
+
+http::Message::Message(std::string firstLine[], HeaderLine headerLine[], int headerSize, std::string content){
+
+	for(int i=0;i<FIRSTLINESIZE;i++)
 		this->firstLine[i] = firstLine[i];
 
+	this->header = new HeaderLine[headerSize+1];
 	this->headerSize = headerSize;
 
-	for(int i=0;i<headerSize;i++)
-		this->headerLine[i] = headerLine[i];
+	for(int i=0 ;i < headerSize;i++)
+		this->header[i] = headerLine[i];
 
 	this->messageBody = content;
-	error = true;
+
 }
 
-HttpMessage::HttpMessage(string msg){
+http::Message::Message(std::string msg){
+
 	int start = 0, end = -1;
 	int i = 0;
-    this->headerSize = 0;
+	this->headerSize = 0;
+
+	this->header = new HeaderLine[MAXHEADERS];
+
 	while(1){
 		end = msg.find("\r\n",start);
 		string line = string(msg, start, end-start);
 		if(i == 0){
-			string first[512];
-			if(parserLine(line, " ", first, 3)){
-				this->firstLine[0] = first[0];
-				this->firstLine[1] = first[1];
-				this->firstLine[2] = first[2];
-			}
-			else{
-				error= false;
-				return ;
-			}
+			string first[FIRSTLINESIZE];
+			parser(line, " ", first, FIRSTLINESIZE);
+
+			this->firstLine[0] = first[0];
+			this->firstLine[1] = first[1];
+			this->firstLine[2] = first[2];
 		}
 		else if(line != ""){
 			string header[2];
-			if(parserLine(line, ": ", header, 2)){
-				this->headerLine[i-1].field = header[0];
-				this->headerLine[i-1].value = header[1];
-				this->headerSize = i;
-			}
-			else{
-				error= false;
-				return ;
-			}
+			parser(line, ": ", header, 2);
+			HeaderLine headerLine = { header[0], header[1] };
+
+			this->header[i-1] = headerLine;
+			this->headerSize = i;
 		}
 		else{
 			this->messageBody =string(msg, start+2);
 			break;
 		}
 
-		start = end + string("\r\n").length();
-		i++;
 		if(end == -1)
 			break;
+
+		start = end + string("\r\n").length();
+		i++;
+
+		if(i >= MAXHEADERS){
+			std::cerr << __FUNCTION__ << " : "<< "Too many Headers in " << __FILE__ << " line : " << __LINE__ << std::endl;
+			exit(1);
+		}
 	}
-	error = true;
+
 	return ;
+
 }
 
-HeaderLine* HttpMessage::getHeader(){
-	return headerLine;
+http::HeaderLine http::Message::getHeader(int index){
+
+	return header[index];
+
 };
-string HttpMessage::getMessageBody(){
+
+std::string http::Message::getMessageBody(){
+
 	return messageBody;
-}
-int HttpMessage::getHeaderSize(){
-	return headerSize;
+
 }
 
-bool HttpMessage::parserLine(string input, string key, string output[], int size){
-	int s=0, e = -1;
-	int i=0;
+int http::Message::getHeaderSize(){
+
+	return headerSize;
+
+}
+
+void http::Message::parser(std::string input, std::string key, std::string output[], int size){
+
+	int s = 0, e = -1;
+	int i = 0;
 	while(1){
 		e = input.find(key, s);
+
 		if(i>=size)
 			output[size-1] += key + string(input,s,e-s);
 		else
 			output[i] = string(input,s,e-s);
+
 		s = e + key.length();
 		i++;
 		if(e == -1)
 			break;
 	}
-	return true;
+
 }
 
-string HttpMessage::getString(){
+std::string http::Message::getString(){
+
 	string msg;
 	msg = this->firstLine[0]+" "+this->firstLine[1]+" "+this->firstLine[2]+"\r\n";
 
 	for(int i=0;i<this->headerSize;i++)
-		msg += this->headerLine[i].field+": "+this->headerLine[i].value+"\r\n";
+		msg += this->header[i].field+": "+this->header[i].value+"\r\n";
 
 	msg += "\r\n";
 	msg += this->messageBody;
 
 	return msg;
+
 }
 
-HttpResponseMessge::HttpResponseMessge(string msg) : HttpMessage::HttpMessage(msg) {
-	statusCode.version = this->firstLine[0];
-	statusCode.status = this->firstLine[1];
-	statusCode.message = this->firstLine[2];
+http::ResponseMessge::ResponseMessge(std::string msg) : Message::Message(msg) {
 }
 
-HttpResponseMessge::HttpResponseMessge(StatusCode statusCode, HeaderLine headerLine[], int headerSize, string content)
-: HttpMessage::HttpMessage(firstLine, headerLine, headerSize, content){
-	string firstLine[3] = {statusCode.version, statusCode.status,statusCode.message};
-	for(int i=0;i<3;i++)
+
+http::ResponseMessge::ResponseMessge(StatusLine statusLine, HeaderLine headerLine[], int headerSize, std::string content)
+: Message::Message(firstLine, headerLine, headerSize, content){
+
+	string firstLine[FIRSTLINESIZE] = {statusLine.version, statusLine.status,statusLine.message};
+
+	for(int i=0;i<FIRSTLINESIZE;i++)
 		this->firstLine[i] = firstLine[i];
+
 }
 
-StatusCode HttpResponseMessge::getStatusCode(){
-	return statusCode;
+http::StatusLine http::ResponseMessge::getStatusLine(){
+
+	StatusLine statusLine = {firstLine[0], firstLine[1], firstLine[2]};
+
+	return statusLine;
+
 }
 
-HttpRequestMessge::HttpRequestMessge(string msg) : HttpMessage::HttpMessage(msg) {
-	requestLine.method = firstLine[0];
-	requestLine.url = firstLine[1];
-	requestLine.version = firstLine[2];
+http::RequestMessge::RequestMessge(std::string msg) : Message::Message(msg) {
 }
 
-HttpRequestMessge::HttpRequestMessge(RequestLine requestLine, HeaderLine headerLine[], int headerSize, string content)
-: HttpMessage::HttpMessage(firstLine, headerLine, headerSize, content){
-	string firstLine[3] = {requestLine.method, requestLine.url, requestLine.version};
-	for(int i=0;i<3;i++)
+http::RequestMessge::RequestMessge(RequestLine requestLine, HeaderLine headerLine[], int headerSize, std::string content)
+: Message::Message(firstLine, headerLine, headerSize, content){
+
+	string firstLine[FIRSTLINESIZE] = {requestLine.method, requestLine.url, requestLine.version};
+
+	for(int i=0;i<FIRSTLINESIZE;i++)
 		this->firstLine[i] = firstLine[i];
+
 }
 
-RequestLine HttpRequestMessge::getRequestLine(){
+http::RequestLine http::RequestMessge::getRequestLine(){
+
+	RequestLine requestLine ={firstLine[0], firstLine[1], firstLine[2]};
+
 	return requestLine;
-}
 
+}

@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['sended',['sended',['../structprocess_1_1_table.html#aefdb336dc1532718fcbf1708a35d9aff',1,'process::Table']]],
-  ['strcharacters',['strCharacters',['../class_o_c_r.html#acc9af89294d62414e9e7ccddd2d169dc',1,'OCR']]],
-  ['svm',['svm',['../class_svm.html#ac4e8ba994bfa1f66d17ef3b0fa2d856c',1,'Svm']]]
+  ['path',['path',['../classps_1_1_a_p_i.html#ae93da803b67097f16a009d7acf78d957',1,'ps::API']]],
+  ['platestr',['plateStr',['../structprocess_1_1_table.html#a5cffcdbe502a6165eb806b64ba27fbe0',1,'process::Table']]],
+  ['port',['port',['../classps_1_1_a_p_i.html#a58739732fd3c99f9725e5e1376bd5dd7',1,'ps::API']]],
+  ['position',['position',['../class_plate.html#a9176604a4d578e74c085c6b77cef1fef',1,'Plate']]]
 ];

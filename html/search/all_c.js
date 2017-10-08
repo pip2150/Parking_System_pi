@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['ocr',['OCR',['../class_o_c_r.html',1,'OCR'],['../class_o_c_r.html#a58dd005225af496e3ccdd69f387b5865',1,'OCR::OCR()']]],
-  ['ocrtrainer',['OCRTrainer',['../class_o_c_r_trainer.html',1,'OCRTrainer'],['../class_o_c_r_trainer.html#abd29826f033646e6937bc07af133d599',1,'OCRTrainer::OCRTrainer()']]],
-  ['orientation',['ORIENTATION',['../class_o_c_r.html#ad50a9d013dc2ee50341eee5b9e326686',1,'OCR']]]
+  ['network',['NETWORK',['../namespaceprocess.html#a38b4d487dfb47b712f32bfa52fa94464ade7887da7de946a4708baa66f437ce44',1,'process']]],
+  ['none',['NONE',['../namespaceprocess.html#aa30669026e4cf69a2550aace23bef68ea7cc3bc56e3206127aefb779215c3e5f2',1,'process']]],
+  ['notuseml',['NOTUSEML',['../namespaceprocess.html#a38b4d487dfb47b712f32bfa52fa94464a186cfc3bdf8fe842b027d5411b2d0da8',1,'process']]],
+  ['numcharacters',['numCharacters',['../class_o_c_r.html#a9e52aa42898bfdaeef338e1ac6507233',1,'OCR']]]
 ];

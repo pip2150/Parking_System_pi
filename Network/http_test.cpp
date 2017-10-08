@@ -1,47 +1,45 @@
-#include "psAPI.hpp"
+ï»¿#include "psAPI.hpp"
 
 using namespace std;
 
 void error(){
-	cerr << "Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù." << endl;
+	cerr << "ìž˜ëª»ëœ ìž…ë ¥ìž…ë‹ˆë‹¤." << endl;
 	exit(1);
 }
 
 int main(int argc, char* argv[]) {
-	string mod;
-	int statusCode;
+	string arg;
+	enum MODE { ENTER, EXIT, PARKING };
+	MODE mode;
+
 
 	switch (argc) {
 	case 3:
-		mod = string(argv[1]);
-		if (mod == "enter")		statusCode = 1;
-		else if (mod == "exit")	statusCode = 2;
+		arg = string(argv[1]);
+		if (arg == "enter")		mode = ENTER;
+		else if (arg == "exit")	mode = EXIT;
 		else error();
 		break;
 	case 6:
-		mod = string(argv[1]);
-		if (mod == "parking")	statusCode = 3;
+		arg = string(argv[1]);
+		if (arg == "parking")	mode = PARKING;
 		else error();
 		break;
 	default:
 		error();
 	}
 
-	ps::API api;
+	ps::API api("13.124.74.249", 3000);
 
-	switch (statusCode) {
-	case 1:
+	switch (mode) {
+	case ENTER:
 		api.enter(string(argv[2])); break;
-	case 2:
+	case EXIT:
 		api.exit(string(argv[2])); break;
-	case 3:
+	case PARKING:
 		api.parking(atoi(argv[2]),string(argv[3]), atoi(argv[4]), string(argv[5]));
 		break;
-	default:
-		error();
 	}
 
-	api.resopnse();
-
-	return 0;
+	return !api.resopnse();
 }

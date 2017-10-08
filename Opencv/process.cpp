@@ -63,7 +63,7 @@ void process::send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE]) {
 		if (table[i].match < tools::Dicider::LEASTMATCH)
 			continue;
 
-		ps::API api;
+		ps::API api("13.124.74.249", 3000);
 
 		if (!info.floor) {
 			if (info.way == ENTER)

@@ -1,11 +1,18 @@
 var searchData=
 [
-  ['table',['Table',['../structprocess_1_1_table.html',1,'process']]],
-  ['text',['Text',['../class_plate_1_1_text.html',1,'Plate::Text'],['../class_plate_1_1_text.html#a7d9cc837bb93e89f5b8bd6aee6cd578b',1,'Plate::Text::Text()']]],
-  ['texts',['texts',['../class_plate.html#a2f9fd5a829e54bfc844215d16bef1fe3',1,'Plate']]],
-  ['tools',['tools',['../namespacetools.html',1,'']]],
-  ['totalcorrect',['totalCorrect',['../classtools_1_1_analyzer.html#a8a38c47fc2d716a805f026dea1ea2868',1,'tools::Analyzer']]],
-  ['totaltry',['totalTry',['../classtools_1_1_analyzer.html#a3e378819a8a7d97b4cffb83cd2cde912',1,'tools::Analyzer']]],
-  ['train',['train',['../class_o_c_r_trainer.html#a0c5b71ded13ee1ac8b135a9fd0ee140d',1,'OCRTrainer::train()'],['../class_s_v_m_trainer.html#a60f3eb8020709966c067246c98b610c4',1,'SVMTrainer::train()'],['../namespaceprocess.html#a38b4d487dfb47b712f32bfa52fa94464a1997642964991dcd5ee63cd28185ef86',1,'process::TRAIN()']]],
-  ['trainingdata',['trainingData',['../class_o_c_r.html#a2c5101fa102a3fbb66144b3f511b3bd5',1,'OCR::trainingData()'],['../class_svm.html#a29ecb047ff1b1dc376b60e9e4bf11b37',1,'Svm::trainingData()']]]
+  ['send',['send',['../classsock_1_1_socket.html#a1d980395d1e06e4b9e1c5c65a2220a0a',1,'sock::Socket']]],
+  ['send2server',['send2Server',['../namespaceprocess.html#a1f0aa45cb765ba7d279ac2c2199074ea',1,'process']]],
+  ['sended',['sended',['../structprocess_1_1_table.html#aefdb336dc1532718fcbf1708a35d9aff',1,'process::Table']]],
+  ['serversocket',['ServerSocket',['../classsock_1_1_server_socket.html',1,'sock']]],
+  ['set_5fnon_5fblocking',['set_non_blocking',['../classsock_1_1_socket.html#a908007148692a4a8dfa6a339b679b8a8',1,'sock::Socket']]],
+  ['setdebug',['setDebug',['../class_plate.html#a4f307c5bc7cf3c5887d704fbeed3fd8a',1,'Plate']]],
+  ['setheader',['setHeader',['../classps_1_1_a_p_i.html#a5e11883deb21d5638fabbc7569f9f44f',1,'ps::API']]],
+  ['sock',['sock',['../namespacesock.html',1,'sock'],['../classps_1_1_a_p_i.html#af262de65cbf1ede5881c3c75d3cca049',1,'ps::API::sock()'],['../classsock_1_1_socket.html#a01040adb35eea5ad276090b9db112f4a',1,'sock::Socket::sock()']]],
+  ['socket',['Socket',['../classsock_1_1_socket.html',1,'sock::Socket'],['../classsock_1_1_socket.html#a9983ebd97b8f79d3e4c67fca05811dcb',1,'sock::Socket::Socket()'],['../classsock_1_1_socket.html#a570a3285956f8923f490f9203a6d1d8f',1,'sock::Socket::Socket(int sock)']]],
+  ['startopencv',['startOpencv',['../namespaceprocess.html#a04e297268dc5195b3c29081e59cb411f',1,'process']]],
+  ['status',['status',['../structhttp_1_1_status_line.html#acfd9752d4b62330a390f17f5d011fcd2',1,'http::StatusLine']]],
+  ['statusline',['StatusLine',['../structhttp_1_1_status_line.html',1,'http']]],
+  ['strcharacters',['strCharacters',['../class_o_c_r.html#acc9af89294d62414e9e7ccddd2d169dc',1,'OCR']]],
+  ['svm',['Svm',['../class_svm.html',1,'Svm'],['../class_svm.html#ac4e8ba994bfa1f66d17ef3b0fa2d856c',1,'Svm::svm()'],['../class_svm.html#a762af972a037686ea80d9896905f57ed',1,'Svm::Svm(const int mode)']]],
+  ['svmtrainer',['SVMTrainer',['../class_s_v_m_trainer.html',1,'SVMTrainer'],['../class_s_v_m_trainer.html#a2109fcf47792fe25ac12e14368c775bb',1,'SVMTrainer::SVMTrainer()']]]
 ];

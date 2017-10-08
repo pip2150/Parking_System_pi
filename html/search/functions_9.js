@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['readimage',['readImage',['../namespacetools.html#a0dabcdc87de76f44797f16ade56944cf',1,'tools']]],
-  ['readtraindata',['readTraindata',['../class_o_c_r.html#a27494f2dca260d6710c332897c31f716',1,'OCR::readTraindata(const std::string fn)'],['../class_o_c_r.html#acef1528ddf01f01f301dcd489ec427fb',1,'OCR::readTraindata(const std::string fn, const FORMAT format)'],['../class_svm.html#afb95b76fa494604abcd022c5948fb728',1,'Svm::readTraindata()']]]
+  ['message',['Message',['../classhttp_1_1_message.html#af708fe5d0db7f88afe44665ddcf2205a',1,'http::Message::Message(std::string msg)'],['../classhttp_1_1_message.html#a3b0418444366710791deda1abe0f9f9f',1,'http::Message::Message(std::string firstLine[], HeaderLine headerLine[], int headerSize, std::string content)']]],
+  ['minapproxrect',['minApproxRect',['../class_plate.html#a2c048194ebdfbaeede0068dcbefbd4cf',1,'Plate']]]
 ];
