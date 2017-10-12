@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Parking System: opencv/svm.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Parking System
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'검색');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','검색');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_bc7ba1e312bfc05dfad081506e1881af.html">opencv</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">svm.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef SVM_HPP_</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define SVM_HPP_</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;opencv2/opencv.hpp&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div><div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="class_svm.html">   10</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_svm.html">Svm</a> {</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="class_svm.html#ac4e8ba994bfa1f66d17ef3b0fa2d856c">   13</a></span>&#160;    cv::Ptr&lt;cv::ml::SVM&gt; <a class="code" href="class_svm.html#ac4e8ba994bfa1f66d17ef3b0fa2d856c">svm</a>;       </div><div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="class_svm.html#a76663f6a5d1baa4185887451aed8e577">   14</a></span>&#160;    cv::Mat <a class="code" href="class_svm.html#a76663f6a5d1baa4185887451aed8e577">classes</a>;                </div><div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="class_svm.html#a29ecb047ff1b1dc376b60e9e4bf11b37">   15</a></span>&#160;    cv::Mat <a class="code" href="class_svm.html#a29ecb047ff1b1dc376b60e9e4bf11b37">trainingData</a>;           </div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_svm.html#a1b18e97fffb268f9cfe91152f7e96298">collectTrainImages</a>();</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_svm.html#a303d7fad50a71154c8201883db777ca1">writeTraindata</a>(<span class="keyword">const</span> std::string fn);</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_svm.html#afb95b76fa494604abcd022c5948fb728">readTraindata</a>(<span class="keyword">const</span> std::string fn);</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div><div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="class_svm.html#a479f12db422de0a4c4d46900ee154928">   38</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="class_svm.html#a479f12db422de0a4c4d46900ee154928">MODE</a> {</div><div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="class_svm.html#a479f12db422de0a4c4d46900ee154928aeb592b07b32a90ab0b49f8912740562a">   39</a></span>&#160;        <a class="code" href="class_svm.html#a479f12db422de0a4c4d46900ee154928aeb592b07b32a90ab0b49f8912740562a">READDT</a> = 0b00,      </div><div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="class_svm.html#a479f12db422de0a4c4d46900ee154928a97cff7c5edfa23dfdb9047aa49acb5ad">   40</a></span>&#160;        <a class="code" href="class_svm.html#a479f12db422de0a4c4d46900ee154928a97cff7c5edfa23dfdb9047aa49acb5ad">COLLECT</a> = 0b01,     </div><div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="class_svm.html#a479f12db422de0a4c4d46900ee154928acfc63391c47b89218369105e12b992fb">   41</a></span>&#160;        <a class="code" href="class_svm.html#a479f12db422de0a4c4d46900ee154928acfc63391c47b89218369105e12b992fb">WRITEDT</a> = 0b11      </div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    };</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="class_svm.html#a762af972a037686ea80d9896905f57ed">Svm</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> mode);</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_svm.html#ad157df6a49f7380a99232e5b8fa6b63e">predict</a>(<span class="keyword">const</span> cv::Mat &amp;img);</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;};</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div><div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="class_s_v_m_trainer.html">   61</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_s_v_m_trainer.html">SVMTrainer</a> {</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div><div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="class_s_v_m_trainer.html#ad7ac47f8d93360bac934cf399f37b967">   64</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_s_v_m_trainer.html#ad7ac47f8d93360bac934cf399f37b967">fileIndex</a>;      </div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="class_s_v_m_trainer.html">SVMTrainer</a>();</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> train(<span class="keyword">const</span> cv::Mat &amp;sample);</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;};</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="class_svm_html_a479f12db422de0a4c4d46900ee154928aeb592b07b32a90ab0b49f8912740562a"><div class="ttname"><a href="class_svm.html#a479f12db422de0a4c4d46900ee154928aeb592b07b32a90ab0b49f8912740562a">Svm::READDT</a></div><div class="ttdoc">Json File에서 읽기 </div><div class="ttdef"><b>Definition:</b> <a href="svm_8hpp_source.html#l00039">svm.hpp:39</a></div></div>
+<div class="ttc" id="class_s_v_m_trainer_html"><div class="ttname"><a href="class_s_v_m_trainer.html">SVMTrainer</a></div><div class="ttdoc">Svm::collectTrainImages 실행 시 필요한 image를 생성하는 클래스 </div><div class="ttdef"><b>Definition:</b> <a href="svm_8hpp_source.html#l00061">svm.hpp:61</a></div></div>
+<div class="ttc" id="class_svm_html_afb95b76fa494604abcd022c5948fb728"><div class="ttname"><a href="class_svm.html#afb95b76fa494604abcd022c5948fb728">Svm::readTraindata</a></div><div class="ttdeci">void readTraindata(const std::string fn)</div><div class="ttdoc">훈련 데이터를 File System에서 Json 파일로부터 불러오기 </div><div class="ttdef"><b>Definition:</b> <a href="svm_8cpp_source.html#l00065">svm.cpp:65</a></div></div>
+<div class="ttc" id="class_svm_html_a303d7fad50a71154c8201883db777ca1"><div class="ttname"><a href="class_svm.html#a303d7fad50a71154c8201883db777ca1">Svm::writeTraindata</a></div><div class="ttdeci">void writeTraindata(const std::string fn)</div><div class="ttdoc">훈련 데이터를 File System에 Json 파일로 쓰기 </div><div class="ttdef"><b>Definition:</b> <a href="svm_8cpp_source.html#l00081">svm.cpp:81</a></div></div>
+<div class="ttc" id="class_svm_html_a1b18e97fffb268f9cfe91152f7e96298"><div class="ttname"><a href="class_svm.html#a1b18e97fffb268f9cfe91152f7e96298">Svm::collectTrainImages</a></div><div class="ttdeci">void collectTrainImages()</div><div class="ttdoc">trainimage에서 훈련 데이터 불러오기 &amp;#39;trainimage&amp;#39;에 경로에서 모든 이미지 파일을 읽어들여 훈련 데이터를...</div><div class="ttdef"><b>Definition:</b> <a href="svm_8cpp_source.html#l00036">svm.cpp:36</a></div></div>
+<div class="ttc" id="class_svm_html_ac4e8ba994bfa1f66d17ef3b0fa2d856c"><div class="ttname"><a href="class_svm.html#ac4e8ba994bfa1f66d17ef3b0fa2d856c">Svm::svm</a></div><div class="ttdeci">cv::Ptr&lt; cv::ml::SVM &gt; svm</div><div class="ttdoc">Support Vector Machines </div><div class="ttdef"><b>Definition:</b> <a href="svm_8hpp_source.html#l00013">svm.hpp:13</a></div></div>
+<div class="ttc" id="class_svm_html_a479f12db422de0a4c4d46900ee154928a97cff7c5edfa23dfdb9047aa49acb5ad"><div class="ttname"><a href="class_svm.html#a479f12db422de0a4c4d46900ee154928a97cff7c5edfa23dfdb9047aa49acb5ad">Svm::COLLECT</a></div><div class="ttdoc">trainimage에서 읽기 </div><div class="ttdef"><b>Definition:</b> <a href="svm_8hpp_source.html#l00040">svm.hpp:40</a></div></div>
+<div class="ttc" id="class_svm_html_a479f12db422de0a4c4d46900ee154928"><div class="ttname"><a href="class_svm.html#a479f12db422de0a4c4d46900ee154928">Svm::MODE</a></div><div class="ttdeci">MODE</div><div class="ttdoc">훈련 데이터를 다룰 방법 </div><div class="ttdef"><b>Definition:</b> <a href="svm_8hpp_source.html#l00038">svm.hpp:38</a></div></div>
+<div class="ttc" id="class_s_v_m_trainer_html_ad7ac47f8d93360bac934cf399f37b967"><div class="ttname"><a href="class_s_v_m_trainer.html#ad7ac47f8d93360bac934cf399f37b967">SVMTrainer::fileIndex</a></div><div class="ttdeci">int fileIndex</div><div class="ttdoc">File 검색을 위한 Index 변수 </div><div class="ttdef"><b>Definition:</b> <a href="svm_8hpp_source.html#l00064">svm.hpp:64</a></div></div>
+<div class="ttc" id="class_svm_html_a762af972a037686ea80d9896905f57ed"><div class="ttname"><a href="class_svm.html#a762af972a037686ea80d9896905f57ed">Svm::Svm</a></div><div class="ttdeci">Svm(const int mode)</div><div class="ttdoc">Svm 초기화 </div><div class="ttdef"><b>Definition:</b> <a href="svm_8cpp_source.html#l00008">svm.cpp:8</a></div></div>
+<div class="ttc" id="class_svm_html_a29ecb047ff1b1dc376b60e9e4bf11b37"><div class="ttname"><a href="class_svm.html#a29ecb047ff1b1dc376b60e9e4bf11b37">Svm::trainingData</a></div><div class="ttdeci">cv::Mat trainingData</div><div class="ttdoc">훈련을 위한 Samples </div><div class="ttdef"><b>Definition:</b> <a href="svm_8hpp_source.html#l00015">svm.hpp:15</a></div></div>
+<div class="ttc" id="class_svm_html"><div class="ttname"><a href="class_svm.html">Svm</a></div><div class="ttdoc">Support Vector Machines을 다루기 위한 클래스 </div><div class="ttdef"><b>Definition:</b> <a href="svm_8hpp_source.html#l00010">svm.hpp:10</a></div></div>
+<div class="ttc" id="class_svm_html_ad157df6a49f7380a99232e5b8fa6b63e"><div class="ttname"><a href="class_svm.html#ad157df6a49f7380a99232e5b8fa6b63e">Svm::predict</a></div><div class="ttdeci">float predict(const cv::Mat &amp;img)</div><div class="ttdoc">입력된 Sample이 훈련된 Support Vector Machines의해 예측된 결과를 출력 </div><div class="ttdef"><b>Definition:</b> <a href="svm_8cpp_source.html#l00061">svm.cpp:61</a></div></div>
+<div class="ttc" id="class_svm_html_a479f12db422de0a4c4d46900ee154928acfc63391c47b89218369105e12b992fb"><div class="ttname"><a href="class_svm.html#a479f12db422de0a4c4d46900ee154928acfc63391c47b89218369105e12b992fb">Svm::WRITEDT</a></div><div class="ttdoc">Json File로 쓰기 </div><div class="ttdef"><b>Definition:</b> <a href="svm_8hpp_source.html#l00041">svm.hpp:41</a></div></div>
+<div class="ttc" id="class_svm_html_a76663f6a5d1baa4185887451aed8e577"><div class="ttname"><a href="class_svm.html#a76663f6a5d1baa4185887451aed8e577">Svm::classes</a></div><div class="ttdeci">cv::Mat classes</div><div class="ttdoc">trainingData와 연관된 출력될 vectors </div><div class="ttdef"><b>Definition:</b> <a href="svm_8hpp_source.html#l00014">svm.hpp:14</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+다음에 의해 생성됨 :  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

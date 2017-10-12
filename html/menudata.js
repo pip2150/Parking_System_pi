@@ -1,5 +1,6 @@
 var menudata={children:[
 {text:"메인 페이지",url:"index.html"},
+{text:"관련된 페이지",url:"pages.html"},
 {text:"네임스페이스",url:"namespaces.html",children:[
 {text:"네임스페이스 목록",url:"namespaces.html"},
 {text:"네임스페이스 멤버",url:"namespacemembers.html",children:[

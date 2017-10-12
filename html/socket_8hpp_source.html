@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Parking System: network/socket.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Parking System
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'검색');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','검색');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_c901c14b65aa229498a52b725b3d4a2c.html">network</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">socket.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * socket.hpp</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *  Created on: 2017. 7. 25.</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *      Author: dhrco</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> */</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef SOCKET_HPP_</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define SOCKET_HPP_</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">struct </span>sockaddr_in;</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacesock.html">sock</a>{</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div><div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classsock_1_1_socket.html">   23</a></span>&#160;<span class="keyword">class </span><a class="code" href="classsock_1_1_socket.html">Socket</a>{</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">protected</span>:</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div><div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classsock_1_1_socket.html#a3a0ac1ff8d4b3ace6fc85c75f8174299">   27</a></span>&#160;    sockaddr_in *<a class="code" href="classsock_1_1_socket.html#a3a0ac1ff8d4b3ace6fc85c75f8174299">addr</a>;      </div><div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classsock_1_1_socket.html#a01040adb35eea5ad276090b9db112f4a">   28</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classsock_1_1_socket.html#a01040adb35eea5ad276090b9db112f4a">sock</a>;               </div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div><div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classsock_1_1_socket.html#ac1b998d21d786e8a40019079581cbe5a">   32</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classsock_1_1_socket.html#ac1b998d21d786e8a40019079581cbe5a">MAXHOSTNAME</a> = 200;         </div><div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classsock_1_1_socket.html#a9f25b6bda1196c775ef4d71db6d74d1c">   33</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classsock_1_1_socket.html#a9f25b6bda1196c775ef4d71db6d74d1c">MAXCONNECTIONS</a> = 5;        </div><div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classsock_1_1_socket.html#a01030a5c8737ce91eb7d03ffb8793bad">   34</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="classsock_1_1_socket.html#a01030a5c8737ce91eb7d03ffb8793bad">MAXRECV</a> = 500;             </div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="classsock_1_1_socket.html#a9983ebd97b8f79d3e4c67fca05811dcb">Socket</a>();</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="classsock_1_1_socket.html#a9983ebd97b8f79d3e4c67fca05811dcb">Socket</a>(<span class="keywordtype">int</span> sock);</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="classsock_1_1_socket.html#a2efd63baf692cd9e466da55139f74838">~Socket</a>();</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classsock_1_1_socket.html#a1d980395d1e06e4b9e1c5c65a2220a0a">send</a>(<span class="keyword">const</span> std::string data);</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classsock_1_1_socket.html#aa52c41c177bd1f7fe785d32d46f60b9f">recv</a>(std::string *data);</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classsock_1_1_socket.html#a448363328243c35f7899761381cac1df">isValid</a>();</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classsock_1_1_socket.html#a908007148692a4a8dfa6a339b679b8a8">set_non_blocking</a>(<span class="keywordtype">bool</span> b);</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;};</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div><div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="classsock_1_1_client_socket.html">   85</a></span>&#160;<span class="keyword">class </span><a class="code" href="classsock_1_1_client_socket.html">ClientSocket</a> : <span class="keyword">public</span> <a class="code" href="classsock_1_1_socket.html">Socket</a> {</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">bool</span> connect(<span class="keyword">const</span> std::string host, <span class="keyword">const</span> <span class="keywordtype">int</span> port);</div><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;};</div><div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div><div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classsock_1_1_server_socket.html">  102</a></span>&#160;<span class="keyword">class </span><a class="code" href="classsock_1_1_server_socket.html">ServerSocket</a> : <span class="keyword">public</span> <a class="code" href="classsock_1_1_socket.html">Socket</a> {</div><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordtype">bool</span> create();</div><div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div><div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordtype">bool</span> bind(<span class="keyword">const</span> <span class="keywordtype">int</span> port);</div><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordtype">bool</span> listen();</div><div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordtype">bool</span> accept(<a class="code" href="classsock_1_1_socket.html">Socket</a>* clientSocket);</div><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div><div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;};</div><div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div><div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;};</div><div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div><div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="classsock_1_1_socket_html_a908007148692a4a8dfa6a339b679b8a8"><div class="ttname"><a href="classsock_1_1_socket.html#a908007148692a4a8dfa6a339b679b8a8">sock::Socket::set_non_blocking</a></div><div class="ttdeci">void set_non_blocking(bool b)</div><div class="ttdoc">nonblocking I/O 설정 </div><div class="ttdef"><b>Definition:</b> <a href="socket_8cpp_source.html#l00081">socket.cpp:81</a></div></div>
+<div class="ttc" id="classsock_1_1_socket_html_a01040adb35eea5ad276090b9db112f4a"><div class="ttname"><a href="classsock_1_1_socket.html#a01040adb35eea5ad276090b9db112f4a">sock::Socket::sock</a></div><div class="ttdeci">int sock</div><div class="ttdoc">소켓 파일 기술자 </div><div class="ttdef"><b>Definition:</b> <a href="socket_8hpp_source.html#l00028">socket.hpp:28</a></div></div>
+<div class="ttc" id="classsock_1_1_server_socket_html"><div class="ttname"><a href="classsock_1_1_server_socket.html">sock::ServerSocket</a></div><div class="ttdoc">서버 소켓 </div><div class="ttdef"><b>Definition:</b> <a href="socket_8hpp_source.html#l00102">socket.hpp:102</a></div></div>
+<div class="ttc" id="classsock_1_1_socket_html_aa52c41c177bd1f7fe785d32d46f60b9f"><div class="ttname"><a href="classsock_1_1_socket.html#aa52c41c177bd1f7fe785d32d46f60b9f">sock::Socket::recv</a></div><div class="ttdeci">int recv(std::string *data)</div><div class="ttdoc">소켓으로 부터 데이터를 받는 메소드 </div><div class="ttdef"><b>Definition:</b> <a href="socket_8cpp_source.html#l00057">socket.cpp:57</a></div></div>
+<div class="ttc" id="classsock_1_1_socket_html_a3a0ac1ff8d4b3ace6fc85c75f8174299"><div class="ttname"><a href="classsock_1_1_socket.html#a3a0ac1ff8d4b3ace6fc85c75f8174299">sock::Socket::addr</a></div><div class="ttdeci">sockaddr_in * addr</div><div class="ttdoc">소켓 주소를 지정하는 구조체 </div><div class="ttdef"><b>Definition:</b> <a href="socket_8hpp_source.html#l00027">socket.hpp:27</a></div></div>
+<div class="ttc" id="classsock_1_1_socket_html_a448363328243c35f7899761381cac1df"><div class="ttname"><a href="classsock_1_1_socket.html#a448363328243c35f7899761381cac1df">sock::Socket::isValid</a></div><div class="ttdeci">bool isValid()</div><div class="ttdoc">소켓이 올바른지 검사하는 메소드 </div><div class="ttdef"><b>Definition:</b> <a href="socket_8cpp_source.html#l00041">socket.cpp:41</a></div></div>
+<div class="ttc" id="classsock_1_1_client_socket_html"><div class="ttname"><a href="classsock_1_1_client_socket.html">sock::ClientSocket</a></div><div class="ttdoc">클라이언트 소켓 </div><div class="ttdef"><b>Definition:</b> <a href="socket_8hpp_source.html#l00085">socket.hpp:85</a></div></div>
+<div class="ttc" id="classsock_1_1_socket_html_a1d980395d1e06e4b9e1c5c65a2220a0a"><div class="ttname"><a href="classsock_1_1_socket.html#a1d980395d1e06e4b9e1c5c65a2220a0a">sock::Socket::send</a></div><div class="ttdeci">bool send(const std::string data)</div><div class="ttdoc">소켓을 통해 데이터를 보내는 메소드 </div><div class="ttdef"><b>Definition:</b> <a href="socket_8cpp_source.html#l00047">socket.cpp:47</a></div></div>
+<div class="ttc" id="classsock_1_1_socket_html"><div class="ttname"><a href="classsock_1_1_socket.html">sock::Socket</a></div><div class="ttdoc">소켓 클래스 </div><div class="ttdef"><b>Definition:</b> <a href="socket_8hpp_source.html#l00023">socket.hpp:23</a></div></div>
+<div class="ttc" id="classsock_1_1_socket_html_a2efd63baf692cd9e466da55139f74838"><div class="ttname"><a href="classsock_1_1_socket.html#a2efd63baf692cd9e466da55139f74838">sock::Socket::~Socket</a></div><div class="ttdeci">~Socket()</div><div class="ttdoc">Socket 클래스의 소멸자 </div><div class="ttdef"><b>Definition:</b> <a href="socket_8cpp_source.html#l00034">socket.cpp:34</a></div></div>
+<div class="ttc" id="classsock_1_1_socket_html_a9983ebd97b8f79d3e4c67fca05811dcb"><div class="ttname"><a href="classsock_1_1_socket.html#a9983ebd97b8f79d3e4c67fca05811dcb">sock::Socket::Socket</a></div><div class="ttdeci">Socket()</div><div class="ttdoc">Socket 클래스를 초기화하는 생성자 </div><div class="ttdef"><b>Definition:</b> <a href="socket_8cpp_source.html#l00015">socket.cpp:15</a></div></div>
+<div class="ttc" id="classsock_1_1_socket_html_a9f25b6bda1196c775ef4d71db6d74d1c"><div class="ttname"><a href="classsock_1_1_socket.html#a9f25b6bda1196c775ef4d71db6d74d1c">sock::Socket::MAXCONNECTIONS</a></div><div class="ttdeci">static const int MAXCONNECTIONS</div><div class="ttdoc">최대 연결 가능한 연결 수 </div><div class="ttdef"><b>Definition:</b> <a href="socket_8hpp_source.html#l00033">socket.hpp:33</a></div></div>
+<div class="ttc" id="namespacesock_html"><div class="ttname"><a href="namespacesock.html">sock</a></div><div class="ttdoc">소켓통신을 위한 네임스페이스 </div><div class="ttdef"><b>Definition:</b> <a href="ps_a_p_i_8hpp_source.html#l00013">psAPI.hpp:13</a></div></div>
+<div class="ttc" id="classsock_1_1_socket_html_a01030a5c8737ce91eb7d03ffb8793bad"><div class="ttname"><a href="classsock_1_1_socket.html#a01030a5c8737ce91eb7d03ffb8793bad">sock::Socket::MAXRECV</a></div><div class="ttdeci">static const int MAXRECV</div><div class="ttdoc">recv 시 받는 버퍼의 크기 </div><div class="ttdef"><b>Definition:</b> <a href="socket_8hpp_source.html#l00034">socket.hpp:34</a></div></div>
+<div class="ttc" id="classsock_1_1_socket_html_ac1b998d21d786e8a40019079581cbe5a"><div class="ttname"><a href="classsock_1_1_socket.html#ac1b998d21d786e8a40019079581cbe5a">sock::Socket::MAXHOSTNAME</a></div><div class="ttdeci">static const int MAXHOSTNAME</div><div class="ttdoc">hostname 의 최대 길이 </div><div class="ttdef"><b>Definition:</b> <a href="socket_8hpp_source.html#l00032">socket.hpp:32</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+다음에 의해 생성됨 :  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>
