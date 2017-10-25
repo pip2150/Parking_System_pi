@@ -1,5 +1,5 @@
-#include <opencv2\opencv.hpp>
-#include "opencv\process.hpp"
+#include <opencv2/opencv.hpp>
+#include "opencv/process.hpp"
 
 using namespace std;
 using namespace process;

@@ -8,8 +8,8 @@ if (OPENMP_FOUND)
     set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 endif()
 
-set(OPENCV_FILES Opencv/Plate.cpp Opencv/Svm.cpp Opencv/OCR.cpp Opencv/Tools.cpp Opencv/Opencv.cpp )
-set(NETWORK_FILES Network/http.cpp Network/Socket.cpp Network/psAPI.cpp )
+set(OPENCV_FILES opencv/plate.cpp opencv/svm.cpp opencv/ocr.cpp opencv/tools.cpp opencv/process.cpp )
+set(NETWORK_FILES network/http.cpp network/socket.cpp network/psAPI.cpp )
 add_executable(main main.cpp ${OPENCV_FILES} ${NETWORK_FILES} )
 target_link_libraries(main ${OpenCV_LIBS} )
   

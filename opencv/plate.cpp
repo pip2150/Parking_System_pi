@@ -63,6 +63,8 @@ void Plate::find(const Mat &image, vector<Plate> *PossiblePlates) {
 
 	blur(lowRes, blr, Size(3, 3));
 
+	namedWindow("bin");
+
 	createTrackbar("min threahold", "bin", &lowThreshold, 300);
 	createTrackbar("max threahold", "bin", &highThreshold, 300);
 

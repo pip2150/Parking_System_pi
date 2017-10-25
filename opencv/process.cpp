@@ -5,7 +5,7 @@
 #ifdef _WIN32
 #include <windows.h>
 #else // On Windows
-#include <stdlib.h>
+#include <unistd.h>
 #include "../network/psAPI.hpp"
 #endif // On Linux
 
@@ -55,6 +55,8 @@ void process::send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE]) {
 	cout << "send to server" << endl;
 
 	for (int i = 0; i < SEGMENTSIZE; i++) {
+        cout << table[i].match << endl;
+        cout << table[i].sended << endl;
 		/* 이미 Server에 보낸 경우*/
 		if (table[i].sended)
 			continue;
@@ -225,7 +227,7 @@ int process::startOpencv(int width, int height, int mode, ParkingInfo info, std:
 					continue;
 
 				/* 주차 영역 번호 */
-				int zoneIndex = NULL;
+				int zoneIndex = 0;
 
 				Plate &foundPlate = plate;
 
@@ -293,6 +295,11 @@ int process::startOpencv(int width, int height, int mode, ParkingInfo info, std:
 					rectangle(textCollection, textArea, red);
 				}
 
+	            for (int i = 0; i < SEGMENTSIZE; i++) {
+                    cout << table[i].plateStr << endl;
+                    cout << table[i].match << endl;
+                    cout << table[i].sended << endl;
+                }
 				/* 주차 차량 정보 갱신 */
 				if (table[zoneIndex].plateStr == str)
 					table[zoneIndex].match++;
