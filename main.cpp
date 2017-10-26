@@ -52,14 +52,14 @@ int main(int argc, char *argv[]) {
 		"{ enter          |     | camera in enterance   }"
 		"{ exit           |     | camera in exit        }"
 		"{ n              |     | enable netwrok        }"
-		"{ T              |     | enable train          }"
-		"{ p              |     | print section         }"
+		"{ o              |     | enable OCRtrain       }"
+		"{ v              |     | enable SVMtrain       }"
 		"{ t              |     | print cost time       }"
 		"{ s              |     | print plate's string  }"
 		"{ w              |     | show debuging window  }"
 		"{ a              |     | print analysis        }"
 		"{ m              |     | not use ML  }"
-		"{ A              |     | enable all exp. -m -T }"
+		"{ A              |     | enable all exp. -m -o -v }"
 		;
 
 	cv::CommandLineParser parser(argc, argv, keys);
@@ -76,7 +76,7 @@ int main(int argc, char *argv[]) {
 	ParkingInfo info = { NONE, parser.get<int>(2), parser.get<string>(3) };
 	// 지도 학습 또는 통계 수치 계산을 위한 답
 	string answer = parser.get<string>(4);
-	string key = "nTptswam";
+	string key = "novtswam";
 
 	// 입구 모드, 출구 모드 동시에 지정 했을 경우 오류 출력
 	if (parser.has("enter") && parser.has("exit"))
@@ -91,10 +91,10 @@ int main(int argc, char *argv[]) {
 	// 모드 지정
 	if (parser.has("n"))
 		mode |= NETWORK;
-	if (parser.has("T"))
-		mode |= TRAIN;
-	if (parser.has("p"))
-		mode |= POSITION;
+	if (parser.has("o"))
+		mode |= OCRTRAIN;
+	if (parser.has("v"))
+		mode |= SVMTRAIN;
 	if (parser.has("t"))
 		mode |= COSTTIME;
 	if (parser.has("s"))
@@ -106,7 +106,7 @@ int main(int argc, char *argv[]) {
 	if (parser.has("m"))
 		mode |= NOTUSEML;
 	if (parser.has("A"))
-		mode |= 0xFF ^ TRAIN ^ NOTUSEML;
+		mode |= 0xFF ^ OCRTRAIN ^ SVMTRAIN ^ NOTUSEML;
 
 	// 오류 발생시 오류 내용 출력
 	if (!parser.check()) {

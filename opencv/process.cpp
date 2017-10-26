@@ -55,8 +55,6 @@ void process::send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE]) {
 	cout << "send to server" << endl;
 
 	for (int i = 0; i < SEGMENTSIZE; i++) {
-        cout << table[i].match << endl;
-        cout << table[i].sended << endl;
 		/* 이미 Server에 보낸 경우*/
 		if (table[i].sended)
 			continue;
@@ -94,6 +92,21 @@ bool process::deductIndex(const cv::Rect area[SEGMENTSIZE], const cv::Point &pos
 		}
 
 	return false;
+}
+
+void process::printTable(Table table[SEGMENTSIZE]){
+	
+	cout << "str" << "\t";
+	cout << "match" <<"\t";
+	cout << "sended" << "\t";
+	cout << endl;
+	
+	for(int i=0;i<SEGMENTSIZE;i++){
+		cout << table[i].plateStr << "\t";
+		cout << table[i].match <<"\t";
+		cout << table[i].sended << "\t";
+		cout <<endl;
+	}
 }
 
 int process::startOpencv(int width, int height, int mode, ParkingInfo info, std::string answer) {
@@ -217,10 +230,9 @@ int process::startOpencv(int width, int height, int mode, ParkingInfo info, std:
 
 				if (mode & WINDOWON)
 					imshow("plate", plate.img);
-				/*
-				if (mode & TRAIN)
+				
+				if (mode & SVMTRAIN)
 					svmtrainer.train(plate.img);
-				*/
 
 				/** Svm을 통해 번호판 여부 확인 */
 				if (response != 1)
@@ -247,9 +259,8 @@ int process::startOpencv(int width, int height, int mode, ParkingInfo info, std:
 				if (mode & COSTTIME)
 					cout << "\t\tCost Time In the FindTexts : " << findText_t * 1000 / getTickFrequency() << "ms" << endl;
 
-				if (mode & POSITION)
-					if (deductIndex(area, plate.position, &zoneIndex))
-						circle(image, plate.position, 2, Scalar(0, 0, 255), 2);
+				if (deductIndex(area, plate.position, &zoneIndex))
+					circle(image, plate.position, 2, red, 2);
 
 				int textsSize = (int)foundPlate.texts.size();
 
@@ -275,7 +286,7 @@ int process::startOpencv(int width, int height, int mode, ParkingInfo info, std:
 
 					Mat canonical = text.canonical(SAMPLESIZE);
 
-					if (mode & TRAIN)
+					if (mode & OCRTRAIN)
 						sample.push_back(canonical);
 					if (!(mode & NOTUSEML)) {
 						/* 정규화된 Text의 특징 */
@@ -295,18 +306,15 @@ int process::startOpencv(int width, int height, int mode, ParkingInfo info, std:
 					rectangle(textCollection, textArea, red);
 				}
 
-	            for (int i = 0; i < SEGMENTSIZE; i++) {
-                    cout << table[i].plateStr << endl;
-                    cout << table[i].match << endl;
-                    cout << table[i].sended << endl;
-                }
+				printTable(table);
+				
 				/* 주차 차량 정보 갱신 */
-				if (table[zoneIndex].plateStr == str)
-					table[zoneIndex].match++;
+				if (table[zoneIndex-1].plateStr == str)
+					table[zoneIndex-1].match++;
 				else {
-					table[zoneIndex].plateStr = str;
-					table[zoneIndex].match = 0;
-					table[zoneIndex].sended = false;
+					table[zoneIndex-1].plateStr = str;
+					table[zoneIndex-1].match = 0;
+					table[zoneIndex-1].sended = false;
 				}
 
 				/* Plate Text 문자열을 image에 넣기 */
@@ -335,7 +343,7 @@ int process::startOpencv(int width, int height, int mode, ParkingInfo info, std:
 				send2Server(info, table);
 			if (mode & COSTTIME)
 				cout << "\tCost Time In a Cycle : " << cycle_t * 1000 / getTickFrequency() << "ms" << endl;
-			if (mode & TRAIN)
+			if (mode & OCRTRAIN)
 				ocrtrainer.train(sample);
 
 			for (int i = 0; i < SEGMENTSIZE; i++)

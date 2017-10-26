@@ -22,8 +22,8 @@ namespace process {
 	//! 프로그램 Mode
 	enum MODE {
 		NETWORK = 0x01,			//!< Network 활성화
-		TRAIN = 0x02,			//!< Train 활성화
-		POSITION = 0x04,		//!< Position 표시
+		OCRTRAIN = 0x02,		//!< OCRTrain 활성화
+		SVMTRAIN = 0x04,		//!< SVMTrain 활성화
 		COSTTIME = 0x08,		//!< 소요시간 표시
 		PLATESTR = 0x10,		//!< 소요시간 표시
 		WINDOWON = 0x20,		//!< 각 과정을 Windows로 띄우기
@@ -78,6 +78,14 @@ namespace process {
 		@param info 주차 차량 정보
 		@param answer 통계 정보 또는 결과물을 훈련 데이터에 저장하기 위한 정답 @see OCRTrainer
 	*/
+	
+	void printTable(Table table[SEGMENTSIZE])
+	
+	/**
+		@brief Debug용 주차 차량 정보 테이블 출력
+		@param table 출력할 테이블 배열 @see Table
+	*/
+		
 	int startOpencv(int width, int height, int mode, process::ParkingInfo info, std::string answer);
 }
 
