@@ -1,7 +1,7 @@
 #ifndef PROCESS_HPP_
 #define PROCESS_HPP_
 
-/** @brief Process 
+/** @brief Process
 	종합적인 진행 namespace
 */
 namespace process {
@@ -58,17 +58,22 @@ namespace process {
 		@param info 주차장 정보
 		@param table 주차 차량 정보
 	*/
-	void send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE]);
+	void send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE + 1]);
 
 	/**
 		@brief 차량 위치 도출
 		@param area SEGMENTSIZE 개수로 나뉘어진 사각형 영역
 		@param position 번호판의 좌표
-		@param zoneIndex 도출된 차량 위치
-		@return 해당하는 위치가 존재하면 true 그렇지 않으면 false
+		@return zoneIndex 도출된 차량 위치
 		position이 각각의 area 중에 포함되는지 검사한다.
 	*/
-	bool deductIndex(const cv::Rect area[SEGMENTSIZE], const cv::Point &position, int *zoneIndex);
+	int deductIndex(const cv::Rect area[SEGMENTSIZE], const cv::Point &position);
+
+	/**
+		@brief Debug용 주차 차량 정보 테이블 출력
+		@param table 출력할 테이블 배열 @see Table
+	*/
+	void printTable(Table table[SEGMENTSIZE + 1]);
 
 	/**
 		@brief Opencv 작업 시작
@@ -78,14 +83,6 @@ namespace process {
 		@param info 주차 차량 정보
 		@param answer 통계 정보 또는 결과물을 훈련 데이터에 저장하기 위한 정답 @see OCRTrainer
 	*/
-	
-	void printTable(Table table[SEGMENTSIZE])
-	
-	/**
-		@brief Debug용 주차 차량 정보 테이블 출력
-		@param table 출력할 테이블 배열 @see Table
-	*/
-		
 	int startOpencv(int width, int height, int mode, process::ParkingInfo info, std::string answer);
 }
 

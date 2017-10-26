@@ -5,10 +5,10 @@ using namespace std;
 using namespace process;
 
 /**
-    @mainpage   Parking System
-    @section	소개
-    - 프로젝트 이름      :   Parking System on Device(Raspberry) with OpenCV Library
-	
+	@mainpage   Parking System
+	@section	소개
+	- 프로젝트 이름      :   Parking System on Device(Raspberry) with OpenCV Library
+
 	- 프로젝트 내용 :		주차장에 설치된 Camera 에서 얻은 영상 처리하고 기계 학습하여 얻은 정보를 네트워크를 통해 서버와 휴대 전화와 공유한다.
 					->처리 순서
 						1. Camera 로 부터 받은 이미지를 영상 처리
@@ -16,27 +16,27 @@ using namespace process;
 						3. 번호판의 좌표를 통해 상대적 좌표를 도출
 						4. 인경신경망을 이용한 광학 문자 판독기(OCR) 통해 문자 인식
 						5. 서버 전송
-	
-    @section   동작 환경
+
+	@section   동작 환경
 	- 운영체제    : raspian
 	- 의존성     : C++ 11
 				 OpenCV 3.2 이상
 				 Cmake 2.8 이상
 				 OpenMP
 	@section	src
-	- Network	
-				@see Socket.hpp
-				@see Http.hpp
+	- Network
+				@see socket.hpp
+				@see http.hpp
 				@see psAPI.hpp
 	- OpenCV
-				@see OCR.hpp	
-				@see Plate.hpp	
-				@see process.hpp	
-				@see Svm.hpp	
-				@see Tools.hpp
+				@see ocr.hpp
+				@see plate.hpp
+				@see process.hpp
+				@see svm.hpp
+				@see tools.hpp
 	- main
 				@see main.cpp
-    */
+	*/
 
 int main(int argc, char *argv[]) {
 	int mode = 0;
