@@ -16,9 +16,10 @@ private:
 
 	/**
 		@brief trainimage에서 훈련 데이터 불러오기
+		@param index 경계 인덱스 
 		'trainimage'에 경로에서 모든 이미지 파일을 읽어들여 훈련 데이터를 생성한다.
 	*/
-	void collectTrainImages();
+	void collectTrainImages(int index);
 
 	/**
 		@brief 훈련 데이터를 File System에 Json 파일로 쓰기

@@ -36,6 +36,8 @@ sock::Socket::~Socket() {
 	if(sock != -1)
 		::close(sock);
 
+	delete addr; 
+
 }
 
 bool sock::Socket::isValid(){

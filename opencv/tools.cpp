@@ -4,7 +4,7 @@
 bool tools::readImage(const std::string fn, cv::Mat& image, int flags) {
 	image = cv::imread(fn, flags);
 
-	return image.empty();
+	return !image.empty();
 }
 
 bool tools::writeImage(const std::string fn, const cv::Mat &image) {

@@ -56,9 +56,6 @@ namespace ps {
 #endif
 
 void process::send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE + 1]) {
-	cout << "send to server" << endl;
-
-	ps::API api("13.124.74.249", 3000);
 
 	if (info.floor) {
 		for (int i = 1; i <= SEGMENTSIZE; i++) {
@@ -70,16 +67,26 @@ void process::send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE + 1])
 			if (table[i].match < tools::Dicider::LEASTMATCH)
 				continue;
 
+        	cout << "send to server " << "(" << i << "/" << SEGMENTSIZE << ")" << endl;
+
+        	ps::API api("13.124.74.249", 3000);
+
+            cout << __LINE__ <<endl;
+
 			api.parking(info.floor, info.zoneName, i, table[i].plateStr);
 
 			api.resopnse();
 
 			/* 주차 차량 정보 갱신 */
-
 			table[i].sended = true;
+
+    	    cout << "sending complete" << endl;
 		}
 	}
 	else {
+        cout << "send to server" << endl;
+
+       	ps::API api("13.124.74.249", 3000);
 		
 		if (info.way == ENTER)
 			api.enter(table[0].plateStr);
@@ -87,9 +94,13 @@ void process::send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE + 1])
 			api.exit(table[0].plateStr);
 
 		api.resopnse();
+
+		/* 주차 차량 정보 갱신 */
+		table[0].sended = true;
+
+	    cout << "sending complete" << endl;
 	}
 
-	cout << "sending complete" << endl;
 }
 
 int process::deductIndex(const cv::Rect area[SEGMENTSIZE], const cv::Point &position) {

@@ -75,6 +75,11 @@ public:
 		@param msg HTTP 메세지의 문자열
 	 */
 	Message(std::string msg);
+	/**
+		@overload
+		@brief HTTP 메세지 클래스의 소멸자
+	 */
+	~Message();
 
 	/**
 		@overload

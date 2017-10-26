@@ -34,6 +34,12 @@ ps::API::API(std::string hostname, int port){
 		::exit(1);
 
 };
+ps::API::~API(){
+
+    cout << " ---- " <<endl;
+    delete sock;
+    cout << " ---- " <<endl;
+}
 
 void ps::API::setHeader(http::HeaderLine headerLine[], string content){
 

@@ -53,6 +53,11 @@ public:
 	API(std::string hostname, int port);
 
 	/**
+		@brief API 클래스의 소멸자
+	 */
+	~API();
+
+	/**
 		@brief 주차장에 차량 출입시에 번호판 텍스트를 서버에 보내는 메소드
 		@param plateStr 서버에 보낼 번호판 문자열
 		@param inout 입, 출 여부의 문자열 "/enter" or "/exit"

@@ -11,7 +11,10 @@ Svm::Svm(const int mode) {
 	string jsonPath = "opencv/SVMDATA.json";
 
 	if (mode & COLLECT) {
-		collectTrainImages();
+        int index;
+        cout << "type threshold index. : " << endl;
+        cin >> index;
+		collectTrainImages(index);
 		if (mode & WRITEDT)
 			writeTraindata(jsonPath);
 	}
@@ -33,26 +36,26 @@ Svm::Svm(const int mode) {
 	svm->train(trainingData, ROW_SAMPLE, classes);
 }
 
-void Svm::collectTrainImages() {
-	int imagecnt = 262;
+void Svm::collectTrainImages(int index) {
+    int i = 0;
 
-	for (int i = 0; i < imagecnt; i++) {
+    while(1){
 		string path = "trainimage/" + to_string(i) + ".png";
 		Mat img;
 
 		if (!tools::readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE)) {
-			cerr << "File No Exist." << endl;
-			exit(1);
+            break;
 		}
 		equalizeHist(img, img);
 		Mat tmp = img.reshape(1, 1);
 
 		trainingData.push_back(tmp);
 
-		if (i < 233)
+		if (i < index)
 			classes.push_back(1);
 		else
 			classes.push_back(0);
+        i++;
 	}
 
 	trainingData.convertTo(trainingData, CV_32FC1);
@@ -107,6 +110,7 @@ void SVMTrainer::train(const cv::Mat &sample) {
 		fileIndex++;
 	} while (tools::readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE));
 
+    cout << endl;
 	//std::cout << path << std::endl;
 	if (!tools::writeImage(path, svmdata)) {
 		std::cerr << "Fail To Write." << std::endl;

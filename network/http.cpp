@@ -73,6 +73,11 @@ http::Message::Message(std::string msg){
 
 }
 
+http::Message::~Message(){
+
+	delete header;
+}
+
 http::HeaderLine http::Message::getHeader(int index){
 
 	return header[index];
