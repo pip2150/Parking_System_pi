@@ -13,7 +13,7 @@ OCR::OCR(const FORMAT format, const int mode) {
 	}
 
 	// Json File °æ·Î
-	std::string jsonPath = "Opencv/OCR.json";
+	std::string jsonPath = "opencv/OCR.json";
 	if (mode & COLLECT) {
 		collectTrainImages();
 		if (mode & WRITEDT)
@@ -56,7 +56,7 @@ void OCR::readTraindata(const std::string fn) {
 	FileStorage fs(fn, cv::FileStorage::READ | FileStorage::FORMAT_JSON);
 
 	if (!fs.isOpened()) {
-		std::cerr << "File Open Fail." << std::endl;
+		std::cerr << "Json File Open Fail." << std::endl;
 		exit(1);
 	}
 

@@ -8,7 +8,7 @@ using namespace std;
 Svm::Svm(const int mode) {
 
 	// Json File °æ·Î
-	string jsonPath = "Opencv/SVMDATA.json";
+	string jsonPath = "opencv/SVMDATA.json";
 
 	if (mode & COLLECT) {
 		collectTrainImages();
