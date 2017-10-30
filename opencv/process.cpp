@@ -71,8 +71,6 @@ void process::send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE + 1])
 
         	ps::API api("13.124.74.249", 3000);
 
-            cout << __LINE__ <<endl;
-
 			api.parking(info.floor, info.zoneName, i, table[i].plateStr);
 
 			api.resopnse();
@@ -332,13 +330,16 @@ int process::startOpencv(int width, int height, int mode, ParkingInfo info, std:
 
 				printTable(table);
 
+                Table &tmp_t = table[zoneIndex];
 				/* 주차 차량 정보 갱신 */
-				if (table[zoneIndex].plateStr == str)
-					table[zoneIndex].match++;
+                if (tmp_t.plateStr == str) {
+                    if(tmp_t.match < tools::Dicider::LEASTMATCH) 
+                        tmp_t.match++;
+                }
 				else {
-					table[zoneIndex].plateStr = str;
-					table[zoneIndex].match = 0;
-					table[zoneIndex].sended = false;
+					tmp_t.plateStr = str;
+					tmp_t.match = 0;
+					tmp_t.sended = false;
 				}
 
 				/* Plate Text 문자열을 image에 넣기 */

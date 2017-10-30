@@ -112,7 +112,6 @@ int main(int argc, char *argv[]) {
 		parser.printErrors();
 		return 0;
 	}
-		parser.printErrors();
 
 	return startOpencv(width, height, mode, info, answer);
 }
