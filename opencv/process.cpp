@@ -82,6 +82,13 @@ void process::send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE + 1])
 		}
 	}
 	else {
+        /* 이미 Server에 보낸 경우*/
+        if (table[0].sended)
+            return;
+
+        if (table[0].match < tools::Dicider::LEASTMATCH)
+            return;
+
         cout << "send to server" << endl;
 
        	ps::API api("13.124.74.249", 3000);
@@ -118,7 +125,7 @@ void process::printTable(Table table[SEGMENTSIZE + 1]) {
 	cout << "sended" << "\t";
 	cout << endl;
 
-	for (int i = 1; i <= SEGMENTSIZE; i++) {
+	for (int i = 0; i <= SEGMENTSIZE; i++) {
 		cout << table[i].plateStr << "\t";
 		cout << table[i].match << "\t";
 		cout << table[i].sended << "\t";
