@@ -87,6 +87,19 @@ class ClientSocket : public Socket {
 public:
 
 	/**
+		@overload
+		@brief ClientSocket 클래스를 초기화하는 생성자
+	 */
+	ClientSocket();
+
+	/**
+		@overload
+		@brief 파일 기술자를 통해 ClientSocket 클래스를 초기화하는 생성자
+		@param sock 초기화할 파일 기술자
+	 */
+	ClientSocket(int sock);
+
+	/**
 		@brief 소켓을 서버와 연결하는 메소드
 		@param host 연결할 서버의 주소
 		@param port 사용할 포트 번호
@@ -123,10 +136,9 @@ public:
 
 	/**
 		@brief 클라이언트 소켓을  accept 하는 메소드
-		@param clientSocket accept 할 클라이언트의 소켓
-		@return 성공 시 true 그렇지 않으면 false
+		@return clientSocket accept 할 클라이언트의 소켓
 	 */
-	bool accept(Socket* clientSocket);
+	ClientSocket accept();
 
 };
 

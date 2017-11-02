@@ -145,20 +145,24 @@ bool sock::ServerSocket::listen() {
 
 }
 
-bool sock::ServerSocket::accept(Socket *clientSocket) {
-
+sock::ClientSocket sock::ServerSocket::accept() {
 	int addrLen = sizeof(*addr);
 
 	int csock = ::accept(sock,(sockaddr *)addr, (socklen_t *)&addrLen);
-	clientSocket = new Socket(csock);
 
-	if(clientSocket->isValid()){
-		return true;
+	ClientSocket clientSocket(csock);
+
+	if(!clientSocket.isValid()){
+		perror("accept");
 	}
 
-	perror("accept");
-	return false;
+	return clientSocket;
+}
 
+sock::ClientSocket::ClientSocket() : Socket() {
+}
+
+sock::ClientSocket::ClientSocket(int sock) : Socket(sock) {
 }
 
 bool sock::ClientSocket::connect(std::string host,  int port) {
