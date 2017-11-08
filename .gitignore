@@ -3,6 +3,7 @@ cmake_install.cmake
 Makefile
 CMakeFiles
 main
+test_server
 tags
 *.tmp
 Doxyfile

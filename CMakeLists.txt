@@ -10,6 +10,7 @@ endif()
 
 set(OPENCV_FILES opencv/plate.cpp opencv/svm.cpp opencv/ocr.cpp opencv/tools.cpp  )
 set(NETWORK_FILES network/http.cpp network/socket.cpp network/api.cpp network/serverAPI.cpp network/proxyAPI.cpp )
+add_executable(test_server network/test_server.cpp network/proxyAPI.cpp network/api.cpp network/socket.cpp network/list.cpp )
 add_executable(main main.cpp process.cpp ${OPENCV_FILES} ${NETWORK_FILES} )
 target_link_libraries(main ${OpenCV_LIBS} )
   
