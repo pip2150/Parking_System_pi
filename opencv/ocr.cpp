@@ -4,6 +4,8 @@
 using namespace cv::ml;
 using namespace cv;
 
+std::string OCR::strCharacters = "0123456789BCDEFGNSTVWXY";
+
 OCR::OCR(const FORMAT format, const int mode) {
 	this->numCharacters = format;
 
@@ -133,16 +135,75 @@ void OCR::collectTrainImages() {
 	trainingData.convertTo(trainingData, CV_32FC1);
 }
 
-char OCR::classify(Mat *output) {
+char OCR::classify(Mat &output) {
 	Point maxLoc;
 	double maxVal;
 
-	minMaxLoc(*output, 0, &maxVal, 0, &maxLoc);
+	minMaxLoc(output, 0, &maxVal, 0, &maxLoc);
 
 	if (numCharacters == CHARACTER)
-		return strCharacters[maxLoc.x + 10];
+		return strCharacters[maxLoc.x + NUMBER];
 	else
 		return strCharacters[maxLoc.x];
+}
+
+int OCR::strIndex(char c, FORMAT format) {
+	int index = -1;
+
+	index = (int)strCharacters.find(c);
+
+	if (format == CHARACTER)
+		return index - NUMBER;
+
+	return index;
+}
+
+int OCR::maxProb(std::vector<Mat> &outputs, std::vector<std::string> &list) {
+
+	const float LIMIT = 1.7159;
+
+   // list.clear();
+
+	Mat probs = Mat::zeros(1, (int)list.size(), CV_32F);
+
+	for (int i = 0; i < outputs.size(); i++) {
+		double minVal = 0, maxVal = 0;
+
+		minMaxIdx(outputs[i], &minVal, &maxVal);
+
+		double norm = sum(outputs[i] + LIMIT)[0] - (minVal + LIMIT) * outputs[i].cols;;
+
+		for (int k = 0; k < list.size(); k++) {
+			FORMAT format;
+
+			if ((i == 4) || (i == 5) || (i == 6))
+				format = CHARACTER;
+			else
+				format = NUMBER;
+
+			int index = strIndex(list[k][i], format);
+
+			if ((index >= outputs[i].cols) || (index < 0)) {
+				std::cerr << "carList : 존재하지 않는 문자가 포함되어 있습니다." << std::endl;
+				exit(1);
+			}
+
+			float prob = (outputs[i].at<float>(index) + LIMIT - minVal) / norm;
+
+			probs.at<float>(k) += log2f(prob);
+		}
+	}
+
+	Point maxLoc;
+	minMaxLoc(probs, 0, 0, 0, &maxLoc);
+
+	/*
+	Mat dst;
+	cv::exp(probs, dst);
+	std::cout << dst << std::endl;
+	*/
+
+	return maxLoc.x;
 }
 
 float OCR::predict(const Mat &img, Mat *out) {
@@ -219,8 +280,6 @@ void OCRTrainer::train(const std::vector<cv::Mat> &sample) {
 				std::cout << path << std::endl;
 				fileIndexs[i]++;
 			} while (tools::readImage(path, img, CV_LOAD_IMAGE_GRAYSCALE));
-
-			std::cout << path << std::endl;
 
 			if (!tools::writeImage(path, sample[i])) {
 				std::cerr << "Fail To Write." << std::endl;

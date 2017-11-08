@@ -29,7 +29,15 @@ private:
 	cv::Ptr<cv::ml::ANN_MLP> ann;		//!< @brief Artificial Neural Networks
 	cv::Mat classes;					//!< @brief trainingData와 연관된 출력될 vector들
 	cv::Mat trainingData;				//!< @brief 훈련을 위한 Sample들
-	std::string strCharacters = "0123456789BCDEFGNSTVWXY";		//!< @brief classes와 대응되는 문자열
+	static std::string strCharacters; /*= "0123456789BCDEFGNSTVWXY";*/		//!< @brief classes와 대응되는 문자열
+
+	/**
+		@brief 출력 문자의 인덱스 번호 계산
+		@param c 찾을 문자
+		@param format 포맷
+		@return 출력 문자의 인덱스
+	*/
+	static int strIndex(char c, FORMAT format);
 
 	/** 
 		@brief TrainNumber에서 훈련 데이터 불러오기
@@ -97,7 +105,15 @@ public:
 		@param output 문자를 추출할 결과 매트릭스
 		@return 가능성 높은 문자
 	*/
-	char classify(cv::Mat *output);
+	char classify(cv::Mat &output);
+
+	/**
+		@brief 기존의 번호판 중 가장 가능성 높은 번호판의 인덱스를 출력
+		@param outputs 가능성을 계산할 매트릭스
+		@param list 가능성을 비교할 번호판의 리스트
+		@return 가능성 높은 번호판의 인덱스
+	*/
+	static int maxProb(std::vector<cv::Mat> &outputs, std::vector<std::string> &list);
 
 	/** 
 		@brief features 추출

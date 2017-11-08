@@ -20,7 +20,6 @@ sock::Socket::Socket() {
 		return ;
 
 	perror("socket");
-	exit(1);
 
 }
 
@@ -48,7 +47,15 @@ bool sock::Socket::isValid(){
 
 bool sock::Socket::send(std::string data) {
 
-	if((::send(sock, data.c_str(), data.size(), MSG_NOSIGNAL)) != -1)
+	char buf[MAXRECV + 1];
+
+	int length = data.length();
+
+	for(int i = 0; i < length; i++)
+		buf[i] = data[i];
+	buf[length] = '\0';
+
+	if((::send(sock, buf, MAXRECV, MSG_NOSIGNAL)) != -1)
 		return true;
 
 	perror("send");
@@ -169,7 +176,6 @@ bool sock::ClientSocket::connect(std::string host,  int port) {
 
 	if(host.length() > MAXHOSTNAME){
 		std::cerr << "connect : Hostname is too long" <<std::endl;
-		exit(1);
 	}
 
 	if(!isValid())
@@ -182,12 +188,10 @@ bool sock::ClientSocket::connect(std::string host,  int port) {
 
 	if(status == -1){
 		perror("connect");
-		exit(1);
 	}
 
 	if(status == 0){
 		std::cerr << "connect : Valid Network address" <<std::endl;
-		exit(1);
 	}
 
 	status = ::connect(sock,(sockaddr *)addr, sizeof(*addr));

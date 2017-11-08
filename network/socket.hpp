@@ -29,9 +29,9 @@ protected:
 
 public:
 
-	static const int MAXHOSTNAME = 200;			//!< @brief hostname 의 최대 길이
+	static const int MAXHOSTNAME = 256;			//!< @brief hostname 의 최대 길이
 	static const int MAXCONNECTIONS = 5;		//!< @brief 최대 연결 가능한 연결 수
-	static const int MAXRECV = 500;				//!< @brief recv 시 받는 버퍼의 크기
+	static const int MAXRECV = 512;				//!< @brief recv 시 받는 버퍼의 크기
 
 	/**
 		@overload

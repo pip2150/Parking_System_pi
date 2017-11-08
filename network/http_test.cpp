@@ -1,4 +1,4 @@
-﻿#include "psAPI.hpp"
+﻿#include "serverAPI.hpp"
 
 using namespace std;
 
@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
 		error();
 	}
 
-	ps::API api("13.124.74.249", 3000);
+	ps::ServerAPI api("13.124.74.249", 3000);
 
 	switch (mode) {
 	case ENTER:
