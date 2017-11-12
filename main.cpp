@@ -75,9 +75,9 @@ int main(int argc, char *argv[]) {
 	// image 높이
 	int height = parser.get<int>(1);
 	ParkingInfo info = { NONE, parser.get<int>(2), parser.get<string>(3) };
+    string ip =  parser.get<string>(4);
 	// 지도 학습 또는 통계 수치 계산을 위한 답
-	string answer = parser.get<string>(4);
-    string ip =  parser.get<string>(5);
+	string answer = parser.get<string>(5);
 
 	// 입구 모드, 출구 모드 동시에 지정 했을 경우 오류 출력
 	if (parser.has("enter") && parser.has("exit"))
