@@ -88,7 +88,7 @@ void process::send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE + 1])
 
 /* Proxy 서버와 동기화 */
 void process::sync(vector<string> *list) {
-    cout << "\tsync with Proxy" <<endl;
+    //cout << "\tsync with Proxy" <<endl;
 	ps::ProxyAPI api("127.0.0.1", 3001);
 
 	api.print();
@@ -111,10 +111,10 @@ void process::sync(vector<string> *list) {
 			tmp += recv[i];
 	}
 
-	for (auto text : *list)
-		cout << "\t\t" << text << endl;
+	//for (auto text : *list)
+	//	cout << "\t\t" << text << endl;
 
-    cout << "\tsync was done" <<endl;
+    //cout << "\tsync was done" <<endl;
 }
 
 int process::deductIndex(const cv::Rect area[SEGMENTSIZE], const cv::Point &position) {
@@ -367,6 +367,11 @@ int process::startOpencv(int width, int height, int mode, ParkingInfo info, std:
                 }
 
 				printTable(table);
+
+                for(int j = 0; j < SEGMENTSIZE; j++){
+                    if (( j != zoneIndex) && (table[j].plateStr == str ))
+                        table[j].renew("");
+                }
 
 				table[zoneIndex].renew(str);
 
