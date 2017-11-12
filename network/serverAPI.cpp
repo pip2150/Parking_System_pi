@@ -70,8 +70,18 @@ void ps::ServerAPI::parking(int floor, string zoneName, int zoneIndex, string pl
 			"\"floor\": "+to_string(floor)+","
 			"\"zone_name\": \""+zoneName+"\","
 			"\"zone_index\": "+to_string(zoneIndex)+ ","
+            ;
+    if (plateStr == "") {
+        jsondata +=	
+            "\"car_numbering\": null"
+            "}";
+    }
+    else {
+        jsondata +=
 			"\"car_numbering\": \""+plateStr+"\""
 			"}";
+    }
+
 	setHeader(headerLine,jsondata);
 
 	http::RequestMessge http(requestLine, headerLine, HEADERSIZE, jsondata);

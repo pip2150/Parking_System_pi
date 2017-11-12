@@ -48,6 +48,7 @@ int main(int argc, char *argv[]) {
 		"{ @height        | 480 | height of image       }"
 		"{ @floor         | 0   | floor of parking area }"
 		"{ @zone          | Z   | name of parking zone  }"
+		"{ @ip            | 127.0.0.1 | proxy ip address}"
 		"{ @answer        | -1  | answer                }"
 		"{ enter          |     | camera in enterance   }"
 		"{ exit           |     | camera in exit        }"
@@ -76,6 +77,7 @@ int main(int argc, char *argv[]) {
 	ParkingInfo info = { NONE, parser.get<int>(2), parser.get<string>(3) };
 	// 지도 학습 또는 통계 수치 계산을 위한 답
 	string answer = parser.get<string>(4);
+    string ip =  parser.get<string>(5);
 
 	// 입구 모드, 출구 모드 동시에 지정 했을 경우 오류 출력
 	if (parser.has("enter") && parser.has("exit"))
@@ -113,5 +115,5 @@ int main(int argc, char *argv[]) {
 		return 0;
 	}
 
-	return startOpencv(width, height, mode, info, answer);
+	return startOpencv(width, height, mode, info, answer, ip);
 }

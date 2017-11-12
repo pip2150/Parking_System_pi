@@ -76,15 +76,17 @@ namespace process {
 		@brief Server 에게 보내기
 		@param info 주차장 정보
 		@param table 주차 차량 정보
+		@param proxy server ip 주소
 	*/
-	void send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE + 1]);
+	void send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE + 1], std::string ip);
 
 	/**
 		@brief Server 에게 보내기
 		@param info 주차장 정보
 		@param table 주차 차량 정보
-	*/
-	void sync(std::vector<std::string> *list);
+		@param proxy server ip 주소
+     */
+	void sync(std::vector<std::string> *list, std::string ip);
 
 	/**
 		@brief 차량 위치 도출
@@ -108,8 +110,9 @@ namespace process {
 		@param mode 영상 처리에 대한 모드
 		@param info 주차 차량 정보
 		@param answer 통계 정보 또는 결과물을 훈련 데이터에 저장하기 위한 정답 @see OCRTrainer
-	*/
-	int startOpencv(int width, int height, int mode, process::ParkingInfo info, std::string answer);
+		@param proxy server ip 주소
+     */
+	int startOpencv(int width, int height, int mode, process::ParkingInfo info, std::string answer, std::string ip);
 }
 
 #endif

@@ -163,6 +163,8 @@ int OCR::maxProb(std::vector<Mat> &outputs, std::vector<std::string> &list) {
 	const float LIMIT = 1.7159;
 
    // list.clear();
+    if (list.size() == 0 )
+        return -1;
 
 	Mat probs = Mat::zeros(1, (int)list.size(), CV_32F);
 

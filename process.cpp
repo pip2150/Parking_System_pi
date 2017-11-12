@@ -21,10 +21,10 @@
 using namespace cv;
 using namespace std;
 
-void process::send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE + 1]) {
+void process::send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE + 1], std::string ip) {
 
 	string serveraddr = "13.124.74.249";
-	string proxyaddr = "127.0.0.1";
+	string proxyaddr = ip;
 
 	if (info.floor) {
 		for (int i = 1; i <= SEGMENTSIZE; i++) {
@@ -87,9 +87,9 @@ void process::send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE + 1])
 }
 
 /* Proxy 서버와 동기화 */
-void process::sync(vector<string> *list) {
+void process::sync(vector<string> *list, std::string ip) {
     //cout << "\tsync with Proxy" <<endl;
-	ps::ProxyAPI api("127.0.0.1", 3001);
+	ps::ProxyAPI api(ip, 3001);
 
 	api.print();
 
@@ -102,7 +102,9 @@ void process::sync(vector<string> *list) {
 
 	list->clear();
 
-	for (int i = 0; i < recv.length(); i++) {
+    int recvLen = recv.length();
+
+	for (int i = 0; i < recvLen; i++) {
 		if (recv[i] == '\n') {
 			list->push_back(tmp);
 			tmp = "";
@@ -142,7 +144,8 @@ void process::printTable(Table table[SEGMENTSIZE + 1]) {
 	}
 }
 
-int process::startOpencv(int width, int height, int mode, ParkingInfo info, std::string answer) {
+int process::startOpencv(int width, int height, int mode, ParkingInfo info, std::string answer, std::string ip) {
+    cout << ip <<endl;
 
 #if FROM == CAMERA
 	VideoCapture camera;
@@ -357,12 +360,17 @@ int process::startOpencv(int width, int height, int mode, ParkingInfo info, std:
 				int index_ = OCR::maxProb(outputs, carList);
 
                 if (info.way != ENTER) {
-                    cout << "\t\tThe Largest Problity of Plate Text : " << carList[index_] << endl;
+                    if(index_ != -1)
+                        cout << "\t\tThe Largest Problity of Plate Text : " << carList[index_] << endl;
                 }
 
                 if (mode & NETWORK) {
                     if (info.way != ENTER) {
-                        str = carList[index_];
+                        if(index_ != -1) {
+                            str = carList[index_];
+                        }
+                        else
+                            str = "";
                     }
                 }
 
@@ -404,10 +412,10 @@ int process::startOpencv(int width, int height, int mode, ParkingInfo info, std:
 
             if (mode & NETWORK) {
                 if (k)
-					send2Server(info, table);
+					send2Server(info, table, ip);
 
                 if (info.way != ENTER)
-                    sync(&carList);
+                    sync(&carList, ip);
             }
 
 			if (mode & COSTTIME)

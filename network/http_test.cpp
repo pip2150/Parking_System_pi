@@ -20,7 +20,8 @@ int main(int argc, char* argv[]) {
 		else if (arg == "exit")	mode = EXIT;
 		else error();
 		break;
-	case 6:
+    case 5:
+    case 6:
 		arg = string(argv[1]);
 		if (arg == "parking")	mode = PARKING;
 		else error();
@@ -37,7 +38,10 @@ int main(int argc, char* argv[]) {
 	case EXIT:
 		api.exit(string(argv[2])); break;
 	case PARKING:
-		api.parking(atoi(argv[2]),string(argv[3]), atoi(argv[4]), string(argv[5]));
+        if(argc == 6)
+            api.parking(atoi(argv[2]),string(argv[3]), atoi(argv[4]), string(argv[5]));
+        else
+            api.parking(atoi(argv[2]),string(argv[3]), atoi(argv[4]), "");
 		break;
 	}
 
