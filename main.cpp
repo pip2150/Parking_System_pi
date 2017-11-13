@@ -46,9 +46,6 @@ int main(int argc, char *argv[]) {
 		"{ help h usage ? |     | print this message    }"
 		"{ @width         | 640 | width of image        }"
 		"{ @height        | 480 | height of image       }"
-		"{ @floor         | 0   | floor of parking area }"
-		"{ @zone          | Z   | name of parking zone  }"
-		"{ @ip            | 127.0.0.1 | proxy ip address}"
 		"{ @answer        | -1  | answer                }"
 		"{ enter          |     | camera in enterance   }"
 		"{ exit           |     | camera in exit        }"
@@ -74,19 +71,32 @@ int main(int argc, char *argv[]) {
 	int width = parser.get<int>(0);
 	// image 높이
 	int height = parser.get<int>(1);
-	ParkingInfo info = { NONE, parser.get<int>(2), parser.get<string>(3) };
-    string ip =  parser.get<string>(4);
+	ParkingInfo info; 
+
 	// 지도 학습 또는 통계 수치 계산을 위한 답
-	string answer = parser.get<string>(5);
+	string answer = parser.get<string>(2);
 
 	// 입구 모드, 출구 모드 동시에 지정 했을 경우 오류 출력
 	if (parser.has("enter") && parser.has("exit"))
 		parser.printErrors();
 	else {
-		if (parser.has("enter"))	// 입구 모드
+		if (parser.has("enter")) {	// 입구 모드
 			info.way = ENTER;
-		if (parser.has("exit"))		// 출구 모드
+            info.floor = 0;
+            info.zoneName = "Z";
+        }
+        else if (parser.has("exit")) {		// 출구 모드
 			info.way = EXIT;
+            info.floor = 0;
+            info.zoneName = "Z";
+        }
+        else{
+			info.way = NONE;
+            cout << "inout floor : ";
+            cin >> info.floor;
+            cout << "inout zoneName : ";
+            cin >> info.zoneName;
+        }
 	}
 
 	// 모드 지정
@@ -108,6 +118,13 @@ int main(int argc, char *argv[]) {
 		mode |= NOTUSEML;
 	if (parser.has("A"))
 		mode |= 0xFF ^ OCRTRAIN ^ SVMTRAIN ^ NOTUSEML;
+
+    string ip = "127.0.0.1";
+
+    if( mode & NETWORK) {
+        cout << "proxy ip address : ";
+        cin >> ip;
+    }
 
 	// 오류 발생시 오류 내용 출력
 	if (!parser.check()) {

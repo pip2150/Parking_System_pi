@@ -145,7 +145,6 @@ void process::printTable(Table table[SEGMENTSIZE + 1]) {
 }
 
 int process::startOpencv(int width, int height, int mode, ParkingInfo info, std::string answer, std::string ip) {
-    cout << ip <<endl;
 
 #if FROM == CAMERA
 	VideoCapture camera;
