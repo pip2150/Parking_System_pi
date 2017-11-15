@@ -1,10 +1,24 @@
 #include "list.hpp"
 #include "socket.hpp"
+#include "serverAPI.hpp"
 
 using namespace std;
 
 int main(){
 	ps::List list;
+    cout << "-" <<endl;
+    cout << "-" <<endl;
+    ps::ServerAPI api("13.124.74.249", 3000);
+
+    vector<string> texts;
+
+    api.loadAll(texts);
+
+    for(auto text: texts)
+        list.insert(text);
+
+    list.print();
+
     cout << "Starting Server" <<endl;
 	sock::ServerSocket server;
 

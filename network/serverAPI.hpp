@@ -9,6 +9,7 @@
 #define SERVERAPI_HPP_
 
 #include <iostream>
+#include <vector>
 
 #include "api.hpp"
 
@@ -74,6 +75,8 @@ public:
 		@param plateStr 서버에 보낼 번호판 문자열
 	 */
 	void parking(int floor, std::string zoneName, int zoneIndex, std::string plateStr);
+
+    void loadAll(std::vector<std::string> &texts);
 
 	/**
 		@brief 서버에 보낸 메시지에 대한 응답를 html 문서로 내보내는 메소드

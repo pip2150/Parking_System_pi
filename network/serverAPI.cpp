@@ -104,6 +104,72 @@ void ps::ServerAPI::enter(string plateStr) {
 
 }
 
+void ps::ServerAPI::loadAll(std::vector<std::string> &texts) {
+
+	http::RequestLine requestLine = {"GET", "/cars/all_entered_car_numberings", "HTTP/1.1"};
+
+	http::HeaderLine headerLine[HEADERSIZE];
+	setHeader(headerLine,"");
+
+	http::RequestMessge rm(requestLine, headerLine, HEADERSIZE, "");
+	string buff = rm.getString();
+
+	if(!sock->send(buff))
+		::exit(1);
+
+	const string END_OF_HTTP = "\r\n\r\n";		// CR LF CR LF
+	string recvbuff="";
+	buff="";
+
+	while(1){
+		int size = sock->recv(&buff);
+		recvbuff += buff;
+		if(size == -1)
+            break;
+
+		auto end = buff.end();
+        if(buff.find(END_OF_HTTP) != -1)
+			break;
+	}
+
+	http::ResponseMessge http(recvbuff);
+
+	http::StatusLine statusLine = http.getStatusLine();
+	cout << statusLine.message << " ";
+	cout << statusLine.status << endl;
+
+	string content = http.getMessageBody();
+
+    int start = (int)content.find('[');
+    int end = (int)content.find(']');
+    
+    string numberings = string(content, start+1,end-start-1);
+    
+    if(numberings.length() == 0)
+        return;
+
+    int s = 0, e = -1;
+    int i = 0;
+
+    while(1){
+        e = numberings.find(",",s);
+        string text;
+
+        if(e == -1)
+            text = string(numberings, s+1, numberings.length()-s-2);
+        else
+            text = string(numberings, s+1, e-s-2);
+
+        texts.push_back(text);
+
+        s = e + 1;
+        i++;
+        if(e == -1)
+            break;
+    }
+
+}
+
 bool ps::ServerAPI::resopnse() {
 
 	const string END_OF_HTTP = "\r\n\r\n";		// CR LF CR LF

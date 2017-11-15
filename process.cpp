@@ -6,6 +6,7 @@
 #include <windows.h>
 #include "win.hpp"
 #else // On Windows
+
 #include <unistd.h>
 #include "network/serverAPI.hpp"
 #include "network/proxyAPI.hpp"
@@ -16,10 +17,16 @@
 #include "opencv/ocr.hpp"
 #include "opencv/tools.hpp"
 
+#include "wiringpi/lcd.hpp"
+#include "wiringpi/barricade.hpp"
+
 #include "process.hpp"
 
 using namespace cv;
 using namespace std;
+
+LCD lcd;
+Barricade brcd(1);
 
 void process::send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE + 1], std::string ip) {
 
@@ -183,11 +190,12 @@ int process::startOpencv(int width, int height, int mode, ParkingInfo info, std:
 #pragma omp sections
 	{
 #pragma omp section
-		if (!(mode & NOTUSEML))
-			ocrChar = new OCR(CHARACTER, OCR::READDT);
-#pragma omp section
-		if (!(mode & NOTUSEML))
-			ocrNum = new OCR(NUMBER, OCR::READDT);
+    {
+        if (!(mode & NOTUSEML))
+            ocrChar = new OCR(CHARACTER, OCR::READDT);
+        if (!(mode & NOTUSEML))
+            ocrNum = new OCR(NUMBER, OCR::READDT);
+    }
 #pragma omp section
 		svm = new Svm(Svm::READDT);
 	}
@@ -222,6 +230,8 @@ int process::startOpencv(int width, int height, int mode, ParkingInfo info, std:
 	thread procThread([&] {
 		cout << "procThread start" << endl;
 		Table table[SEGMENTSIZE + 1];
+        clock_t otime = -1;
+        clock_t ptime = -1;
 
 		/* ESC 입력 시 종료 */
 		while (runing = (waitKey(50) != ESC)) {
@@ -410,8 +420,19 @@ int process::startOpencv(int width, int height, int mode, ParkingInfo info, std:
 			cycle_t = (double)getTickCount() - cycle_t;
 
             if (mode & NETWORK) {
-                if (k)
+                if (k) {
 					send2Server(info, table, ip);
+                    brcd.open();
+                    otime = clock();
+                    ptime = clock();
+                }
+                else if ( otime != -1) {
+                    if( (double)( clock() - otime ) / CLOCKS_PER_SEC > 6 ) {
+                        brcd.close();
+                        ptime = clock();
+                        otime = -1;
+                    }
+                }
 
                 if (info.way != ENTER)
                     sync(&carList, ip);
@@ -423,20 +444,24 @@ int process::startOpencv(int width, int height, int mode, ParkingInfo info, std:
 			if (mode & OCRTRAIN)
 				ocrtrainer.train(sample);
 
-			for (int i = 0; i < SEGMENTSIZE; i++)
-				rectangle(image, area[i], red, 1);
+            if(info.way == NONE)
+    			for (int i = 0; i < SEGMENTSIZE; i++)
+    				rectangle(image, area[i], red, 1);
 
 			imshow("image", image);
+
+            if( (double)( clock() - ptime ) / CLOCKS_PER_SEC > 1 ) 
+                brcd.hold();
 
 		}
 	});
 
-	camThread.join();
-	procThread.join();
+    camThread.join();
+    procThread.join();
 
-	delete ocrChar;
-	delete ocrNum;
-	delete svm;
+    delete ocrChar;
+    delete ocrNum;
+    delete svm;
 
-	return 0;
+    return 0;
 }
