@@ -188,16 +188,15 @@ int process::startOpencv(int width, int height, int mode, ParkingInfo info, std:
 	/** OpenMP Thread 생성 */
 #pragma omp parallel
 #pragma omp sections
-	{
-#pragma omp section
     {
+#pragma omp section
         if (!(mode & NOTUSEML))
             ocrChar = new OCR(CHARACTER, OCR::READDT);
+#pragma omp section
         if (!(mode & NOTUSEML))
             ocrNum = new OCR(NUMBER, OCR::READDT);
-    }
 #pragma omp section
-		svm = new Svm(Svm::READDT);
+        svm = new Svm(Svm::READDT);
 	}
 
 	cout << "Loading was Complete." << endl;
@@ -232,6 +231,7 @@ int process::startOpencv(int width, int height, int mode, ParkingInfo info, std:
 		Table table[SEGMENTSIZE + 1];
         clock_t otime = -1;
         clock_t ptime = -1;
+        string goneCar = "0000TTT";
 
 		/* ESC 입력 시 종료 */
 		while (runing = (waitKey(50) != ESC)) {
@@ -366,6 +366,9 @@ int process::startOpencv(int width, int height, int mode, ParkingInfo info, std:
 					rectangle(textCollection, textArea, red);
 				}
 
+                if(info.way == EXIT)
+                    carList.push_back(goneCar);
+
 				int index_ = OCR::maxProb(outputs, carList);
 
                 if (info.way != ENTER) {
@@ -376,21 +379,34 @@ int process::startOpencv(int width, int height, int mode, ParkingInfo info, std:
                 if (mode & NETWORK) {
                     if (info.way != ENTER) {
                         if(index_ != -1) {
-                            str = carList[index_];
+                            if(info.way == EXIT){
+                                if((carList.size() -1) == index_)
+                                    str = "";
+                                else{
+                                    carList.pop_back();
+                                    // 마지막 꺼 빼기 
+                                    str = carList[index_];
+                                    goneCar = str;
+                                }
+                            }
+                            else
+                                str = carList[index_];
                         }
                         else
                             str = "";
                     }
                 }
 
-				printTable(table);
-
-                for(int j = 0; j < SEGMENTSIZE; j++){
-                    if (( j != zoneIndex) && (table[j].plateStr == str ))
-                        table[j].renew("");
+                if (info.way == NONE) {
+                    for(int j = 1 ; j < SEGMENTSIZE; j++){
+                        if (( j != zoneIndex) && (table[j].plateStr == str ))
+                            table[j].renew("");
+                    }
                 }
 
 				table[zoneIndex].renew(str);
+
+				printTable(table);
 
 				/* Plate Text 문자열을 image에 넣기 */
 				putText(image, str, plate.position, cv::FONT_HERSHEY_SIMPLEX, 1, blue);
