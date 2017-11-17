@@ -45,7 +45,7 @@ namespace process {
 	};
 
 
-	static const int LEASTMATCH = 5;		//!< @brief 최소한의 일치 횟수
+	static const int LEASTMATCH = 3;		//!< @brief 최소한의 일치 횟수
 
 	/**
 		@brief 주차 차량 정보

@@ -42,6 +42,8 @@ void process::send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE + 1],
 			if (table[i].match < 0)
 				continue;
 
+            brcd.open();
+
 			cout << "\tsend to server " << "(" << i << "/" << SEGMENTSIZE << ") (parking mode)" << endl;
 
 			ps::ServerAPI api(serveraddr, 3000);
@@ -81,6 +83,8 @@ void process::send2Server(const ParkingInfo &info, Table table[SEGMENTSIZE + 1],
 
 			proxyAPI.exit(table[0].plateStr);
 		}
+
+        brcd.open();
 
         proxyAPI.resopnse();
 		api.resopnse();
@@ -398,7 +402,7 @@ int process::startOpencv(int width, int height, int mode, ParkingInfo info, std:
                 }
 
                 if (info.way == NONE) {
-                    for(int j = 1 ; j < SEGMENTSIZE; j++){
+                    for(int j = 1 ; j <= SEGMENTSIZE; j++){
                         if (( j != zoneIndex) && (table[j].plateStr == str ))
                             table[j].renew("");
                     }
@@ -438,7 +442,6 @@ int process::startOpencv(int width, int height, int mode, ParkingInfo info, std:
             if (mode & NETWORK) {
                 if (k) {
 					send2Server(info, table, ip);
-                    brcd.open();
                     otime = clock();
                     ptime = clock();
                 }

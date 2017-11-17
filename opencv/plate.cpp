@@ -10,7 +10,7 @@ Plate::Plate(const Mat &img, const Point &position) {
 }
 Plate::Text::Text(const Mat &src) { this->img = src; }
 void Plate::setDebug(bool debug) { this->debug = debug; }
-static int lowThreshold = 45, highThreshold = 175;
+static int lowThreshold = 128, highThreshold = 216;
 
 Mat Plate::Text::canonical(int sampleSize) {
 	Mat canonical;
@@ -63,12 +63,11 @@ void Plate::find(const Mat &image, vector<Plate> *PossiblePlates) {
 
 	blur(lowRes, blr, Size(3, 3));
 
-    /*
 	namedWindow("bin");
 
 	createTrackbar("min threahold", "bin", &lowThreshold, 300);
 	createTrackbar("max threahold", "bin", &highThreshold, 300);
-    */
+
 	Mat sobel;
 	Canny(blr, sobel, lowThreshold, highThreshold, 3);
 	//	Sobel(blr, sobel, CV_8U, 1, 0, 3);
@@ -80,7 +79,7 @@ void Plate::find(const Mat &image, vector<Plate> *PossiblePlates) {
 	//	Mat kernel(3, 17, CV_8UC1, Scalar(1));
 	//	morphologyEx(thImg, morph, MORPH_CLOSE, kernel);
 
-    //imshow("bin", sobel);
+    imshow("bin", sobel);
 
 	vector < vector< Point> > contours;
 	findContours(sobel, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
